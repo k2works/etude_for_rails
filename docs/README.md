@@ -29,6 +29,7 @@ Railsアプリケーションのための練習プログラム集
 ## 配置
 ### [Jenkins配置](./ops/ship_jenkins.md)
 ### [CircleCI配置](./ops/ship_circleci.md)
+### [Heroku配置](./ops/ship_heroku.md)
 
 **[⬆ back to top](#構成)**
 
