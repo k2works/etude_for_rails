@@ -3,8 +3,7 @@ import assert from 'power-assert';
 
 describe('the environment', () => {
     it('works, hopefully', () => {
-    expect(true).to.be.true;
-    assert(true);
+        expect(true).to.be.true;
+        assert(true);
     });
 });
-
