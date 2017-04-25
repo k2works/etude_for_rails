@@ -40,6 +40,17 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
+  gem 'ruby-debug-ide', '~>0.6.1.beta4'
+  gem 'debase', '~>0.2.2.beta9'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'rack-dev-mark'
+  gem 'dotenv-rails'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
+  gem 'poltergeist'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -54,6 +65,7 @@ group :development do
   gem 'redcarpet', '~> 3.3', '>= 3.3.4'
   gem 'migration_comments'
   gem 'annotate'
+  gem 'poltergeist'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -62,3 +74,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # For Heroku
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
+gem 'foreman'
+
+# For JavaScript
+gem 'webpacker'

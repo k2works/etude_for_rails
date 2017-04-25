@@ -1,0 +1,4 @@
+#!/bin/bash -i
+bundle install
+bin/webpack
+bundle exec foreman start -f Procfile.dev
