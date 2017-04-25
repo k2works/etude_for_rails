@@ -48,6 +48,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
+  gem 'poltergeist'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
 end
 
 group :development do
