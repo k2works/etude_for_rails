@@ -1,0 +1,33 @@
+FROM app:base
+
+ENV APP_ROOT /usr/src/app
+WORKDIR $APP_ROOT
+COPY Gemfile $APP_ROOT
+COPY Gemfile.lock $APP_ROOT
+COPY package.json $APP_ROOT
+COPY yarn.lock $APP_ROOT
+
+RUN \
+  echo 'gem: --no-document' >> ~/.gemrc && \
+  cp ~/.gemrc /etc/gemrc && \
+  chmod uog+r /etc/gemrc && \
+  bundle config --global build.nokogiri --use-system-libraries && \
+  bundle config --global jobs 4 && \
+  bundle install && \
+  yarn install && \
+  rm -rf ~/.gem
+
+COPY . $APP_ROOT
+RUN $APP_ROOT/bin/yarn
+RUN $APP_ROOT/bin/webpack
+RUN $APP_ROOT/bin/rails assets:precompile
+#RUN RAILS_ENV=test $APP_ROOT/bin/rake db:setup
+#RUN $APP_ROOT/bin/rake db:test:prepare
+RUN $APP_ROOT/bin/rspec
+RUN $APP_ROOT/bin/rails test
+RUN npm test
+RUN $APP_ROOT/bin/rails test:system
+RUN bundle exec yard
+
+EXPOSE  3000
+CMD ["bin/server"]

@@ -27,6 +27,8 @@ Railsアプリケーションのための練習プログラム集
 **[⬆ back to top](#構成)**
 
 ## 配置
+### [Jenkins配置](./ops/ship_jenkins.md)
+
 **[⬆ back to top](#構成)**
 
 ## 開発
