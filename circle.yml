@@ -6,3 +6,24 @@ machine:
   post:
     - npm install -g npm@3
   timezone: Asia/Tokyo
+
+test:
+  pre:
+    - bin/yarn
+    - bin/webpack
+    - bin/rails assets:precompile
+  override:
+    - bin/rspec
+    - bin/rails test
+    - npm test
+    - bin/rails test:system
+
+deployment:
+  staging:
+    branch: develop
+    heroku:
+      appname: etude-for-rails
+  production:
+    branch: master
+    heroku:
+      appname: etude-for-rails
