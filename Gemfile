@@ -73,6 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # For Heroku
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
+gem 'foreman'
 
 # For JavaScript
 gem 'webpacker'
