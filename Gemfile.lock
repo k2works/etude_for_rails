@@ -44,7 +44,13 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (8.0.0)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.13.0)
@@ -65,7 +71,12 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    debase (0.2.2.beta10)
+      debase-ruby_core_source
+    debase-ruby_core_source (0.9.9)
+    debug_inspector (0.0.2)
     erubi (1.6.0)
+    erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
     formatador (0.2.5)
@@ -155,6 +166,8 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     redcarpet (3.4.0)
+    ruby-debug-ide (0.6.1.beta4)
+      rake (>= 0.8.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.4.23)
@@ -211,9 +224,12 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  better_errors
+  binding_of_caller
   byebug
   capybara (~> 2.13.0)
   coffee-rails (~> 4.2)
+  debase (~> 0.2.2.beta9)
   guard-yard
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
@@ -223,6 +239,7 @@ DEPENDENCIES
   rails (~> 5.1.0.rc2)
   rails_12factor
   redcarpet (~> 3.3, >= 3.3.4)
+  ruby-debug-ide (~> 0.6.1.beta4)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
