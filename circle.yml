@@ -20,7 +20,7 @@ test:
 
 deployment:
   staging:
-    branch: development
+    branch: develop
     heroku:
       appname: etude-for-rails
   production:
