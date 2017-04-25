@@ -1,24 +1,31 @@
-# README
+[![CircleCI](https://circleci.com/gh/k2works/etude_for_rails.svg?style=svg)](https://circleci.com/gh/k2works/etude_for_rails)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Etude for Rails
 
-Things you may want to cover:
+## Quick Start
+### Using Vagrant
+```bash
+vagrant up
+vagrant ssh
+cd /vagrant
+./bin/server
+```
 
-* Ruby version
+### Using Docker
+```bash
+docker build . -t app:base
+docker run --name app --rm -p 5000:5000 -p 9292:9292 -v $(PWD):/container -i -t app:base /bin/bash
+cd /container
+./bin/server
+```
+or
+```bash
+docker-compose build
+docker-compose up
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Documents
+```bash
+bundle exec yard server
+```
+Documents is [here](./docs/README.md)
