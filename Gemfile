@@ -44,6 +44,10 @@ group :development, :test do
   gem 'debase', '~>0.2.2.beta9'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rack-dev-mark'
+  gem 'dotenv-rails'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'rack-livereload'
 end
 
 group :development do

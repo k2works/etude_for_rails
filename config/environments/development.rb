@@ -51,4 +51,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+
+  Rails.application.config.rack_dev_mark.enable = true
+  # リボンの色と位置の指定
+  # オプションの指定 position: 'right'で右上、 color: 'red'  でリボンを赤色に指定
+  Rails.application.config.rack_dev_mark.theme = [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right', fixed: true, color: 'red')]
+
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

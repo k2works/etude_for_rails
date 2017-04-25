@@ -39,4 +39,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Rails.application.config.rack_dev_mark.enable = true
+  # リボンの色と位置の指定
+  # オプションの指定 position: 'right'で右上、 color: 'red'  でリボンを赤色に指定
+  Rails.application.config.rack_dev_mark.theme = [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right', fixed: true, color: 'red')]
 end
