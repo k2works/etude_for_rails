@@ -34,6 +34,12 @@ describe('BeerListContainer', () => {
         inputArea.prop('onSubmit')('Sam Adams');
         expect(wrapper.state('beers')).to.eql(['Sam Adams']);
     });
+    it('renders ths items', () => {
+        const wrapper = mount(<BeerListContainer/>);
+        wrapper.instance().addItem('Sam Adams');
+        wrapper.instance().addItem('Resin');
+        expect(wrapper.find('li').length).to.equals(2);
+    });
 });
 
 describe('InputArea', () => {
