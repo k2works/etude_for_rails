@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
 export class BeerListContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            beers: []
+        };
+    }
     render() {
         return(
             <div>
