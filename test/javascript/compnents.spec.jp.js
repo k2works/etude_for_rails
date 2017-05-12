@@ -74,4 +74,9 @@ describe('BeerList', () => {
         const wrapper = shallow(<BeerList items={undefined}/>);
         expect(wrapper.find('li')).to.have.length(0);
     });
+    it('should render some items', () => {
+        const items = ['Sam Adams', 'Resin', 'Octoberfest'];
+        const wrapper = shallow(<BeerList items={items}/>);
+        expect(wrapper.find('li')).to.have.length(3);
+    })
 });
