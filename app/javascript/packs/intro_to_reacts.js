@@ -1,0 +1,1 @@
+import BeerListContainer from './intro_to_reacts/components';
