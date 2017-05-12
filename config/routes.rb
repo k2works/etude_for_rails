@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :beer_lists do
+    resources :beer_list, only: [:index]
+  end
 end

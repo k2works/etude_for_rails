@@ -1,0 +1,15 @@
+@startuml
+salt
+{+
+  {+
+     "input box " | [add]
+  }
+
+  {+
+     "item          "
+     "item          "
+     "item          "
+  }
+
+}
+@enduml
