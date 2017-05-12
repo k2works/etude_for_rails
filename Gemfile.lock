@@ -138,7 +138,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.10.2)
+    minitest (5.10.1)
     multi_json (1.12.1)
     nenv (0.3.0)
     nio4r (2.0.0)
@@ -291,12 +291,13 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   migration_comments
+  minitest (= 5.10.1)
   pg
   poltergeist
   puma (~> 3.7)
   rack-dev-mark
   rack-livereload
-  rails (~> 5.1.0)
+  rails (~> 5.1.0.rc2)
   rails_12factor
   redcarpet (~> 3.3, >= 3.3.4)
   rspec-rails (~> 3.5)

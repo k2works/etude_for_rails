@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.1.0.rc2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 # Use Puma as the app server
@@ -51,6 +51,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'minitest', '5.10.1'
 end
 
 group :development do
