@@ -51,6 +51,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'minitest', '5.10.1'
 end
 
 group :development do
