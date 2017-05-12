@@ -2,6 +2,8 @@
 
 # Etude for Rails
 
++ [BeerList](https://etude-for-rails.herokuapp.com/beer_lists/beer_list)
+
 ## Quick Start
 ### Using Vagrant
 ```bash
