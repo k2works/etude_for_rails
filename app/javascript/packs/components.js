@@ -1,0 +1,1 @@
+import BeerListContainer from './beer_lists/components';
