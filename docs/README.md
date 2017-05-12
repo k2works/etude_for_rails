@@ -35,6 +35,8 @@ Railsアプリケーションのための練習プログラム集
 **[⬆ back to top](#構成)**
 
 ## 開発
+### [ビールリスト](dev/beer_list/beer_list.md)
+
 ### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
 
 **[⬆ back to top](#構成)**
