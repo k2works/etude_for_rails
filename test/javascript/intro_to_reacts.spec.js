@@ -11,6 +11,16 @@ describe('IntroToReacts', () => {
             const wrapper = shallow(<Square/>);
             expect(wrapper.find('button')).to.have.length(1);
         });
+        it('should start with null value', () =>{
+           const wrapper = shallow(<Square/>);
+            expect(wrapper.state('value')).to.eql(null);
+        });
+        it('adds value when clicked', () => {
+            const wrapper = shallow(<Square/>);
+            const button = wrapper.find('button');
+            button.simulate('click');
+            expect(wrapper.state('value')).to.eql('X');
+        })
     });
 
     describe('Board', () => {
