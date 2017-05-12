@@ -1,9 +1,15 @@
+import React from 'react';
 import { expect } from 'chai';
-import assert from 'power-assert';
+import { shallow, mount } from 'enzyme';
+import { BeerListContainer } from '../../app/javascript/packs/beer_lists/components';
+import { InputArea, BeerList } from '../../app/javascript/packs/beer_lists/components';
 
-describe('the environment', () => {
-    it('works, hopefully', () => {
-        expect(true).to.be.true;
-        assert(true);
+describe('BeerListContainer', () => {
+    it('should render InputArea and BeerList', () => {
+        const wrapper = shallow(<BeerListContainer/>);
+        expect(wrapper.containsAllMatchingElements([
+            <InputArea/>,
+            <BeerList/>
+        ])).to.equal(true);
     });
-});
+})

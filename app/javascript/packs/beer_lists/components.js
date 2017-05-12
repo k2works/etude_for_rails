@@ -3,7 +3,24 @@ import ReactDOM from 'react-dom'
 
 export class BeerListContainer extends Component {
     render() {
-        return <span>Beer!</span>
+        return(
+            <div>
+                <InputArea/>
+                <BeerList/>
+            </div>
+        );
+    }
+}
+
+export class InputArea extends Component {
+    render() {
+        return <input/>
+    }
+}
+
+export class BeerList extends Component {
+    render() {
+        return <ul/>
     }
 }
 
