@@ -16,4 +16,9 @@ describe('BeerListContainer', () => {
         const wrapper = shallow(<BeerListContainer/>);
         expect(wrapper.state('beers')).to.eql([]);
     });
+    it('adds items to the list', () => {
+        const wrapper = shallow(<BeerListContainer/>);
+        wrapper.instance().addItem('Sam Adams');
+        expect(wrapper.state('beers')).to.eql(['Sam Adams']);
+    });
 });
