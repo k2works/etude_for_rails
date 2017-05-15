@@ -25,11 +25,18 @@ describe('IntroToReacts', () => {
             let exp = Array(9).fill(null);
             expect(wrapper.state('squares')).to.eql(exp);
         });
-        it('adds value when clicked', () => {
+        it('adds squares when clicked', () => {
             const wrapper = shallow(<Board/>);
             wrapper.instance().handleClick(0);
             expect(wrapper.state('squares')[0]).to.eql('X');
-        })
+        });
+        it('toggle x is next when clicked', () => {
+            const wrapper = shallow(<Board/>);
+            wrapper.instance().handleClick(0);
+            expect(wrapper.state('xIsNext')).to.eql(false);
+            wrapper.instance().handleClick(1);
+            expect(wrapper.state('xIsNext')).to.eql(true);
+        });
     });
 
     describe('Game', () => {
