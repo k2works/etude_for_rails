@@ -11,16 +11,6 @@ describe('IntroToReacts', () => {
             const wrapper = shallow(<Square/>);
             expect(wrapper.find('button')).to.have.length(1);
         });
-        it('should start with null value', () =>{
-           const wrapper = shallow(<Square/>);
-            expect(wrapper.state('value')).to.eql(null);
-        });
-        it('adds value when clicked', () => {
-            const wrapper = shallow(<Square/>);
-            const button = wrapper.find('button');
-            button.simulate('click');
-            expect(wrapper.state('value')).to.eql('X');
-        })
     });
 
     describe('Board', () => {
@@ -30,6 +20,16 @@ describe('IntroToReacts', () => {
                 <Square/>,
             ])).to.equal(true);
         });
+        it('should start with null value', () =>{
+            const wrapper = shallow(<Board/>);
+            let exp = Array(9).fill(null);
+            expect(wrapper.state('squares')).to.eql(exp);
+        });
+        it('adds value when clicked', () => {
+            const wrapper = shallow(<Board/>);
+            wrapper.instance().handleClick(0);
+            expect(wrapper.state('squares')[0]).to.eql('X');
+        })
     });
 
     describe('Game', () => {
