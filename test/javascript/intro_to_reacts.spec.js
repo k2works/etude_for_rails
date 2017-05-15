@@ -63,13 +63,5 @@ describe('IntroToReacts', () => {
             wrapper.instance().handleClick(2);
             expect(wrapper.find('.game-info').text()).to.be.eql('Winner: XGame startMove #1Move #2Move #3Move #4Move #5');
         });
-        it('time travel', () => {
-            const wrapper = shallow(<Game/>);
-            wrapper.instance().handleClick(0);
-            wrapper.instance().handleClick(9);
-            let history = wrapper.find('.game-info');
-            history.simulate('click');
-            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: OGame startMove #1');
-        })
     });
 });
