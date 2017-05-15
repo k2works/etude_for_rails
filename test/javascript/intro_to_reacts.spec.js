@@ -47,7 +47,29 @@ describe('IntroToReacts', () => {
             wrapper.instance().handleClick(1);
             wrapper.instance().handleClick(8);
             wrapper.instance().handleClick(2);
-            expect(wrapper.find('.game-info').text()).to.be.eql('Winner: X')
+            expect(wrapper.find('.game-info').text()).to.be.eql('Winner: XGame startMove #1Move #2Move #3Move #4Move #5')
+        });
+        it('showing the moves', () => {
+            const wrapper = shallow(<Game/>);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: XGame start');
+            wrapper.instance().handleClick(0);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: OGame startMove #1');
+            wrapper.instance().handleClick(9);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: XGame startMove #1Move #2');
+            wrapper.instance().handleClick(1);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: OGame startMove #1Move #2Move #3');
+            wrapper.instance().handleClick(8);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: XGame startMove #1Move #2Move #3Move #4');
+            wrapper.instance().handleClick(2);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Winner: XGame startMove #1Move #2Move #3Move #4Move #5');
+        });
+        it('time travel', () => {
+            const wrapper = shallow(<Game/>);
+            wrapper.instance().handleClick(0);
+            wrapper.instance().handleClick(9);
+            let history = wrapper.find('.game-info');
+            history.simulate('click');
+            expect(wrapper.find('.game-info').text()).to.be.eql('Next player: OGame startMove #1');
         })
     });
 });
