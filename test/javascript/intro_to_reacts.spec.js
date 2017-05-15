@@ -14,38 +14,6 @@ describe('IntroToReacts', () => {
     });
 
     describe('Board', () => {
-        it('should render square', () => {
-            const wrapper = shallow(<Board/>);
-            expect(wrapper.containsAllMatchingElements([
-                <Square/>,
-            ])).to.equal(true);
-        });
-        it('should start with null value', () =>{
-            const wrapper = shallow(<Board/>);
-            let exp = Array(9).fill(null);
-            expect(wrapper.state('squares')).to.eql(exp);
-        });
-        it('adds squares when clicked', () => {
-            const wrapper = shallow(<Board/>);
-            wrapper.instance().handleClick(0);
-            expect(wrapper.state('squares')[0]).to.eql('X');
-        });
-        it('toggle x is next when clicked', () => {
-            const wrapper = shallow(<Board/>);
-            wrapper.instance().handleClick(0);
-            expect(wrapper.state('xIsNext')).to.eql(false);
-            wrapper.instance().handleClick(1);
-            expect(wrapper.state('xIsNext')).to.eql(true);
-        });
-        it('declaring a winner', () => {
-            const wrapper = shallow(<Board/>);
-            wrapper.instance().handleClick(0);
-            wrapper.instance().handleClick(9);
-            wrapper.instance().handleClick(1);
-            wrapper.instance().handleClick(8);
-            wrapper.instance().handleClick(2);
-            expect(wrapper.find('.status').text()).to.be.eql('Winner: X')
-        })
     });
 
     describe('Game', () => {
@@ -55,5 +23,31 @@ describe('IntroToReacts', () => {
                 <Board/>,
             ])).to.equal(true);
         });
+        it('should start history with null squares', () =>{
+            const wrapper = shallow(<Game/>);
+            let squares = Array(9).fill(null);
+            expect(wrapper.state('history')[0].squares).to.eql(squares);
+        });
+        it('adds squares in history when clicked', () => {
+            const wrapper = shallow(<Game/>);
+            wrapper.instance().handleClick(0);
+            expect(wrapper.state('history')[1].squares[0]).to.eql('X');
+        });
+        it('toggle x is next when clicked', () => {
+            const wrapper = shallow(<Game/>);
+            wrapper.instance().handleClick(0);
+            expect(wrapper.state('xIsNext')).to.eql(false);
+            wrapper.instance().handleClick(1);
+            expect(wrapper.state('xIsNext')).to.eql(true);
+        });
+        it('declaring a winner', () => {
+            const wrapper = shallow(<Game/>);
+            wrapper.instance().handleClick(0);
+            wrapper.instance().handleClick(9);
+            wrapper.instance().handleClick(1);
+            wrapper.instance().handleClick(8);
+            wrapper.instance().handleClick(2);
+            expect(wrapper.find('.game-info').text()).to.be.eql('Winner: X')
+        })
     });
 });
