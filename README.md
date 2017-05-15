@@ -3,6 +3,7 @@
 # Etude for Rails
 
 + [BeerList](https://etude-for-rails.herokuapp.com/beer_lists/beer_list)
++ [IntroToReact](https://etude-for-rails.herokuapp.com/intro_to_reacts/intro_to_react)
 
 ## Quick Start
 ### Using Vagrant
