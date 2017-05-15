@@ -14,5 +14,7 @@ end
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   #driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+  #caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => %w(--headless)})
+  #driven_by :selenium, using: :chrome, screen_size: [1400, 1400], options: { desired_capabilities: caps }
   driven_by :poltergeist, screen_size: [1400, 1400]
 end
