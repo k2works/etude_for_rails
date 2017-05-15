@@ -1,0 +1,13 @@
+@startuml
+
+Game "1" --> "1"Board
+Board "1" *-- "9" Square
+
+class Game {
+  calculateWinner(squares)
+}
+
+class Board {
+  renderSquare(i)
+}
+@enduml
