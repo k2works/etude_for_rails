@@ -1,1 +1,1 @@
-import BeerListContainer from './intro_to_reacts/components';
+import IntroToReact from './intro_to_reacts/components';

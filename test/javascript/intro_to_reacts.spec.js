@@ -3,7 +3,9 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import assert from 'power-assert';
 import { shallow, mount } from 'enzyme';
-import { Square, Board, Game } from '../../app/javascript/packs/intro_to_reacts/components';
+import Game from '../../app/javascript/packs/intro_to_reacts/game';
+import Board from '../../app/javascript/packs/intro_to_reacts/board';
+import Square from '../../app/javascript/packs/intro_to_reacts/square';
 
 describe('IntroToReacts', () => {
     describe('Square', () => {
