@@ -37,6 +37,15 @@ describe('IntroToReacts', () => {
             wrapper.instance().handleClick(1);
             expect(wrapper.state('xIsNext')).to.eql(true);
         });
+        it('declaring a winner', () => {
+            const wrapper = shallow(<Board/>);
+            wrapper.instance().handleClick(0);
+            wrapper.instance().handleClick(9);
+            wrapper.instance().handleClick(1);
+            wrapper.instance().handleClick(8);
+            wrapper.instance().handleClick(2);
+            expect(wrapper.find('.status').text()).to.be.eql('Winner: X')
+        })
     });
 
     describe('Game', () => {
