@@ -79,3 +79,5 @@ gem 'foreman'
 
 # For JavaScript
 gem 'webpacker'
+
+gem 'simplecov', :require => false, :group => :test

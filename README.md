@@ -1,8 +1,12 @@
 [![CircleCI](https://circleci.com/gh/k2works/etude_for_rails.svg?style=svg)](https://circleci.com/gh/k2works/etude_for_rails)
+[![Code Climate](https://codeclimate.com/github/k2works/etude_for_rails/badges/gpa.svg)](https://codeclimate.com/github/k2works/etude_for_rails)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/k2works/etude_for_rails/master/MIT-LICENSE.txt)
+
 
 # Etude for Rails
 
 + [BeerList](https://etude-for-rails.herokuapp.com/beer_lists/beer_list)
++ [IntroToReact](https://etude-for-rails.herokuapp.com/intro_to_reacts/intro_to_react)
 
 ## Quick Start
 ### Using Vagrant

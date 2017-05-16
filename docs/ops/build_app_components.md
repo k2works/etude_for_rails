@@ -3,13 +3,7 @@
 
 ## 例
 ### テスト環境セットアップ
-```bash
-bundle install
-rails generate rspec:install
-bundle binstubs rspec-core
-./bin/rspec
-```
-### テスト環境セットアップ
+#### RSpecのセットアップ
 ```bash
 bundle install
 rails generate rspec:install
@@ -18,13 +12,13 @@ bundle binstubs rspec-core
 ```
 
 ### JavaScript環境セットアップ
-Webpackerのセットアップ
+#### Webpackerのセットアップ
 
 ```bash
 bin/rails webpacker:install
 ```
 
-Reactのセットアップ
+#### Reactのセットアップ
 
 ```bash
 bin/rails webpacker:install:react
@@ -41,7 +35,7 @@ bundle exec foreman start -f Procfile.dev
 ./bin/server
 ```
 
-React-Bootstrapのセットアップ
+#### React-Bootstrapのセットアップ
 ```bash
 ./bin/yarn add react-bootstrap --save-dev
 ```
@@ -55,6 +49,14 @@ Mochaの動作のテスト
 npm test
 npm run test:watch
 ```
+
+### 開発環境セットアップ
+#### SimpleCovのセットアップ
+#### Code Climateのセットアップ
+[バッジのリンク](https://codeclimate.com/github/k2works/etude_for_rails/badges/)
+
 ## 注意
 
 ## 参照
++ [SimpleCov](https://github.com/colszowka/simplecov)
++ [k2works/etude_for_rails](https://codeclimate.com/github/k2works/etude_for_rails)
