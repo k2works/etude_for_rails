@@ -147,28 +147,23 @@ var Excel = React.createClass({
 
     render: function () {
         return(
-            React.DOM.div(null,
-                this._renderToolbar(),
-                this._renderTable()
-            )
+            <div>
+                {this._renderToolbar()}
+                {this._renderTable()}
+            </div>
         );
     },
 
     _renderToolbar: function () {
-        return React.DOM.div({className: 'toolbar'},
-            React.DOM.button({
-                    onClick: this._toggleSearch,
-                    className: 'toolbar',
-                }, '検索'),
-            React.DOM.a({
-                onClick: this._download.bind(this, 'json'),
-                href: 'data.json'
-            }, 'JSONで保存'),
-            React.DOM.a({
-                onClick: this._download.bind(this, 'csv'),
-                href: 'data.csv'
-            }, 'CSVで保存')
-        );
+        return (
+            <div className="toolbar">
+                <button onClick={this._toggleSearch}>検索</button>
+                <a onClick={this._download.bind(this, 'json')}
+                    href="data.json">JSONで保存</a>
+                <a onClick={this._download.bind(this, 'csv')}
+                   href="data.csv">CSVで保存</a>
+            </div>
+        )
     },
 
     _renderSearch: function() {
@@ -176,59 +171,49 @@ var Excel = React.createClass({
             return null;
         }
         return (
-            React.DOM.tr({onChange: this._search},
-                this.props.headers.map(function (_ignore,idx) {
-                    return React.DOM.td({key: idx},
-                        React.DOM.input({
-                            type: 'text',
-                            'data-idx': idx,
-                        })
-                    );
-                })
-            )
-        )
+            <tr onChange={this._search}>
+                {this.props.headers.map(function (_ignore, idx) {
+                    return <td key={idx}><input type="text" data-idx={idx}/></td>;
+                })}
+            </tr>
+        );
     },
 
     _renderTable: function() {
         return (
-            React.DOM.table(null,
-                React.DOM.thead({onClick: this._sort},
-                    React.DOM.tr(null,
-                        this.props.headers.map(function(title, idx) {
-                            if (this.state.sortby === idx) {
-                                title += this.state.descending ? ' \u2191' : ' \u2193'
-                            }
-                            return React.DOM.th({key: idx}, title);
-                        }, this)
-                    )
-                ),
-                React.DOM.tbody({onDoubleClick: this._showEditor},
-                    this._renderSearch(),
-                    this.state.data.map(function(row, rowidx) {
-                        return (
-                            React.DOM.tr({key: rowidx},
-                                row.map(function(cell, idx) {
-                                    var content = cell;
-                                    var edit = this.state.edit;
-                                    if (edit && edit.row === rowidx && edit.cell === idx) {
-                                        content = React.DOM.form({onSubmit: this._save},
-                                            React.DOM.input({
-                                                type: 'text',
-                                                defaultValue: cell,
-                                            })
-                                        );
-                                    }
-
-                                    return React.DOM.td({
-                                        key: idx,
-                                        'data-row': rowidx
-                                    }, content);
-                                },this)
-                            )
-                        );
-                    },this)
-                )
-            )
+            <table>
+                <thead onClick={this._sort}>
+                <tr>{
+                    this.props.headers.map(function (title, idx) {
+                        if (this.state.sortby === idx) {
+                            title += this.state.descending ? ' \u2191' : ' \u2193';
+                        }
+                        return <th key={idx}>{title}</th>;
+                    }, this)
+                }</tr>
+                </thead>
+                <tbody onDoubleClick={this._showEditor}>
+                {this._renderSearch()}
+                {this.state.data.map(function (row, rowidx) {
+                    return (
+                        <tr key={rowidx}>{
+                            row.map(function (cell, idx) {
+                                var content = cell;
+                                var edit = this.state.edit;
+                                if (edit && edit.row === rowidx && edit.cell === idx) {
+                                    content = (
+                                        <form onSubmit={this._save}>
+                                            <input type="text" defaultValue={cell}/>
+                                        </form>
+                                    );
+                                }
+                                return <td key={idx} data-row={rowidx}>{content}</td>;
+                            }, this)}
+                        </tr>
+                    );
+                }, this)}
+                </tbody>
+            </table>
         );
     }
 });
