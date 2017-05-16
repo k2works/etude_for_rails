@@ -3,6 +3,22 @@ import ReactDOM from 'react-dom';
 
 var Excel = React.createClass({
     displayName: 'Excel',
+
+    propTypes: {
+        headers: React.PropTypes.arrayOf(
+            React.PropTypes.string
+        ),
+        initialData: React.PropTypes.arrayOf(
+            React.PropTypes.arrayOf(
+                React.PropTypes.string
+            )
+        ),
+    },
+
+    getInitialState() {
+        return {data: this.props.initialData};
+    },
+
     render: function() {
         return (
             React.DOM.table(null,
@@ -12,6 +28,17 @@ var Excel = React.createClass({
                             return React.DOM.th({key: idx}, title);
                         })
                     )
+                ),
+                React.DOM.tbody(null,
+                    this.state.data.map(function(row, idx) {
+                        return (
+                            React.DOM.tr({key: idx},
+                                row.map(function(cell, idx) {
+                                    return React.DOM.td({key: idx}, cell);
+                                })
+                            )
+                        );
+                    })
                 )
             )
         );
