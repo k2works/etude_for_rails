@@ -15,6 +15,40 @@ var Excel = React.createClass({
         ),
     },
 
+    _log: [],
+
+    _logSetState: function (newState) {
+        // ステートのクローンを作成して記録します
+        this._log.push(JSON.parse(JSON.stringify(
+            this._log.length === 0 ? this.state : newState
+        )));
+        this.setState(newState);
+    },
+
+    _replay: function () {
+        if(this._log.length === 0) {
+            console.warn('No state to replay yet');
+            return;
+        }
+        var idx = -1;
+        var interval = setInterval(function () {
+            idx++;
+            if(idx === this._log.length - 1) { // 末尾に到達しました
+                clearInterval(interval);
+            }
+            this.setState(this._log[idx]);
+        }.bind(this), 1000);
+    },
+
+    componentDidMount: function () {
+        document.onkeydown = function (e) {
+            // AltまたはOption+Shift+R。RはReplayの意味です
+            if(e.altKey && e.shiftKey && e.keyCode === 82) {
+                this._replay()
+            }
+        }.bind(this);
+    },
+
     getInitialState() {
         return {
             data: this.props.initialData,
@@ -34,7 +68,7 @@ var Excel = React.createClass({
                 ? (a[column] < b[column] ? 1 : -1)
                 : (a[column] > b[column] ? 1 : -1);
         });
-        this.setState({
+        this._logSetState({
             data: data,
             sortby: column,
             descending: descending,
@@ -42,7 +76,7 @@ var Excel = React.createClass({
     },
 
     _showEditor: function (e) {
-        this.setState({edit: {
+        this._logSetState({edit: {
             row: parseInt(e.target.dataset.row, 10),
             cell: e.target.cellIndex,
         }});
@@ -53,7 +87,7 @@ var Excel = React.createClass({
         var input = e.target.firstChild;
         var data = this.state.data.slice();
         data[this.state.edit.row][this.state.edit.cell] = input.value;
-        this.setState({
+        this._logSetState({
             edit: null,
             data: data,
         })
@@ -63,14 +97,14 @@ var Excel = React.createClass({
 
     _toggleSearch: function() {
         if(this.state.search) {
-            this.setState({
+            this._logSetState({
                 data: this._preSearchData,
                 search: false,
             });
             this._preSearchData = null;
         } else {
             this._preSearchData = this.state.data;
-            this.setState({
+            this._logSetState({
                 search: true,
             });
         }
@@ -79,14 +113,14 @@ var Excel = React.createClass({
     _search: function (e) {
         var needle = e.target.value.toLowerCase();
         if(!needle) { // 検索文字列は削除されました
-            this.setState({data: this._preSearchData});
+            this._logSetState({data: this._preSearchData});
             return;
         }
         var idx = e.target.dataset.idx; // 検索対象の列を表します
         var searchdata = this._preSearchData.filter(function (row) {
             return row[idx].toString().toLowerCase().indexOf(needle) > -1;
         });
-        this.setState({data: searchdata});
+        this._logSetState({data: searchdata});
     },
 
     render: function () {
