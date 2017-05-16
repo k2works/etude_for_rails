@@ -66,6 +66,16 @@ var Excel = React.createClass({
                             React.DOM.tr({key: rowidx},
                                 row.map(function(cell, idx) {
                                     var content = cell;
+                                    var edit = this.state.edit;
+                                    if (edit && edit.row === rowidx && edit.cell === idx) {
+                                        content = React.DOM.form({onSubmit: this._save},
+                                            React.DOM.input({
+                                                type: 'text',
+                                                defaultValue: cell,
+                                            })
+                                        );
+                                    }
+
                                     return React.DOM.td({
                                         key: idx,
                                         'data-row': rowidx
