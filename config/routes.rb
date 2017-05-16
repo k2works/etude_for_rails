@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :react_beginners_guide do
     resources :excel, only: [:index]
+    resources :whinepad, only: [:index]
   end
 
   namespace :intro_to_reacts do
