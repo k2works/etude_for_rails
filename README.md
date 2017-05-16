@@ -1,4 +1,6 @@
 [![CircleCI](https://circleci.com/gh/k2works/etude_for_rails.svg?style=svg)](https://circleci.com/gh/k2works/etude_for_rails)
+[![Code Climate](https://codeclimate.com/github/k2works/etude_for_rails/badges/gpa.svg)](https://codeclimate.com/github/k2works/etude_for_rails)
+
 
 # Etude for Rails
 

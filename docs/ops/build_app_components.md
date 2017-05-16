@@ -52,8 +52,11 @@ npm run test:watch
 
 ### 開発環境セットアップ
 #### SimpleCovのセットアップ
+#### Code Climateのセットアップ
+[バッジのリンク](https://codeclimate.com/github/k2works/etude_for_rails/badges/)
 
 ## 注意
 
 ## 参照
 + [SimpleCov](https://github.com/colszowka/simplecov)
++ [k2works/etude_for_rails](https://codeclimate.com/github/k2works/etude_for_rails)
