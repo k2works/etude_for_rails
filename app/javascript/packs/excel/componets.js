@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 var Excel = React.createClass({
-    // displayName: 'Excel',
+    displayName: 'Excel',
     render: function() {
         return (
             React.DOM.table(null,
                 React.DOM.thead(null,
                     React.DOM.tr(null,
                         this.props.headers.map(function(title, idx) {
-                            return React.DOM.th(null, title);
-                            // return React.DOM.th({key: idx}, title);
+                            return React.DOM.th({key: idx}, title);
                         })
                     )
                 )
