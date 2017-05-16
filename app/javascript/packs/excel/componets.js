@@ -1,3 +1,23 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+var Excel = React.createClass({
+    // displayName: 'Excel',
+    render: function() {
+        return (
+            React.DOM.table(null,
+                React.DOM.thead(null,
+                    React.DOM.tr(null,
+                        this.props.headers.map(function(title, idx) {
+                            return React.DOM.th(null, title);
+                            // return React.DOM.th({key: idx}, title);
+                        })
+                    )
+                )
+            )
+        );
+    }
+});
 
 var headers = [
     "タイトル", "著者", "言語", "出版年", "売上部数"
@@ -13,3 +33,10 @@ var data = [
     ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"],
 ];
 
+ReactDOM.render(
+    React.createElement(Excel, {
+        headers: headers,
+        initialData: data,
+    }),
+    document.getElementById("app")
+);
