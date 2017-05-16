@@ -47,3 +47,5 @@ Railsアプリケーションのための練習プログラム集
 **[⬆ back to top](#運用)**
 
 # 参照 #
++ [capybara cheat shee](https://gist.github.com/zhengjia/428105)
++ [Rails テスティングガイド](https://railsguides.jp/testing.html)
