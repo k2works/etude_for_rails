@@ -21,6 +21,7 @@ var Excel = React.createClass({
             sortby: null,
             descending: false,
             edit: null, // {row: 行番号, cell: 列番号}
+            search: false,
         };
     },
 
@@ -58,7 +59,44 @@ var Excel = React.createClass({
         })
     },
 
-    render: function() {
+    render: function () {
+        return(
+            React.DOM.div(null,
+                this._renderToolbar(),
+                this._renderTable()
+            )
+        );
+    },
+
+    _renderToolbar: function () {
+        return React.DOM.button(
+            {
+                onClick: this._toggleSearch,
+                className: 'toolbar',
+            },
+            '検索'
+        );
+    },
+
+    _renderSearch: function() {
+        if (!this.state.search) {
+            return null;
+        }
+        return (
+            React.DOM.tr({onChange: this._search},
+                this.props.headers.map(function (_ignore,idx) {
+                    return React.DOM.td({key: idx},
+                        React.DOM.input({
+                            type: 'text',
+                            'data-idx': idx,
+                        })
+                    );
+                })
+            )
+        )
+    },
+
+    _renderTable: function() {
         return (
             React.DOM.table(null,
                 React.DOM.thead({onClick: this._sort},
@@ -72,6 +110,7 @@ var Excel = React.createClass({
                     )
                 ),
                 React.DOM.tbody({onDoubleClick: this._showEditor},
+                    this._renderSearch(),
                     this.state.data.map(function(row, rowidx) {
                         return (
                             React.DOM.tr({key: rowidx},
