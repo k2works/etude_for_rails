@@ -7,6 +7,7 @@
 
 + [BeerList](https://etude-for-rails.herokuapp.com/beer_lists/beer_list)
 + [IntroToReact](https://etude-for-rails.herokuapp.com/intro_to_reacts/intro_to_react)
++ [Excel](https://etude-for-rails.herokuapp.com/react_beginners_guide/excel)
 
 ## Quick Start
 ### Using Vagrant
