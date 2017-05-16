@@ -59,6 +59,36 @@ var Excel = React.createClass({
         })
     },
 
+    _preSearchData: null,
+
+    _toggleSearch: function() {
+        if(this.state.search) {
+            this.setState({
+                data: this._preSearchData,
+                search: false,
+            });
+            this._preSearchData = null;
+        } else {
+            this._preSearchData = this.state.data;
+            this.setState({
+                search: true,
+            });
+        }
+    },
+
+    _search: function (e) {
+        var needle = e.target.value.toLowerCase();
+        if(!needle) { // 検索文字列は削除されました
+            this.setState({data: this._preSearchData});
+            return;
+        }
+        var idx = e.target.dataset.idx; // 検索対象の列を表します
+        var searchdata = this._preSearchData.filter(function (row) {
+            return row[idx].toString().toLowerCase().indexOf(needle) > -1;
+        });
+        this.setState({data: searchdata});
+    },
+
     render: function () {
         return(
             React.DOM.div(null,
@@ -154,7 +184,7 @@ var data = [
     ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"],
 ];
 
-ReactDOM.render(
+var Ex = ReactDOM.render(
     React.createElement(Excel, {
         headers: headers,
         initialData: data,
