@@ -16,7 +16,12 @@ var Excel = React.createClass({
     },
 
     getInitialState() {
-        return {data: this.props.initialData};
+        return {
+            data: this.props.initialData,
+            sortby: null,
+            descending: false,
+            edit: null, // {row: 行番号, cell: 列番号}
+        };
     },
 
     _sort: function (e) {
@@ -35,6 +40,13 @@ var Excel = React.createClass({
         });
     },
 
+    _showEditor: function (e) {
+        this.setState({edit: {
+            row: parseInt(e.target.dataset.row, 10),
+            cell: e.target.cellIndex,
+        }});
+    },
+
     render: function() {
         return (
             React.DOM.table(null,
@@ -48,16 +60,20 @@ var Excel = React.createClass({
                         }, this)
                     )
                 ),
-                React.DOM.tbody(null,
-                    this.state.data.map(function(row, idx) {
+                React.DOM.tbody({onDoubleClick: this._showEditor},
+                    this.state.data.map(function(row, rowidx) {
                         return (
-                            React.DOM.tr({key: idx},
+                            React.DOM.tr({key: rowidx},
                                 row.map(function(cell, idx) {
-                                    return React.DOM.td({key: idx}, cell);
-                                })
+                                    var content = cell;
+                                    return React.DOM.td({
+                                        key: idx,
+                                        'data-row': rowidx
+                                    }, content);
+                                },this)
                             )
                         );
-                    })
+                    },this)
                 )
             )
         );
