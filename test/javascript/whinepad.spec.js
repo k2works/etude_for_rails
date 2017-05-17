@@ -5,6 +5,7 @@ import assert from 'power-assert';
 import { shallow, mount } from 'enzyme';
 import Excel from '../../app/javascript/packs/whinepad/components/Excel';
 import Logo from '../../app/javascript/packs/whinepad/components/Logo';
+import Button from '../../app/javascript/packs/whinepad/components/Button';
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -18,4 +19,9 @@ describe('WhinePad', () => {
         const wrapper = shallow(<Excel headers={headers} initialData={data}/>);
         expect(wrapper.find('table')).to.have.length(1);
     });
+
+    it('should render button', () => {
+        const wrapper = shallow(<Button/>);
+        expect(wrapper.find('button')).to.have.length(1);
+    })
 });
