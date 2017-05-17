@@ -1,1 +1,1 @@
-import WhinePad from './whinepad/components';
+import WhinePad from './whinepad/app';
