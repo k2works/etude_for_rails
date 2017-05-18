@@ -7,6 +7,7 @@ import Suggest from './components/Suggest';
 import Rating from './components/Rating';
 import FormInput from './components/FormInput';
 import Form from './components/Form';
+import Actions from './components/Actions';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -73,6 +74,9 @@ ReactDOM.render(
                     {label: 'あいさつ', id: 'freetext'},
                 ]}
                 initialData={{rateme: 4, freetext: 'こんにちは'}} />
+
+            <h2>操作</h2>
+            <div><Actions onAction={type => alert(type)} /></div>
         {/* その他のコンポーネントはここに追加されます... */}
     </div>,
     document.getElementById('pad')

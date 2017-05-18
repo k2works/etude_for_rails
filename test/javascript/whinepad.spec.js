@@ -10,6 +10,7 @@ import Suggest from '../../app/javascript/packs/whinepad/components/Suggest';
 import Rating from '../../app/javascript/packs/whinepad/components/Rating';
 import FormInput from "../../app/javascript/packs/whinepad/components/FormInput";
 import Form from "../../app/javascript/packs/whinepad/components/Form";
+import Actions from "../../app/javascript/packs/whinepad/components/Actions";
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -76,5 +77,11 @@ describe('WhinePad', () => {
         expect(wrapper.find('input')).to.have.length(2);
         expect(wrapper.find('span')).to.have.length(5);
         expect(wrapper.props('initialData').initialData.freetext).to.eql('こんにちは');
+    });
+
+    it('should render actions', () => {
+        const onClickSpy = spy();
+        const wrapper = shallow(<Actions onAction={onClickSpy} />);
+        expect(wrapper.find('span')).to.have.length(3);
     })
 });
