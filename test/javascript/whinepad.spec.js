@@ -11,6 +11,7 @@ import Rating from '../../app/javascript/packs/whinepad/components/Rating';
 import FormInput from "../../app/javascript/packs/whinepad/components/FormInput";
 import Form from "../../app/javascript/packs/whinepad/components/Form";
 import Actions from "../../app/javascript/packs/whinepad/components/Actions";
+import Dialog from "../../app/javascript/packs/whinepad/components/Dialog";
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -83,5 +84,17 @@ describe('WhinePad', () => {
         const onClickSpy = spy();
         const wrapper = shallow(<Actions onAction={onClickSpy} />);
         expect(wrapper.find('span')).to.have.length(3);
+    });
+
+    it('should render dialog', () => {
+        const wrapper = shallow(<Dialog
+            header="キャンセルボタンなし、カスタムのボタン"
+            hasCancel={false}
+            confirmLabel="ラベル"
+            onAction={type => alert(type)}>
+            なんでも表示できます。例えば、
+            <Button>ボタン</Button>
+        </Dialog>);
+        expect(wrapper.find('div')).to.have.length(5);
     })
 });
