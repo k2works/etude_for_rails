@@ -8,6 +8,7 @@ import Logo from '../../app/javascript/packs/whinepad/components/Logo';
 import Button from '../../app/javascript/packs/whinepad/components/Button';
 import Suggest from '../../app/javascript/packs/whinepad/components/Suggest';
 import Rating from '../../app/javascript/packs/whinepad/components/Rating';
+import FormInput from "../../app/javascript/packs/whinepad/components/FormInput";
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -36,5 +37,31 @@ describe('WhinePad', () => {
     it('should render rating', () => {
         const wrapper = shallow(<Rating/>);
         expect(wrapper.find('span')).to.have.length(5);
-    })
+    });
+
+    it('should render forminput', () => {
+        let wrapper = shallow(<FormInput/>);
+        expect(wrapper.find('input')).to.have.length(1);
+
+        wrapper = shallow(<FormInput defaultValue="デフォルトです" />);
+        expect(wrapper.props('defaultValue').defaultValue).to.eql('デフォルトです');
+
+        wrapper = shallow(<FormInput type="year" />);
+        expect(wrapper.props('type').type).to.eql('number');
+
+        wrapper = mount(<FormInput type="rating" defaultValue={4} />);
+        expect(wrapper.props('type').type).to.eql('rating');
+        expect(wrapper.find('span')).to.have.length(5);
+
+        wrapper = mount(<FormInput
+            type="suggest"
+            options={['red','green','blue']}
+            defaultValue="green" />);
+        expect(wrapper.props('type').type).to.eql('suggest');
+        expect(wrapper.find('option')).to.have.length(3);
+
+        wrapper = mount(<FormInput type="text" />);
+        expect(wrapper.props('type').type).to.eql('text');
+        expect(wrapper.find('textarea')).to.have.length(1);
+    });
 });
