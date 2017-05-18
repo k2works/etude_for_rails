@@ -9,6 +9,7 @@ import Button from '../../app/javascript/packs/whinepad/components/Button';
 import Suggest from '../../app/javascript/packs/whinepad/components/Suggest';
 import Rating from '../../app/javascript/packs/whinepad/components/Rating';
 import FormInput from "../../app/javascript/packs/whinepad/components/FormInput";
+import Form from "../../app/javascript/packs/whinepad/components/Form";
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -64,4 +65,16 @@ describe('WhinePad', () => {
         expect(wrapper.props('type').type).to.eql('text');
         expect(wrapper.find('textarea')).to.have.length(1);
     });
+
+    it('should render form', () => {
+        const wrapper = mount(<Form
+            fields={[
+                {label: '評価', type: 'rating', id: 'rateme'},
+                {label: 'あいさつ', id: 'freetext'},
+            ]}
+            initialData={{rateme: 4, freetext: 'こんにちは'}} />);
+        expect(wrapper.find('input')).to.have.length(2);
+        expect(wrapper.find('span')).to.have.length(5);
+        expect(wrapper.props('initialData').initialData.freetext).to.eql('こんにちは');
+    })
 });
