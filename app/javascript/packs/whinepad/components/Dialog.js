@@ -8,7 +8,7 @@ class Dialog extends Component {
     }
     componentDidMount() {
         if (this.props.modal) {
-            document.body.classList.add(sytles.DialogModalOpen);
+            document.body.classList.add(styles.DialogModalOpen);
         }
     }
     render() {
@@ -45,7 +45,7 @@ Dialog.propTypes = {
     hasCancel: PropTypes.bool,
 };
 
-Dialog.defaultPorps = {
+Dialog.defaultProps = {
     confirmLabel: 'OK',
     modal: false,
     onAction: () => {},

@@ -4,7 +4,7 @@ import Rating from './Rating';
 import React, {Component, PropTypes} from 'react';
 
 class Form extends Component {
-    getDate() {
+    getData() {
         let data = {};
         this.props.fields.forEach(field =>
         data[field.id] = this.refs[field.id].getValue()

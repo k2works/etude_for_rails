@@ -20,7 +20,7 @@ class Whinepad extends Component {
     }
 
     _addNew(action) {
-        if (action == 'dismiss') {
+        if (action === 'dismiss') {
             this.setState({addnew: false});
             return;
         }
@@ -112,7 +112,7 @@ class Whinepad extends Component {
     }
 }
 
-Whinepad.prototype = {
+Whinepad.propTypes = {
     schema: PropTypes.arrayOf(
         PropTypes.object
     ),

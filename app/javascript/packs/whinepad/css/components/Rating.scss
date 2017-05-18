@@ -5,7 +5,8 @@
   font-size: 28px;
 }
 
-.Rating.RatingReadonly{
+.RatingReadonly{
+  composes: Rating;
   cursor: auto;
 }
 

@@ -19,13 +19,6 @@ describe('WhinePad', () => {
         expect(wrapper.find('div')).to.have.length(1);
     });
 
-    it('should render table', () => {
-        let headers = ['タイトル', '年', '評価', 'コメント'];
-        let data = [['テスト', '2015', '3', 'あああ']];
-        const wrapper = shallow(<Excel headers={headers} initialData={data}/>);
-        expect(wrapper.find('table')).to.have.length(1);
-    });
-
     it('should render button', () => {
         const wrapper = shallow(<Button/>);
         expect(wrapper.find('button')).to.have.length(1);

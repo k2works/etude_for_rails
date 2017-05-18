@@ -5,6 +5,7 @@ import FormInput from './FormInput';
 import Rating from './Rating';
 import React, {Component,PropTypes} from 'react';
 import styles from '../css/components/Excel.scss';
+import scheam from '../css/schema.scss';
 
 class Excel extends Component {
     constructor(props) {
@@ -27,12 +28,12 @@ class Excel extends Component {
     }
 
     _sort(key) {
-        let data = Array.form(this.state.data);
+        let data = Array.from(this.state.data);
         const descending = this.state.sortby === key && !this.state.descending;
         data.sort(function (a,b) {
             return descending
-                ? (a[column] < b[column] ? 1 : -1)
-                : (a[column] > b[column] ? 1 : -1);
+                ? (a[key] < b[key] ? 1 : -1)
+                : (a[key] > b[key] ? 1 : -1);
         });
         this.setState({
             data: data,
@@ -97,6 +98,39 @@ class Excel extends Component {
         this._fireDataChange(data);
     }
 
+    _selectCssClass(isRating,schema) {
+        if(isRating) {
+            return styles.Excel__td;
+        }
+
+        if(!isRating) {
+            return styles.ExcelEditable
+        } else if (schema.align === 'left') {
+            return styles.ExcelDataRight
+        } else if (schema.align === 'right') {
+            return styles.ExcelDataRight
+        } else if (schema.align === 'left' && schema.align !== 'right') {
+            return styles.ExcelDataCenter
+        } else {
+            return this._selectSchemaCss(schema.id);
+        }
+    }
+
+    _selectSchemaCss(id) {
+        switch (id) {
+            case 'name':
+                return scheam.schema_name;
+            case 'year':
+                return scheam.schema_year;
+            case 'grape':
+                return scheam.schema_grape;
+            case 'rating':
+                return scheam.schema_rating;
+            default:
+                throw Error(`該当するCSSがありません: ${id}`);
+        }
+    }
+
     render() {
         return (
             <div className={styles.Excel}>
@@ -124,7 +158,7 @@ class Excel extends Component {
 
     _renderDeleteDialog() {
         const first = this.state.data[this.state.dialog.idx];
-        const nameguess = first[Object.key(first)[0]];
+        const nameguess = first[Object.keys(first)[0]];
         return (
             <Dialog
                 modal={true}
@@ -158,20 +192,20 @@ class Excel extends Component {
 
     _renderTable() {
         return (
-            <table>
+            <table className={styles.Excel__table}>
                 <thead>
                 <tr>{
                     this.props.schema.map(item => {
                         if(!item.show) {
                             return null;
                         }
-                        let title = item.lable;
+                        let title = item.label;
                         if(this.state.sortby === item.id) {
                             title += this.state.descending ? ' \u2191' : ' \u2193';
                         }
                         return (
                             <th
-                                className={`schema-${item.id}`}
+                                className={this._selectSchemaCss(item.id)}
                                 key={item.id}
                                 onClick={this._sort.bind(this, item.id)}
                             >
@@ -210,20 +244,7 @@ class Excel extends Component {
                                 return (
                                     <td
                                         className={
-                                            () => {
-                                                if(!isRating) {
-                                                    return styles.ExcelEditable
-                                                } else if (schema.align === 'left') {
-                                                    return styles.ExcelDataRight
-
-                                                } else if (schema.align === 'right') {
-                                                    return styles.ExcelDataRight
-                                                } else if (schema.align === 'left' && schema.align !== 'right') {
-                                                    return styles.ExcelDataCenter
-                                                } else {
-                                                    return `schema-${schema.id}`
-                                                }
-                                            }
+                                            this._selectCssClass(isRating,schema)
                                         }
                                         key={idx}
                                         data-row={rowidx}
