@@ -7,6 +7,7 @@ import Excel from '../../app/javascript/packs/whinepad/components/Excel';
 import Logo from '../../app/javascript/packs/whinepad/components/Logo';
 import Button from '../../app/javascript/packs/whinepad/components/Button';
 import Suggest from '../../app/javascript/packs/whinepad/components/Suggest';
+import Rating from '../../app/javascript/packs/whinepad/components/Rating';
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -31,4 +32,9 @@ describe('WhinePad', () => {
         const wrapper = shallow(<Suggest options={opts}/>);
         expect(wrapper.find('datalist')).to.have.length(1);
     });
+
+    it('should render rating', () => {
+        const wrapper = shallow(<Rating/>);
+        expect(wrapper.find('span')).to.have.length(5);
+    })
 });

@@ -4,6 +4,7 @@ import styles from './css/discover.scss';
 import Button from './components/Button';
 import Logo from './components/Logo';
 import Suggest from './components/Suggest';
+import Rating from './components/Rating';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -24,6 +25,12 @@ ReactDOM.render(
 
         <h2>Suggest</h2>
         <div><Suggest options={['eenie','meenie','miney','mo']} /></div>
+
+        <h2>Rating</h2>
+        <div>初期値なし: <Rating /></div>
+        <div>初期4: <Rating defaultValue={4} /></div>
+        <div>最大値11: <Rating max={11} /></div>
+        <div>読み取り専用: <Rating readonly={true} defaultValue={3} /></div>
         {/* その他のコンポーネントはここに追加されます... */}
     </div>,
     document.getElementById('pad')
