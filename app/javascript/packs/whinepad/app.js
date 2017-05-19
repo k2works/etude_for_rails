@@ -5,26 +5,18 @@ import styles from './css/app.scss';
 import Logo from './components/Logo';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CRUDStore from './flux/CRUDStore';
 import Whinepad from './components/Whinepad';
 import schema from './schema';
 
-let data: Array<Object>;
-const storage: ?string = localStorage.getItem('data');
-
-// サンプルデータをスキーマから読み込みます
-if(!storage) {
-    data = [{}];
-    schema.forEach(item => data[0][item.id] = item.sample);
-} else {
-    data = JSON.parse(storage);
-}
+CRUDStore.init(schema);
 
 ReactDOM.render(
     <div>
         <div className={styles.app__header}>
             <Logo/> Whinepadにようこそ!
         </div>
-        <Whinepad schema={schema} initialData={data} />
+        <Whinepad />
     </div>,
     document.getElementById('pad')
 );
