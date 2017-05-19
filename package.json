@@ -46,6 +46,7 @@
     },
     "scripts": {
         "test": "mocha --require ./test/javascript/setup.js ./test/javascript/*",
-        "test:watch": "npm run test -- --watch"
+        "test:watch": "npm run test -- --watch",
+        "postinstall": "npm rebuild node-sass"
     }
 }
