@@ -40,15 +40,31 @@ bundle exec foreman start -f Procfile.dev
 ./bin/yarn add react-bootstrap --save-dev
 ```
 #### JavaScriptテスト環境のセットアップ
+Mochaのセットアップ
 ```bash
 npm install --save-dev mocha chai sinon enzyme jsdom mocha quik react-addons-test-utils babel-cli css-modules-require-hook path power-assert
 ```
-
 Mochaの動作のテスト
 ```bash
 npm test
 npm run test:watch
 ```
+
+#### ESLintのセットアップ
+```bash
+npm i -g eslint babel-eslint eslint-plugin-react eslint-plugin-babel
+```
+
+#### Flowのセットアップ
+```bash
+npm install -g flow-bin
+flow init
+npm install --save empty
+npm install --save-dev invariant
+npm install --save-dev babel-preset-stage-0
+```
+https://gist.github.com/lambdahands/d19e0da96285b749f0ef
+
 
 ### 開発環境セットアップ
 #### SimpleCovのセットアップ
@@ -60,3 +76,4 @@ npm run test:watch
 ## 参照
 + [SimpleCov](https://github.com/colszowka/simplecov)
 + [k2works/etude_for_rails](https://codeclimate.com/github/k2works/etude_for_rails)
++ [rails 5.1 babel-preset-env "Missing class properties transform" の回避](http://qiita.com/github0013@github/items/f3843ec8593a663e13e3)

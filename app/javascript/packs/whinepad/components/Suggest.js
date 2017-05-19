@@ -1,9 +1,25 @@
-import React, {Component, PropTypes} from 'react';
+/* @flow */
+
+import React, {Component} from 'react';
+
+type Props = {
+    id?: string,
+    defaultValue?: string,
+    options: Array<string>,
+};
+
+type State = {
+    value: string,
+};
 
 class Suggest extends Component {
-    constructor(props) {
+
+    props: Props;
+    state: State;
+
+    constructor(props: Props) {
         super(props);
-        this.state = {value: props.defaultValue};
+        this.state = {value: props.defaultValue || ''};
     }
 
     getValue() {
@@ -28,9 +44,5 @@ class Suggest extends Component {
         );
     }
 }
-
-Suggest.propTypes = {
-    options: PropTypes.arrayOf(PropTypes.string),
-};
 
 export default Suggest

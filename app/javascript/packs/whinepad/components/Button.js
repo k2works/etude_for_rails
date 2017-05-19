@@ -1,16 +1,16 @@
+/* @flow */
+
 import styles from '../css/components/Button.scss';
-import React, {PropTypes} from 'react';
+import React from 'react';
 
-function Button(props) {
-    const cssclasses = styles.Button;
-    return props.href
-        ? <a {...props} className={cssclasses}/>
-        : <button {...props} className={cssclasses} />;
-
-}
-
-Button.propTypes = {
-    href: PropTypes.string,
+type Props = {
+    href: ?string,
+    className: ?string,
 };
+
+const Button = (props: Props) =>
+    props.href
+        ? <a {...props} className={styles.Button} />
+        : <button {...props} className={styles.Button} />
 
 export default Button

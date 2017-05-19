@@ -16,7 +16,6 @@ test:
     - bin/rspec
     - bin/rails test
     - npm test
-    - bin/rails test:system
 
 deployment:
   staging:

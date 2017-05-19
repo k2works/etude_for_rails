@@ -1,8 +1,31 @@
+/* @flow */
+
 import styles from '../css/components/Rating.scss';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+
+type Props = {
+    defaultValue: number,
+    readonly: boolean,
+    max: number,
+};
+
+type State = {
+    rating: number,
+    tmpRating: number,
+};
 
 class Rating extends Component {
-    constructor(props) {
+
+    props: Props;
+    state: State;
+
+    static defaultProps = {
+        defaultValue: 0,
+        max: 5,
+        readonly: false,
+    };
+
+    constructor(props: Props) {
         super(props);
         this.state = {
             rating: props.defaultValue,
@@ -14,11 +37,11 @@ class Rating extends Component {
         return this.state.rating
     }
 
-    setTemp(rating) {  // マウスオーバー時に発生します
+    setTemp(rating: number) {  // マウスオーバー時に発生します
         this.setState({tmpRating: rating});
     }
 
-    setRating(rating) {  // クリック時に発生します
+    setRating(rating: number) {  // クリック時に発生します
         this.setState({
             tmpRating: rating,
             rating: rating,
@@ -29,7 +52,7 @@ class Rating extends Component {
         this.setTemp(this.state.rating);
     }
 
-    componentWillReceiveProps(nextProps) {  // 外部からの変更に応答します
+    componentWillReceiveProps(nextProps: Props) {  // 外部からの変更に応答します
         this.setRating(nextProps.defaultValue);
     }
 
@@ -63,16 +86,5 @@ class Rating extends Component {
         );
     }
 }
-
-Rating.propTypes = {
-    defaultValue: PropTypes.number,
-    readonly: PropTypes.bool,
-    max: PropTypes.number,
-};
-
-Rating.defaultProps = {
-    defaultValue: 0,
-    max: 5,
-};
 
 export default Rating
