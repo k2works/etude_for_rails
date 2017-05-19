@@ -1,3 +1,5 @@
+/* @flow */
+
 import Actions from './Actions';
 import Dialog from './Dialog';
 import Form from './Form';
@@ -6,9 +8,40 @@ import Rating from './Rating';
 import React, {Component,PropTypes} from 'react';
 import styles from '../css/components/Excel.scss';
 import scheam from '../css/schema.scss';
+import invariant from 'invariant';
+
+type Data = Array<Object>;
+
+type Props = {
+    schema: Array<Object>,
+    initialData: Data,
+    onDataChange: Function,
+};
+
+type EditState = {
+    row: number,
+    key: string,
+};
+
+type DialogState = {
+    idx: number,
+    type: string,
+};
+
+type State = {
+    data: Data,
+    sortby: ?string,
+    descending: boolean,
+    edit: ?EditState,
+    dialog: ?DialogState,
+};
 
 class Excel extends Component {
-    constructor(props) {
+
+    props: Props;
+    state: State;
+
+    constructor(props: Props) {
         super(props);
         this.state = {
             data: this.props.initialData,
@@ -19,15 +52,15 @@ class Excel extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: Props) {
         this.setState({data: nextProps.initialData});
     }
 
-    _fireDataChange(data) {
+    _fireDataChange(data: Data) {
         this.props.onDataChange(data);
     }
 
-    _sort(key) {
+    _sort(key: string) {
         let data = Array.from(this.state.data);
         const descending = this.state.sortby === key && !this.state.descending;
         data.sort(function (a,b) {
@@ -43,17 +76,19 @@ class Excel extends Component {
         this._fireDataChange(data);
     }
 
-    _showEditor(e) {
+    _showEditor(e: Event) {
+        const target = ((e.target: any): HTMLElement);
         this.setState({edit: {
-            row: parseInt(e.target.dataset.row, 10),
-            key: e.target.dataset.key,
+            row: parseInt(target.dataset.row, 10),
+            key: target.dataset.key,
         }});
     }
 
-    _save(e) {
+    _save(e: Event) {
         e.preventDefault();
         const value = this.refs.input.getValue();
         let data = Array.from(this.state.data);
+        invariant(this.state.edit, 'ステートeditが不正です');
         data[this.state.edit.row][this.state.edit.key] = value;
         this.setState({
             edit: null,
@@ -62,17 +97,19 @@ class Excel extends Component {
         this._fireDataChange(data);
     }
 
-    _actionClick(rowidx, action) {
+    _actionClick(rowidx: number, action: string) {
         this.setState({dialog: {type: action, idx: rowidx}});
     }
 
-    _deleteConfirmationClick(action) {
+    _deleteConfirmationClick(action: string) {
         if (action === 'dismiss') {
             this._closeDialog();
             return;
         }
+        const index = this.state.dialog ? this.state.dialog.idx : null;
+        invariant(typeof index === 'number', '予期せぬステータスです');
         let data = Array.from(this.state.data);
-        data.splice(this.state.dialog.idx, 1);
+        data.splice(index, 1);
         this.setState({
             dialog: null,
             data: data,
@@ -84,13 +121,15 @@ class Excel extends Component {
         this.setState({dialog: null});
     }
 
-    _saveDataDialog(action) {
+    _saveDataDialog(action: string) {
         if (action === 'dismiss') {
             this._closeDialog();
             return;
         }
         let data = Array.from(this.state.data);
-        data[this.state.dialog.idx] = this.refs.form.getData();
+        const index = this.state.dialog ? this.state.dialog.idx : null;
+        invariant(typeof index === 'number', '予期せぬステータスです');
+        data[index] = this.refs.form.getData();
         this.setState({
             dialog: null,
             data: data,
@@ -98,7 +137,7 @@ class Excel extends Component {
         this._fireDataChange(data);
     }
 
-    _selectCssClass(isRating,schema) {
+    _selectCssClass(isRating: boolean,schema: Object) {
         if(isRating) {
             return styles.Excel__td;
         }
@@ -116,7 +155,7 @@ class Excel extends Component {
         }
     }
 
-    _selectSchemaCss(id) {
+    _selectSchemaCss(id: string) {
         switch (id) {
             case 'name':
                 return scheam.schema_name;
@@ -157,7 +196,9 @@ class Excel extends Component {
     }
 
     _renderDeleteDialog() {
-        const first = this.state.data[this.state.dialog.idx];
+        const index = this.state.dialog ? this.state.dialog.idx : null;
+        invariant(typeof index === 'number', '予期せぬステータスです');
+        const first = this.state.data[index];
         const nameguess = first[Object.keys(first)[0]];
         return (
             <Dialog
@@ -171,7 +212,9 @@ class Excel extends Component {
         );
     }
 
-    _renderFormDialog(readonly) {
+    _renderFormDialog(readonly: ?boolean) {
+        const index = this.state.dialog ? this.state.dialog.idx : null;
+        invariant(typeof index === 'number', '予期せぬステータスです');
         return (
             <Dialog
                 modal={true}
@@ -184,7 +227,7 @@ class Excel extends Component {
                 <Form
                     ref="form"
                     fields={this.props.schema}
-                    initialData={this.state.data[this.state.dialog.idx]}
+                    initialData={this.state.data[index]}
                     readonly={readonly} />
             </Dialog>
         );
