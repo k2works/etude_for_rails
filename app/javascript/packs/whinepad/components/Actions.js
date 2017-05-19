@@ -21,7 +21,7 @@ const Actions = (props: Props)  =>
         onClick={props.onAction.bind(null,'edit')}>&#10000;</span>
     <span
         tabIndex="0"
-        className={styles.ActionsEdit}
+        className={styles.ActionsDelete}
         title="削除"
         onClick={props.onAction.bind(null,'delete')}>x</span>
 </div>
