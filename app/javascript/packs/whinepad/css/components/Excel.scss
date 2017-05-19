@@ -1,0 +1,58 @@
+.Excel {
+
+}
+
+.Excel__input {
+    font: 16px Arial;
+}
+
+.Excel__td {
+    border-top: none;
+    cursor: cell;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.Excel__th {
+    color: #7f7f7f;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 5px;
+    text-align: center;
+}
+
+.Excel__table {
+    border: none;
+    margin: 20px;
+    width: 100%;
+}
+
+.ExcelNotSortable {
+    cursor: default;
+}
+
+.ExcelEditable {
+    composes: Excel__td;
+    cursor: cell;
+}
+
+.ExcelEditable:hover {
+    background: #FBFBFB;
+}
+
+.ExcelDataCenter {
+    composes: Excel__td;
+    text-align: center;
+}
+
+.ExcelDataLeft {
+    composes: Excel__td;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.ExcelDataRight {
+    composes: Excel__td;
+    text-align: right;
+}
