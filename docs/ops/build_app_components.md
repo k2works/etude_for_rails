@@ -49,6 +49,14 @@ npm install --save-dev mocha chai sinon enzyme jsdom mocha quik react-addons-tes
 npm i -g eslint babel-eslint eslint-plugin-react eslint-plugin-babel
 ```
 
+#### Flowのセットアップ
+```bash
+npm install -g flow-bin
+flow init
+npm install --save empty
+```
+https://gist.github.com/lambdahands/d19e0da96285b749f0ef
+
 Mochaの動作のテスト
 ```bash
 npm test
