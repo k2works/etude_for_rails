@@ -1,25 +1,41 @@
+/* @flow */
+
 import styles from '../css/components/Whinepad.scss'
 import Button from './Button';
 import Dialog from './Dialog';
 import Excel from './Excel';
 import Form from './Form';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+
+type Data = Array<Object>;
+
+type Props = {
+    schema: Array<Object>,
+    initialData: Data,
+};
+
+type State = {
+    data: Data,
+    addnew: boolean,
+};
 
 class Whinepad extends Component {
-    constructor(props) {
+    props: Props;
+    state: State;
+    _preSearchData: Data;
+    constructor(props: Props) {
         super(props);
         this.state = {
             data: props.initialData,
             addnew: false,
         };
-        this._preSearchData = null;
     }
 
     _addNewDialog() {
         this.setState({addnew: true});
     }
 
-    _addNew(action) {
+    _addNew(action: string) {
         if (action === 'dismiss') {
             this.setState({addnew: false});
             return;
@@ -33,12 +49,12 @@ class Whinepad extends Component {
         this._commitToStorage(data);
     }
 
-    _onExcelDataChange(data) {
+    _onExcelDataChange(data: Data) {
         this.setState({data: data});
         this._commitToStorage(data);
     }
 
-    _commitToStorage(data) {
+    _commitToStorage(data: Data) {
         localStorage.setItem('data', JSON.stringify(data));
     }
 
@@ -52,8 +68,9 @@ class Whinepad extends Component {
         });
     }
 
-    _search(e) {
-        const needle = e.target.value.toLowerCase();
+    _search(e: Event) {
+        const target = ((e.target: any): HTMLInputElement);
+        const needle: string = target.value.toLowerCase();
         if(!needle) {
             this.setState({data: this._preSearchData});
             return;
@@ -111,14 +128,5 @@ class Whinepad extends Component {
         );
     }
 }
-
-Whinepad.propTypes = {
-    schema: PropTypes.arrayOf(
-        PropTypes.object
-    ),
-    initialData: PropTypes.arrayOf(
-        PropTypes.object
-    ),
-};
 
 export default Whinepad;

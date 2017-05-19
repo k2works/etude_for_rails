@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* @flow */
 
 import styles from '../css/components/Button.scss';
