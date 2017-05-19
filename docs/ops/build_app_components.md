@@ -40,8 +40,14 @@ bundle exec foreman start -f Procfile.dev
 ./bin/yarn add react-bootstrap --save-dev
 ```
 #### JavaScriptテスト環境のセットアップ
+Mochaのセットアップ
 ```bash
 npm install --save-dev mocha chai sinon enzyme jsdom mocha quik react-addons-test-utils babel-cli css-modules-require-hook path power-assert
+```
+Mochaの動作のテスト
+```bash
+npm test
+npm run test:watch
 ```
 
 #### ESLintのセットアップ
@@ -59,11 +65,6 @@ npm install --save-dev babel-preset-stage-0
 ```
 https://gist.github.com/lambdahands/d19e0da96285b749f0ef
 
-Mochaの動作のテスト
-```bash
-npm test
-npm run test:watch
-```
 
 ### 開発環境セットアップ
 #### SimpleCovのセットアップ
