@@ -54,6 +54,8 @@ npm i -g eslint babel-eslint eslint-plugin-react eslint-plugin-babel
 npm install -g flow-bin
 flow init
 npm install --save empty
+npm install --save-dev invariant
+npm install --save-dev babel-preset-stage-0
 ```
 https://gist.github.com/lambdahands/d19e0da96285b749f0ef
 
@@ -73,3 +75,4 @@ npm run test:watch
 ## 参照
 + [SimpleCov](https://github.com/colszowka/simplecov)
 + [k2works/etude_for_rails](https://codeclimate.com/github/k2works/etude_for_rails)
++ [rails 5.1 babel-preset-env "Missing class properties transform" の回避](http://qiita.com/github0013@github/items/f3843ec8593a663e13e3)
