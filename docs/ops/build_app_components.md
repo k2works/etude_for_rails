@@ -44,6 +44,11 @@ bundle exec foreman start -f Procfile.dev
 npm install --save-dev mocha chai sinon enzyme jsdom mocha quik react-addons-test-utils babel-cli css-modules-require-hook path power-assert
 ```
 
+#### ESLintのセットアップ
+```bash
+npm i -g eslint babel-eslint eslint-plugin-react eslint-plugin-babel
+```
+
 Mochaの動作のテスト
 ```bash
 npm test

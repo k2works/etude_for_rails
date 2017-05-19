@@ -48,5 +48,20 @@
         "test": "mocha --require ./test/javascript/setup.js ./test/javascript/*",
         "test:watch": "npm run test -- --watch",
         "postinstall": "npm rebuild node-sass"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "plugins": [
+            "babel",
+            "react"
+        ],
+        "extends": "eslint:recommended",
+        "env": {
+            "browser": true
+        },
+        "rules": {
+            "comma-dangle": [2, "always-multiline"],
+            "react/jsx-user-react":1
+        }
     }
 }
