@@ -1,7 +1,13 @@
-import styles from '../css/components/Actions.scss';
-import React, {PropTypes} from 'react';
+/* @flow */
 
-const Actions = props =>
+import styles from '../css/components/Actions.scss';
+import React from 'react';
+
+type Props = {
+    onAction: Function,
+};
+
+const Actions = (props: Props)  =>
 <div className={styles.Actions}>
     <span
         tabIndex="0"
@@ -15,14 +21,10 @@ const Actions = props =>
         onClick={props.onAction.bind(null,'edit')}>&#10000;</span>
     <span
         tabIndex="0"
-        className={styles.ActionsEdit}
+        className={styles.ActionsDelete}
         title="削除"
         onClick={props.onAction.bind(null,'delete')}>x</span>
 </div>
-
-Actions.propTypes = {
-    onAction: PropTypes.func,
-};
 
 Actions.defaultProps = {
     onAction: () => {},
