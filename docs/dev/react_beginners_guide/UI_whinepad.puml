@@ -1,0 +1,19 @@
+@startuml
+salt
+{+
+  {
+   [追加]
+  }
+  {
+   | "１件から検索..."
+
+  }
+  {#
+  名前     | 年    | ぶどう    | 評価   | 操作
+  String  | YYYY  | String   | ☆☆☆☆☆  | [<&info>] | [<&pencil>] |[<&x>]
+  String  | YYYY  | String   | ☆☆☆☆☆  | [<&info>] | [<&pencil>] |[<&x>]
+  String  | YYYY  | String   | ☆☆☆☆☆  | [<&info>] | [<&pencil>] |[<&x>]
+  String  | YYYY  | String   | ☆☆☆☆☆  | [<&info>] | [<&pencil>] |[<&x>]
+  }
+}
+@enduml

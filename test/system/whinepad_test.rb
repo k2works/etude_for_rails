@@ -80,4 +80,15 @@ class WhinepadTest < ApplicationSystemTestCase
 
   end
 
+  test "edit name" do
+    visit react_beginners_guide_whinepad_index_path
+
+    all('td')[0].double_click
+    all('td')[0].click
+    find('#name').set('Edit')
+    find('#name').native.send_keys(:return)
+
+    page.has_content?('Edit')
+  end
+
 end

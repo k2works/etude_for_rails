@@ -2,33 +2,38 @@
 
 import styles from '../css/components/Whinepad.scss'
 import Button from './Button';
+import CRUDActions from '../flux/CRUDActions';
+import CRUDStore from '../flux/CRUDStore';
 import Dialog from './Dialog';
 import Excel from './Excel';
 import Form from './Form';
 import React, {Component} from 'react';
 
-type Data = Array<Object>;
-
-type Props = {
-    schema: Array<Object>,
-    initialData: Data,
-};
-
 type State = {
-    data: Data,
     addnew: boolean,
+    count: number,
 };
 
 class Whinepad extends Component {
-    props: Props;
+
     state: State;
-    _preSearchData: Data;
-    constructor(props: Props) {
-        super(props);
+
+    constructor() {
+        super();
         this.state = {
-            data: props.initialData,
             addnew: false,
+            count: CRUDStore.getCount(),
         };
+
+        CRUDStore.addListener('change', () => {
+            this.setState({
+                count: CRUDStore.getCount(),
+            })
+        });
+    }
+
+    shouldComponentUpdate(newProps: Object, newState: State): boolean {
+        return newState.addnew !== this.state.addnew || newState.count !== this.state.count;
     }
 
     _addNewDialog() {
@@ -36,55 +41,10 @@ class Whinepad extends Component {
     }
 
     _addNew(action: string) {
-        if (action === 'dismiss') {
-            this.setState({addnew: false});
-            return;
+        this.setState({addnew: false});
+        if (action === 'confirm') {
+            CRUDActions.create(this.refs.form.getData());
         }
-        let data = Array.from(this.state.data);
-        data.unshift(this.refs.form.getData());
-        this.setState({
-            addnew: false,
-            data: data,
-        });
-        this._commitToStorage(data);
-    }
-
-    _onExcelDataChange(data: Data) {
-        this.setState({data: data});
-        this._commitToStorage(data);
-    }
-
-    _commitToStorage(data: Data) {
-        localStorage.setItem('data', JSON.stringify(data));
-    }
-
-    _startSearching() {
-        this._preSearchData = this.state.data;
-    }
-
-    _doneSearching() {
-        this.setState({
-            data: this._preSearchData,
-        });
-    }
-
-    _search(e: Event) {
-        const target = ((e.target: any): HTMLInputElement);
-        const needle: string = target.value.toLowerCase();
-        if(!needle) {
-            this.setState({data: this._preSearchData});
-            return;
-        }
-        const fields = this.props.schema.map(item => item.id);
-        const searchdata = this._preSearchData.filter(row => {
-            for(let f = 0; f < fields.length; f++) {
-                if (row[fields[f]].toString().toLowerCase().indexOf(needle) > -1) {
-                    return true;
-                }
-            }
-            return false;
-        });
-        this.setState({data: searchdata});
     }
 
     render() {
@@ -100,17 +60,16 @@ class Whinepad extends Component {
                     </div>
                     <div className={styles.WhinepadToolbarSearch}>
                         <input
-                            placeholder="検索..."
-                            onChange={this._search.bind(this)}
-                            onFocus={this._startSearching.bind(this)}
-                            onBlur={this._doneSearching.bind(this)} />
+                            placeholder={this.state.count === 1
+                                ? '１件から検索...'
+                                : `検索 ${this.state.count} 件..`
+                            }
+                            onChange={CRUDActions.search.bind(CRUDActions)}
+                            onFocus={CRUDActions.startSearching.bind(CRUDActions)} />
                     </div>
                 </div>
                 <div className={styles.WhinepadDatagrid}>
-                    <Excel
-                        schema={this.props.schema}
-                        initialData={this.state.data}
-                        onDataChange={this._onExcelDataChange.bind(this)} />
+                    <Excel />
                 </div>
                 {this.state.addnew
                     ? <Dialog
@@ -119,9 +78,7 @@ class Whinepad extends Component {
                         confirmLabel="追加"
                         onAction={this._addNew.bind(this)}
                     >
-                        <Form
-                            ref="form"
-                            fields={this.props.schema} />
+                        <Form ref="form" />
                     </Dialog>
                     : null}
             </div>

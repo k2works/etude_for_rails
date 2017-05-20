@@ -25,17 +25,14 @@ class ExcelTest < ApplicationSystemTestCase
     assert_equal('And Then There Were None',first('td').text)
   end
 
-=begin
-# PolterGeistでは動かない
   test "edit title" do
     visit react_beginners_guide_excel_index_path
 
     all('td')[0].double_click
     all('td')[0].click
     first('input').set('Edit')
-    all('td')[1].double_click
+    first('input').native.send_keys(:return)
 
     page.has_content?('Edit')
   end
-=end
 end
