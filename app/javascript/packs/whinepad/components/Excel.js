@@ -213,7 +213,7 @@ class Excel extends Component {
             <table className={styles.Excel__table}>
                 <thead>
                 <tr>{
-                    this.props.schema.map(item => {
+                    this.schema.map(item => {
                         if(!item.show) {
                             return null;
                         }

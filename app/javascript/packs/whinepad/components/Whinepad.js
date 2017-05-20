@@ -62,7 +62,7 @@ class Whinepad extends Component {
                         <input
                             placeholder={this.state.count === 1
                                 ? '１件から検索...'
-                                : '検索 ${this.state.count} 件..'
+                                : `検索 ${this.state.count} 件..`
                             }
                             onChange={CRUDActions.search.bind(CRUDActions)}
                             onFocus={CRUDActions.startSearching.bind(CRUDActions)} />
@@ -74,8 +74,8 @@ class Whinepad extends Component {
                 {this.state.addnew
                     ? <Dialog
                         modal={true}
-                        header="Add new item"
-                        confirmLabel="Add"
+                        header="項目の追加"
+                        confirmLabel="追加"
                         onAction={this._addNew.bind(this)}
                     >
                         <Form ref="form" />
