@@ -308,14 +308,4 @@ class Excel extends Component {
     }
 }
 
-Excel.propTypes = {
-    schema: PropTypes.arrayOf(
-        PropTypes.object
-    ),
-    initialData: PropTypes.arrayOf(
-        PropTypes.object
-    ),
-    onDataChange: PropTypes.func,
-};
-
 export default Excel

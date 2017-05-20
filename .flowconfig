@@ -15,4 +15,5 @@ node_modules/react-dom
 [libs]
 
 [options]
+module.name_mapper='.*\(.css\)' -> 'empty/object'
 esproposal.class_static_fields=enable
