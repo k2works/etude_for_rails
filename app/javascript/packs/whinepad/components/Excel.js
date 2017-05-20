@@ -12,14 +12,6 @@ import styles from '../css/components/Excel.scss';
 import scheam from '../css/schema.scss';
 import invariant from 'invariant';
 
-type Data = Array<Object>;
-
-type Props = {
-    schema: Array<Object>,
-    initialData: Data,
-    onDataChange: Function,
-};
-
 type EditState = {
     row: number,
     key: string,
@@ -172,9 +164,9 @@ class Excel extends Component {
     }
 
     _renderDeleteDialog() {
-        const index = this.state.dialog ? this.state.dialog.idx : null;
+        const index = this.state.dialog && this.state.dialog.idx;
         invariant(typeof index === 'number', '予期せぬステータスです');
-        const first = this.state.data[index];
+        const first = this.state.data.get(index);
         const nameguess = first[Object.keys(first)[0]];
         return (
             <Dialog

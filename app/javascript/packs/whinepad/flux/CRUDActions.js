@@ -1,51 +1,47 @@
 / *flow */
 
 import CRUDStore from './CRUDStore';
+import {List} from 'immutable';
 
 const CRUDActions = {
     create(newRecord: Object) {
-        let data = CRUDStore.getData();
-        data.unshift(newRecord);
-        CRUDStore.setData(data);
+        CRUDStore.setData(CRUDStore.getData().unshift(newRecord));
     },
 
     delete(recordId: number) {
-        let data = CRUDStore.getData();
-        data.splice(recordId, 1);
-        CRUDStore.setData(data);
+        let data: List<Object> = CRUDStore.getData();
+        CRUDStore.setData(data.remove(recordId));
     },
 
     updateRecord(recordId: number, newRecord: Object) {
-        let data = CRUDStore.getData();
-        data[recordId] = newRecord;
-        CRUDStore.setData(data);
+        CRUDStore.setData(CRUDStore.getData().set(recordId, newRecord));
     },
 
     updateField(recordId: number, key: string, value: string|number) {
-        let data = CRUDStore.getData();
-        data[recordId][key] = value;
-        CRUDStore.setData(data);
+        let record = CRUDStore.getData().get(recordId);
+        record[key] = value;
+        CRUDStore.setData(CRUDStore.getData().set(recordId, record));
     },
 
-    _preSeacheData: null,
+    _preSearchData: null,
 
     startSearching() {
-        this._preSeacheData = CRUDStore.getData();
+        this._preSearchData = CRUDStore.getData();
     },
 
     search(e: Event) {
-        const target = ((e.target: any): HTMLElement);
-        const needle: string = target.value.toLocaleLowerCase();
-        if(!needle) {
-            CRUDStore.setData(this._preSeacheData);
+        const target = ((e.target: any): HTMLInputElement);
+        const needle: string = target.value.toLowerCase();
+        if (!needle) {
+            CRUDStore.setData(this._preSearchData);
             return;
         }
         const fields = CRUDStore.getSchema().map(item => item.id);
-        if (!this._preSeacheData) {
+        if (!this._preSearchData) {
             return;
         }
-        const searchdata = this._preSeacheData.filter(row => {
-            for(let f = 0; f < fields.length; f++) {
+        const searchdata = this._preSearchData.filter(row => {
+            for (let f = 0; f < fields.length; f++) {
                 if (row[fields[f]].toString().toLowerCase().indexOf(needle) > -1) {
                     return true;
                 }
