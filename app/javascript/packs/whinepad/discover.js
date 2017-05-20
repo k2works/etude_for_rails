@@ -3,6 +3,7 @@
 
 import styles from './css/discover.scss';
 import Button from './components/Button';
+import CRUDStore from './flux/CRUDStore';
 import Logo from './components/Logo';
 import Suggest from './components/Suggest';
 import Rating from './components/Rating';
@@ -12,7 +13,9 @@ import Actions from './components/Actions';
 import Dialog from './components/Dialog';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import schema from './schema';
 
+CRUDStore.init(schema);
 
 ReactDOM.render(
     <div className={styles.Contents}>
@@ -38,7 +41,7 @@ ReactDOM.render(
         <div>読み取り専用: <Rating readonly={true} defaultValue={3} /></div>
 
             <h2>FormInput</h2>
-            <tabl><tbody>
+            <table><tbody>
             <tr>
                     <td>単純な入力フィールド</td>
                     <td><FormInput /></td>
@@ -67,15 +70,10 @@ ReactDOM.render(
                     <td>単純なテキストエリア</td>
                     <td><FormInput type="text" /></td>
             </tr>
-            </tbody></tabl>
+            </tbody></table>
 
             <h2>Form</h2>
-            <Form
-                fields={[
-                    {label: '評価', type: 'rating', id: 'rateme'},
-                    {label: 'あいさつ', id: 'freetext'},
-                ]}
-                initialData={{rateme: 4, freetext: 'こんにちは'}} />
+            <Form />
 
             <h2>操作</h2>
             <div><Actions onAction={type => alert(type)} /></div>
