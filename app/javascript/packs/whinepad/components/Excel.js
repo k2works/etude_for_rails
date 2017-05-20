@@ -1,11 +1,13 @@
 /* @flow */
 
 import Actions from './Actions';
+import CRUDActions from '../flux/CRUDActions';
+import CRUDStore from '../flux/CRUDStore';
 import Dialog from './Dialog';
 import Form from './Form';
 import FormInput from './FormInput';
 import Rating from './Rating';
-import React, {Component,PropTypes} from 'react';
+import React, {Component} from 'react';
 import styles from '../css/components/Excel.scss';
 import scheam from '../css/schema.scss';
 import invariant from 'invariant';
@@ -37,43 +39,32 @@ type State = {
 };
 
 class Excel extends Component {
-
-    props: Props;
     state: State;
-
-    constructor(props: Props) {
-        super(props);
+    schema: Array<Object>;
+    constructor() {
+        super();
         this.state = {
-            data: this.props.initialData,
+            data: CRUDStore.getData(),
             sortby: null, // schema.id
             descending: false,
             edit: null, // {row: 行番号, cell: 列番号}
             dialog: null, // {type: 種類, idx: 行番号}
         };
-    }
-
-    componentWillReceiveProps(nextProps: Props) {
-        this.setState({data: nextProps.initialData});
-    }
-
-    _fireDataChange(data: Data) {
-        this.props.onDataChange(data);
+        this.schema = CRUDStore.getSchema();
+        CRUDStore.addListener('change', () => {
+            this.setState({
+                data: CRUDStore.getData(),
+            })
+        });
     }
 
     _sort(key: string) {
-        let data = Array.from(this.state.data);
         const descending = this.state.sortby === key && !this.state.descending;
-        data.sort(function (a,b) {
-            return descending
-                ? (a[key] < b[key] ? 1 : -1)
-                : (a[key] > b[key] ? 1 : -1);
-        });
+        CRUDActions.sort(key, descending);
         this.setState({
-            data: data,
             sortby: key,
             descending: descending,
         });
-        this._fireDataChange(data);
     }
 
     _showEditor(e: Event) {
@@ -86,15 +77,15 @@ class Excel extends Component {
 
     _save(e: Event) {
         e.preventDefault();
-        const value = this.refs.input.getValue();
-        let data = Array.from(this.state.data);
         invariant(this.state.edit, 'ステートeditが不正です');
-        data[this.state.edit.row][this.state.edit.key] = value;
+        CRUDActions.updateField(
+            this.state.edit.row,
+            this.state.edit.key,
+            this.refs.input.getValue()
+        );
         this.setState({
             edit: null,
-            data: data,
-        });
-        this._fireDataChange(data);
+        })
     }
 
     _actionClick(rowidx: number, action: string) {
@@ -102,39 +93,23 @@ class Excel extends Component {
     }
 
     _deleteConfirmationClick(action: string) {
-        if (action === 'dismiss') {
-            this._closeDialog();
+        this.setState({dialog: null});
+        if(action === 'dismiss') {
             return;
         }
-        const index = this.state.dialog ? this.state.dialog.idx : null;
+        const index = this.state.dialog && this.state.dialog.idx;
         invariant(typeof index === 'number', '予期せぬステータスです');
-        let data = Array.from(this.state.data);
-        data.splice(index, 1);
-        this.setState({
-            dialog: null,
-            data: data,
-        });
-        this._fireDataChange(data);
-    }
-
-    _closeDialog() {
-        this.setState({dialog: null});
+        CRUDActions.delete(index);
     }
 
     _saveDataDialog(action: string) {
+        this.setState({dialog: null});
         if (action === 'dismiss') {
-            this._closeDialog();
             return;
         }
-        let data = Array.from(this.state.data);
-        const index = this.state.dialog ? this.state.dialog.idx : null;
+        const index = this.state.dialog && this.state.dialog.idx;
         invariant(typeof index === 'number', '予期せぬステータスです');
-        data[index] = this.refs.form.getData();
-        this.setState({
-            dialog: null,
-            data: data,
-        });
-        this._fireDataChange(data);
+        CRUDActions.updateRecord(index, this.refs.form.getData());
     }
 
     _selectCssClass(isRating: boolean,schema: Object) {
@@ -183,7 +158,8 @@ class Excel extends Component {
         if (!this.state.dialog) {
             return null;
         }
-        switch (this.state.dialog.type) {
+        const type = this.state.dialog.type;
+        switch (type) {
             case 'delete':
                 return this._renderDeleteDialog();
             case 'info':
@@ -213,7 +189,7 @@ class Excel extends Component {
     }
 
     _renderFormDialog(readonly: ?boolean) {
-        const index = this.state.dialog ? this.state.dialog.idx : null;
+        const index = this.state.dialog && this.state.dialog.idx;
         invariant(typeof index === 'number', '予期せぬステータスです');
         return (
             <Dialog
@@ -226,9 +202,8 @@ class Excel extends Component {
 
                 <Form
                     ref="form"
-                    fields={this.props.schema}
-                    initialData={this.state.data[index]}
-                    readonly={readonly} />
+                    recordId={index}
+                    readonly={!!readonly} />
             </Dialog>
         );
     }
@@ -265,24 +240,21 @@ class Excel extends Component {
                     return (
                         <tr key={rowidx}>{
                             Object.keys(row).map((cell, idx) => {
-                                const schema = this.props.schema[idx];
+                                const schema = this.schema[idx];
                                 if(!schema || !schema.show) {
                                     return null;
                                 }
                                 const isRating = schema.type === 'rating';
                                 const edit = this.state.edit;
                                 let content = row[cell];
-                                if(!isRating && edit
-                                    && edit.row === rowidx && edit.key === schema.id) {
+                                if(!isRating && edit && edit.row === rowidx && edit.key === schema.id) {
                                     content = (
                                         <form onSubmit={this._save.bind(this)}>
-                                            <FormInput ref="input" {...schema}
-                                            defaultValue={content}/>
+                                            <FormInput ref="input" {...schema} defaultValue={content}/>
                                         </form>
                                     );
                                 } else if (isRating) {
-                                    content = <Rating readonly={true}
-                                    defaultValue={Number(content)} />;
+                                    content = <Rating readonly={true} defaultValue={Number(content)} />;
                                 }
                                 return (
                                     <td
