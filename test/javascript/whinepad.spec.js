@@ -12,6 +12,8 @@ import FormInput from "../../app/javascript/packs/whinepad/components/FormInput"
 import Form from "../../app/javascript/packs/whinepad/components/Form";
 import Actions from "../../app/javascript/packs/whinepad/components/Actions";
 import Dialog from "../../app/javascript/packs/whinepad/components/Dialog";
+import CRUDStore from '../../app/javascript/packs/whinepad/flux/CRUDStore';
+import schema from '../../app/javascript/packs/whinepad/schema';
 
 describe('WhinePad', () => {
     it('should render log', () => {
@@ -62,15 +64,10 @@ describe('WhinePad', () => {
     });
 
     it('should render form', () => {
-        const wrapper = mount(<Form
-            fields={[
-                {label: '評価', type: 'rating', id: 'rateme'},
-                {label: 'あいさつ', id: 'freetext'},
-            ]}
-            initialData={{rateme: 4, freetext: 'こんにちは'}} />);
-        expect(wrapper.find('input')).to.have.length(2);
+        CRUDStore.init(schema);
+        const wrapper = mount(<Form/>);
+        expect(wrapper.find('input')).to.have.length(4);
         expect(wrapper.find('span')).to.have.length(5);
-        expect(wrapper.props('initialData').initialData.freetext).to.eql('こんにちは');
     });
 
     it('should render actions', () => {
