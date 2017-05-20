@@ -1,0 +1,24 @@
+@startuml
+
+package Components {
+  Whinepad "1"*-->"1..*" Button
+  Whinepad "1"*-->"1" Excel
+  Whinepad *--> Dialog
+  Excel "1"*-->"1..*" Dialog
+  Excel "1"*-->"1..*" Form
+  Excel "1"*-->"1..*" Actions
+  Excel "1"*-->"1..*" Rating
+  Dialog "1"*-->"1..*" Button
+  Form "1"*-->"1..*" FormInput
+  Form "1"*-->"1" Suggest
+  Form "1"*-->"1" Rating
+  Whinepad --> Flux
+  Form --> Flux
+}
+
+package Flux {
+  class CRUDStore
+  class CRUDActions
+  CRUDActions --> CRUDStore
+}
+@enduml
