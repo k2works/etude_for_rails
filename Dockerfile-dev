@@ -26,7 +26,7 @@ RUN $APP_ROOT/bin/rails assets:precompile
 RUN $APP_ROOT/bin/rspec
 RUN $APP_ROOT/bin/rails test
 RUN npm test
-#RUN $APP_ROOT/bin/rails test:system
+RUN xvfb-run $APP_ROOT/bin/rails test:system
 RUN bundle exec yard
 
 EXPOSE  3000
