@@ -47,41 +47,6 @@ RUN set -ex \
   && chmod +x /usr/local/bin/yarnpkg \
 && chmod +x /usr/local/bin/yarn
 
-# PhantomJS Install
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        ca-certificates \
-        bzip2 \
-        libfontconfig \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        curl \
-    && mkdir /tmp/phantomjs \
-    && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-           | tar -xj --strip-components=1 -C /tmp/phantomjs \
-    && cd /tmp/phantomjs \
-    && mv bin/phantomjs /usr/local/bin \
-    && cd \
-    && apt-get purge --auto-remove -y \
-        curl \
-    && apt-get clean \
-    && rm -rf /tmp/* /var/lib/apt/lists/*
-
-# For Rails Application
-RUN apt-get update && apt-get install -y  \
-                                      mysql-client postgresql-client \
-                                      sqlite3 --no-install-recommends \
-                                      xvfb qtbase5-dev libqt5webkit5-dev \
-                                      xauth
-
-# Heroku Toolbelt
-RUN wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz -O heroku.tar.gz \
-    && mkdir -p /usr/local/lib \
-    && tar -xvzf heroku.tar.gz -C /usr/local/lib \
-    && /usr/local/lib/heroku/install
-
 # Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' \
@@ -96,3 +61,16 @@ RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RE
     && rm /tmp/chromedriver_linux64.zip \
     && chmod +x /opt/chromedriver-$CHROMEDRIVER_VERSION/chromedriver \
     && ln -fs /opt/chromedriver-$CHROMEDRIVER_VERSION/chromedriver /usr/local/bin/chromedriver
+
+# For Rails Application
+RUN apt-get update && apt-get install -y  \
+                                      mysql-client postgresql-client \
+                                      sqlite3 --no-install-recommends \
+                                      xvfb qtbase5-dev libqt5webkit5-dev \
+                                      xauth
+
+# Heroku Toolbelt
+RUN wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz -O heroku.tar.gz \
+    && mkdir -p /usr/local/lib \
+    && tar -xvzf heroku.tar.gz -C /usr/local/lib \
+    && /usr/local/lib/heroku/install
