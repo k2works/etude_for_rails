@@ -64,6 +64,7 @@ RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RE
 
 # For Rails Application
 RUN apt-get update && apt-get install -y  \
+                                      libpq-dev libsqlite3-dev  \
                                       mysql-client postgresql-client \
                                       sqlite3 --no-install-recommends \
                                       xvfb qtbase5-dev libqt5webkit5-dev \
