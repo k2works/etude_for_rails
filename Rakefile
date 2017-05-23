@@ -7,3 +7,6 @@ Rails.application.load_tasks
 
 require 'yard'
 YARD::Rake::YardocTask.new
+
+require 'annotate'
+Annotate.load_tasks
