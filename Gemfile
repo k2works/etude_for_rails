@@ -64,7 +64,7 @@ group :development do
   gem 'guard-yard'
   gem 'redcarpet', '~> 3.3', '>= 3.3.4'
   gem 'migration_comments'
-  gem 'annotate'
+  gem 'annotate', group: :doc
   gem 'poltergeist'
 end
 
