@@ -3,17 +3,17 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import assert from 'power-assert';
 import { shallow, mount } from 'enzyme';
-import Excel from '../../app/javascript/packs/whinepad/components/Excel';
-import Logo from '../../app/javascript/packs/whinepad/components/Logo';
-import Button from '../../app/javascript/packs/whinepad/components/Button';
-import Suggest from '../../app/javascript/packs/whinepad/components/Suggest';
-import Rating from '../../app/javascript/packs/whinepad/components/Rating';
-import FormInput from "../../app/javascript/packs/whinepad/components/FormInput";
-import Form from "../../app/javascript/packs/whinepad/components/Form";
-import Actions from "../../app/javascript/packs/whinepad/components/Actions";
-import Dialog from "../../app/javascript/packs/whinepad/components/Dialog";
-import CRUDStore from '../../app/javascript/packs/whinepad/flux/CRUDStore';
-import schema from '../../app/javascript/packs/whinepad/schema';
+import Excel from '../../../app/javascript/packs/whinepad/components/Excel';
+import Logo from '../../../app/javascript/packs/whinepad/components/Logo';
+import Button from '../../../app/javascript/packs/whinepad/components/Button';
+import Suggest from '../../../app/javascript/packs/whinepad/components/Suggest';
+import Rating from '../../../app/javascript/packs/whinepad/components/Rating';
+import FormInput from "../../../app/javascript/packs/whinepad/components/FormInput";
+import Form from "../../../app/javascript/packs/whinepad/components/Form";
+import Actions from "../../../app/javascript/packs/whinepad/components/Actions";
+import Dialog from "../../../app/javascript/packs/whinepad/components/Dialog";
+import CRUDStore from '../../../app/javascript/packs/whinepad/flux/CRUDStore';
+import schema from '../../../app/javascript/packs/whinepad/schema';
 
 describe('WhinePad', () => {
     it('should render log', () => {
