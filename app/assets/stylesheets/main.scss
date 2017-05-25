@@ -12,23 +12,26 @@
 @import "./components/parts/buttons";
 
 // レイアウト
-@import "components/parts/layouts";
+@import "./components/parts/layouts";
 
 // カルーセル
-@import "components/imageSlide";
+@import "./components/imageSlide";
 @import "./components/common/section";
 
 // ラベル
-@import "components/parts/labels";
+@import "./components/parts/labels";
 
 // オーバーレイパネル
-@import "components/overlayPanel";
+@import "./components/overlayPanel";
 
 // Indexページ
-@import "pages/html_css_book/index";
+@import "./pages/html_css_book/index";
 
 // アイコンパネル
-@import "components/iconPanel";
+@import "./components/iconPanel";
 
 // おしらせ一覧
 @import "./components/newsList";
+
+// フッター
+@import "./components/common/footer";
