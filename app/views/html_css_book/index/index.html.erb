@@ -1,9 +1,13 @@
-<div class="wrapper">
+<div id="wrapper" class="SpMenu__wrapper">
+  <div id="overlay" class="SpMenu__overlay"></div>
   <header class="Header l-column">
+    <div id="menu-button" class="Header__button">
+      <%= fa_icon 'bars' %>
+    </div>
     <div class="Header__head">
       <h1 class="logo">Site Name</h1>
     </div>
-    <nav class="Header__body">
+    <nav class="Header__body SpMenu">
       <ul class="Menu">
         <li class="Menu__item"><a href="#">Services</a></li>
         <li class="Menu__item"><a href="#">Work</a></li>
@@ -13,7 +17,6 @@
       </ul>
     </nav>
   </header>
-
 
   <div class="ImageSlide Section">
     <ul id="Slide" class="ImageSlide__main">
@@ -93,28 +96,28 @@
     <div class="Section__item l-column">
       <div class="l-row">
         <a class="IconPanel l-quaterColumn">
-          <%= fa_icon 'tree' %>
+          <%= fa_icon 'tree', class:'IconPanel__icon' %>
           <h3 class="IconPanel__head">こだわりの空間</h3>
           <p class="IconPanel__body">
             ランチからディナーまでいつまでもリラックスして使えるくつろぎ空間。椅子や壁、細部にまでこだわっています。
           </p>
         </a>
         <a class="IconPanel l-quaterColumn">
-          <%= fa_icon 'coffee' %>
+          <%= fa_icon 'coffee', class:'IconPanel__icon' %>
           <h3 class="IconPanel__head">豆へのこだわり</h3>
           <p class="IconPanel__body">
             原産地、豆の種類、焙煎方法のこだわりを紹介する
           </p>
         </a>
         <a class="IconPanel l-quaterColumn">
-          <%= fa_icon 'pencil' %>
+          <%= fa_icon 'pencil', class:'IconPanel__icon' %>
           <h3 class="IconPanel__head">コーヒースクール</h3>
           <p class="IconPanel__body">
             コーヒー豆の基礎知識から、美味しいコーヒーを淹れるコツをお教えします。
           </p>
         </a>
         <a class="IconPanel l-quaterColumn">
-          <%= fa_icon 'laptop' %>
+          <%= fa_icon 'laptop', class:'IconPanel__icon' %>
           <h3 class="IconPanel__head">BLOG</h3>
           <p class="IconPanel__body">
             お店の最新情報を、いち早くお届け。
@@ -123,6 +126,7 @@
       </div>
     </div>
   </section>
+
   <section class="Section l-column">
     <div class="Section__head">
       <h2 class="sectionLabel">News</h2>
@@ -191,7 +195,3 @@
     </div>
   </footer>
 </div>
-
-<script>
-    imageSlide('Slide', 2);
-</script>
