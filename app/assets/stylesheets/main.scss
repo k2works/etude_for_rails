@@ -1,37 +1,56 @@
+// ===========================
+// Base
+// ===========================
 @import "./base/variables";
 @import "./base/reset";
+
+// ===========================
+// Components
+// ===========================
+
+// Parts
+//----------------------------
+// レイアウト
+@import "./components/parts/layouts";
+
+// ボタン
+@import "./components/parts/buttons";
+
+// ラベル、見出し
+@import "./components/parts/labels";
+
+// フッター
+@import "./components/common/footer";
+
+// Common
+//----------------------------
+// ヘッダー
 @import "./components/common/header";
 
 // メニュー
 @import "./components/common/menu";
 
+// セクション分け
+@import "./components/common/section";
+
+// Others
+//----------------------------
 // ブログ抜粋
 @import "./components/entryPanel";
 
-// ボタン
-@import "./components/parts/buttons";
-
-// レイアウト
-@import "./components/parts/layouts";
-
 // カルーセル
 @import "./components/imageSlide";
-@import "./components/common/section";
 
-// ラベル
-@import "./components/parts/labels";
-
-// オーバーレイパネル
+// 写真背景パネル
 @import "./components/overlayPanel";
 
-// Indexページ
-@import "./pages/html_css_book/index";
-
-// アイコンパネル
+// アイコンつき説明パネル
 @import "./components/iconPanel";
 
 // おしらせ一覧
 @import "./components/newsList";
 
-// フッター
-@import "./components/common/footer";
+// ===========================
+// Pages
+// ===========================
+@import "./pages/index";
