@@ -4,6 +4,8 @@
 @import "./base/variables";
 @import "./base/reset";
 
+//font-awesome
+@import "font-awesome";
 // ===========================
 // Components
 // ===========================
@@ -33,6 +35,9 @@
 // セクション分け
 @import "./components/common/section";
 
+// SNS
+@import "./components/common/sns";
+
 // Others
 //----------------------------
 // ブログ抜粋
@@ -53,4 +58,4 @@
 // ===========================
 // Pages
 // ===========================
-@import "./pages/index";
+@import "./pages/html_css_book/index";
