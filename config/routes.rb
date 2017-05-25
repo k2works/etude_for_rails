@@ -13,7 +13,9 @@
 Rails.application.routes.draw do
   namespace :html_css_book do
     resources :index, only: [:index]
-    resources :campaign, only: [:index]
+    resources :campaign, only: [:index] do
+      get 'submit', to: 'campaign#submit'
+    end
   end
 
   namespace :react_beginners_guide do

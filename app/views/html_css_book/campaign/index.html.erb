@@ -134,6 +134,18 @@
     </div>
   </section>
 
+  <section class="Section l-column">
+    <div class="Section__head">
+      <h2 class="sectionLabel">More Info</h2>
+    </div>
+
+    <%= form_tag('./campaign/1/submit', :method => :get, class:'Form') do %>
+        <%= text_field :campaign, :name, placeholder:'NAME',size:40,class: 'Form__input' %>
+        <%= text_field :campaign, :mail, placeholder:'MAIL',size:40,class: 'Form__input' %>
+        <%= button_tag('SUBSCRIBE',class:'button Form__button') %>
+    <% end %>
+  </section>
+
   <footer class="Footer">
     <div class="l-row l-column">
       <div class="Footer__head">
