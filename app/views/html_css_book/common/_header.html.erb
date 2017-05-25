@@ -1,0 +1,17 @@
+<header class="Header l-column">
+  <div id="menu-button" class="Header__button">
+    <%= fa_icon 'bars' %>
+  </div>
+  <div class="Header__head">
+    <h1 class="logo"><%= link_to('Site Name', html_css_book_index_index_url) %></h1>
+  </div>
+  <nav class="Header__body SpMenu">
+    <ul class="Menu">
+      <li class="Menu__item"><a href="#">Services</a></li>
+      <li class="Menu__item"><a href="#">Work</a></li>
+      <li class="Menu__item"><a href="#">About</a></li>
+      <li class="Menu__item"><%= link_to('Blog', html_css_book_article_index_url) %></li>
+      <li class="Menu__item"><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>

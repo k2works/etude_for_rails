@@ -79,3 +79,6 @@ gem 'foreman'
 gem 'webpacker'
 
 gem 'simplecov', :require => false, :group => :test
+
+# For HTMLCSS
+gem 'font-awesome-rails'
