@@ -2,6 +2,7 @@
 #
 #                                         Prefix Verb URI Pattern                                         Controller#Action
 #                      html_css_book_index_index GET  /html_css_book/index(.:format)                      html_css_book/index#index
+#                   html_css_book_campaign_index GET  /html_css_book/campaign(.:format)                   html_css_book/campaign#index
 #              react_beginners_guide_excel_index GET  /react_beginners_guide/excel(.:format)              react_beginners_guide/excel#index
 # discovery_react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad/discovery(.:format) react_beginners_guide/whinepad#discovery
 #           react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad(.:format)           react_beginners_guide/whinepad#index
@@ -12,6 +13,7 @@
 Rails.application.routes.draw do
   namespace :html_css_book do
     resources :index, only: [:index]
+    resources :campaign, only: [:index]
   end
 
   namespace :react_beginners_guide do
