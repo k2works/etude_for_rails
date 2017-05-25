@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                         Controller#Action
+#                      html_css_book_index_index GET  /html_css_book/index(.:format)                      html_css_book/index#index
 #              react_beginners_guide_excel_index GET  /react_beginners_guide/excel(.:format)              react_beginners_guide/excel#index
 # discovery_react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad/discovery(.:format) react_beginners_guide/whinepad#discovery
 #           react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad(.:format)           react_beginners_guide/whinepad#index
@@ -9,6 +10,10 @@
 #
 
 Rails.application.routes.draw do
+  namespace :html_css_book do
+    resources :index, only: [:index]
+  end
+
   namespace :react_beginners_guide do
     resources :excel, only: [:index]
     resources :whinepad, only: [:index] do
