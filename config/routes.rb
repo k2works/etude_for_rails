@@ -13,6 +13,8 @@
 #
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   namespace :html_css_book do
     resources :index, only: [:index]
     resources :campaign, only: [:index] do
