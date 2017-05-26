@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :top, only:[:index]
     get 'samples/sample_01'
     get 'samples/sample_02'
+    get 'samples/sample_03'
   end
 
   root 'home#index'
