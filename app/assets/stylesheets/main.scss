@@ -11,8 +11,6 @@
 @import "./base/mixins";
 @import "./base/reset";
 
-// font-awesome
-@import "font-awesome";
 // ===========================
 // Components
 // ===========================
@@ -65,6 +63,13 @@
 // フォーム
 @import "./components/form";
 
+// font-awesome
+@import "font-awesome";
+
+//BootStrap
+@import "bootstrap-sprockets";
+@import "components/bootstrap-custom";
+
 // ===========================
 // Pages
 // ===========================
@@ -75,6 +80,9 @@
 @import "./pages/excel/excel";
 
 @import "./pages/intro_to_reacts/intro_to_reacts";
+
+@import "./pages/bootstraps/dashboard";
+@import "./pages/bootstraps/java_script";
 
 // ===========================
 // Utils
