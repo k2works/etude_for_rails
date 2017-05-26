@@ -1,24 +1,24 @@
-html {
+.Excel__html {
     background: #f0f0f0;
     font: 16px Arial;
 }
 
-input {
+.Excel__table input {
     font: 16px Arial;
 }
 
-td {
+.Excel__table td {
     border-top: 1px solid black;
     cursor: cell;
     padding: 5px;
 }
 
-th {
+.Excel__table th {
     cursor: pointer;
     padding: 5px;
 }
 
-table {
+.Excel__table {
     border: 1px solid black;
     margin: 20px;
 }

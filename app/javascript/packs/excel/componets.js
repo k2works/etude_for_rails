@@ -181,7 +181,7 @@ var Excel = React.createClass({
 
     _renderTable: function() {
         return (
-            <table>
+            <table className="Excel__table">
                 <thead onClick={this._sort}>
                 <tr>{
                     this.props.headers.map(function (title, idx) {
