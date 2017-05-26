@@ -2,6 +2,8 @@
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
+#                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
+#                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
 #                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
   namespace :javascripts do
     resources :top, only:[:index]
     get 'samples/sample_01'
+    get 'samples/sample_02'
   end
 
   root 'home#index'
