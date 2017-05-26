@@ -4,11 +4,16 @@
 <div class="container">
   <h1>お問い合わせ</h1>
   <p>下記の項目を入力してください。</p>
+  <div class="alert alert-danger alert-dismissable">
+    <button class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    エラー：<a href="#titleline" class="alert-link">件名</a>が入力されていません。</div>
+  <div class="alert alert-warning">警告：性別が指定されていません。</div>
 
   <form method="get" action="/form/form_control">
-    <div class="form-group">
+    <div class="form-group has-error">
       <label for="title" class="control-label">件名</label>
       <input type="text" name="title" id="title" placeholder="件名を入力" class="form-control input-lg">
+      <span class="label label-danger">件名は必須です</span>
     </div>
 
     <div class="form-group">
