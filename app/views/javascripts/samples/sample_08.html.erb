@@ -1,0 +1,21 @@
+<div class="JSSample">
+  <%= link_to 'Topへ戻る', javascripts_top_index_path %>
+  <div id="checkered"><%= asset_path('javascript_samples/img1') %>|<%= asset_path('javascript_samples/img2') %></div>
+
+  <span id="output"></span><br>
+  <input type="button" id="execButton" value="実行"><br>
+  <img src=<%= asset_path('javascript_samples/img3') %> id="source">
+
+  <div>
+    <video poster=<%= asset_path('javascript_samples/video/img.png') %> controls id="video" width="640" height="360">
+      <source src=<%= asset_path('javascript_samples/video/test.webm') %>>
+      <source src=<%= asset_path('javascript_samples/video/test.mp4') %>>
+      <source src=<%= asset_path('javascript_samples/video/test.ogv') %>>
+      <p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+    </video>
+  </div>
+  <div>
+    <input type="button" id="playButton" value="再生">
+    <input type="button" id="pauseButton" value="停止">
+  </div>
+</div>

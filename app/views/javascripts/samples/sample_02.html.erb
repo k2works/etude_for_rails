@@ -1,0 +1,52 @@
+<div class="JSSample">
+<%= link_to 'Topへ戻る', javascripts_top_index_path %>
+
+  <h1>入力欄の長さをチェックする</h1>
+  <textarea id="userText3">あいうえおabcde12345</textarea>
+  <br>
+  <input type="button" id="execButton3" value="実行">
+  <br>
+  <div class="viewarea" id="output3"></div>
+
+  <h1>半角を1文字、全角を2文字として長さを得る</h1>
+  <textarea id="userText3-2">あいうえおabcde12345</textarea>
+  <br>
+  <input type="button" id="execButton3-2" value="実行">
+  <br>
+  <div class="viewarea" id="output3-2"></div>
+
+  <h1>HTMLタグを除去する</h1>
+  <textarea style="height: 11em;" id="userText4">
+  <h1>
+    <a href="https:/www.google.co.jp/">タイトル</a>
+  </h1>
+  <br>
+  <div>
+    本文本文本文本文本文。
+    <span class="hoge">本文。</span>
+    本文本文本文本文本文。
+  </div>
+</textarea>
+  <br>
+  <input type="button" id="execButton4" value="実行">
+  <br>
+  <textarea style="height: 11em;" id="output4"></textarea>
+
+  <h1>文字列のエンコード／デコードを行う</h1>
+  <textarea style="height: 5em;" id="userText5">
+  https://www.google.co.jp/#q=%E6%97%A5%E6%9C%AC%E8%AA%9E
+  ---------------------
+  https://www.google.co.jp/#q=日本語
+</textarea>
+  <br>
+  <input type="button" id="encodeButton" value="エンコード">
+  <input type="button" id="decodeButton" value="デコード">
+  <br>
+  <textarea style="height: 5em;" id="output5"></textarea>
+
+  <h1>Webページを遷移する</h1>
+  <input type="text" id="userText6" value="https://www.google.co.jp" style="width: 300px;">
+  <br>
+  <input type="button" id="moveButton" value="移動">
+  <input type="button" id="openButton" value="別ウィンドウで開く">
+</div>

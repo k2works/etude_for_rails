@@ -1,0 +1,24 @@
+.JSSample {
+  div.viewarea {
+    background: #ffa;
+    border: solid 1px #aa6;
+    width: 40em;
+    front-size: 11pt;
+    padding: 0.5em;
+  }
+
+  textarea {
+    width: 40em;
+    font-size: 11pt;
+    padding: 0.5em;
+  }
+
+  b {color: red;}
+
+  .balloon {
+    display: inline-block;
+    background: silver;
+    text-align: center;
+    padding: 1em 1em 2em 1em;
+  }
+}

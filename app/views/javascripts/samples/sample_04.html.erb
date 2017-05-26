@@ -1,0 +1,68 @@
+<div class="JSSample">
+<%= link_to 'Topへ戻る', javascripts_top_index_path %>
+
+  <h1>マークダウンエディタを作成する</h1>
+  <textarea style="height: 8em;" id="userText11">
+# タイトル1
+本文本文本文*本文*本文。
+
+## タイトル2
+本文*本文*本文本文本文。
+</textarea>
+  <br>
+  <input type="button" id="execButton11" value="実行"><br>
+  <textarea style="height: 8em;" id="output11"></textarea><br>
+  <div id="output11-2"></div>
+
+  <h1>URLとタイトルからリンクを作成する</h1>
+  タイトル:
+  <input type="text" id="userTitle"
+         value="グーグル"
+         style="width: 400px;"><br>
+
+  URL:
+  <input type="text" id="userUrl"
+         value="https://www.google.co.jp/"
+         style="width: 400px;"><br>
+
+  <input type="button" id="execButton12" value="実行"><br>
+  <textarea style="height: 5em;" id="output12"></textarea><br>
+  <div id="output12-2"></div>
+
+  <h1>CSVからリンク一覧を作成する</h1>
+  <textarea style="height: 5em;" id="userText13">
+  グーグル,https://www.google.co.jp/
+  ヤフー,http://www.yahoo.co.jp/
+  フェイスブック,https://www.facebook.com/
+</textarea>
+  <br>
+  <input type="button" id="execButton13" value="実行"><br>
+  <textarea style="height: 5em;" id="output13"></textarea><br>
+  <div id="output13-2"></div>
+
+  <h1>マウスオーバーで説明を表示する</h1>
+  <a href="https://www.google.co.jp/" title="検索サイトです。" class="link">
+    グーグル
+  </a>
+  <br>
+  <textarea style="height: 2em;" id="output14"></textarea>
+
+  <h2>状態遷移時の処理を設定</h2>
+  <select id="sel">
+    <option>りんご</option>
+    <option>みかん</option>
+    <option>バナナ</option>
+  </select>
+  <div id="output14-2"></div>
+
+  <h2>submit()関数</h2>
+  <form method="get" action="/java_script_sample/js_sample" target="_blank" id="myForm">
+    入力欄<input type="text" name="t" id="userText14-3" value=""><br>
+    <input type="submit" value="送信">
+  </form>
+  <br>
+  <div id="output14-3"></div>
+
+  <h2>scroll()関数</h2>
+  <div style="height: 3000px;"></div>
+</div>
