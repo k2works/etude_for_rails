@@ -1,6 +1,8 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
+#                                           root GET  /                                                     home#index
+#                     bootstraps_bootstrap_index GET  /bootstraps/bootstrap(.:format)                       bootstraps/bootstrap#index
 #                      html_css_book_index_index GET  /html_css_book/index(.:format)                        html_css_book/index#index
 #                  html_css_book_campaign_submit GET  /html_css_book/campaign/:campaign_id/submit(.:format) html_css_book/campaign#submit
 #                   html_css_book_campaign_index GET  /html_css_book/campaign(.:format)                     html_css_book/campaign#index
@@ -14,6 +16,10 @@
 
 Rails.application.routes.draw do
   root 'home#index'
+
+  namespace :bootstraps do
+    resources :bootstrap, only: [:index]
+  end
 
   namespace :html_css_book do
     resources :index, only: [:index]
