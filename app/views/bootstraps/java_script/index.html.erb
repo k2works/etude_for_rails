@@ -312,3 +312,94 @@
   <h2 id="content3">見出し3</h2>
   ・・・
 </div>
+
+<h1>カルーセル</h1>
+<h2>カルーセルの基本</h2>
+<div id="mycarousel" class="carousel slide" data-ride="carousel">
+  <!-- インジケーター -->
+  <ol class="carousel-indicators">
+    <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#mycarousel" data-slide-to="1"></li>
+    <li data-target="#mycarousel" data-slide-to="2"></li>
+  </ol>
+
+  <!-- 画像表示域 -->
+  <div class="carousel-inner">
+    <!--1枚目-->
+    <div class="item active">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+    <!-- 2枚目以降 -->
+    <div class="item">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+  </div>
+
+  <!--左右のコントロール-->
+  <a class="carousel-control left" href="#mycarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="carousel-control right" href="#mycarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+
+<h2>表示する画像を切り替える</h2>
+<button class="mycarousel_left">2番目に切り替え</button>
+<button data-target="#mycarousel" data-side-to="3">3番目に切り替え</button>
+
+<h2>イベントを処理する</h2>
+<div id="mycarousel2" class="carousel">
+  <!-- インジケーター -->
+  <ol class="carousel-indicators">
+    <li data-target="#mycarousel2" data-slide-to="0" class="active"></li>
+    <li data-target="#mycarousel2" data-slide-to="1"></li>
+    <li data-target="#mycarousel2" data-slide-to="2"></li>
+  </ol>
+
+  <!-- 画像表示域 -->
+  <div class="carousel-inner">
+    <!--1枚目-->
+    <div class="item active">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+    <!-- 2枚目以降 -->
+    <div class="item">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://placehold.jp/400x400.png" alt="ひまわり" class="center-block">
+      <div class="carousel-caption">
+        <h3>ひまわり</h3><p>ひまわりの写真</p>
+      </div>
+    </div>
+  </div>
+
+  <!--左右のコントロール-->
+  <a class="carousel-control left" href="#mycarousel2" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="carousel-control right" href="#mycarousel2" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
