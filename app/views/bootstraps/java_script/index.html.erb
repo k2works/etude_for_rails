@@ -13,3 +13,112 @@
   <a href="#" class="alert-close">閉じる</a>
 
 </div>
+
+<h1>モーダルダイアログボックス</h1>
+<h2>モーダルダイアログボックスの基本</h2>
+<div class="modal" role="dialog" area-hidden="true" id="mymodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- ヘッダー -->
+      <div class="modal-header">
+        <!-- [x] ボタン -->
+        <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">タイトル</h4>
+      </div>
+      <!-- 本文 -->
+      <div class="modal-body">
+        <p>本文本文</p>
+      </div>
+      <!-- フッター -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+  ダイアログを開く
+</button>
+<h2>オプションを指定する</h2>
+<div class="modal" role="dialog" area-hidden="true" id="mymodal2" data-backdrop='false' data-keyboard='false'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- ヘッダー -->
+      <div class="modal-header">
+        <!-- [x] ボタン -->
+        <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">タイトル</h4>
+      </div>
+      <!-- 本文 -->
+      <div class="modal-body">
+        <p>本文本文</p>
+      </div>
+      <!-- フッター -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal2">
+  ダイアログを開く
+</button>
+<h2>モーダルダイアログボックスを表示／非表示にする</h2>
+<div class="modal" role="dialog" area-hidden="true" id="mymodal3" data-backdrop='false' data-keyboard='false'>
+  <div class="modal-dialog modal-sm modal-dialog-center">
+    <div class="modal-content">
+      <!-- ヘッダー -->
+      <div class="modal-header">
+        <!-- [x] ボタン -->
+        <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">タイトル</h4>
+      </div>
+      <!-- 本文 -->
+      <div class="modal-body">
+        <p>本文本文</p>
+        <button class="btn btn-primary modal-show">
+          モーダル表示
+        </button>
+        <button class="btn btn-primary modal-hide">
+          モーダル非表示
+        </button>
+      </div>
+      <!-- フッター -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal3">
+  ダイアログを開く
+</button>
+<h2>閉じられようとする時のイベントを処理する</h2>
+<div class="modal" role="dialog" area-hidden="true" id="mymodal4">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- ヘッダー -->
+      <div class="modal-header">
+        <!-- [x] ボタン -->
+        <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">タイトル</h4>
+      </div>
+      <!-- 本文 -->
+      <div class="modal-body">
+        <p>本文本文</p>
+      </div>
+      <!-- フッター -->
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal4">
+  ダイアログを開く
+</button>
+<h2>部分コンテンツを表示する</h2>
+<div class="modal" role="dialog" area-hidden="true" id="mymodal5">
+  <%= render 'dialog' %>
+</div>
+<%= button_tag "ダイアログを開く", data: { toggle: "modal", target: "#mymodal5" }, class: "btn btn-primary" %>
