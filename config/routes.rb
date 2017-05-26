@@ -9,6 +9,7 @@
 #                  javascripts_samples_sample_05 GET  /javascripts/samples/sample_05(.:format)              javascripts/samples#sample_05
 #                  javascripts_samples_sample_06 GET  /javascripts/samples/sample_06(.:format)              javascripts/samples#sample_06
 #                  javascripts_samples_sample_07 GET  /javascripts/samples/sample_07(.:format)              javascripts/samples#sample_07
+#                  javascripts_samples_sample_08 GET  /javascripts/samples/sample_08(.:format)              javascripts/samples#sample_08
 #                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
     get 'samples/sample_05'
     get 'samples/sample_06'
     get 'samples/sample_07'
+    get 'samples/sample_08'
   end
 
   root 'home#index'
