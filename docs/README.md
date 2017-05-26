@@ -42,6 +42,7 @@ Railsアプリケーションのための練習プログラム集
 ### [Reactビギナーズガイド Exce](dev/react_beginners_guide/excel.md)
 ### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
 ### [Bootstrap](dev/bootstrap/bootstrap.md)
+### [JavaScript](dev/javascript/javascript.md)
 
 ### 
 

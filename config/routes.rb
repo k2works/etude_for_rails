@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
+#                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
@@ -20,6 +21,10 @@
 #
 
 Rails.application.routes.draw do
+  namespace :javascripts do
+    resources :top, only:[:index]
+  end
+
   root 'home#index'
 
   namespace :bootstraps do
