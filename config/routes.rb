@@ -4,6 +4,8 @@
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
+#                  javascripts_samples_sample_03 GET  /javascripts/samples/sample_03(.:format)              javascripts/samples#sample_03
+#                  javascripts_samples_sample_04 GET  /javascripts/samples/sample_04(.:format)              javascripts/samples#sample_04
 #                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
     get 'samples/sample_01'
     get 'samples/sample_02'
     get 'samples/sample_03'
+    get 'samples/sample_04'
   end
 
   root 'home#index'

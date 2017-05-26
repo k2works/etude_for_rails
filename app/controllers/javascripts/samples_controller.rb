@@ -7,4 +7,7 @@ class Javascripts::SamplesController < ApplicationController
 
   def sample_03
   end
+
+  def sample_04
+  end
 end
