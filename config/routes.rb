@@ -5,6 +5,7 @@
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
 #                          bootstraps_form_index GET  /bootstraps/form(.:format)                            bootstraps/form#index
+#                            bootstraps_ui_index GET  /bootstraps/ui(.:format)                              bootstraps/ui#index
 #                      html_css_book_index_index GET  /html_css_book/index(.:format)                        html_css_book/index#index
 #                  html_css_book_campaign_submit GET  /html_css_book/campaign/:campaign_id/submit(.:format) html_css_book/campaign#submit
 #                   html_css_book_campaign_index GET  /html_css_book/campaign(.:format)                     html_css_book/campaign#index
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :layout, only: [:index]
     resources :form, only: [:index]
+    resources :ui, only: [:index]
   end
 
   namespace :html_css_book do
