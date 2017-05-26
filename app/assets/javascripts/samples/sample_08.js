@@ -109,3 +109,16 @@ $(function() {
         $("#output").append(canvas);
     });
 });
+
+// DOMの準備後に実行する内容
+$(function() {
+    // ［再生］ボタンを押した時の処理を設定
+    $("#playButton").click(function() {
+        $("#video").get(0).play();
+    });
+
+    // ［停止］ボタンを押した時の処理を設定
+    $("#pauseButton").click(function() {
+        $("#video").get(0).pause();
+    });
+});
