@@ -1,0 +1,45 @@
+<%= render 'bootstraps/shared/nav_bar' %>
+
+<h1>フォームコントロールの基本</h1>
+<div class="container">
+  <h1>お問い合わせ</h1>
+  <p>下記の項目を入力してください。</p>
+
+  <form method="get" action="/form/form_control">
+    <p><label for="title">件名</label>
+      <input type="text" name="title" id="title" placeholder="件名を入力"></p>
+    <p><label for="name">お名前</label>
+      <input type="text" name="name" id="name" placeholder="お名前を入力"></p>
+    <p><span>お問い合わせ日</span>&nbsp;2014年1月10日</p>
+    <input type="hidden" name="date" value="2014-01-10">
+    <label for="email">メールアドレス</label>
+    <input type="text" name="email" id="email" placeholder="メールアドレスを入力"><br>
+    <p>性別</p>
+    <input type="radio" value="1" name="gender" id="man">
+    <label for="man">男性</label>
+    <input type="radio" value="2" name="gender" id="woman">
+    <label for="woman">女性</label>
+    <p>ご利用のOS</p>
+    <input type="checkbox" value="windows" name="os" id="os_windows">
+    <label for="os_windows">Windows</label>
+    <input type="checkbox" value="macos" name="os" id="os_macos">
+    <label for="os_macos">Mac</label>
+    <input type="checkbox" value="android" name="os" id="os_android">
+    <label for="os_android">Android</label>
+    <input type="checkbox" value="ios" name="os" id="os_ios">
+    <label for="os_ios">iOS</label>
+    <p>年齢</p>
+    <select name="age" id="age">
+      <option value="10">10代</option>
+      <option value="20">20代</option>
+      <option value="30">30代</option>
+      <option value="40">40代</option>
+      <option value="50">50代</option>
+      <option value="60">60歳以上</option>
+    </select>
+    <p>お問い合わせ内容</p>
+    <textarea name="body" id="body" cols="40" rows="5" placeholder="お問い合わせ内容を記述してください"></textarea>
+    <p>※1000文字まで入力できます。</p>
+    <input type="submit" value="送信">&nbsp;<input type="reset" value="キャンセル">
+  </form>
+</div>
