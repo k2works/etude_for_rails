@@ -23,6 +23,7 @@
 Rails.application.routes.draw do
   namespace :javascripts do
     resources :top, only:[:index]
+    get 'samples/sample_01'
   end
 
   root 'home#index'
