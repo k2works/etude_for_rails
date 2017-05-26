@@ -82,3 +82,8 @@ gem 'simplecov', :require => false, :group => :test
 
 # For HTMLCSS
 gem 'font-awesome-rails'
+
+# For Bootstrap
+gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap_form'
