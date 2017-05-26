@@ -1,4 +1,8 @@
 <div class="JSSample">
   <%= link_to 'Topへ戻る', javascripts_top_index_path %>
   <div id="checkered"><%= asset_path('javascript_samples/img1') %>|<%= asset_path('javascript_samples/img2') %></div>
+
+  <span id="output"></span><br>
+  <input type="button" id="execButton" value="実行"><br>
+  <img src=<%= asset_path('javascript_samples/img3') %> id="source">
 </div>
