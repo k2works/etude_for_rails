@@ -175,3 +175,20 @@
     </div>
   </form>
 </div>
+
+<h1>インラインフォームを使って１行で表現する</h1>
+<div class="container">
+  <div class="panel panel-default">
+    <form method="get" action="/form/form_control" class="form-inline text-right">
+      <div class="form-group">
+        <label class="control-label sr-only">ユーザー名</label>
+        <input type="text" name="username" placeholder="ユーザー名" class="form-control input-sm">
+      </div>
+      <div class="form-group">
+        <label class="control-label sr-only">パスワード</label>
+        <input type="password" name="password" placeholder="パスワード" class="form-control input-sm">
+      </div>
+      <input type="submit" class="btn btn-default" value="ログイン">
+    </form>
+  </div>
+</div>
