@@ -122,3 +122,40 @@
   <%= render 'dialog' %>
 </div>
 <%= button_tag "ダイアログを開く", data: { toggle: "modal", target: "#mymodal5" }, class: "btn btn-primary" %>
+
+<h1>ツールチップとポップオーバー</h1>
+<h2>ツールチップの基本</h2>
+<button class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="right"
+        title="このアプリケーションを終了します">
+  終了
+</button>
+<h2>オプションを指定する</h2>
+<button class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-trigger="click"
+        title="このアプリケーションを終了します">
+  終了
+</button>
+<h2>表示／非表示する</h2>
+<button class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="right"
+        id="mybutton"
+        title="このアプリケーションを終了します">
+  終了
+</button>
+<br>
+<button class="btn btn-default tooltip-show" >表示</button>
+<button class="btn btn-default tooltip-hide" >非表示</button>
+<h2>ポップオーバーの基本</h2>
+<button class="btn btn-default"
+        data-toggle="popover"
+        data-placement="right"
+        title="終了ボタン"
+        data-content="このボタンをクリックすると終了します"
+>
+  終了
+</button>
