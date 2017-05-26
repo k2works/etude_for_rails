@@ -1,0 +1,82 @@
+<div class="JSSample">
+  <%= link_to 'Topへ戻る', javascripts_top_index_path %>
+  <h1> 入力欄の内容をページ内に表示する</h1>
+  <div>
+    <input type="text" id="userText" value="入力文字列">
+    <input type="button" id="execButton" value="実行">
+  </div>
+  <div class="viewarea" id="output"></div>
+
+  <h1>本文を抜き出して入力欄に表示する</h1>
+  <div  class="viewarea" id="view">
+    <span style="font-size: 200%;">プ</span>ログラムを書こう!
+  </div>
+  <div>
+    <input type="button" id="getButton" value="取得">
+    <input type="button" id="backButton" value="戻す">
+    <br>
+    <textarea style="height: 4em;" id="userText2"></textarea>
+  </div>
+
+  <h1>リストの値を取得する</h1>
+  <div>
+    商品
+    <select id="item">
+      <option value="100.8" selected>りんご（100.8円）</option>
+      <option value="200.8">みかん（200.8円）</option>
+      <option value="150.8">バナナ（150.8円）</option>
+    </select>
+    個数
+    <select id="num">
+      <option value="1" selected>1個</option>
+      <option value="2">2個</option>
+      <option value="3">3個</option>
+    </select>
+    <input type="button" id="calcButton" value="計算">
+  </div>
+  <div class="viewarea">
+    単価「<span id="itemSel"></span>」円、
+    個数「<span id="numSel"></span>」個で、
+    合計「<span id="result"></span>」円。
+  </div>
+
+  <h1>リストの選択番号を指定する</h1>
+  <input type="text" id="year" value="1900">
+  <input type="button" id="calcButton2" value="干支を調べる">
+  <select id="orientalZodiac">
+    <option value="0">子</option>
+    <option value="1">丑</option>
+    <option value="2">寅</option>
+    <option value="3">卯</option>
+    <option value="4">辰</option>
+    <option value="5">巳</option>
+    <option value="6">午</option>
+    <option value="7">未</option>
+    <option value="8">申</option>
+    <option value="9">酉</option>
+    <option value="10">戌</option>
+    <option value="11">亥</option>
+  </select>
+
+  <h1>チェックボックスとラジオボタンを操作する</h1>
+  <div>
+    連動するチェックボックス
+    <input type="checkbox" id="check1">
+    →
+    <input type="checkbox" id="check2">
+  </div>
+  <div>
+    連動するラジオボタン
+    <input type="radio" name="radio1" value="1">
+    <input type="radio" name="radio1" value="2">
+    →
+    <input type="radio" name="radio2" value="1">
+    <input type="radio" name="radio2" value="2">
+  </div>
+
+  <h1>Webページの表示サイズを取得する</h1>
+  <div>
+    <input type="button" id="execButton2" value="表示サイズ取得">
+  </div>
+  <div id="output2"></div>
+</div>

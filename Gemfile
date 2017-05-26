@@ -87,3 +87,6 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
+
+# For JavaScript
+gem 'js_cookie_rails'

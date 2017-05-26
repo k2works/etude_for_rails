@@ -1,0 +1,42 @@
+<div class="JSSample">
+  <%= link_to 'Topへ戻る', javascripts_top_index_path %>
+
+  <h1>チェックボックスのON/OFFでメッセージを変更する</h1>
+  <input type="checkbox" id="check6">規約に同意します。<br>
+  <input type="button" id="execButton6" value="実行"><br>
+  <input type="text" id="output6" style="width: 300px;">
+
+  <h1>金額の大小でメッセージを変更する</h1>
+  <input type="text" id="userText7" value="0">円
+  <input type="button" id="execButton7" value="実行">
+  <br>
+  <div id="output7"></div>
+
+  <h1>商品の合計重量と個数によってメッセージを変更する</h1>
+  <input type="checkbox" id="item1" value="1">鉄アレイ 1kg<br>
+  <input type="checkbox" id="item2" value="2">鉄アレイ 2kg<br>
+  <input type="checkbox" id="item3" value="3">鉄アレイ 3kg<br>
+  <input type="checkbox" id="item4" value="5">鉄アレイ 5kg<br>
+  <input type="button" id="execButton8" value="実行">
+  <input type="button" id="execButton8-2" value="実行(jQueryのeach()版)">
+  <br>
+  <div id="output8"></div>
+
+  <h1>送信ボタンを押した際の入力チェックを行う</h1>
+  <form method="get" action="/java_script_sample/js_sample" target="_blank">
+    入力欄1<input type="text" name="t1" id="userText9-1" value=""><br>
+    入力欄2<input type="text" name="t2" id="userText9-2" value=""><br>
+    入力欄3<input type="text" name="t3" id="userText9-3" value=""><br>
+    <input type="submit" id="submitButton9" value="送信">
+    <input type="submit" id="submitButton9-2" value="送信2">
+  </form>
+  <br>
+  <div id="output9"></div>
+
+  <h1>時間帯によって表示画像を変える</h1>
+  <div id="timeBg"></div>
+
+  <h1>訪問回数によって、メッセージを変更する</h1>
+  <input type="button" id="resetButton10" value="リセット">
+  <div id="output10"></div>
+</div>
