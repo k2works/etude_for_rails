@@ -159,3 +159,75 @@
 >
   終了
 </button>
+
+<h1>ドロップダウンリストとボタンの拡張</h1>
+<h2>表示非表示にする</h2>
+<a class="link-show-dropdown">リンク</a>
+
+<div class="dropdown" id="mydropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button"
+          data-toggle="dropdown" data-target="#mydropdown" id="mylabel">
+    ドロップダウンの例
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" rol="menu" aria-labelledby="mylabel">
+    <li role="presentation" class="dropdown-header">ヘッダータイトル1</li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="example01.html">外部リンク1</a>
+    </li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="inlinek01.html">内部リンク1</a>
+    </li>
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#inlink02.html">内部リンク2</a>
+    </li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation" class="dropdown-header">ヘッダータイトル2</li>
+    <li role="presentation" class="disabled">
+      <a role="menuitem" tabindex="-1" href="exampleA.href">項目A</a>
+    </li>
+  </ul>
+</div>
+<h2>イベントを処理する</h2>
+<!-- ドロップダウンリスト -->
+<div class="dropdown" id="mydropdown2">
+  <button class="btn btn-primary dropdown-toggle" type="button"
+          data-toggle="dropdown" data-target="#mydropdown2" id="mylabel">
+    ドロップダウン<span class="caret"></span>
+  </button>
+
+  <ul class="dropdown-menu" role="menu" aria-labelledby="mylabel2" id="menulist">
+  </ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+</script>
+<h1>トグルボタンの基本</h1>
+<h2>トグル動作にする</h2>
+<button type="button" class="btn btn-default" data-toggle="button">トグルボタン</button>
+<h2>チェックボックスの代わりに使う</h2>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="checkbox" id="toggle1" name="toggle1">トグルボタン1
+  </label>
+  <label class="btn btn-default">
+    <input type="checkbox" id="toggle2" name="toggle2">トグルボタン2
+  </label>
+  <label class="btn btn-default">
+    <input type="checkbox" id="toggle3" name="toggle3">トグルボタン3
+  </label>
+</div>
+<h2>ラジオボタンの代わりに使う</h2>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" id="toggle1" name="toggle1">トグルボタン1
+  </label>
+  <label class="btn btn-default">
+    <input type="radio" id="toggle2" name="toggle2">トグルボタン2
+  </label>
+  <label class="btn btn-default">
+    <input type="radio" id="toggle3" name="toggle3">トグルボタン3
+  </label>
+</div>
+<h2>処理中にクリックできないようにする</h2>
+<button type="button" id="mybutton2" class="btn btn-default" data-loading-text="処理中">クリックしてください</button>
