@@ -11,11 +11,11 @@ class IntroToReactTest < ApplicationSystemTestCase
     visit intro_to_reacts_intro_to_react_index_path
 
     7.times.each do |n|
-      #page.all('.square')[n].click
+      page.all('.square')[n].click
     end
 
     7.times.each do |n|
-      #assert_text "Move #" + (n + 1).to_s
+      assert_text "Move #" + (n + 1).to_s
     end
   end
 end
