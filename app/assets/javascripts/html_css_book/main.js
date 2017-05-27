@@ -19,7 +19,9 @@ $(document).on("turbolinks:load", function() {
             toggleMenu = toggle(wrapper, 'isOpened');
 
         menuButton.addEventListener('click', toggleMenu, false);
-        overlay.addEventListener('click', toggleMenu, false);
+        if (overlay !== null) {
+            overlay.addEventListener('click', toggleMenu, false);
+        }
 
     }());
 });
