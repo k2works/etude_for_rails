@@ -123,8 +123,8 @@ $(document).on("turbolinks:load", function() {
                 }
             });
         });
-
-        $(function () {
+// 表示の影響のため無効化
+/*        $(function () {
             // スクロール時の処理
             $(window).scroll(function (e) {
                 // ドキュメントの高さを取得
@@ -139,7 +139,7 @@ $(document).on("turbolinks:load", function() {
                     // 高さ1000pxの要素を追加
                     $("body").append('<div style="height: 1000px;"></div>');
                 }
-            })
-        });
+            });
+        });*/
     }());
 });
