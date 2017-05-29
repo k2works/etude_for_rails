@@ -1,7 +1,9 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
+#                       css_base_chapter04_index GET  /css_base/chapter04/index(.:format)                   css_base/chapter04#index
 #                             css_base_top_index GET  /css_base/top(.:format)                               css_base/top#index
+#                                                GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -31,7 +33,12 @@
 
 Rails.application.routes.draw do
   namespace :css_base do
+    get 'chapter04/index'
+  end
+
+  namespace :css_base do
     resources :top, only:[:index]
+    resources :chapter04, only:[:index]
   end
 
   namespace :javascripts do
