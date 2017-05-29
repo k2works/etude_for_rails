@@ -1,9 +1,9 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
-#                       css_base_chapter04_index GET  /css_base/chapter04/index(.:format)                   css_base/chapter04#index
 #                             css_base_top_index GET  /css_base/top(.:format)                               css_base/top#index
-#                                                GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
+#                       css_base_chapter04_index GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
+#                       css_base_chapter05_index GET  /css_base/chapter05(.:format)                         css_base/chapter05#index
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -33,12 +33,9 @@
 
 Rails.application.routes.draw do
   namespace :css_base do
-    get 'chapter04/index'
-  end
-
-  namespace :css_base do
     resources :top, only:[:index]
     resources :chapter04, only:[:index]
+    resources :chapter05, only:[:index]
   end
 
   namespace :javascripts do
@@ -52,8 +49,6 @@ Rails.application.routes.draw do
     get 'samples/sample_07'
     get 'samples/sample_08'
   end
-
-  root 'home#index'
 
   namespace :bootstraps do
     resources :dashboard, only: [:index]
@@ -86,4 +81,6 @@ Rails.application.routes.draw do
   namespace :beer_lists do
     resources :beer_list, only: [:index]
   end
+
+  root 'home#index'
 end
