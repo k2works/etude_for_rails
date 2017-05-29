@@ -5,6 +5,7 @@
 #                       css_base_chapter04_index GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
 #                       css_base_chapter05_index GET  /css_base/chapter05(.:format)                         css_base/chapter05#index
 #                       css_base_chapter06_index GET  /css_base/chapter06(.:format)                         css_base/chapter06#index
+#                       css_base_chapter07_index GET  /css_base/chapter07(.:format)                         css_base/chapter07#index
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -38,6 +39,7 @@ Rails.application.routes.draw do
     resources :chapter04, only:[:index]
     resources :chapter05, only:[:index]
     resources :chapter06, only:[:index]
+    resources :chapter07, only:[:index]
   end
 
   namespace :javascripts do
