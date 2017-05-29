@@ -72,12 +72,6 @@
     font-size: 16px;
   }
 
-  /* table
-  ------------------------------------------------*/
-  th,td {
-    border: solid 1px #000;
-  }
-
   ul.contact {
     background: #eee;
     list-style-type: none;
@@ -93,5 +87,42 @@
     font-size: 20px;
     font-weight: bold;
     color: #4d8c99;
+  }
+
+  /* table
+  ------------------------------------------------*/
+  table {
+    margin: 0 0 20px;
+    width: 100%;
+    border-spacing: 0;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+    th {
+      background: #eee;
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
+
+    thead {
+      th {
+        background: #ddd;
+      }
+    }
+
+    tbody {
+      th {
+        width: 25%;
+      }
+    }
+
+    td {
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
   }
 }
