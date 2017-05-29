@@ -1,0 +1,382 @@
+.CssBase__Sample_10_02 {
+  /* body,Anchor
+  ------------------------------------------------*/
+  body {
+    background: #f7eddb;
+    border-top: solid 5px #593e24;
+    margin: 0;
+    color: #593e24;
+  }
+  a:link,
+  a:visited {
+    text-decoration: underline;
+    color: #ff7f00;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #222;
+  }
+  /* clearfix
+  ------------------------------------------------*/
+  .clearfix { zoom: 1 }
+  .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+  }
+  /* opacity
+  ------------------------------------------------*/
+  #header a:hover img,
+  #main a:hover img,
+  #footer a:hover img { opacity: 0.70; }
+  /* Layout
+  ------------------------------------------------*/
+  .inner,
+  #content,
+  #nav,
+  #vis {
+    width: 960px;
+    margin: 0 auto;
+  }
+  #header {
+    zoom: 1;
+    background: #fff;
+  }
+  #header:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+  }
+  #vis { margin: 10px auto; }
+  #content {
+    zoom: 1;
+    background: #fff;
+    margin: 25px auto;
+  }
+  #content:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+  }
+  #side {
+    float: right;
+    margin: 30px;
+    width: 230px;
+  }
+  #main {
+    float: left;
+    margin: 30px 0 30px 30px;
+    width: 640px;
+  }
+  #footer {
+    margin: 30px 0 0;
+    font-size: 12px;
+  }
+  /* header
+  ------------------------------------------------*/
+  #header .inner { font-size: 13px }
+  #header h1 {
+    float: left;
+    margin: 25px 0 20px;
+    line-height: 0;
+  }
+  #header dl {
+    float: right;
+    margin: 10px 0;
+  }
+  #header dt {
+    padding: 0;
+    margin: 0;
+  }
+  #header dd {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #header dd span {
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  #header .inner p {
+    position: absolute;
+    top: -43px;
+    right: 0;
+  }
+  .sub {
+    background: image-url('css_base/sample_10_02/bg-head.png') repeat-x 0 0;
+    padding: 5px 0;
+    font-size: 13px;
+  }
+  .sub p {
+    width: 980px;
+    margin: 0 auto;
+  }
+  #vis p { margin: 0; }
+  /* nav
+  ------------------------------------------------*/
+  #nav {
+    clear: both;
+    overflow: hidden;
+    background: image-url('css_base/sample_10_02/bg-dot.png') repeat 0 0;
+    border: solid 1px #000;
+    border-radius: 5px;
+  }
+  #nav ul#mainNav1 {
+    margin: 0;
+    padding: 0;
+  }
+  #nav ul#mainNav1 li {
+    float: left;
+    list-style-type: none;
+    padding: 0;
+  }
+  #nav ul#mainNav1 a {
+    display: block;
+    padding: 10px 15px;
+    border-right: 1px solid #ccc;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+  }
+  #nav ul#mainNav1 li a:hover {
+    background: #e96704;
+    color: #fff;
+  }
+  #nav ul#mainNav1 li a.current {
+    background: image-url('css_base/sample_10_02/bg-dot.png') repeat 0 0;
+    color: #ffffff;
+  }
+  #nav ul#mainNav1 li a.parent {
+    background: image-url('css_base/sample_10_02/bg-dot.png') repeat 0 0;
+    color: #ffffff;
+  }
+  #nav ul#mainNav2 { display: none; }
+
+  /* main
+  ------------------------------------------------*/
+  #main h1 {
+    background: image-url('css_base/sample_10_02/bg-dot.png') repeat 0 0;
+    border-radius: 5px;
+    margin: 0 0 15px;
+    padding: 8px 14px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #fff;
+  }
+  #main h2 {
+    border-bottom: solid 3px #e96704;
+    margin: 30px 0 10px;
+    padding: 0 0 5px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  /* #newsArea
+  ------------------------------------------------*/
+  #main #newsArea dt {
+    float: left;
+    width: 7em;
+    margin: 3px 0;
+  }
+  #main #newsArea dt:after {
+    content: " ▶";
+    font-size: 12px;
+    color: #ff7f00;
+  }
+  #main #newsArea dd {
+    margin: 0;
+    padding: 3px 0 3px 7em;
+  }
+
+  /* #lessonIntro
+  ------------------------------------------------*/
+  #main #lessonIntro {
+    overflow: hidden;
+    width: 640px;
+    margin: 0 0 30px;
+  }
+  #main #lessonIntro div.lessonIntro_inner {
+    zoom: 1;
+    width: 660px;
+  }
+  #main #lessonIntro div.lessonIntro_inner:after { content:"."; display: block; height:0px; clear:both; line-height:0; visibility:hidden; }
+  #main #lessonIntro a {
+    text-decoration: none;
+    color: #222;
+  }
+  #main #lessonIntro a:hover {
+    opacity: 0.70;
+    display: block;
+  }
+  #main #lessonIntro dl {
+    float: left;
+    background: #F3F0EA;
+    width: 180px;
+    margin: 0 20px 0 0;
+    padding: 10px;
+  }
+  #main #lessonIntro dt {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: large;
+  }
+  #main #lessonIntro dd {
+    margin: 0 0 5px;
+  }
+  #main #lessonIntro dd.more {
+    background: #e96704;
+    border-radius: 5px;
+    padding: 5px 0;
+    text-align: center;
+    color: #fff;
+  }
+  #main #lessonIntro dd img {
+    width: 180px;
+  }
+  #main #lessonIntro dd ul {
+    min-height: 100px;
+    margin: 0;
+    padding: 0 0 0 1.2em;
+    font-size: small;
+  }
+  #main #lessonIntro div.comingsoon {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: alpha(opacity=50);
+    opacity: 0.50;
+  }
+
+  /* lesson
+  ------------------------------------------------*/
+  #main .lesson { margin: 0 0 30px; }
+  #main .lesson h3 {
+    background: none;
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 28px;
+  }
+  #main .lesson h4 {
+    margin: 0 0 15px;
+    font-size: 17px;
+  }
+  #main .lesson dt {
+    display: inline-block;
+    float: left;
+    clear: both;
+    background: #593e24;
+    width: 4.5em;
+    margin: 0 0 5px;
+    padding: 3px 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
+  }
+  #main .lesson dd {
+    margin: 0 0 5px 5.5em;
+    padding: 3px 0;
+  }
+  #main .btn {
+    clear: both;
+    margin: 25px 0 0;
+    text-align: center;
+  }
+  #main .btn a {
+    display: inline-block;
+    background: #e96704;
+    border-radius: 5px;
+    width: 400px;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+  }
+  #main .btn a:hover { opacity: 0.70; }
+
+  /* side
+  ------------------------------------------------*/
+  #side h1 {
+    border-bottom: dotted 1px #802626;
+    margin: 0 0 5px;
+    padding: 0 0 3px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #593e24;
+  }
+  #side h2 {
+    margin: 10px 0 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #593e24;
+  }
+  #side p {
+    margin: 0 0 15px;
+  }
+
+  /* footer
+  ------------------------------------------------*/
+  #footer ul {
+    float: left;
+    list-style: none;
+    width: 515px;
+    font-size: 13px;
+  }
+  #footer li { margin: 0 0 5px; }
+  #footer p { clear: both; }
+  /* blogselection
+  ------------------------------------------------*/
+  #main .blogselection h1,
+  .cc-page-blog #main h1 {
+    background: none;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    padding: 18px 0;
+    margin: 0;
+    font-size: 17px;
+    border-left: none;
+  }
+  .blogselection a {
+    color: #99560f;
+  }
+  #main .blogselection a:link,
+  #main .blogselection a:visited { text-decoration: underline; color: #148fcc; }
+  #main .blogselection a:hover { text-decoration: none; color: #222; }
+  div.datetime.dt-style3.dt-alignment-left {
+    margin: 8px 14px 8px 3px !important;
+  }
+  /* Copyright
+  -----------------------------------------------*/
+  #copyright-area {
+    padding: 30px 0;
+    background: #ffffff;
+  }
+
+  #copyright img {
+    display: inline;
+    margin: 0 15px 0 0;
+  }
+
+  #copyright {
+    line-height: 23px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+  }
+}

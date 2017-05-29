@@ -8,6 +8,7 @@
 #                       css_base_chapter07_index GET  /css_base/chapter07(.:format)                         css_base/chapter07#index
 #                       css_base_chapter08_index GET  /css_base/chapter08(.:format)                         css_base/chapter08#index
 #                css_base_chapter10_sample_10_01 GET  /css_base/chapter10/sample_10_01(.:format)            css_base/chapter10#sample_10_01
+#                css_base_chapter10_sample_10_02 GET  /css_base/chapter10/sample_10_02(.:format)            css_base/chapter10#sample_10_02
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -44,6 +45,14 @@ Rails.application.routes.draw do
     resources :chapter07, only:[:index]
     resources :chapter08, only:[:index]
     get 'chapter10/sample_10_01'
+    resource :chapter10_02, only:[:index] do
+      get 'index', to: 'chapter10#sample_10_02'
+      get 'point', to: 'chapter10#sample_10_02_point'
+      get 'course', to: 'chapter10#sample_10_02_course'
+      get 'trial', to: 'chapter10#sample_10_02_trial'
+      get 'access', to: 'chapter10#sample_10_02_access'
+      get 'contact', to: 'chapter10#sample_10_02_contact'
+    end
   end
 
   namespace :javascripts do
