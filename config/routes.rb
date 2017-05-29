@@ -4,6 +4,7 @@
 #                             css_base_top_index GET  /css_base/top(.:format)                               css_base/top#index
 #                       css_base_chapter04_index GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
 #                       css_base_chapter05_index GET  /css_base/chapter05(.:format)                         css_base/chapter05#index
+#                       css_base_chapter06_index GET  /css_base/chapter06(.:format)                         css_base/chapter06#index
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -13,7 +14,6 @@
 #                  javascripts_samples_sample_06 GET  /javascripts/samples/sample_06(.:format)              javascripts/samples#sample_06
 #                  javascripts_samples_sample_07 GET  /javascripts/samples/sample_07(.:format)              javascripts/samples#sample_07
 #                  javascripts_samples_sample_08 GET  /javascripts/samples/sample_08(.:format)              javascripts/samples#sample_08
-#                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
 #                          bootstraps_form_index GET  /bootstraps/form(.:format)                            bootstraps/form#index
@@ -29,6 +29,7 @@
 #           react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad(.:format)             react_beginners_guide/whinepad#index
 #           intro_to_reacts_intro_to_react_index GET  /intro_to_reacts/intro_to_react(.:format)             intro_to_reacts/intro_to_react#index
 #                     beer_lists_beer_list_index GET  /beer_lists/beer_list(.:format)                       beer_lists/beer_list#index
+#                                           root GET  /                                                     home#index
 #
 
 Rails.application.routes.draw do
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
     resources :top, only:[:index]
     resources :chapter04, only:[:index]
     resources :chapter05, only:[:index]
+    resources :chapter06, only:[:index]
   end
 
   namespace :javascripts do
