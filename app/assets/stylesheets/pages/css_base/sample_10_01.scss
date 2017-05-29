@@ -1,0 +1,80 @@
+.CssBase__Sample_10_01 {
+  body {
+    background: #d1e3e6;
+    margin: 0;
+    padding: 0;
+    color: #444;
+  }
+
+  a:link,
+  a:visited { text-decoration: underline; color: #2895ac; }
+  a:hover { text-decoration: none; color: #444; }
+  h1 {
+    margin: 40px 0 0;
+  }
+  h2 {
+    clear: both;
+    background: #66bbcc;
+    border-radius: 5px;
+    margin: 30px 0 15px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #fff;
+  }
+  p {
+    margin: 0 0 15px;
+    line-height: 1.7;
+    font-size: 17px;
+  }
+  small {
+    margin: 40px 0 0;
+    line-height: 23px;
+    color: #999;
+    font-size: 14px;
+  }
+  .catch {
+    margin: 10px 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    color: #d0679b;
+  }
+
+  /* Layout
+  ------------------------------------------------*/
+  #container {
+    background: #fff;
+    width: 900px;
+    margin: 0 auto;
+    padding: 0 50px 20px;
+  }
+  .event {
+    width: 915px;
+  }
+  .event div {
+    float: left;
+    background: #e6f4f7;
+    border-radius: 10px;
+    width: 240px;
+    margin: 0 15px 30px 0;
+    padding: 25px;
+    text-align: center;
+  }
+  .event h4 {
+    border-bottom: none;
+    margin: 0 0 5px;
+    padding: 0;
+    font-size: 22px;
+  }
+  .event p {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  /* table
+  ------------------------------------------------*/
+  th,td {
+    border: solid 1px #000;
+  }
+}
