@@ -318,6 +318,40 @@
   }
   #main .btn a:hover { opacity: 0.70; }
 
+  #main {
+    #lesson-first {
+      background: #ffeded;
+      padding: 30px;
+
+      h3 {
+        color: #f74139;
+      }
+
+      .btn {
+        a {
+          background: #f74139;
+        }
+      }
+    }
+  }
+
+  #main {
+    #lesson-bread {
+      background: #fff3ea;
+      padding: 30px;
+
+      h3 {
+        color: #e96704;
+      }
+
+      .btn {
+        a {
+          background: #e96704;
+        }
+      }
+    }
+  }
+
   /* side
   ------------------------------------------------*/
   #side h1 {
