@@ -1,0 +1,198 @@
+.CssBase__Sample_10_03 {
+  /* ::::: http://u.jimdo.com/www58/o/sc53fdb2ae1747e69/userlayout/css/main.css?t=1428390161 ::::: */
+
+  div.n, div.flexmodul { padding: 5px; }
+  html * div.n { height: 1%; }
+  /* ::::: http://u.jimdo.com/www58/o/sc53fdb2ae1747e69/userlayout/css/layout.css?t=1428390161 ::::: */
+
+  body div.n { padding: 5px 0px; }
+  body img { vertical-align: bottom; }
+  body { background: none repeat scroll 0% 0% rgb(255, 255, 255); margin: 0px; color: rgb(34, 34, 34); }
+  a:link, a:visited { text-decoration: underline; font-weight: bold; color: rgb(209, 112, 0); }
+  a:hover { text-decoration: none; color: rgb(85, 85, 85); }
+  .inner, #content { width: 960px; margin: 0px auto; }
+  .inner:after { content: "."; display: block; height: 0px; clear: both; line-height: 0; visibility: hidden; }
+  #header { width: 960px; margin: 0px auto; padding: 5px 0px; }
+  #header:after { content: "."; display: block; height: 0px; clear: both; line-height: 0; visibility: hidden; }
+  #nav { background: none repeat scroll 0% 0% rgb(31, 100, 153); }
+  #nav:after { content: "."; display: block; height: 0px; clear: both; line-height: 0; visibility: hidden; }
+  #vis { width: 960px; margin: 20px auto 0px; text-align: center; }
+  #content { padding: 0px 0px 20px; }
+  #main { float: left; width: 680px; margin-bottom: 30px; }
+  #side { float: right; width: 235px; }
+  #footer { clear: both; background: none repeat scroll 0% 0% rgb(238, 238, 238); padding: 30px 0px; }
+  #header h1 { float: left; margin: 20px 0px; }
+  #header p { float: right; margin: 20px 0px; }
+  #toggle, .pagearw { display: none; }
+  #nav:after { content: ""; display: block; clear: both; }
+  #nav ul { list-style: outside none none; margin: 0px; padding: 0px; }
+  #nav ul li { float: left; display: inline-block; }
+  #nav ul li a { display: block; background: none repeat scroll 0% 0% rgb(31, 100, 153); padding: 13px 20px 13px 27px; font-size: 20px; font-weight: bold; text-decoration: none; color: rgb(255, 255, 255); }
+  #nav ul li a:hover { opacity: 0.8; }
+  #nav ul.cc-nav-level-0 { width: 100%; text-align: left; padding: 10px 0px; }
+  #nav ul.cc-nav-level-0:after { content: ""; display: block; clear: both; }
+  #nav ul.cc-nav-level-0 li { white-space: nowrap; }
+  #nav ul.cc-nav-level-0 li ul { position: absolute; z-index: 1 ! important; }
+  #nav ul.cc-nav-level-0 li a { display: block; padding: 0.1em 1em; text-decoration: none; font-weight: bold; font-size: 20px; }
+  #nav ul.cc-nav-level-0 li > ul { visibility: hidden; }
+  #nav ul.cc-nav-level-0 li:hover > ul { visibility: visible; }
+  #nav ul.cc-nav-level-0 li ul li { clear: left; display: block; position: relative; width: auto ! important; }
+  #nav ul.cc-nav-level-0 li ul li a { margin: 0px 1px 1px 0px; padding: 0.5em 1em; text-align: left; }
+  #nav ul.cc-nav-level-1 a, #nav ul.cc-nav-level-2 a { background: none repeat scroll 0% 0% rgb(218, 232, 242); opacity: 0.95; text-align: center; color: rgb(31, 100, 153); }
+  #vis p { margin: 0px; line-height: 0; }
+  #main h1 { background: none repeat scroll 0% 0% rgb(31, 100, 153); color: rgb(255, 255, 255); margin: 30px 0px 0px; padding: 5px 15px; }
+  #main h2 { background: none repeat scroll 0% 0% rgb(218, 232, 242); border-bottom: 2px solid rgb(31, 100, 153); margin: 15px 0px; padding: 5px 15px; }
+  #main h3 { border-left: 5px solid rgb(31, 100, 153); margin: 10px 0px; padding-left: 10px; }
+  #main p { line-height: 1.8; }
+  #side h1 { background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 1px solid rgb(31, 100, 153); margin: 30px 0px 0px; padding: 5px 10px; font-weight: bold; font-size: 18px; color: rgb(31, 100, 153); }
+  #side h2 { margin: 10px 0px 0px; font-size: 17px; color: rgb(31, 100, 153); }
+  #side p { margin: 0px 0px 10px; }
+  #footer p { clear: both; }
+  #footer a { font-weight: normal; color: rgb(51, 148, 198); }
+  @media screen and (max-width: 960px) {
+    .inner, #content, #header { width: 90%; }
+    #nav, #nav .inner { background: none repeat scroll 0% 0% rgb(255, 255, 255); width: 100%; }
+    #vis { width: 100%; margin: 0px; }
+    #main, #side { float: none; width: 100%; }
+    #vis img { max-width: 100%; height: auto ! important; }
+    #header h1 { float: none; margin: 10px 0px; }
+    #header h1 img { margin: 0px auto; text-align: center; }
+    #header p { float: none; margin: 0px 0px 5px; text-align: center; font-size: 0.8em; }
+    #header p strong { display: block; font-size: 1em ! important; }
+    #nav ul.cc-nav-level-0 { padding: 0px; }
+    #nav ul li { width: 33.333%; text-align: center; }
+    #nav ul li a { background: none repeat scroll 0% 0% rgb(31, 100, 153); padding: 0.5em 0px; margin: 0px 1px 1px 0px; font-size: 1.25em ! important; }
+    #nav ul.cc-nav-level-0 li a { padding: 15px 0px; }
+    #nav ul.cc-nav-level-0 li ul { width: 33.333%; font-size: 0.8em; }
+    #nav ul.cc-nav-level-0 li ul li { width: 100% ! important; clear: left; position: relative; }
+    #nav ul.cc-nav-level-0 li ul li a { margin: 0px 1px 1px 0px; padding: 10px 0px; text-align: center; }
+  }
+  @media (max-width: 767px) {
+    body { overflow-x: hidden; }
+    .j-hgrid .cc-m-hgrid-column, .cc-imagewrapper { float: none ! important; }
+    .cc-m-image-resizewrapper img, .cc-imagewrapper img { margin: 0px auto 10px; }
+    .j-hgrid .cc-m-hgrid-column, .cc-imagewrapper, table { width: 100% ! important; }
+    #vis img, #content img { max-width: 100%; height: auto ! important; }
+    #nav ul { display: none; }
+    #nav ul.cc-nav-level-0 li > ul { visibility: visible; display: none; }
+    #nav ul.cc-nav-level-0 li:hover > ul, #nav ul ul:hover { visibility: visible; display: none; }
+    #nav ul li { position: relative; background: none repeat scroll 0% 0% rgb(218, 232, 242); border-bottom: 1px solid rgb(255, 255, 255); text-indent: 1.5em; text-align: left; width: 100%; }
+    #nav ul.cc-nav-level-0 li ul { position: relative; width: 100%; }
+    #nav ul li a { background: none repeat scroll 0% 0% rgb(218, 232, 242); width: 80%; color: rgb(31, 100, 153); }
+    #nav ul.cc-nav-level-1 li a, #nav ul.cc-nav-level-2 li a { background: none repeat scroll 0% 0% rgb(255, 255, 255); width: 110%; text-indent: 2.25em; text-align: left ! important; color: rgb(31, 100, 153); }
+    #toggle { display: block; position: relative; border-bottom: 1px solid rgb(255, 255, 255); background: none repeat scroll 0% 0% rgb(31, 100, 153); width: 100%; }
+    #toggle a { display: block; position: relative; padding: 10px 0px; text-align: center; text-decoration: none; font-size: 1em; color: rgb(255, 255, 255); }
+    #toggle:before { display: block; content: ""; position: absolute; top: 50%; left: 90%; width: 20px; height: 20px; margin-top: -10px; background: none repeat scroll 0% 0% rgb(255, 255, 255); }
+    #toggle a:before, #toggle a:after { display: block; content: ""; position: absolute; top: 50%; left: 90%; width: 20px; height: 4px; background: none repeat scroll 0% 0% rgb(31, 100, 153); }
+    #toggle a:before { margin-top: -6px; }
+    #toggle a:after { margin-top: 2px; }
+    #nav .pagearw { display: block; position: relative; }
+    #nav .pagearw a { position: absolute; top: -56px; right: 0px; display: block; background: none repeat scroll 0% 0% rgb(130, 181, 217); height: 25px; width: 50px; line-height: 1; text-align: center; text-indent: 0px; }
+    #nav .pagearw a span:after { content: "▼"; font-size: 0.75em; color: rgb(255, 255, 255); }
+  }
+
+  /* ::::: http://u.jimdo.com/www58/o/sc53fdb2ae1747e69/userlayout/css/font.css?t=1428390161 ::::: */
+
+  body {  }
+  body, p, table, td { font: 16px/160% "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Mayryo","ＭＳ Ｐゴシック","MS PGothic",sans-serif; color: rgb(51, 51, 51); }
+  h1 { font: bold 25px/140% Helvetica,Arial,sans-serif; color: rgb(255, 255, 255); }
+  h2 { font: bold 20px/140% Helvetica,Arial,sans-serif; color: rgb(31, 100, 153); }
+  a:link, a:visited { text-decoration: underline; color: rgb(209, 112, 0); }
+  a:active, a:hover { text-decoration: none; color: rgb(209, 112, 0); }
+  /* ::::: http://a2.jimstatic.com/app/cdn/min/group/web_newui_oldtemplate.css?1427979381 ::::: */
+
+  body { height: 100%; }
+  body, p, h1, h2, h3, h4, h5, h6 { margin: 0px; padding: 0px; }
+  img, a img { border: 0px none; }
+  img { display: block; }
+  ul, dl, ol { margin-top: 0.5em; margin-bottom: 0.5em; }
+  article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section { display: block; }
+  div#contentfooter { width: 100%; padding: 0px; margin: 0px; font-size: 11px; line-height: 140%; font-weight: normal; overflow: hidden; }
+  div#contentfooter .pull-left { font-size: 11px; line-height: 2em; font-weight: normal; }
+  div#contentfooter div.leftrow { float: left; text-align: left; width: 55%; }
+  div#contentfooter div.rightrow { float: right; text-align: right; width: 42%; }
+  span.loggedin { display: none; }
+  span.loggedout { display: inline; }
+  div#loginbox { position: fixed; top: 41%; left: 50%; margin-left: -185px; z-index: 100010; width: 370px; overflow: hidden; border: 1px solid rgb(204, 204, 204); border-radius: 5px; background: none repeat scroll 0% 0% rgb(254, 254, 254); box-shadow: 1px 1px 4px rgb(0, 0, 0); text-align: left; font: 10px/14px Verdana,Geneva,Arial,Helvetica,sans-serif ! important; color: rgb(102, 102, 102) ! important; }
+  div#loginbox div#loginbox-header { border-radius: 9px 9px 0px 0px; border: 1px solid rgb(254, 254, 254); padding: 20px; background: none repeat scroll 0% 0% rgb(246, 246, 246); }
+  div#loginbox div#loginbox-content { border-top: 1px solid rgb(221, 221, 221); padding: 15px 20px 20px; }
+  div#loginbox a, div#imprint a { font: 10px/14px Verdana,Geneva,Arial,Helvetica,sans-serif ! important; color: rgb(51, 51, 51) ! important; text-decoration: underline ! important; }
+  div#loginbox a:hover, div#imprint a:hover { text-decoration: none ! important; background: none repeat scroll 0% 0% transparent ! important; }
+  div#loginbox a.cc-close { display: block ! important; position: absolute; top: 5px; right: 5px; height: 16px ! important; color: rgb(246, 246, 246) ! important; border-bottom: 1px solid rgb(246, 246, 246) ! important; font: 10px/18px Verdana,Geneva,Arial,Helvetica,sans-serif ! important; padding: 1px 18px 1px 4px ! important; text-decoration: none ! important; margin: 2px ! important; background: url('close.gif') no-repeat scroll 100% 4px transparent ! important; }
+  div#loginbox a.cc-close:hover { color: rgb(51, 51, 51) ! important; border-bottom: 1px solid gray ! important; background: url('close.gif') no-repeat scroll 100% -18px transparent ! important; }
+  div#loginbox a.cc-close:active { background-color: rgb(201, 233, 250); }
+
+  #loginbox-darklayer { z-index: 999; height: 100%; width: 100%; background: none repeat scroll 0% 0% rgb(0, 0, 0); opacity: 0.7; position: fixed; top: 0px; left: 0px; }
+  #contentfooter:after { content: ""; display: table; clear: both; }
+  #contentfooter a { white-space: nowrap; }
+  .jimdo-footer-branding { width: 74px; height: 18px; display: inline-block; background-image: url('jimdologo_footer.png'); background-position: 0px 0px; background-repeat: no-repeat; text-indent: -2000px; margin-right: 10px; position: absolute; top: 0px; left: 0px; }
+  .jimdo-free-footer-ad { margin-top: 20px; display: inline-block; width: 100%; position: relative; }
+  .jimdo-free-footer-ad p { border-left: 1px solid rgba(0, 0, 0, 0.5); box-shadow: -1px 0px 0px rgba(255, 255, 255, 0.3); padding-left: 10px; width: auto; line-height: 2em; margin-left: 84px; }
+  .jimdo-free-footer-ad > a { display: inline; }
+  .jimdo-free-footer-ad.jimdo-kddi-footer { min-height: 30px; }
+  .jimdo-kddi-footer .jimdo-footer-branding { background-image: url('img/jimdologo_kddi_footer.png'); height: 30px; width: 178px; }
+  .jimdo-free-footer-ad.jimdo-kddi-footer > p { margin-left: 188px; }
+  .pull-left { float: left; }
+  .j-hgrid { padding: 0px ! important; }
+  .cc-m-hgrid-column { float: left; padding: 0px 2% 0px 0px; min-height: 1px; }
+  .cc-m-hgrid-column.last { float: right; padding: 0px; }
+  .cc-m-hgrid-column .n { padding: 5px; }
+  .cc-m-hgrid-column .n:after { content: " "; display: block; height: 0px; clear: both; overflow: hidden; visibility: hidden; }
+  div.j-text { word-wrap: break-word; }
+  .c, .clear, .cc-clear { clear: both; }
+  .hidden { display: none ! important; }
+  div.cc-catalog-listview-st-3 div.cc-webview-product:nth-child(2n+1) { background-color: rgb(244, 244, 244); }
+  .cc-m-textwithimage .imgleft, .cc-m-textwithimage .cc-m-image-align-1, .j-textWithImage .imgleft, .j-textWithImage .cc-m-image-align-1 { float: left; margin: 4px 20px 4px 0px; display: inline; }
+  .j-hgrid { padding: 0px ! important; }
+  .cc-m-hgrid-column { box-sizing: content-box; float: left; padding: 0px 2% 0px 0px; min-height: 1px; }
+  .cc-m-hgrid-column.last { float: right; padding: 0px; }
+  .cc-m-hgrid-column .n { padding: 5px; }
+  .cc-m-hgrid-column .n:after { content: " "; display: block; height: 0px; clear: both; overflow: hidden; visibility: hidden; }
+  div.j-text { word-wrap: break-word; }
+  .j-textWithImage figure { z-index: 1; }
+  .j-textWithImage figure { z-index: 1; }
+  .cc-imagewrapper { margin: 0px; height: auto ! important; }
+  .cc-imagewrapper img { left: 0px; top: 0px; }
+  .cc-m-image-align-1, .cc-m-image-align-1 .cc-m-image-shadowresize { float: left; }
+  .cc-m-image-align-3 { margin: 0px auto ! important; }
+  div.cc-sharebuttons-element a:last-child:not(.ng-hide) { margin-right: 0px; }
+  @media not all {
+  }
+  @font-face {
+    font-family: "JimdoIconFontWeb";
+    font-style: normal;
+    font-weight: normal;
+    src: url('jimdoiconfontweb.eot') format("embedded-opentype"), url('jimdoiconfontweb.woff') format("woff"), url('jimdoiconfontweb.ttf') format("truetype"), url('jimdoiconfontweb.svg') format("svg");
+  }
+  /* ::::: http://web58.jimdo.com/app/logstate2-css.php?site=sc53fdb2ae1747e69&t=1428390189 ::::: */
+
+  /* ::::: http://a1.jimstatic.com/app/cdn/min/file/js/plugins/pinterest/jquery.pinterest.css?key=1427979381 ::::: */
+
+  h3#cc-m-header-10234971891 {
+    border: none;
+    text-align: center;
+    font-size: 25px;
+    color: #1f6499;
+  }
+
+  #cc-m-10233552791 p a {
+    display: block;
+    padding: 10px;
+    background: #ffa443;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    color: #fff;
+  }
+
+  #cc-m-10233552791 p a:hover {
+    opacity: 0.70
+  }
+
+  #cc-m-10234598391 {
+    background: #e6f4ff;
+    border: solid 3px #dae8f2;
+    padding: 15px;
+  }
+}

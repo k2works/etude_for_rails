@@ -1,0 +1,41 @@
+<div id="header">
+  <h1>
+    <a href="#"><img src=<%= asset_path('css_base/sample_10_03/logo.png') %> alt="やさしさ税理士事務所"></a>
+  </h1>
+
+  <p>
+    <strong style="font-size: 22px;">TEL.022-000-0000</strong> 受付時間/平日 午前10時〜午後8時
+  </p>
+  <!--/#header-->
+</div>
+
+<div id="nav">
+  <div class="inner">
+    <div id="toggle">
+      <a href="#">MENU</a>
+    </div>
+    <div data-container="navigation">
+      <div class="j-nav-variant-nested">
+        <ul class="cc-nav-level-0 j-nav-level-0">
+          <li id="cc-nav-view-2062160191" class="cc-nav-current j-nav-current"><%= link_to 'ホーム', css_base_chapter10_03_path, {class:"cc-nav-current j-nav-current"} %></li>
+          <li id="cc-nav-view-2062160291"><%= link_to '事務所案内', about_css_base_chapter10_03_path %></li>
+          <li id="cc-nav-view-2062160391" class="j-nav-has-children"><%= link_to '業務案内', service_css_base_chapter10_03_path%><div class="pagearw"><a href="#"><span></span></a></div>
+            <ul class="cc-nav-level-1 j-nav-level-1">
+              <li id="cc-nav-view-2062160491"><%= link_to '法人のお客様', service_css_base_chapter10_03_path(page:'company') %></li>
+              <li id="cc-nav-view-2062160591"><%= link_to '個人のお客様', service_css_base_chapter10_03_path(page:'personal') %></li>
+            </ul>
+          </li>
+          <li id="cc-nav-view-2062160691"><%= link_to 'お問い合わせ', contact_css_base_chapter10_03_path %></li>
+          <li id="cc-nav-view-2062237891"><%= link_to 'ブログ', blog_css_base_chapter10_03_path %></li>
+        </ul>
+      </div>
+    </div> <!--/.inner-->
+  </div>
+  <!--/#nav-->
+</div>
+
+<div id="vis">
+  <p>
+    <img src=<%= asset_path('css_base/sample_10_03/visual.jpg') %> alt="">
+  </p>
+</div>

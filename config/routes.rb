@@ -1,6 +1,24 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
+#                             css_base_top_index GET  /css_base/top(.:format)                               css_base/top#index
+#                       css_base_chapter04_index GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
+#                       css_base_chapter05_index GET  /css_base/chapter05(.:format)                         css_base/chapter05#index
+#                       css_base_chapter06_index GET  /css_base/chapter06(.:format)                         css_base/chapter06#index
+#                       css_base_chapter07_index GET  /css_base/chapter07(.:format)                         css_base/chapter07#index
+#                       css_base_chapter08_index GET  /css_base/chapter08(.:format)                         css_base/chapter08#index
+#                css_base_chapter10_sample_10_01 GET  /css_base/chapter10/sample_10_01(.:format)            css_base/chapter10#sample_10_01
+#                          css_base_chapter10_02 GET  /css_base/chapter10_02/index(.:format)                css_base/chapter10#sample_10_02
+#                    point_css_base_chapter10_02 GET  /css_base/chapter10_02/point(.:format)                css_base/chapter10#sample_10_02_point
+#                   course_css_base_chapter10_02 GET  /css_base/chapter10_02/course(.:format)               css_base/chapter10#sample_10_02_course
+#                    trial_css_base_chapter10_02 GET  /css_base/chapter10_02/trial(.:format)                css_base/chapter10#sample_10_02_trial
+#                   access_css_base_chapter10_02 GET  /css_base/chapter10_02/access(.:format)               css_base/chapter10#sample_10_02_access
+#                  contact_css_base_chapter10_02 GET  /css_base/chapter10_02/contact(.:format)              css_base/chapter10#sample_10_02_contact
+#                          css_base_chapter10_03 GET  /css_base/chapter10_03/index(.:format)                css_base/chapter10#sample_10_03
+#                    about_css_base_chapter10_03 GET  /css_base/chapter10_03/about(.:format)                css_base/chapter10#sample_10_03_about
+#                  service_css_base_chapter10_03 GET  /css_base/chapter10_03/service(.:format)              css_base/chapter10#sample_10_03_service
+#                  contact_css_base_chapter10_03 GET  /css_base/chapter10_03/contact(.:format)              css_base/chapter10#sample_10_03_contact
+#                     blog_css_base_chapter10_03 GET  /css_base/chapter10_03/blog(.:format)                 css_base/chapter10#sample_10_03_blog
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -10,7 +28,6 @@
 #                  javascripts_samples_sample_06 GET  /javascripts/samples/sample_06(.:format)              javascripts/samples#sample_06
 #                  javascripts_samples_sample_07 GET  /javascripts/samples/sample_07(.:format)              javascripts/samples#sample_07
 #                  javascripts_samples_sample_08 GET  /javascripts/samples/sample_08(.:format)              javascripts/samples#sample_08
-#                                           root GET  /                                                     home#index
 #                     bootstraps_dashboard_index GET  /bootstraps/dashboard(.:format)                       bootstraps/dashboard#index
 #                        bootstraps_layout_index GET  /bootstraps/layout(.:format)                          bootstraps/layout#index
 #                          bootstraps_form_index GET  /bootstraps/form(.:format)                            bootstraps/form#index
@@ -26,9 +43,35 @@
 #           react_beginners_guide_whinepad_index GET  /react_beginners_guide/whinepad(.:format)             react_beginners_guide/whinepad#index
 #           intro_to_reacts_intro_to_react_index GET  /intro_to_reacts/intro_to_react(.:format)             intro_to_reacts/intro_to_react#index
 #                     beer_lists_beer_list_index GET  /beer_lists/beer_list(.:format)                       beer_lists/beer_list#index
+#                                           root GET  /                                                     home#index
 #
 
 Rails.application.routes.draw do
+  namespace :css_base do
+    resources :top, only:[:index]
+    resources :chapter04, only:[:index]
+    resources :chapter05, only:[:index]
+    resources :chapter06, only:[:index]
+    resources :chapter07, only:[:index]
+    resources :chapter08, only:[:index]
+    get 'chapter10/sample_10_01'
+    resource :chapter10_02, only:[:index] do
+      get 'index', to: 'chapter10#sample_10_02'
+      get 'point', to: 'chapter10#sample_10_02_point'
+      get 'course', to: 'chapter10#sample_10_02_course'
+      get 'trial', to: 'chapter10#sample_10_02_trial'
+      get 'access', to: 'chapter10#sample_10_02_access'
+      get 'contact', to: 'chapter10#sample_10_02_contact'
+    end
+    resource :chapter10_03, only:[:index] do
+      get 'index', to: 'chapter10#sample_10_03'
+      get 'about', to: 'chapter10#sample_10_03_about'
+      get 'service', to: 'chapter10#sample_10_03_service'
+      get 'contact', to: 'chapter10#sample_10_03_contact'
+      get 'blog', to: 'chapter10#sample_10_03_blog'
+    end
+  end
+
   namespace :javascripts do
     resources :top, only:[:index]
     get 'samples/sample_01'
@@ -40,8 +83,6 @@ Rails.application.routes.draw do
     get 'samples/sample_07'
     get 'samples/sample_08'
   end
-
-  root 'home#index'
 
   namespace :bootstraps do
     resources :dashboard, only: [:index]
@@ -74,4 +115,6 @@ Rails.application.routes.draw do
   namespace :beer_lists do
     resources :beer_list, only: [:index]
   end
+
+  root 'home#index'
 end

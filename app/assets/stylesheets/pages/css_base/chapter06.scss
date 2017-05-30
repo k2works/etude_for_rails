@@ -1,0 +1,258 @@
+.CssBase__chap06--01-1 {
+  h1 {
+    border: 10px solid #f00;
+  }
+
+  p {
+    padding: 30px; /* p要素の内側に30pxの余白を指定 */
+    text-align: center; /* テキストを中央寄せ */
+    background-color: #fafad2; /* 背景色の指定 */
+  }
+}
+
+.CssBase__chap06--01-2 {
+  h1 {
+    border: 10px solid #f00;
+  }
+
+  p {
+    padding: 30px; /* p要素の内側に30pxの余白を指定 */
+    text-align: center; /* テキストを中央寄せ */
+    background-color: #fafad2; /* 背景色の指定 */
+
+    &.example1 {
+      border-top: 6px double #9cc;
+    }
+
+    &.example2 {
+      border-right: 5px solid #3a2;
+      border-bottom: 9px dotted #fc0;
+    }
+  }
+}
+
+.CssBase__chap06--02-1 {
+  table {
+    width: 100%;
+    border: solid 5px #c60019; /* table要素に枠線を指定*/
+  }
+
+  th {
+    border: solid 5px #019fe6; /* th要素に枠線を指定*/
+    background-color: #adff2f;
+  }
+
+  td {
+    border: solid 5px #00984b; /* td要素に枠線を指定*/
+  }
+
+  span {
+    vertical-align: super;
+    font-size: 75%;
+  }
+}
+
+.CssBase__chap06--02-2 {
+  table {
+    width: 100%;
+    border: solid 5px #c60019;
+    border-collapse: collapse; /* 枠線を重ねてつける */
+  }
+
+  th {
+    border: solid 5px #019fe6;
+    background-color: #adff2f;
+  }
+
+  td {
+    border: solid 5px #00984b;
+  }
+
+  span {
+    vertical-align: super;
+    font-size: 75%;
+  }
+}
+
+.CssBase__chap06--02-3 {
+  table {
+    width: 100%;
+    border: none; /* table要素の枠線を非表示にする */
+    border-collapse: collapse;
+  }
+
+  th {
+    background-color: #adff2f;
+  }
+
+  /* th要素とtd要素に横線のみを表示 */
+  th,td {
+    border-top: solid 5px #00984b; /* 上の枠線の指定 */
+    border-right: none; /* 右の枠線の指定（非表示） */
+    border-bottom: solid 5px #00984b; /* 下の枠線の指定 */
+    border-left: none; /* 左の枠線の指定（非表示） */
+  }
+
+  span {
+    vertical-align: super;
+    font-size: 75%;
+  }
+}
+
+.CssBase__chap06--02-4 {
+  table {
+    width: 100%;
+    border: none; /* table要素の枠線を非表示にする */
+    border-collapse: collapse;
+  }
+
+  th {
+    background-color: #adff2f;
+  }
+
+  /* th要素とtd要素に縦線のみを表示 */
+  th,td {
+    border-top: none; /* 上の枠線の指定（非表示） */
+    border-right: solid 5px #00984b; /* 右の枠線の指定 */
+    border-bottom: none; /* 下の枠線の指定（非表示） */
+    border-left: solid 5px #00984b; /* 左の枠線の指定 */
+  }
+
+  span {
+    vertical-align: super;
+    font-size: 75%;
+  }
+}
+
+.CssBase__chap06--03-1 {
+  li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+    margin-top: -1px;
+    list-style-type: decimal;
+  }
+}
+
+.CssBase__chap06--03-2 {
+  li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+    margin-top: -1px;
+    list-style-type: decimal;
+  }
+
+  ol {
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.CssBase__chap06--04 {
+  h2 {
+    background-color: #ff8c00;
+    color: #ffffff;
+    text-align: center;
+    width: 500px;
+    padding: 20px;
+    margin: 0 auto 80px;
+  }
+
+  .example1 {
+    box-shadow: 15px 15px #808080;
+  }
+
+  .example2 {
+    box-shadow: 15px 15px 15px #808080;
+  }
+
+  .example3 {
+    box-shadow: 15px 15px 15px 10px #808080;
+  }
+
+  .example4 {
+    box-shadow: 15px 15px 15px #3cb371,30px 30px 20px #ffd700;
+  }
+
+  .example5 {
+    box-shadow: 0 0 50px 10px #808080 inset;
+  }
+}
+
+.CssBase__chap06--05 {
+  h2 {
+    color: #ff8c00;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .example1 {
+    text-shadow: 3px 3px #808080;
+  }
+
+  .example2 {
+    text-shadow: 3px 3px 3px #808080;
+  }
+
+  .example3 {
+    text-shadow: 3px 3px 3px #3cb371,
+                 6px 6px 6px #ffd700;
+  }
+}
+
+.CssBase__chap06--06 {
+  h2 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.2em;
+  }
+
+  section {
+    width: 250px;
+    margin: 0 30px 0 0;
+  }
+
+  ol {
+    li {
+      list-style-type: upper-alpha;
+    }
+  }
+
+  ul {
+    li {
+      list-style-type: square;
+    }
+  }
+}
+
+.CssBase__chap06--07 {
+  h2 {
+    color: #FFFFFF; /* 見出しの文字色を指定 */
+    text-align: center; /* 見出しの表示位置を中央寄せに指定 */
+    width: 500px; /* 見出しの幅を500pxに指定 */
+    margin: 0 auto 100px; /* 見出しの外側の余白を指定 */
+    padding: 50px; /* 見出しの内側の余白を指定 */
+    background-color: #9acd32; /* 見出しの背景色を指定 */
+    border: solid 10px #6b8e23; /* 見出しの枠線を指定 */
+  }
+
+  .example1 {
+    border-radius: 30px;
+  }
+
+  .example2 {
+    border-radius: 30px / 50px;
+  }
+
+  .example3 {
+    border-radius: 30px 20px 50px 180px;
+  }
+
+  .example4 {
+    border-top-left-radius: 30px; /* 左上 */
+    border-top-right-radius: 20px; /* 右上 */
+    border-bottom-left-radius: 180px; /* 左下 */
+    border-bottom-right-radius: 50px; /* 右下 */
+  }
+}

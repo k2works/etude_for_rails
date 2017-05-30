@@ -1,0 +1,176 @@
+.CssBase__chap05--02 {
+  background-color: #00bfff;
+}
+
+.CssBase__chap05--03 {
+  h1 {
+    background-color: #ff8c00;
+  }
+
+  h2 {
+    background-color: #ffd700;
+  }
+
+  p {
+    background-color: #f0e68c;
+  }
+
+  dl {
+    background-color: #fffacd;
+  }
+
+  dt {
+    background-color: #00fa9a;
+  }
+
+  dd {
+    background-color: #ffb6c1;
+  }
+}
+
+.CssBase__chap05--04-1 {
+  background: image-url('css_base/dot.png');
+}
+
+.CssBase__chap05--04-2 {
+  background: image-url('css_base/dot.png');
+  background-repeat: no-repeat;
+}
+
+.CssBase__chap05--04-3 {
+  background: image-url('css_base/dot.png');
+  background-repeat: repeat-x;
+}
+
+.CssBase__chap05--04-4 {
+  background: image-url('css_base/dot.png');
+  background-repeat: repeat-y;
+}
+
+.CssBase__chap05--04-5 {
+  background: image-url('css_base/cherry.png');
+  background-repeat: no-repeat;
+  background-position: 40px 60px;
+}
+
+.CssBase__chap05--05 {
+  span {
+    &.example1 {
+      background-color: #ffff00;
+    }
+
+    &.example2 {
+      background-color: #ADFF2F;
+      padding: 5px 0;
+    }
+  }
+}
+
+.CssBase__chap05--06 {
+  table {
+    border: 1px solid black;
+    margin: 20px;
+
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    th {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  }
+    th {
+    border: 1px solid #333;
+    background-color: #ADFF2F;
+  }
+
+  th {
+    &.pref {
+      border: 1px solid #333;
+      background-color: #f8e352;
+    }
+  }
+}
+
+.CssBase__chap05--07-1 {
+  table {
+    border: 1px solid black;
+    margin: 20px;
+
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    th {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  }
+
+  th {
+    border: 1px solid #333;
+    background-color: #ADFF2F;
+  }
+
+  td {
+    border: 1px solid #333;
+    background-color: #b1d7e4;
+  }
+}
+
+.CssBase__chap05--07-2 {
+  table {
+    border: 1px solid black;
+    margin: 20px;
+
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    th {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  }
+
+  th {
+    border: 1px solid #333;
+    background-color: #ADFF2F;
+  }
+
+  tr:nth-child(even) {
+    border: 1px solid #333;
+    background-color: #b1d7e4;
+  }
+}
+
+.CssBase__chap05--07-3 {
+  table {
+    border: 1px solid black;
+    margin: 20px;
+
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    th {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  }
+
+  th {
+    border: 1px solid #333;
+    background-color: #ADFF2F;
+  }
+
+  td:nth-child(odd) {
+    border: 1px solid #333;
+    background-color: #b1d7e4;
+  }
+}

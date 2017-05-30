@@ -1,0 +1,49 @@
+<div id="header">
+  <div class="inner clearfix">
+    <h1>
+      <a href="index.html"><img src= <%= asset_path('css_base/sample_10_02/logo.png') %> alt="いちばんやさしい料理教室" /></a>
+    </h1>
+
+    <dl>
+      <dt>
+        ご予約・お問い合わせはこちら
+      </dt>
+
+      <dd>
+        022-000-0000<span>受付時間/9:00〜21:00</span>
+      </dd>
+    </dl>
+
+  </div>
+
+  <div id="nav">
+    <ul id="mainNav1">
+      <li>
+        <%= link_to 'HOME', css_base_chapter10_02_path %>
+      </li>
+      <li>
+        <%= link_to 'こだわり', point_css_base_chapter10_02_path %>
+      </li>
+      <li>
+        <%= link_to 'コース一覧', course_css_base_chapter10_02_path %>
+      </li>
+      <li>
+        <%= link_to '体験教室', trial_css_base_chapter10_02_path %>
+      </li>
+      <li>
+        <%= link_to '教室の地図', access_css_base_chapter10_02_path %>
+      </li>
+      <li>
+        <%= link_to 'お問い合わせ', contact_css_base_chapter10_02_path %>
+      </li>
+    </ul>
+  </div>
+
+  <div id="vis">
+    <p>
+      <img src=<%= asset_path('css_base/sample_10_02/visual.jpg') %> alt="" />
+    </p>
+    <!--/#vis-->
+  </div>
+  <!--/#header-->
+</div>

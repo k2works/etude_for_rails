@@ -1,0 +1,163 @@
+.CssBase__chap07--02-1 {
+  .style-7-2 {
+    background-color: #fcc;
+    padding: 30px
+  }
+}
+
+.CssBase__chap07--02-2 {
+  .style-7-2-1 {
+    background: image-url('css_base/flower.gif');
+    padding: 30px
+  }
+}
+
+.CssBase__chap07--03 {
+  padding: 0;
+  margin: 0;
+
+  .style-7-3-1{
+    background-color:#fcc;
+    margin:40px 30px 20px 50px;
+  }
+
+  .style-7-3-2{
+    background-color:#9cc;
+    margin:40px 30px 20px 50px;
+  }
+}
+
+.CssBase__chap07--04 {
+  .style-7-4 {
+    background-color: #fcc;
+    padding: 20px;
+    margin: 30px;
+    width: 300px;
+  }
+}
+
+.CssBase__chap07--05 {
+  background-color: #fcc;
+  padding: 20px;
+  margin: 30px;
+  height: 500px;
+}
+
+.CssBase__chap07--06 {
+  img {
+    float: left;
+    margin: 0 20px 0 0;
+  }
+
+  .sample-cl {
+    clear: both;
+  }
+}
+
+.CssBase__chap07--07 {
+  img {
+    float: left;
+    margin: 0 20px 20px 0;
+    padding: 10px;
+    border: 1px solid #666;
+  }
+
+  .sample-cl{
+    clear:both;
+  }
+}
+
+.CssBase__chap07--08-1 {
+  .clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+
+  .style-7-8 {
+    background-color: #fcc;
+    width: 500px;
+  }
+
+  .style-7-8-1 {
+    background-color: #cc9;
+    width: 180px;
+    float: left;
+  }
+
+  .style-7-8-2 {
+    background-color: #9cc;
+    width: 300px;
+    float: right;
+  }
+}
+
+.CssBase__chap07--08-2 {
+  .clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+
+  .style-7-8 {
+    background-color: #fcc;
+    width: 500px;
+  }
+
+  .style-7-8-1 {
+    background-color: #cc9;
+    width: 180px;
+    float: right;
+  }
+
+  .style-7-8-2 {
+    background-color: #9cc;
+    width: 300px;
+    float: left;
+  }
+}
+
+.CssBase__chap07--09 {
+  .style-7-9 {
+    background-color: #9cc;
+    width: 350px;
+    height: 200px;
+    overflow: scroll;
+  }
+}
+
+.CssBase__chap07--10 {
+  .style-7-10-1{
+    background-color:#fcc;
+    padding:30px;
+    display:none;
+  }
+
+  .style-7-10-2{
+    background-color:#9cc;
+    padding:30px;
+  }
+
+  .style-7-10-3{
+    background-color:#c96;
+    padding:30px;
+  }
+}
+
+.CssBase__chap07--11 {
+  .style-7-11-1{
+    background-color:#fcc;
+    padding:30px;
+  }
+
+  .style-7-11-2{
+    background-color:#9cc;
+    padding:30px;
+    visibility:hidden;
+  }
+
+  .style-7-11-3{
+    background-color:#c96;
+    padding:30px;
+  }
+}
