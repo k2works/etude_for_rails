@@ -8,7 +8,17 @@
 #                       css_base_chapter07_index GET  /css_base/chapter07(.:format)                         css_base/chapter07#index
 #                       css_base_chapter08_index GET  /css_base/chapter08(.:format)                         css_base/chapter08#index
 #                css_base_chapter10_sample_10_01 GET  /css_base/chapter10/sample_10_01(.:format)            css_base/chapter10#sample_10_01
-#                css_base_chapter10_sample_10_02 GET  /css_base/chapter10/sample_10_02(.:format)            css_base/chapter10#sample_10_02
+#                          css_base_chapter10_02 GET  /css_base/chapter10_02/index(.:format)                css_base/chapter10#sample_10_02
+#                    point_css_base_chapter10_02 GET  /css_base/chapter10_02/point(.:format)                css_base/chapter10#sample_10_02_point
+#                   course_css_base_chapter10_02 GET  /css_base/chapter10_02/course(.:format)               css_base/chapter10#sample_10_02_course
+#                    trial_css_base_chapter10_02 GET  /css_base/chapter10_02/trial(.:format)                css_base/chapter10#sample_10_02_trial
+#                   access_css_base_chapter10_02 GET  /css_base/chapter10_02/access(.:format)               css_base/chapter10#sample_10_02_access
+#                  contact_css_base_chapter10_02 GET  /css_base/chapter10_02/contact(.:format)              css_base/chapter10#sample_10_02_contact
+#                          css_base_chapter10_03 GET  /css_base/chapter10_03/index(.:format)                css_base/chapter10#sample_10_03
+#                    about_css_base_chapter10_03 GET  /css_base/chapter10_03/about(.:format)                css_base/chapter10#sample_10_03_about
+#                  service_css_base_chapter10_03 GET  /css_base/chapter10_03/service(.:format)              css_base/chapter10#sample_10_03_service
+#                  contact_css_base_chapter10_03 GET  /css_base/chapter10_03/contact(.:format)              css_base/chapter10#sample_10_03_contact
+#                     blog_css_base_chapter10_03 GET  /css_base/chapter10_03/blog(.:format)                 css_base/chapter10#sample_10_03_blog
 #                          javascripts_top_index GET  /javascripts/top(.:format)                            javascripts/top#index
 #                  javascripts_samples_sample_01 GET  /javascripts/samples/sample_01(.:format)              javascripts/samples#sample_01
 #                  javascripts_samples_sample_02 GET  /javascripts/samples/sample_02(.:format)              javascripts/samples#sample_02
@@ -52,6 +62,13 @@ Rails.application.routes.draw do
       get 'trial', to: 'chapter10#sample_10_02_trial'
       get 'access', to: 'chapter10#sample_10_02_access'
       get 'contact', to: 'chapter10#sample_10_02_contact'
+    end
+    resource :chapter10_03, only:[:index] do
+      get 'index', to: 'chapter10#sample_10_03'
+      get 'about', to: 'chapter10#sample_10_03_about'
+      get 'service', to: 'chapter10#sample_10_03_service'
+      get 'contact', to: 'chapter10#sample_10_03_contact'
+      get 'blog', to: 'chapter10#sample_10_03_blog'
     end
   end
 

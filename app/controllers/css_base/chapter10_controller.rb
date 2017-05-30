@@ -25,4 +25,31 @@ class CssBase::Chapter10Controller < ApplicationController
   def sample_10_02_contact
     render 'css_base/chapter10/sample_10_02/contact'
   end
+
+  def sample_10_03
+    render 'css_base/chapter10/sample_10_03/index'
+  end
+
+  def sample_10_03_about
+    render 'css_base/chapter10/sample_10_03/about/index'
+  end
+
+  def sample_10_03_service
+    page = params[:page]
+    if page == 'company'
+      render 'css_base/chapter10/sample_10_03/service/company/index'
+    elsif page == 'personal'
+      render 'css_base/chapter10/sample_10_03/service/personal/index'
+    else
+      render 'css_base/chapter10/sample_10_03/service/index'
+    end
+  end
+
+  def sample_10_03_contact
+    render 'css_base/chapter10/sample_10_03/contact/index'
+  end
+
+  def sample_10_03_blog
+    render 'css_base/chapter10/sample_10_03/blog/index'
+  end
 end
