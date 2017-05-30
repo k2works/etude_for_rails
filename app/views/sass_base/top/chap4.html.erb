@@ -1,0 +1,305 @@
+<div class="SassBase__chap4">
+  <%= link_to '戻る', sass_base_top_index_path %>
+
+  <h1>Sassの高度な機能</h1>
+  <h2>スタイル継承できる@extend</h2>
+  <h3>@extendの基本</h3>
+  <div id="main_1_1">
+    <div class="box">
+      <ul>
+        <li class="item">アイテム</li>
+        <li class="item">アイテム</li>
+        <li class="item">アイテム</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="main_1_2">
+    <div>
+      <ul class="btnList">
+        <li class="item">アイテム</li>
+        <li class="item"><img src="https://placehold.jp/150x150.png" alt="" class="photo"></li>
+        <li class="item"><a href="#" class="btn">ボタン</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>同じルールセット内で、複数継承する</h3>
+  <div id="main_1_3">
+    <section>
+      <h1>見出し</h1>
+      <p>段落</p>
+      <p class="notes">注意書き</p>
+      <ul class="bd">
+        <li>リスト</li>
+      </ul>
+    </section>
+    <section class="tem">
+      <h1><small>見出し</small></h1>
+      <p><small>段落</small></p>
+    </section>
+  </div>
+
+  <h3>@extendの連鎖</h3>
+  <div id="main_1_4">
+    <div class="att">att</div>
+    <div class="attBox">attを継承したattBox</div>
+    <p class="notes">attBoxを継承した注意書き</p>
+  </div>
+
+  <h3>@extend専用のプレースホルダーセレクタ</h3>
+  <div id="main_1_6">
+    <section>
+      <ul>
+        <li class="item">アイテム</li>
+      </ul>
+    </section>
+  </div>
+
+  <h3>@media内では@extendは使用できない</h3>
+  <div id="main_1_7">
+    <a href="#">リンク</a>
+  </div>
+
+  <h2>柔軟なスタイルの定義が可能なミックスイン(@mixin)</h2>
+  <h3>ミックスインの基本</h3>
+  <div id="main_2_1">
+    <section>
+      <div class="relatedArea">定義したミックスインを呼び出し</div>
+    </section>
+    <section>
+      <div class="pickupArea">別のルールセットでも呼び出し</div>
+    </section>
+  </div>
+
+  <h3>引数を使ったミックスイン</h3>
+  <div id="main_2_2">
+    <ul>
+      <li class="item">アイテム</li>
+    </ul>
+  </div>
+
+  <h3>引数に初期値を定義する</h3>
+  <div id="main_2_3">
+    <div class="boxA">ボックスA</div>
+    <div class="boxB">ボックスB</div>
+  </div>
+
+  <h3>引数を複数指定する</h3>
+  <div id="main_2_4">
+    <div class="boxA">ボックスA</div>
+    <div class="boxB">ボックスB</div>
+  </div>
+
+  <h3>,（カンマ）を使うプロパティには可変長引数を利用する</h3>
+  <div id="main_2_5">
+    <h2>見出し</h2>
+  </div>
+
+  <h3>複数の引数があるミックスインを読み込む際に可変長引数を使う</h3>
+  <div id="main_2_6">
+    <ul>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+    </ul>
+  </div>
+
+  <h3>ミックスインのスコープを制限する</h3>
+  <div id="main_2_7">
+    <ul>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+    </ul>
+  </div>
+
+  <h3>ミックスインにコンテントブロックを渡す@content</h3>
+  <div id="main_2_8">
+    <ul>
+      <li class="item">アイテム</li>
+      <li class="item"><img src="https://placehold.jp/150x150.png" alt="アイテム" class="image"></li>
+      <li class="item"><p class="text">アイテム</p></li>
+    </ul>
+  </div>
+
+  <h2>制御構文で条件分岐や繰り返し処理を行う</h2>
+  <h3>@ifを使って条件分岐をする</h3>
+  <div id="main_3_1">
+    <div class="fl">
+      <p>コンテンツ</p>
+    </div>
+  </div>
+
+  <div id="main_3_2">
+    <div class="box">
+      <p>コンテンツ</p>
+    </div>
+  </div>
+
+  <h3>@forで繰り返し処理を行う</h3>
+  <div id="main_3_3">
+    <ul>
+      <li class="throughSample_1">サンプル１</li>
+      <li class="throughSample_2">サンプル２</li>
+      <li class="throughSample_3">サンプル３</li>
+    </ul>
+
+    <ul>
+      <li class="toSample_1">サンプル１</li>
+      <li class="toSample_2">サンプル２</li>
+      <li class="toSample_3">サンプル３</li>
+    </ul>
+  </div>
+
+  <div id="main_3_4">
+    <div class="mt_10">mt10</div>
+    <div class="mb_10">mb10</div>
+    <div class="mt_20">mt10</div>
+    <div class="mb_20">mb20</div>
+  </div>
+
+  <h3>@whileでより柔軟な繰り返し処理を行う</h3>
+  <div id="main_3_5">
+    <div class="mt_10">mt10</div>
+    <div class="mb_10">mb10</div>
+    <div class="mt_20">mt10</div>
+    <div class="mb_20">mb20</div>
+  </div>
+
+  <div id="main_3_6">
+    <div class="box_268">
+      <p>コンテンツ</p>
+    </div>
+    <div class="box_236">
+      <p>コンテンツ</p>
+    </div>
+    <div class="box_204">
+      <p>コンテンツ</p>
+    </div>
+  </div>
+
+  <h3>@eachでリスト（配列）の要素に対して繰り返し処理を実行する</h3>
+  <div id="main_3_7">
+    <div class="body-top"><p>top</p></div>
+    <div class="body-about"><p>about</p></div>
+    <div class="body-company"><p>company</p></div>
+    <div class="body-contact"><p>contact</p></div>
+  </div>
+
+  <h2>関数を使ってさまざまな処理を実行する</h2>
+  <h3>数値の絶対値を取得するabs()</h3>
+  <div id="main_4_1">
+    <section>
+      <ul>
+        <li class="item">アイテム</li>
+        <li class="item">アイテム</li>
+        <li class="item">アイテム</li>
+      </ul>
+    </section>
+  </div>
+
+  <h3>数値の小数点以下を四捨五入するround()</h3>
+  <div id="main_4_2">
+    <div class="boxA">boxA</div>
+    <div class="boxB">boxB</div>
+  </div>
+
+  <h3>数値の小数点以下を切り上げるceil()と切り捨てるfloor()</h3>
+  <div id="main_4_3">
+    <div class="boxA">boxA</div>
+    <div class="boxB">boxB</div>
+    <div class="boxB">boxC</div>
+  </div>
+
+  <h3>16進数のRGB値に透明度を指定して、RGBA形式に変換できるrgba()</h3>
+  <div id="main_4_4">
+    <body>
+    <div>div</div>
+    <div class="box">box</div>
+    </body>
+  </div>
+
+  <h3>明るい色を簡単に作れるlighten()と暗い色を簡単に作れるdarken()</h3>
+  <div id="main_4_5">
+    <div>
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+    <div class="bg1">
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+    <div class="bg2">
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+  </div>
+
+  <h3>２つのカラーコードの中間色を作れるmix()</h3>
+  <div id="main_4_6">
+    <div>
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+    <div class="bg1">
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+    <div class="bg2">
+      <div class="boxA">boxA</div>
+      <div class="boxB">boxB</div>
+    </div>
+  </div>
+
+  <h3>リストのN番目の値を取得できるnth()</h3>
+  <div id="main_4_7">
+    <ul>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+      <li class="item">アイテム</li>
+    </ul>
+  </div>
+
+  <h2>自作関数を定義する@function</h2>
+  <h3>オリジナル関数の例</h3>
+  <div id="main_5_1">
+    <div class="boxA">boxA</div>
+  </div>
+
+  <h3>ネイティブ関数と組み合わせる</h3>
+  <div id="main_5_2">
+    <div class="boxA">boxA</div>
+  </div>
+
+  <h3>値を変数に入れる</h3>
+  <div id="main_5_3">
+    <div class="boxA">boxA</div>
+  </div>
+
+  <h3>引数に初期値を設定する</h3>
+  <div id="main_5_4">
+    <div class="boxA">boxA</div>
+    <div class="boxB">boxB</div>
+  </div>
+
+  <h2>テストやデバッグで使える@debugと@warn</h2>
+  <h3>@debugで結果を確認する</h3>
+  <div id="main_6_1">
+    <div class="boxA">boxA</div>
+  </div>
+
+  <h3>@warnで警告を表示する</h3>
+  <div id="main_6_2">
+    <div class="box">box</div>
+  </div>
+
+  <h2>Sassのデータタイプについて</h2>
+  <h3>データタイプを判別する</h3>
+  <div id="main_7_1">
+    <div class="DataTypes">DataTypes:</div>
+  </div>
+
+
+
+</div>

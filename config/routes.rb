@@ -2,6 +2,8 @@
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
 #                            sass_base_top_index GET  /sass_base/top(.:format)                              sass_base/top#index
+#                                sass_base_chap3 GET  /sass_base/chap3(.:format)                            sass_base/top#chap3
+#                                sass_base_chap4 GET  /sass_base/chap4(.:format)                            sass_base/top#chap4
 #                             css_base_top_index GET  /css_base/top(.:format)                               css_base/top#index
 #                       css_base_chapter04_index GET  /css_base/chapter04(.:format)                         css_base/chapter04#index
 #                       css_base_chapter05_index GET  /css_base/chapter05(.:format)                         css_base/chapter05#index
@@ -50,6 +52,8 @@
 Rails.application.routes.draw do
   namespace :sass_base do
     resources :top, only:[:index]
+    get 'chap3', to: 'top#chap3'
+    get 'chap4', to: 'top#chap4'
   end
 
   namespace :css_base do
