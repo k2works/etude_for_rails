@@ -1,0 +1,111 @@
+<div class="CssBase__Sample_10_02">
+  <body>
+  <div id="container">
+    <%= render 'css_base/chapter10/sample_10_02/header'%>
+
+    <div id="content">
+      <div id="main">
+        <div id="lessonIntro">
+          <h1>体験教室コースのご紹介</h1>
+          <p>料理ははじめて、初心者のあなたへ
+            <br />1日体験しませんか？</p>
+          <div class="lessonIntro_inner">
+            <a href="trial.html#lesson1">
+              <dl>
+                <dt>お料理はじめて<br />体験教室</dt>
+                <dd><img src=<%= asset_path('css_base/sample_10_02/course01.jpg') %> alt="オムレツセット">
+                </dd>
+                <dd>
+                  <ul>
+                    <li>実習内容：
+                      <br />オムレツ・ナポリタン・ターメリックライス・サラダ</li>
+                    <li>参加費：
+                      <br />1,000円（材料費込み）</li>
+                  </ul>
+                </dd>
+                <dd class="more">詳細はこちら</dd>
+              </dl>
+            </a>
+            <a href="trial.html#lesson2">
+              <dl>
+                <dt>手づくりパン<br />体験教室</dt>
+                <dd><img src=<%= asset_path('css_base/sample_10_02/course02.jpg') %> alt="フランスパン">
+                </dd>
+                <dd>
+                  <ul>
+                    <li>実習内容：
+                      <br />フランスパン</li>
+                    <li>参加費：
+                      <br />1,000円（材料費込み）</li>
+                  </ul>
+                </dd>
+                <dd class="more">詳細はこちら</dd>
+              </dl>
+            </a>
+            <div class="comingsoon">
+              <dl>
+                <dt>基本のケーキ<br />体験教室</dt>
+                <dd><img src=<%= asset_path('css_base/sample_10_02/course03.jpg') %> alt="フルーツロールケーキ">
+                </dd>
+                <dd>
+                  <ul>
+                    <li>実習内容：
+                      <br />フルーツロールケーキ</li>
+                    <li>参加費：
+                      <br />700円（材料費込み）</li>
+                  </ul>
+                </dd>
+                <dd class="more">詳細はこちら</dd>
+              </dl>
+            </div>
+            <!--/.lessonIntro_inner-->
+          </div>
+          <!--/#lessonIntro-->
+        </div>
+        <div id="newsArea">
+          <h1>更新情報</h1>
+          <dl>
+            <dt>2015/3/27</dt>
+            <dd><a href="#">体験教室スケジュールを更新しました。</a>
+            </dd>
+            <dt>2015/3/26</dt>
+            <dd><a href="#">ご好評につきコースを増設しました</a>
+            </dd>
+            <dt>2015/3/22</dt>
+            <dd><a href="#">体験教室の感想をお寄せください。</a>
+            </dd>
+          </dl>
+          <!--/#newsArea-->
+        </div>
+        <!--/#main-->
+      </div>
+
+      <div id="side">
+        <h1>当教室について</h1>
+        <ul>
+          <li>料理教室は月に1回</li>
+          <li>1年コースと半年コースがあります</li>
+          <li>開講は年2回、4月と10月です</li>
+          <li>午前・午後・夜のクラスがあります</li>
+        </ul>
+        <p><a href="course.html">詳しくはこちら</a>
+        </p>
+        <h1>アクセス・所在地</h1> 仙台駅西口から徒歩約10分。 駅近くなので、通いやすい教室です。
+        <h2>所在地</h2>
+        <p>仙台市青葉区本町2-1-8</p>
+        <h1>ご注文・お問い合わせ</h1> ご予約・お問い合わせは、お電話または
+        <a href="contact.html">お問い合わせメールフォーム</a>から受け付けています。
+        <h2>電話番号</h2>
+        <p>022-000-0000
+          <br />受付時間/9:00〜21:00</p>
+        <!--/#side-->
+      </div>
+      <!--/#content-->
+    </div>
+    <!--/#container-->
+  </div>
+
+  <%= render 'css_base/chapter10/sample_10_02/footer' %>
+
+  </body>
+</div>
