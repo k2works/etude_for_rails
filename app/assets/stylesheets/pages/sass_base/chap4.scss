@@ -1,0 +1,798 @@
+.SassBase__chap4 {
+  padding: 30px;
+
+  @mixin sampleBox {
+    border: solid;
+    padding: 10px;
+  }
+
+  #main_1_1 {
+    @include sampleBox;
+
+    .box {
+      margin: 0 0 30px;
+      padding: 15px;
+      border: 1px solid #ccc;
+    }
+
+    // .boxで使ったスタイルを継承
+    .item {
+      @extend .box;
+    }
+  }
+
+  #main_1_2 {
+    @include sampleBox;
+    height: 250px;
+
+    @import "extend";
+
+    ul.btnList {
+      li {
+        @extend .btnBase;
+      }
+    }
+    .item {
+      width: 300px;
+      .photo {
+        @extend .imgL;
+        margin-bottom: 10px;
+      }
+      .text {
+        .btn {
+          @extend .btnBase;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  #main_1_3 {
+    @include sampleBox;
+
+    // @extend
+    .notes {
+      color: #d92c25;
+      font-weight: bold;
+      text-align: center;
+    }
+    .bd {
+      border-top: 1px solid #900;
+      border-bottom: 1px solid #900;
+    }
+
+    // 複数継承
+    .tem {
+      small {
+        display: block;
+        padding: 10px;
+        @extend .notes;
+        @extend .bd;
+      }
+    }
+  }
+
+  #main_1_4 {
+    @include sampleBox;
+
+    .att {
+      color: red;
+      font-weight: normal;
+    }
+    .attBox {
+      // .attを継承
+      @extend .att;
+      padding: 15px;
+      border: 1px solid red;
+    }
+
+    .notes {
+      // .attが継承されている,.attBoxを継承（連鎖）
+      @extend .attBox;
+    }
+  }
+
+  #main_1_5 {
+    // @extendが使える例
+    // クラスセレクタ
+    .class {
+      color: blue;
+    }
+    // タイプセレクタ
+    small {
+      color: blue;
+    }
+    // IDセレクタ
+    #selectorID {
+      color: blue;
+    }
+    // 連結セレクタ
+    .pd.bd {
+      color: blue;
+    }
+    // 属性セレクタ
+    input[type="text"] {
+      color: blue;
+    }
+    // 疑似クラス
+    a:hover {
+      color: blue;
+    }
+    // 疑似要素
+    p:first-line {
+      color: blue;
+    }
+
+    // @extendが使えない例
+    .item p {
+      margin-bottom: 15px;
+    }
+    // 子セレクタ
+    #main > article {
+      margin-bottom: 50px;
+    }
+    // 隣接セレクタ
+    h2 + h3 {
+      margin-top: 0;
+    }
+    // 間接セレクタ
+    h3 ~ h3 {
+      margin-top: 30px;
+    }
+  }
+
+  #main_1_6 {
+    @include sampleBox;
+
+    // @extend専用のプレースホルダーセレクタ
+    %boxBase {
+      padding: 15px;
+      border: 1px solid #999;
+    }
+
+    // プレースホルダーセレクタを継承
+    .item {
+      @extend %boxBase;
+      margin-bottom: 20px;
+    }
+
+    section {
+      @extend %boxBase;
+      margin-bottom: 60px;
+    }
+  }
+
+  #main_1_7 {
+    @include sampleBox;
+
+    @media all and (orientation:landscape) {
+      %btnBase {
+        display: inline-block;
+        padding: 5px 10px;
+        background: #eee;
+      }
+      a {
+        @extend %btnBase;
+      }
+    }
+  }
+
+  #main_2_1 {
+    @include sampleBox;
+
+    // ミックスインを定義
+    @mixin boxSet {
+      padding: 15px;
+      background: #999;
+      color: white;
+    }
+
+    // 定義したミックスインを呼び出し
+    .relatedArea {
+      @include boxSet;
+    }
+
+    // 別のルールセットでも呼び出し
+    .pickupArea {
+      @include boxSet;
+    }
+  }
+
+  #main_2_2 {
+    @include sampleBox;
+
+    // 引数を使ったミックスインを定義
+    @mixin kadomaru($value) {
+      -moz-border-radius: $value;
+      -webkit-border-radius: $value;
+      border-radius: $value;
+    }
+
+    .box {
+      @include kadomaru(3px);
+      background: #eee
+    }
+    .item {
+      border: 1px solid #999;
+      @include kadomaru(5px 10px);
+    }
+  }
+
+  #main_2_3 {
+    @include sampleBox;
+
+    @mixin kadomaru($value: 3px) {
+      -moz-border-radius: $value;
+      -webkit-border-radius: $value;
+      border-radius: $value;
+    }
+    .boxA {
+      @include kadomaru;
+      background: #eee;
+    }
+    .boxB {
+      @include kadomaru();
+      background: #f1f1f1;
+    }
+  }
+
+  #main_2_4 {
+    @include sampleBox;
+
+    @mixin boxBase($margin: 30px 0, $padding: 10px) {
+      margin: $margin;
+      padding: $padding;
+    }
+
+    .boxA {
+      @include boxBase;
+      background: #eee;
+    }
+    .boxB {
+      @include boxBase(0 0 50px, 20px);
+      background: #f1f1f1;
+    }
+    // marginの値だけ変える場合
+    .boxC {
+      @include boxBase(0 0 50px);
+      background: #f1f1f1;
+    }
+  }
+
+  #main_2_5 {
+    @include sampleBox;
+
+    @mixin shadow($value) {
+      text-shadow: $value;
+    }
+    // 複数の値を()で囲ってひとつのリストにする
+    h2 {
+      @include shadow((8px 8px 0 #999,15px -10px 0 #eee));
+    }
+    // 複数の値を""や''で囲って文字列にする
+    h2 {
+      @include shadow(unquote("8px 8px 0 #999,15px -10px 0 #eee"));
+    }
+
+    // 可変長引数
+    @mixin shadow2($value...) {
+      text-shadow: $value;
+    }
+
+    h2 {
+      @include shadow2(8px 8px 0 #999, 15px -10px 0 #eee);
+    }
+  }
+
+  #main_2_6 {
+    @include sampleBox;
+    height: 150px;
+
+    @mixin boxBase($w: 250px, $pd: 15px, $bg_c: #fff, $bd_c: #ccc) {
+      width: $w;
+      padding: $pd;
+      background-color: $bg_c;
+      border: 1px solid $bd_c;
+    }
+
+    $values: 300px, 20px;
+
+    .item {
+      float: left;
+      @include boxBase($values...);
+    }
+  }
+
+  #main_2_7 {
+    @include sampleBox;
+
+    @mixin margin {
+      margin: 50px 0;
+    }
+    .item {
+      @include margin;
+    }
+  }
+
+  #main_2_8 {
+    @include sampleBox;
+    height: 200px;
+
+    @mixin hackIE7 {
+      *:first-child + html & {
+        @content;
+      }
+    }
+
+    .item {
+      .image {
+        float: left;
+        @include hackIE7 {
+          zoom: 1;
+        }
+      }
+      .text {
+        background: rgba(0,0,0,.2);
+        @include hackIE7 {
+          background: #eee;
+        }
+      }
+    }
+  }
+
+  // ミックスイン名で使える文字と使えない文字
+  // 使える文字
+  @mixin shadow1 {};
+  @mixin shadow-1 {};
+  @mixin shadow_1 {};
+  @mixin 影 {};
+  @mixin ｓｈａｄｏｗ {};
+  @mixin _shadow {};
+  @mixin -shadow {};
+
+  // 使えない文字
+  /*
+  @mixin 01shadow { ~ }
+  @mixin shadow@2 { ~ }
+  @mixin --shadow { ~ }
+   */
+
+  #main_3_1 {
+    @include sampleBox;
+    height: 3em;
+
+    // 汎用的なclassを使うかどうか
+    $generalStyle: true;
+
+    @if $generalStyle {
+      .fl {
+        float: left;
+      }
+      .fl {
+        float: right;
+      }
+    }
+  }
+
+  #main_3_2 {
+    @include sampleBox;
+    $getStyle: 0;
+
+    @mixin style {
+      @if $getStyle == 1 {
+        margin: 0 0 30px;
+        padding: 15px;
+        background: #eee;
+      }
+      @else if $getStyle == 2 {
+        margin: 0 10px 15px;
+        padding: 20px 15px;
+        border: 2px solid #333
+      }
+      @else {
+        margin: 0 0 10px;
+      }
+    }
+
+    .box {
+      @include style;
+    }
+  }
+
+  #main_3_3 {
+    @include sampleBox;
+
+    @for $value from 1 through 3 {
+      .throughSample_#{$value} {
+        margin-bottom: 1px * $value;
+      }
+    }
+
+    @for $value from 1 to 3 {
+      .toSample_#{$value} {
+        margin-bottom: 1px * $value;
+      }
+    }
+  }
+
+  #main_3_4 {
+    @include sampleBox;
+
+    @for $value from 1 through 2 {
+      .mt_#{$value * 10} {
+        margin-top: 10px * $value;
+      }
+      .mb_#{$value * 10} {
+        margin-bottom: 10px * $value;
+      }
+    }
+  }
+
+  #main_3_5 {
+    @include sampleBox;
+
+    $value: 20;
+    @while $value > 0 {
+      .mt_#{$value} {
+        margin-top: $value + px;
+      }
+      .mb_#{$value} {
+        margin-bottom: $value + px;
+      }
+      $value: $value - 10;
+    }
+  }
+
+  #main_3_6 {
+    @include sampleBox;
+
+    $value: 300;
+    @while $value > 200 {
+      .box_#{$value} {
+        width: 2px * $value;
+      }
+      $value: $value - 32;
+    }
+  }
+
+  #main_3_7 {
+    @include sampleBox;
+
+    $nameList: top, about, company, contact;
+
+    @each $name in $nameList {
+      .body-#{$name} {
+        background-image: url(../img/bg_#{$name}.png);
+      }
+    }
+  }
+
+  #main_4_1 {
+    @include sampleBox;
+    height: 4em;
+    $margin: -15px;
+
+    section {
+      margin-left: $margin;
+      .item {
+        float: left;
+        width: 200px;
+        margin-left: abs($margin);
+      }
+    }
+  }
+
+  #main_4_2 {
+    @include sampleBox;
+    $width: 100%;
+
+    .boxA {
+      width: $width / 6;
+    }
+    .boxB {
+      width: round($width / 6);
+    }
+  }
+
+  #main_4_3 {
+    @include sampleBox;
+    $width: 100%;
+
+    .boxA {
+      width: $width / 3;
+    }
+    .boxB {
+      width: ceil($width / 3);
+    }
+
+    .boxC {
+      width: $width / 6;
+    }
+    .boxD {
+      width: floor($width / 6);
+    }
+  }
+
+  #main_4_4 {
+    @include sampleBox;
+
+    div {
+      background: rgba(#6a5468, 0.3);
+    }
+
+    .box {
+      background: rgba(red, .15);
+
+    }
+  }
+
+  #main_4_5 {
+    @include sampleBox;
+
+    .bg1 {
+      background: lighten(#000,30%);
+    }
+    .bg2 {
+      background: darken(#fff,20%);
+    }
+
+    $c: #888;
+
+    .boxA {
+      background: lighten($c, 20%);
+    }
+    .baxB {
+      background: darken($c,20%);
+    }
+  }
+
+  #main_4_6 {
+    @include sampleBox;
+
+    .bg1 {
+      background: mix(#000, #fff, 50%);
+    }
+    bg2 {
+      background: mix(rgba(000,000,000,.3), #fff, 50%);
+    }
+
+    $a: #000;
+    $b: #fff;
+
+    .boxA {
+      background: mix($a, $b, 70%);
+    }
+    .boxB {
+      background: mix($a, $b, 30%);
+    }
+  }
+
+  #main_4_7 {
+    @include sampleBox;
+
+    $nameList: red, blue, green;
+    .item {
+      color:  nth($nameList,1);
+      background-color: nth($nameList,2);
+    }
+  }
+
+  #main_5_1 {
+    @include sampleBox;
+
+    @function halfSize($value) {
+      @return $value / 2;
+    }
+
+    .boxA {
+      width: halfSize(100px);
+    }
+  }
+
+  #main_5_2 {
+    @include sampleBox;
+
+    @function halfSize($value) {
+      @return round($value / 2);
+    }
+
+    .boxA {
+      width: halfSize(105px);
+    }
+  }
+
+  #main_5_3 {
+    @include sampleBox;
+
+    $width: 105px;
+
+    @function halfSize() {
+      @return round($width / 2);
+    }
+
+    .boxA {
+      width: halfSize();
+    }
+  }
+
+  #main_5_4 {
+    @include sampleBox;
+
+    $width: 105px;
+
+    @function halfSize($value:$width) {
+      @return round($value / 2);
+    }
+
+    .boxA {
+      width: halfSize();
+    }
+
+    .boxB {
+      width: halfSize(200px);
+    }
+  }
+
+  #main_6_1 {
+    @include sampleBox;
+
+    @debug 10em + 12em;
+
+    $value: 500;
+    @function debugTest() {
+      @debug $value;
+      $value: $value - 100;
+      $value: $value - 100;
+      @debug $value;
+      $value: $value - 100;
+      $value: $value - 100;
+      $value: $value - 100;
+      @debug $value;
+      @return $value + px;
+    }
+
+    .boxA {
+      width: debugTest();
+    }
+  }
+
+  #main_6_2 {
+    @include sampleBox;
+
+    $value: 1000px;
+    @function warnTest() {
+      @if unitless($value) {
+        $value: $value + px;
+      }
+      @else {
+        @warn "#{$value}は駄目!$valueに単位を入れないで!";
+      }
+      @return $value;
+    }
+    .box {
+      width: warnTest();
+    }
+  }
+
+  #main_7_1 {
+    @include sampleBox;
+
+    .DataTypes:after {
+      /* Number型 */
+      content: quote(type-of(10px));
+
+      /* Color型 */
+      content: quote(type-of(red));
+
+      /* String型 */
+      content: quote(type-of(sans-serif));
+
+      /* Boolean型 */
+      content: quote(type-of(true));
+
+      /* List型 */
+      content: quote(type-of(1.5em 1em 0 2em));
+
+      /* Null型 */
+      content: quote(type-of(null));
+    }
+  }
+
+  #main_7_2 {
+    @include sampleBox;
+
+    @function example($value) {
+      @if type-of($value) == number {
+
+      }
+    }
+  }
+
+  #main_8_1 {
+    @include sampleBox;
+
+    $imgPath: 'sass_base/';
+
+    #main {
+      background: url(#{$imgPath}dot.png);
+    }
+  }
+
+  #main_8_2 {
+    @include sampleBox;
+
+    p.sampleA {
+      $font-size: 12px;
+      $line-height: 30px;
+      font: $font-size/$line-height;
+    }
+
+    p.sampleB {
+      $font-size: 12px;
+      $line-height: 30px;
+      font: #{$font-size}/#{$line-height};
+    }
+  }
+
+  #main_8_3 {
+    @include sampleBox;
+
+    @for $i from 0 to 3 {
+      .mt#{$i * 5} {
+        margin-top: 5px * $i;
+      }
+    }
+  }
+
+  #main_8_4 {
+    @include sampleBox;
+
+    $text: "CSS";
+
+    .#{$text}_1 a:after {
+      content: "#{$text + Space}";
+    }
+
+    .#{$text}_2 a:after {
+      content: $text + Space;
+    }
+  }
+
+  #main_9_1 {
+    @include sampleBox;
+
+    %kadomaru {
+      $radius: 5px !default;
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-raius: $radius;
+    }
+
+    .item {
+      @extend %kadomaru;
+      background-color: grey;
+      text-align: center;
+      color: white;
+    }
+  }
+
+  #main_9_2 {
+    @include sampleBox;
+
+    $radius: 10px;
+
+    %kadomaru {
+      $radius: 5px !default;
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-raius: $radius;
+    }
+
+    .item {
+      @extend %kadomaru;
+      background-color: grey;
+      text-align: center;
+      color: white;
+    }
+  }
+}
