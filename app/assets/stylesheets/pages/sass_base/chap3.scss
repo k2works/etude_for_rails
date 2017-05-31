@@ -1,0 +1,211 @@
+.SassBase__chap3 {
+  padding: 30px;
+
+  @mixin sampleBox {
+    border: solid;
+    padding: 10px;
+  }
+
+  #main_1_1 {
+    @include sampleBox;
+
+    section {
+      margin-bottom: 50px;
+      h1 {
+        font-size: 140%;
+      }
+      p,ul {
+        margin-bottom: 1.5em;
+      }
+      p.notes {
+        color: red;
+      }
+    }
+  }
+
+  #main_1_2 {
+    @include sampleBox;
+
+    section {
+      + section {
+        margin-to: 50px;
+      }
+      > h1 {
+        font-size: 140%;
+      }
+    }
+  }
+
+  #main_1_3 {
+    @include sampleBox;
+
+    float: left;
+    width: 640px;
+    @media screen and (max-width: 640px) {
+      float: none;
+      width: auto;
+    }
+  }
+
+  h2 {
+    clear:both;
+  }
+
+  #side {
+    @include sampleBox;
+
+    width: 240px;
+    body.top & {
+      width: 300px;
+    }
+    ul.bnr {
+      margin-bottom: 10px;
+    }
+  }
+
+  .sample {
+    border: {
+      top: 5px solid #ccc;
+      bottom: {
+        width: 3px;
+        style: dotted;
+        color: black;
+      }
+    }
+  }
+
+  // Sassで使えるコメント
+  .box {
+    //width: 350px;
+    min-height: 300px;
+    _height: 300px; // IE6対策
+  }
+
+  .box {
+    /*
+      width: 350px;
+      */
+    min-height: 300px;
+    _height: 300px; /* IE6対策 */
+  }
+
+  #main_5_1 {
+    @include sampleBox;
+
+    $red: #cf2d3a;
+
+    .notes {
+      color: $red;
+    }
+    .notesBox {
+      border: 3px double $red;
+    }
+  }
+
+  #main_5_2 {
+    @include sampleBox;
+
+    .item {
+      $value: 15px;
+      margin-left: $value;
+      padding: $value;
+      p {
+        margin-bottom: $value;
+      }
+    }
+  }
+
+  #main_5_3 {
+    @include sampleBox;
+
+    section {
+      $value: 30px;
+      margin-top: $value;
+      margin-bottom: $value;
+    }
+
+    .item {
+      $value: 15px;
+      padding: $value;
+      p {
+        margin-bottom: $value;
+      }
+    }
+  }
+
+  // 変数を参照できる場所
+  $セレクタ名: '.pickupContentsArea, section.main';
+  $IMG_PATH: '../img/bg/';
+
+  #{$セレクタ名} {
+    background: url(#{$IMG_PATH}pickup.png);
+  }
+
+  #main_6_1 {
+    @include sampleBox;
+
+    article {
+      width: 560px - 14px;
+      padding: 7px;
+    }
+
+    // 足し算
+    .example01 {
+      width: 500px + 8;
+    }
+
+    // 掛け算
+    .example02 {
+      width: 500px * 8;
+    }
+
+    // 割り算
+    .example03 {
+      width: (500px / 8);
+    }
+  }
+
+  // 別々の単位で演算する
+  article {
+    width: 300px + 5cm;
+  }
+
+  #main_6_2 {
+    @include sampleBox;
+
+    $main_width: 560px;
+
+    article {
+      $padding: 7px;
+      width: $main_width - $padding * 2;
+      padding: 0 $padding;
+    }
+  }
+
+  #main_6_3 {
+    @include sampleBox;
+
+    $color: #333;
+
+    li {
+      list-style: circle;
+    }
+
+    a.sample01:hover {
+      // 変数 + rgb()関数
+      color: $color + rgb(51,51,51);
+    }
+    a.sample02:hover {
+      // キーワード + 変数
+      color: blue + $color;
+    }
+    a.sample03:hover {
+      // 変数 - 数値
+      color: $color - 3;
+    }
+    a.sample04:hover {
+      // rgb() 関数 - 数値
+      color: rbg(255,255,255) - 10;
+    }
+  }
+}
