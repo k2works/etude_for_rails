@@ -707,4 +707,92 @@
       }
     }
   }
+
+  #main_8_1 {
+    @include sampleBox;
+
+    $imgPath: 'sass_base/';
+
+    #main {
+      background: url(#{$imgPath}dot.png);
+    }
+  }
+
+  #main_8_2 {
+    @include sampleBox;
+
+    p.sampleA {
+      $font-size: 12px;
+      $line-height: 30px;
+      font: $font-size/$line-height;
+    }
+
+    p.sampleB {
+      $font-size: 12px;
+      $line-height: 30px;
+      font: #{$font-size}/#{$line-height};
+    }
+  }
+
+  #main_8_3 {
+    @include sampleBox;
+
+    @for $i from 0 to 3 {
+      .mt#{$i * 5} {
+        margin-top: 5px * $i;
+      }
+    }
+  }
+
+  #main_8_4 {
+    @include sampleBox;
+
+    $text: "CSS";
+
+    .#{$text}_1 a:after {
+      content: "#{$text + Space}";
+    }
+
+    .#{$text}_2 a:after {
+      content: $text + Space;
+    }
+  }
+
+  #main_9_1 {
+    @include sampleBox;
+
+    %kadomaru {
+      $radius: 5px !default;
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-raius: $radius;
+    }
+
+    .item {
+      @extend %kadomaru;
+      background-color: grey;
+      text-align: center;
+      color: white;
+    }
+  }
+
+  #main_9_2 {
+    @include sampleBox;
+
+    $radius: 10px;
+
+    %kadomaru {
+      $radius: 5px !default;
+      -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+      border-raius: $radius;
+    }
+
+    .item {
+      @extend %kadomaru;
+      background-color: grey;
+      text-align: center;
+      color: white;
+    }
+  }
 }
