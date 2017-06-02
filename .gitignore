@@ -99,7 +99,6 @@ dist
 *.rbc
 capybara-*.html
 .rspec
-/log
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal

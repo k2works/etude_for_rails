@@ -1,6 +1,12 @@
 version: 0.0
 os: linux
 files:
+  - source: /package.json
+    destination: /home/ec2-user/ruby-on-rails
+  - source: /yarn.lock
+    destination: /home/ec2-user/ruby-on-rails
+  - source: /.postcssrc.yml
+    destination: /home/ec2-user/ruby-on-rails
   - source: /config.ru
     destination: /home/ec2-user/ruby-on-rails
   - source: /Gemfile
@@ -11,6 +17,8 @@ files:
     destination: /home/ec2-user/ruby-on-rails
   - source: /README.md
     destination: /home/ec2-user/ruby-on-rails
+  - source: /bin/
+    destination: /home/ec2-user/ruby-on-rails/bin
   - source: /app/
     destination: /home/ec2-user/ruby-on-rails/app
   - source: /config/
