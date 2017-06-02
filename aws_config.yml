@@ -1,0 +1,108 @@
+DEV:
+  REGION: 'us-east-1'
+  VPC:
+    VPC_TAGS:
+      NAME:
+        KEY: 'Name'
+        VALUE: 'EtudeForRails'
+      GROUP:
+        KEY: 'GroupName'
+        VALUE: 'EtudeVpcGroup'
+    VPC_CIDR_BLOCK: '10.0.0.0/16'
+    SUBNETS:
+      PUBLIC:
+        - CONFIG:
+            SUBNET_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsVpcPublicSubnet1'
+            SUBNET_CIDR_BLOCK:
+              - '10.0.0.0/24'
+            AZ:
+              - 'us-east-1a'
+      PRIVATE:
+        - CONFIG:
+            SUBNET_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsVpcPrivateSubnet1'
+            SUBNET_CIDR_BLOCK:
+              - '10.0.1.0/24'
+            AZ:
+              - 'us-east-1a'
+    ROUTE_TABLES:
+      PUBLIC:
+        - CONFIG:
+            ROUTE_TABLE_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsVpcPublicRouteTable1'
+            DESTINATION_CIDR_BLOCK:
+              - '0.0.0.0/0'
+      PRIVATE:
+        - CONFIG:
+            ROUTE_TABLE_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsVpcPrivateSubnet1'
+            DESTINATION_CIDR_BLOCK:
+              - '10.0.0.0/16'
+    INTERNET_GATEWAY:
+      IG_TAGS:
+        NAME:
+          KEY: 'Name'
+          VALUE: 'EtudeForRailsVpcInternetGateway'
+    VPN:
+      CUSTOMER_GATEWAYS:
+        - CONFIG:
+            CUSTOMER_GATEWAY:
+              BGP_ASN: '65534'
+              PUBLIC_IP: '110.4.157.54'
+              TYPE: 'ipsec.1'
+              TAGS:
+                NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsCustomerGateway'
+      VPN_GATEWAY:
+        TYPE: 'ipsec.1'
+        DESTINATION_CIDR_BLOCKS:
+          - CIDR: '192.168.0.0/16'
+        TAGS:
+          NAME:
+            KEY: 'Name'
+            VALUE: 'EtudeForRailsVpnGateway'
+      VPN_CONNECTIONS:
+        - CONFIG:
+            VPN_CONNECTION:
+              TYPE: 'ipsec.1'
+              OPTIONS:
+                STATIC_ROUTES_ONLY: true
+              TAGS:
+                NAME:
+                  KEY: 'Name'
+                  VALUE: 'EtudeForRailsVpnConnection'
+  EC2:
+    INSTANCE_TAGS:
+      NAME_VALUE: 'MyGroovyInstance'
+      GROUP_VALUE: 'MyGroovyGroup'
+    SECURITY_GROUP_NAME: 'MyGroovySecurityGroup'
+    SECURITY_GROUP_DESCRIPTION: 'Security group for MyGroovyInstance'
+    KEY_PAIR_NAME: 'etude_for_rails'
+    KEY_PAIR_PATH: '/'
+    IMAGE_ID: 'ami-c58c1dd3'
+    INSTANCE_TYPE: 't2.micro'
+    MIN_COUNT: '1'
+    MAX_COUNT: '1'
+    INSTANCES:
+      PUBLIC:
+        - CONFIG:
+            INSTANCE_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'PublicInstance1'
+      PRIVATE:
+        - CONFIG:
+            INSTANCE_TAGS:
+              - NAME:
+                  KEY: 'Name'
+                  VALUE: 'PrivateInstance1'

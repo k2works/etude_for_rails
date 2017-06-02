@@ -90,3 +90,6 @@ gem 'bootstrap_form'
 
 # For JavaScript
 gem 'js_cookie_rails'
+
+# For Ops
+gem 'etude_for_aws', '~> 0.7.10'

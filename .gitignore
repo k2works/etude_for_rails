@@ -190,3 +190,4 @@ build-iPhoneSimulator/
 
 /public/packs
 /node_modules
+*.pem
