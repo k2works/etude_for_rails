@@ -29,7 +29,7 @@ DEV:
             SUBNET_CIDR_BLOCK:
               - '10.0.1.0/24'
             AZ:
-              - 'us-east-1a'
+              - 'us-east-1b'
     ROUTE_TABLES:
       PUBLIC:
         - CONFIG:
