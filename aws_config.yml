@@ -91,7 +91,7 @@ DEV:
     KEY_PAIR_PATH: '/'
     IMAGE_ID: 'ami-c58c1dd3'
     INSTANCE_TYPE: 't2.micro'
-    EIP: '52.23.243.100'
+    EIP: '34.224.220.103'
     MIN_COUNT: '1'
     MAX_COUNT: '1'
     INSTANCES:
