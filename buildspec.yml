@@ -28,6 +28,7 @@ phases:
       - echo Build started on `date`
       - bundle install
       - bin/yarn
+      - chmod 755 bin/webpack
       - bin/webpack
       - bin/rails assets:precompile
       - bin/rspec
