@@ -1,2 +1,5 @@
 #!/bin/bash
-kill $(lsof -t -i:80)
+file=/home/ec2-user/ruby-on-rails/passenger.80.pid
+if [ -e $file ]; then
+  kill $(lsof -t -i:80)
+fi

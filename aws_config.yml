@@ -29,7 +29,7 @@ DEV:
             SUBNET_CIDR_BLOCK:
               - '10.0.1.0/24'
             AZ:
-              - 'us-east-1a'
+              - 'us-east-1b'
     ROUTE_TABLES:
       PUBLIC:
         - CONFIG:
@@ -83,14 +83,15 @@ DEV:
                   VALUE: 'EtudeForRailsVpnConnection'
   EC2:
     INSTANCE_TAGS:
-      NAME_VALUE: 'MyGroovyInstance'
-      GROUP_VALUE: 'MyGroovyGroup'
-    SECURITY_GROUP_NAME: 'MyGroovySecurityGroup'
-    SECURITY_GROUP_DESCRIPTION: 'Security group for MyGroovyInstance'
+      NAME_VALUE: 'etude-for-rails-WebApp'
+      GROUP_VALUE: 'etude-for-rails-WebApp'
+    SECURITY_GROUP_NAME: 'awscodestar-etude-for-rails-WebAppSG-1E52SQNYRWA7S'
+    SECURITY_GROUP_DESCRIPTION: 'Enable HTTP access via port 80 and SSH access via port 22.'
     KEY_PAIR_NAME: 'etude_for_rails'
     KEY_PAIR_PATH: '/'
     IMAGE_ID: 'ami-c58c1dd3'
     INSTANCE_TYPE: 't2.micro'
+    EIP: '52.23.243.100'
     MIN_COUNT: '1'
     MAX_COUNT: '1'
     INSTANCES:
@@ -99,10 +100,10 @@ DEV:
             INSTANCE_TAGS:
               - NAME:
                   KEY: 'Name'
-                  VALUE: 'PublicInstance1'
+                  VALUE: 'etude-for-rails-WebApp'
       PRIVATE:
         - CONFIG:
             INSTANCE_TAGS:
               - NAME:
                   KEY: 'Name'
-                  VALUE: 'PrivateInstance1'
+                  VALUE: 'etude-for-rails-WebApp'
