@@ -149,6 +149,10 @@ GEM
     js_cookie_rails (2.1.4)
       railties (>= 3.1)
     json (2.1.0)
+    kss (0.5.0)
+    kss-rails (1.0.2)
+      kss
+      rails (>= 3.0.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -326,6 +330,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   js_cookie_rails
+  kss-rails
   listen (>= 3.0.5, < 3.2)
   migration_comments
   minitest (= 5.10.1)

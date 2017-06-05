@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                         Prefix Verb URI Pattern                                           Controller#Action
+#                                            kss      /kss                                                  Kss::Engine
 #                           css_design_top_index GET  /css_design/top(.:format)                             css_design/top#index
 #                             css_design_chap4_1 GET  /css_design/chap4_1(.:format)                         css_design/top#chap4_1
 #                             css_design_chap4_2 GET  /css_design/chap4_2(.:format)                         css_design/top#chap4_2
@@ -52,8 +53,13 @@
 #                     beer_lists_beer_list_index GET  /beer_lists/beer_list(.:format)                       beer_lists/beer_list#index
 #                                           root GET  /                                                     home#index
 #
+# Routes for Kss::Engine:
+# styleguide GET  /styleguide(.:format) kss/home#styleguide
+#       root GET  /                     kss/home#index
+#
 
 Rails.application.routes.draw do
+  mount Kss::Engine => '/kss' if Rails.env.development?
   namespace :css_design do
     resources :top, only:[:index]
     get 'chap4_1', to: 'top#chap4_1'
