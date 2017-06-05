@@ -66,6 +66,7 @@ group :development do
   gem 'migration_comments'
   gem 'annotate', group: :doc
   gem 'kss-rails'
+  gem 'scss_lint', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
