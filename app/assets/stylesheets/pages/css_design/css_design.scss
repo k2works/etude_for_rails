@@ -1,3 +1,46 @@
 .CssDesign {
   padding: 30px;
+
+  .Ocp1 {
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      line-height: 1;
+      color: inherit;
+    }
+
+    .heading {
+      display: block;
+      font-size: 180x;
+      font-weight: bold;
+    }
+
+    .theme-default {
+      border-radius: 6px;
+      border: 1px solid #C9C9C9;
+      padding: 0.6em;
+      background-image: -webkit-repeating-linear-gradient(top,#F2F2F2,#C9C9C9);
+      text-shadow: 0 1px 0 #FFF;
+    }
+  }
+  .Ocp2 {
+    .btn {
+      display: inline-block;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .btn--primary {
+      border-top: 2px solid #F89;
+      border-left: 2px solid #F89;
+      border-right: 2px solid #301;
+      border-bottom: 2px solid #301;
+      background-color: #C12;
+      box-shadow: 3px 3px 2px #CCC;
+      color: #FFF;
+    }
+    .btn--large {
+      padding: 20px 20px;
+      font-size: 24px;
+    }
+  }
 }
