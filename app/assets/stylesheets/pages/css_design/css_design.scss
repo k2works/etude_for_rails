@@ -199,4 +199,37 @@
       margin-right: 3px;
     }
   }
+  .c4_2_8 {
+    .heading {
+      border: 1px solid #000;
+      margin-bottom: 0.5em;
+      line-height: 42px;
+      padding: 0 0.6em;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  .c4_2_9 {
+
+    .heading {
+      position: relative;
+
+      h2 {
+        border: 1px solid #000;
+        margin-bottom: 0.5em;
+        line-height: 42px;
+        padding: 0 0.6em;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    .heading__link {
+      position: absolute;
+      top: 0;
+      border: 0;
+      right: 1em;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
 }
