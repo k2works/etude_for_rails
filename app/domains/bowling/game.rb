@@ -9,7 +9,7 @@ module Bowling
     end
 
     def add(pins)
-      @its_score = pins
+      @its_score += pins
     end
   end
 end
