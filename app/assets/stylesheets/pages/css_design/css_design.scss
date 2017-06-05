@@ -312,4 +312,101 @@
       color: #FFF;
     }
   }
+  .c4_2_14 {
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__item > a {
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+    }
+  }
+  .c4_2_15 {
+    .ico {
+      display: inline-block;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+    .ico--arrow {
+      width: 16px;
+      height: 16px;
+
+    }
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__target {
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+      position: relative;
+      padding-right: 2.4em;
+    }
+    .tableview__target-icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0.6em;
+      margin: auto;
+    }
+  }
+  .c4_2_16 {
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__target {
+      position: relative;
+      padding-right: 2.4em;
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+      position: relative;
+      padding-right: 2.4em;
+    }
+    .tableview__target:after {
+      display: inline-block;
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0.6em;
+      margin: auto;
+      width: 16px;
+      height: 16px;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+  }
 }
