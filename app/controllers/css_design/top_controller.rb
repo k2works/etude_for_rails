@@ -10,4 +10,7 @@ class CssDesign::TopController < ApplicationController
 
   def chap5_1
   end
+
+  def chap7_2
+  end
 end

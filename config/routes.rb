@@ -6,6 +6,7 @@
 #                             css_design_chap4_1 GET  /css_design/chap4_1(.:format)                         css_design/top#chap4_1
 #                             css_design_chap4_2 GET  /css_design/chap4_2(.:format)                         css_design/top#chap4_2
 #                             css_design_chap5_1 GET  /css_design/chap5_1(.:format)                         css_design/top#chap5_1
+#                             css_design_chap7_2 GET  /css_design/chap7_2(.:format)                         css_design/top#chap7_2
 #                            sass_base_top_index GET  /sass_base/top(.:format)                              sass_base/top#index
 #                                sass_base_chap3 GET  /sass_base/chap3(.:format)                            sass_base/top#chap3
 #                                sass_base_chap4 GET  /sass_base/chap4(.:format)                            sass_base/top#chap4
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
     get 'chap4_1', to: 'top#chap4_1'
     get 'chap4_2', to: 'top#chap4_2'
     get 'chap5_1', to: 'top#chap5_1'
+    get 'chap7_2', to: 'top#chap7_2'
   end
 
   namespace :sass_base do
