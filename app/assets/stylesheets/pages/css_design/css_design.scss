@@ -496,3 +496,136 @@
     font-size: 18px;
   }
 }
+
+.Chap5_1 {
+  @extend .CssDesign;
+
+  .c5_1_1 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+    .btn-small {
+      @extend .btn;
+      font-size: 0.75em;
+    }
+    .btn-large {
+      @extend .btn;
+      font-size: 1.5em;
+    }
+
+    .btn-primary {
+      @extend .btn;
+      background-color: #e85243;
+    }
+    .btn-secondary {
+      @extend .btn;
+      background-color: #2980b9;
+    }
+
+    .btn-primary-small {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-small;
+    }
+    .btn-primary-large {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-large;
+    }
+    .btn-secondary-small {
+      @extend .btn;
+      @extend .btn-secondary;
+      @extend .btn-small;
+    }
+    .btn-secondary-large {
+      @extend .btn;
+      @extend .btn-secondary;
+      @extend .btn-large;
+    }
+  }
+  .c5_1_2 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+
+    .btn--small {
+      font-size: 0.75em;
+    }
+    .btn--large {
+      font-size: 1.5em;
+    }
+
+    .btn--primary {
+      background-color: #e85243;
+    }
+    .btn--secondary {
+      background-color: #2980b9;
+    }
+  }
+  .c5_1_3 {
+    %btn {
+      display: inline-block;
+    }
+    %btn--large {
+      font-size: 1.5em;
+    }
+    %btn--primary {
+      @extend %btn;
+      background-color: #428bca;
+    }
+    %btn--secondary {
+      @extend %btn;
+      background-color: #5cb85c;
+    }
+
+    .save {
+      @extend %btn;
+      @extend %btn--large;
+      @extend %btn--primary;
+    }
+    .send {
+      @extend %btn;
+      @extend %btn--large;
+      @extend %btn--primary;
+    }
+    .go-forward {
+      @extend %btn;
+      @extend %btn--secondary;
+    }
+  }
+  .c5_1_4 {
+    %alert {
+      margin-bottom: 20px;
+      border: 1px solid #999;
+      border-radius: 8px;
+      padding: 12px;
+      background-color: #FCFCFC;
+      > .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      > .body {
+        margin-top: 6px;
+      }
+    }
+    %alert--warning {
+      border-color: #faebcc;
+      background-color: #fcf8e3;
+    }
+    .info {
+      @extend %alert;
+    }
+    .warning {
+      @extend %alert;
+      @extend %alert--warning;
+    }
+  }
+}
