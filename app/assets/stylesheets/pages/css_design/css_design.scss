@@ -276,4 +276,40 @@
       vertical-align: middle;
     }
   }
+  .c4_2_12 {
+    .nav {
+      display: table;
+      width: 100%;
+      table-layout: fixed; /* 子要素の`table-cell`の幅を均等にする */
+    }
+    .nav__item {
+      display: table-cell;
+    }
+    .nav__item > a {
+      display: block;
+      padding: 20px 0;
+      text-align: center;
+      text-decoration: none;
+      background-color: #49E;
+      font-weight: bold;
+      color: #FFF;
+    }
+  }
+  .c4_2_13 {
+    .nav {
+      display: flex;
+    }
+    .nav__item {
+      width: 100%; /* 均一の幅で並べるために必要 */
+    }
+    .nav__item > a {
+      display: block;
+      padding: 20px 0;
+      text-align: center;
+      text-decoration: none;
+      background-color: #49E;
+      font-weight: bold;
+      color: #FFF;
+    }
+  }
 }
