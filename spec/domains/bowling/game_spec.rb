@@ -35,6 +35,10 @@ describe Bowling::Game do
 
     context 'when spare' do
       it 'is scored' do
+        g.add(3)
+        g.add(7)
+        g.add(3)
+        expect(g.score_for_frame(1)).to eq(13)
       end
     end
   end
