@@ -34,5 +34,10 @@ describe Bowling::Game do
       end
     end
 
+    context 'when spare' do
+      it 'is scored' do
+        g = Game.new
+      end
+    end
   end
 end
