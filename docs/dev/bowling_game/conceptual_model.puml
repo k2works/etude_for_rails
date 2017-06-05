@@ -1,0 +1,7 @@
+@startuml
+class Game
+class Score
+
+Game"1" *-- "1"Score
+
+@enduml
