@@ -162,6 +162,41 @@
       font-size: 14px;
       margin: auto;
     }
-
+  }
+  .c4_2_6 {
+    .icn {
+      display: inline-block;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+    .icn--edit {
+      width: 16px;
+      height: 16px;
+    }
+    .icn--delete {
+      width: 16px;
+      height: 16px;
+      background-position: -20px -20px;
+    }
+    .icn--nav--home {
+      width: 32px;
+      height: 32px;
+      background-position: 0 0;
+    }
+  }
+  .c4_2_7 {
+    /* アイコンフォント */
+    line-height: 1;
+    font-family: 'FontAwesome', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-icon--home:before {
+    content: "\f015"; /* 家の形をしたアイコンフォント */
+  }
+  .c4_2_7 {
+    .font-icon--with-text {
+      margin-right: 3px;
+    }
   }
 }
