@@ -19,6 +19,16 @@ describe Bowling::Game do
         expect(g.score).to eq(9)
       end
     end
+
+    context 'when spare' do
+      it 'is scored' do
+        g.add(3)
+        g.add(7)
+        g.add(3)
+        g.add(2)
+        expect(g.score).to eq(18)
+      end
+    end
   end
 
   describe '#score_for_frame' do
@@ -38,6 +48,7 @@ describe Bowling::Game do
         g.add(3)
         g.add(7)
         g.add(3)
+        g.add(2)
         expect(g.score_for_frame(1)).to eq(13)
       end
     end
