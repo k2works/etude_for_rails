@@ -44,3 +44,124 @@
     }
   }
 }
+
+.Chap4_2 {
+  @extend .CssDesign;
+
+  .c4_2_1 {
+    .button {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+  }
+  .c4_2_2 {
+    /* button要素のそのものには何もしない */
+    button {}
+
+    /* button要素にも適応されることを考慮して、ボタンコンポーネントのルールセットに、button要素の初期化スタイルを記述する */
+    .button {
+      -webkit-appearance: none; /* 追加するスタイル */
+      -moz-appearance: none; /* 追加するスタイル */
+      appearance: none; /* 追加するスタイル */
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      margin: 0; /* 追加するスタイル */
+      padding: 0.3em 1em;
+      text-align: center;
+      line-height: 1;
+      background: #EEE;
+      font-size: inherit; /* 追加するスタイル */
+      cursor: pointer;
+    }
+  }
+  .c4_2_3 {
+    .button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      margin: 0;
+      padding: 0.3em 1em;
+      text-align: center;
+      line-height: 1;
+      background: #EEE;
+      text-decoration: none; /* 追加するスタイル */
+      font-size: inherit;
+      color: inherit; /* 追加するスタイル */
+      cursor: pointer;
+    }
+  }
+  .c4_2_4 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+
+    .btn--short {
+      width: 200px;
+    }
+    .btn--long {
+      width: 480px;
+    }
+    .btn--full {
+      width: 100%;
+    }
+  }
+  .c4_2_5 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+    .btn--full {
+      width: 100%;
+    }
+
+    /* フォーム */
+    .form{
+      width: 400px;
+      margin: 3pxp auto;
+      padding: 20px;
+      border: 1px solid #555;
+    }
+    .form__footer {
+      padding-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 200px; /* フォームにおけるボタンの幅 */
+    }
+
+    /* コメント */
+    .comment {
+      position: relative;
+      width: 400px;
+      margin: 3pxp auto;
+      padding: 20px;
+      border: 1px solid #555;
+    }
+    .comment__body {
+      padding: 20px;
+    }
+    .comment__button {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      display: block;
+      width: 120px; /* コメントにおけるボタンの幅 */
+      font-size: 14px;
+      margin: auto;
+    }
+
+  }
+}
