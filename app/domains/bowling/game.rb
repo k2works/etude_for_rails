@@ -11,5 +11,9 @@ module Bowling
     def add(pins)
       @its_score += pins
     end
+
+    def score_for_frame(the_frame)
+      0
+    end
   end
 end
