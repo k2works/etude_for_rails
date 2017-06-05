@@ -232,4 +232,48 @@
       font-weight: normal;
     }
   }
+  .c4_2_10 {
+    .media:before,
+    .media:after {
+      display: table; /* 子要素でfloatを使うため、Clearfixをする */
+      content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+    .media:after {
+      clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+    .media__image {
+      float: left;
+      margin-right: 10px;
+    }
+    .media__image > imag {
+      display: block;
+    }
+    .media__body {
+      overflow: hidden; /* 画像下にテキストが回り込むのを防ぐ */
+    }
+    .media__image--rev { /* Reverse */
+      float: right;
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+  .c4_2_11 {
+    .media {
+      display: table;
+    }
+    .media__image {
+      display: table-cell;
+      padding-right: 10px; /* marginが効かないので、paddingを使う */
+    }
+    .media__image > img {
+      display: block;
+    }
+    .media__body {
+      display: table-cell;
+      vertical-align: top;
+    }
+    .media__body--middle {
+      vertical-align: middle;
+    }
+  }
 }
