@@ -9,7 +9,7 @@ module Bowling
     end
 
     def score
-      @its_score
+      score_for_frame(get_current_frame-1)
     end
 
     def add(pins)
