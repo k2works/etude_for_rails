@@ -1,0 +1,28 @@
+/*
+汎用的なボタンコンポーネントです。<br>
+デフォルトのボタンはbutton要素または.btnクラスで作られます。
+
+.btn                     - デフォルトのボタン
+.btn:hover               - デフォルトのボタンのHover状態
+.btn.btn--primary        - 主要なボタン
+.btn.btn--primary:hover  - 主要なボタンのHover状態
+
+Styleguide 1.1
+ */
+button,
+.btn {
+  display: inline-block;
+  border: 1px solid #333;
+  padding: 0.5em 1em;
+  background-color: #EEE;
+}
+.btn:hover {
+  background-color: #FFF;
+}
+.btn--primary {
+  border-color: #F43;
+  background-color: #F98;
+}
+.btn--primary:hover {
+  background-color: #FDC;
+}

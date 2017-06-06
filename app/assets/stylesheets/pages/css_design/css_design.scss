@@ -1,0 +1,812 @@
+.CssDesign {
+  padding: 30px;
+
+  .Ocp1 {
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      line-height: 1;
+      color: inherit;
+    }
+
+    .heading {
+      display: block;
+      font-size: 180x;
+      font-weight: bold;
+    }
+
+    .theme-default {
+      border-radius: 6px;
+      border: 1px solid #C9C9C9;
+      padding: 0.6em;
+      background-image: -webkit-repeating-linear-gradient(top,#F2F2F2,#C9C9C9);
+      text-shadow: 0 1px 0 #FFF;
+    }
+  }
+  .Ocp2 {
+    .btn {
+      display: inline-block;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .btn--primary {
+      border-top: 2px solid #F89;
+      border-left: 2px solid #F89;
+      border-right: 2px solid #301;
+      border-bottom: 2px solid #301;
+      background-color: #C12;
+      box-shadow: 3px 3px 2px #CCC;
+      color: #FFF;
+    }
+    .btn--large {
+      padding: 20px 20px;
+      font-size: 24px;
+    }
+  }
+}
+
+.Chap2_2 {
+  @extend .CssDesign;
+
+  .c2_2_1 {
+    h2.title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    ul.link-list li {
+      padding-left: 20px;
+      background: blue no-repeat left center;
+    }
+    li > a {
+      color: white;
+    }
+  }
+  .c2_2_2 {
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .link-list li {
+      padding-left: 20px;
+      background: blue no-repeat left center;
+      > a {
+        color: white;
+      }
+    }
+  }
+  .c2_2_3 {
+    .links li a {
+      display: block;
+      color: blue;
+    }
+  }
+  .c2_2_4 {
+    .links a {
+      display: block;
+      color: blue;
+    }
+  }
+  .c2_2_5 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    #sidebar ul li {
+      border-bottom: 1px dashed #CC;
+    }
+    #sidebar ul li a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    #sidebar ul li a:hover {
+      background-color: #FFFFFF;
+    }
+
+    #sidebar .widget {
+      padding: 10px;
+    }
+    #sidebar .links li {
+      border-bottom: 0;
+    }
+    #sidebar .links li a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    #sidebar .links li a:hover {
+      background-color: #7BC;
+    }
+  }
+  .c2_2_6 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    #sidebar > ul > li {
+      border-bottom: 1px dashed #CC;
+    }
+    #sidebar > ul > li > a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    #sidebar > ul > li > a:hover {
+      background-color: #FFFFFF;
+    }
+
+    .widget {
+      padding: 10px;
+    }
+    .links > li {
+      border-bottom: 0;
+    }
+    .links > li > a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    .links > li > a:hover {
+      background-color: #7BC;
+    }
+  }
+  .c2_2_7 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    .menus > li {
+      border-bottom: 1px dashed #CC;
+    }
+    .menus > li > a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    .menus > li > a:hover {
+      background-color: #FFFFFF;
+    }
+
+    .widget {
+      padding: 10px;
+    }
+    .links > li {
+      border-bottom: 0;
+    }
+    .links > li > a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    .links > li > a:hover {
+      background-color: #7BC;
+    }
+  }
+}
+
+.Chap4_2 {
+  @extend .CssDesign;
+
+  .c4_2_1 {
+    .button {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+  }
+  .c4_2_2 {
+    /* button要素のそのものには何もしない */
+    button {}
+
+    /* button要素にも適応されることを考慮して、ボタンコンポーネントのルールセットに、button要素の初期化スタイルを記述する */
+    .button {
+      -webkit-appearance: none; /* 追加するスタイル */
+      -moz-appearance: none; /* 追加するスタイル */
+      appearance: none; /* 追加するスタイル */
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      margin: 0; /* 追加するスタイル */
+      padding: 0.3em 1em;
+      text-align: center;
+      line-height: 1;
+      background: #EEE;
+      font-size: inherit; /* 追加するスタイル */
+      cursor: pointer;
+    }
+  }
+  .c4_2_3 {
+    .button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: inline-block;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      margin: 0;
+      padding: 0.3em 1em;
+      text-align: center;
+      line-height: 1;
+      background: #EEE;
+      text-decoration: none; /* 追加するスタイル */
+      font-size: inherit;
+      color: inherit; /* 追加するスタイル */
+      cursor: pointer;
+    }
+  }
+  .c4_2_4 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+
+    .btn--short {
+      width: 200px;
+    }
+    .btn--long {
+      width: 480px;
+    }
+    .btn--full {
+      width: 100%;
+    }
+  }
+  .c4_2_5 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+    .btn--full {
+      width: 100%;
+    }
+
+    /* フォーム */
+    .form{
+      width: 400px;
+      margin: 3pxp auto;
+      padding: 20px;
+      border: 1px solid #555;
+    }
+    .form__footer {
+      padding-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 200px; /* フォームにおけるボタンの幅 */
+    }
+
+    /* コメント */
+    .comment {
+      position: relative;
+      width: 400px;
+      margin: 3pxp auto;
+      padding: 20px;
+      border: 1px solid #555;
+    }
+    .comment__body {
+      padding: 20px;
+    }
+    .comment__button {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      display: block;
+      width: 120px; /* コメントにおけるボタンの幅 */
+      font-size: 14px;
+      margin: auto;
+    }
+  }
+  .c4_2_6 {
+    .icn {
+      display: inline-block;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+    .icn--edit {
+      width: 16px;
+      height: 16px;
+    }
+    .icn--delete {
+      width: 16px;
+      height: 16px;
+      background-position: -20px -20px;
+    }
+    .icn--nav--home {
+      width: 32px;
+      height: 32px;
+      background-position: 0 0;
+    }
+  }
+  .c4_2_7 {
+    /* アイコンフォント */
+    line-height: 1;
+    font-family: 'FontAwesome', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+
+    .font-icon--home:before {
+      content: "\f015"; /* 家の形をしたアイコンフォント */
+    }
+  }
+  .c4_2_7 {
+    .font-icon--with-text {
+      margin-right: 3px;
+    }
+  }
+  .c4_2_8 {
+    .heading {
+      border: 1px solid #000;
+      margin-bottom: 0.5em;
+      line-height: 42px;
+      padding: 0 0.6em;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  .c4_2_9 {
+
+    .heading {
+      position: relative;
+
+      h2 {
+        border: 1px solid #000;
+        margin-bottom: 0.5em;
+        line-height: 42px;
+        padding: 0 0.6em;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    .heading__link {
+      position: absolute;
+      top: 0;
+      border: 0;
+      right: 1em;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
+  .c4_2_10 {
+    .media:before,
+    .media:after {
+      display: table; /* 子要素でfloatを使うため、Clearfixをする */
+      content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+    .media:after {
+      clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+    .media__image {
+      float: left;
+      margin-right: 10px;
+    }
+    .media__image > imag {
+      display: block;
+    }
+    .media__body {
+      overflow: hidden; /* 画像下にテキストが回り込むのを防ぐ */
+    }
+    .media__image--rev { /* Reverse */
+      float: right;
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+  .c4_2_11 {
+    .media {
+      display: table;
+    }
+    .media__image {
+      display: table-cell;
+      padding-right: 10px; /* marginが効かないので、paddingを使う */
+    }
+    .media__image > img {
+      display: block;
+    }
+    .media__body {
+      display: table-cell;
+      vertical-align: top;
+    }
+    .media__body--middle {
+      vertical-align: middle;
+    }
+  }
+  .c4_2_12 {
+    .nav {
+      display: table;
+      width: 100%;
+      table-layout: fixed; /* 子要素の`table-cell`の幅を均等にする */
+    }
+    .nav__item {
+      display: table-cell;
+    }
+    .nav__item > a {
+      display: block;
+      padding: 20px 0;
+      text-align: center;
+      text-decoration: none;
+      background-color: #49E;
+      font-weight: bold;
+      color: #FFF;
+    }
+  }
+  .c4_2_13 {
+    .nav {
+      display: flex;
+    }
+    .nav__item {
+      width: 100%; /* 均一の幅で並べるために必要 */
+    }
+    .nav__item > a {
+      display: block;
+      padding: 20px 0;
+      text-align: center;
+      text-decoration: none;
+      background-color: #49E;
+      font-weight: bold;
+      color: #FFF;
+    }
+  }
+  .c4_2_14 {
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__item > a {
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+    }
+  }
+  .c4_2_15 {
+    .ico {
+      display: inline-block;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+    .ico--arrow {
+      width: 16px;
+      height: 16px;
+
+    }
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__target {
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+      position: relative;
+      padding-right: 2.4em;
+    }
+    .tableview__target-icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0.6em;
+      margin: auto;
+    }
+  }
+  .c4_2_16 {
+    .tableview {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #999;
+      background-color: #DDD;
+    }
+    .tableview__item {
+      padding: 1em;
+      background-color: #DDD;
+    }
+    .tableview__item + .tableview__item {
+      border-top: 1px solid #EEE;
+    }
+    .tableview__target {
+      position: relative;
+      padding-right: 2.4em;
+      display: block;
+      margin: -1em;
+      padding: 1em;
+      text-decoration: none;
+      position: relative;
+      padding-right: 2.4em;
+    }
+    .tableview__target:after {
+      display: inline-block;
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0.6em;
+      margin: auto;
+      width: 16px;
+      height: 16px;
+      background-image: image_url('css_design/spritesheets.png');
+    }
+  }
+  .c4_2_17 {
+    .grid:before,
+    .grid:after {
+      display: table; /* 子要素でfloatを使うため、Clearfixをする */
+      content: " "; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+    .grid:after {
+      clear: both; /* 子要素でfloatを使うため、Clearfixをする */
+    }
+
+    .grid--fill {
+      margin-left: -5px;
+      margin-right: -5px;
+    }
+
+    .grid__item {
+      float: left;
+      box-sizing: border-box; /* border-widthとpaddingをwidthに含める */
+      width: 16.667%;
+    }
+    .grid__item > div {
+      padding: 0.5em 1em;
+      background-color: rgba(44,88,99,0.5);
+      text-align: center;
+      font-weight: bold;
+      color: #FFF;
+    }
+    .grid__item--1 {
+      width: 8.333%;
+    }
+    .grid__item--2 {
+      width: 16.667%;
+    }
+    .grid__item--3 {
+      width: 25%;
+    }
+    .grid__item--4 {
+      width: 33.333%;
+    }
+    .grid__item--5 {
+      width: 41.666%;
+    }
+    .grid__item--6 {
+      width: 50%;
+    }
+    .grid__item--7 {
+      width: 58.333%;
+    }
+    .grid__item--8 {
+      width: 66.666%;
+    }
+    .grid__item--9 {
+      width: 75%;
+    }
+    .grid__item--10 {
+      width: 83.33%;
+    }
+    .grid__item--11 {
+      width: 91.666%;
+    }
+    .grid__item--12 {
+      width: 100%;
+    }
+    /* `.grid__item`に持たせる */
+    .has-gutter {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+
+  .mbm { /* MarginBottom Middle */
+    margin-bottom: 20px;
+  }
+  .font-sizeL { /* font-size Large */
+    font-size: 24px;
+  }
+  .quite {
+    color: #DDD;
+    font-size: 12px;
+  }
+  .loud {
+    color: #C0D;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.Chap5_1 {
+  @extend .CssDesign;
+
+  .c5_1_1 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+    .btn-small {
+      @extend .btn;
+      font-size: 0.75em;
+    }
+    .btn-large {
+      @extend .btn;
+      font-size: 1.5em;
+    }
+
+    .btn-primary {
+      @extend .btn;
+      background-color: #e85243;
+    }
+    .btn-secondary {
+      @extend .btn;
+      background-color: #2980b9;
+    }
+
+    .btn-primary-small {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-small;
+    }
+    .btn-primary-large {
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .btn-large;
+    }
+    .btn-secondary-small {
+      @extend .btn;
+      @extend .btn-secondary;
+      @extend .btn-small;
+    }
+    .btn-secondary-large {
+      @extend .btn;
+      @extend .btn-secondary;
+      @extend .btn-large;
+    }
+  }
+  .c5_1_2 {
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      padding: 0.3em 1em;
+      background-color: #EEE;
+      cursor: pointer;
+    }
+
+    .btn--small {
+      font-size: 0.75em;
+    }
+    .btn--large {
+      font-size: 1.5em;
+    }
+
+    .btn--primary {
+      background-color: #e85243;
+    }
+    .btn--secondary {
+      background-color: #2980b9;
+    }
+  }
+  .c5_1_3 {
+    %btn {
+      display: inline-block;
+    }
+    %btn--large {
+      font-size: 1.5em;
+    }
+    %btn--primary {
+      @extend %btn;
+      background-color: #428bca;
+    }
+    %btn--secondary {
+      @extend %btn;
+      background-color: #5cb85c;
+    }
+
+    .save {
+      @extend %btn;
+      @extend %btn--large;
+      @extend %btn--primary;
+    }
+    .send {
+      @extend %btn;
+      @extend %btn--large;
+      @extend %btn--primary;
+    }
+    .go-forward {
+      @extend %btn;
+      @extend %btn--secondary;
+    }
+  }
+  .c5_1_4 {
+    %alert {
+      margin-bottom: 20px;
+      border: 1px solid #999;
+      border-radius: 8px;
+      padding: 12px;
+      background-color: #FCFCFC;
+      > .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      > .body {
+        margin-top: 6px;
+      }
+    }
+    %alert--warning {
+      border-color: #faebcc;
+      background-color: #fcf8e3;
+    }
+    .info {
+      @extend %alert;
+    }
+    .warning {
+      @extend %alert;
+      @extend %alert--warning;
+    }
+  }
+}
+
+.Chap7_2 {
+  .alert {
+    position: relative;
+    border-radius: 6px;
+    border: 1px solid #DDDDDD;
+    background-color: #EFEFEF;
+    padding: 0.6em 0.8em;
+  }
+  .alert--warning {
+    border-color: #faebcc;
+    background-color: #fcf8e3;
+  }
+  .alert--error {
+    border-color: #ebccd1;
+    background-color: #f2dede;
+  }
+  .alert--success {
+    border-color: #d6e9c6;
+    background-color: #dff0d8;
+  }
+  .alert__title {
+    font-weight: bold;
+  }
+  .alert {
+    border: 10px solid red;
+  }
+}
+
+::shadow p {
+  color: blue;
+  font-size: 36px;
+}
