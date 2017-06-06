@@ -3,8 +3,8 @@ version: 0.1
 environment_variables:
   plaintext:
     NPM_CONFIG_LOGLEVEL: info
-    NODE_VERSION: 7.4.0
-    YARN_VERSION: 0.21.3
+    NODE_VERSION: 8.0.0
+    YARN_VERSION: 0.24.5
 
 phases:
   install:

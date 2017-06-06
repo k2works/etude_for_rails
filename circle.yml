@@ -1,8 +1,8 @@
 machine:
   ruby:
-    version: 2.4.0
+    version: 2.4.1
   node:
-    version: 7.4.0
+    version: 8.0.0
   post:
     - npm install -g npm@3
   timezone: Asia/Tokyo
