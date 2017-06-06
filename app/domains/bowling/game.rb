@@ -76,8 +76,8 @@ module Bowling
         @ball += 2
         score += frame_score + next_ball
       else
+        score += two_balls_in_frame
         @ball += 2
-        score += frame_score
       end
       score
     end
@@ -88,6 +88,10 @@ module Bowling
 
     def next_ball
       @its_throws[@ball]
+    end
+
+    def two_balls_in_frame
+      @its_throws[@ball] + @its_throws[@ball+1]
     end
   end
 end
