@@ -7,7 +7,7 @@ module Bowling
     end
 
     def score
-      score_for_frame(get_current_frame-1)
+      score_for_frame(@its_current_frame)
     end
 
     def add(pins)
@@ -17,10 +17,6 @@ module Bowling
 
     def score_for_frame(the_frame)
       @its_scorer.score_for_frame(the_frame)
-    end
-
-    def get_current_frame
-      @its_current_frame
     end
 
     private
@@ -45,7 +41,7 @@ module Bowling
     end
 
     def advance_frame
-      @its_current_frame = [11, @its_current_frame+1].min
+      @its_current_frame = [10, @its_current_frame+1].min
     end
   end
 end
