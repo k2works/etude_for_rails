@@ -1,0 +1,120 @@
+<div class="Chap7_2">
+  <div class="alert">
+    <p class="alert__title">アラートメッセージのタイトル</p>
+    <div class="alert__body">
+      <p>アラートメッセージの本文</p>
+    </div>
+  </div>
+
+  <div class="alert alert--warning">
+    <p class="alert__title">アラートメッセージのタイトル</p>
+    <div class="alert__body">
+      <ul>
+        <li>アラートメッセージのリスト</li>
+        <li>アラートメッセージのリスト</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<my-alert></my-alert>
+
+<template id="my-alert-template">
+  <style>
+    .alert {
+      position: relative;
+      border-radius: 6px;
+      border: 1px solid #DDDDDD;
+      background-color: #EFEFEF;
+      padding: 0.6em 0.8em;
+    }
+    .alert--warning {
+      border-color: #faebcc;
+      background-color: #fcf8e3;
+    }
+    .alert--error {
+      border-color: #ebccd1;
+      background-color: #f2dede;
+    }
+    .alert--success {
+      border-color: #d6e9c6;
+      background-color: #dff0d8;
+    }
+
+    .alert__title,
+    .alert__body > * {
+      margin: 0;
+      padding: 0;
+    }
+    .alert__title {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+    .alert {
+      border: 10px dashed blue;
+    }
+  </style>
+
+  <div class="alert">
+    <p class="alert__title">アラートメッセージのタイトル</p>
+    <div class="alert__body">
+      <p>アラートメッセージの本文</p>
+    </div>
+  </div>
+
+  <div class="alert alert--warning">
+    <p class="alert__title">アラートメッセージのタイトル</p>
+    <div class="alert__body">
+      <ul>
+        <li>アラートメッセージのリスト</li>
+        <li>アラートメッセージのリスト</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<my-alert2 message="未入力項目があります。" warning>
+    <p>メールアドレスを入力してください。</p>
+</my-alert2>
+
+<template id="my-alert-template2">
+  <style>
+    :host {
+      display: block;
+      position: relative;
+      border-radius: 6px;
+      border: 1px solid #DDDDDD;
+      background-color: #EFEFEF;
+      padding: 0.6em 0.8em;
+    }
+      :host([warning]) {
+        border-color: #faebcc;
+        background-color: #fcf8e3;
+      }
+      :host([error]) {
+        border-color: #ebccd1;
+        background-color: #f2dede;
+      }
+      :host([success]) {
+        border-color: #d6e9c6;
+        background-color: #dff0d8;
+      }
+
+      ::content * {
+        margin: 0;
+        padding: 0;
+      }
+      ::content ul {
+        margin-left: 1.2em;
+      }
+
+      [id="alertTitle"] {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+      }
+  </style>
+
+  <p id="alertTitle"></p>
+  <content></content>
+</template>

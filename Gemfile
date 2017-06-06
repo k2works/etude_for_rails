@@ -65,6 +65,8 @@ group :development do
   gem 'redcarpet', '~> 3.3', '>= 3.3.4'
   gem 'migration_comments'
   gem 'annotate', group: :doc
+  gem 'kss-rails'
+  gem 'scss_lint', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

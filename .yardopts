@@ -10,6 +10,7 @@ docs/dev/bootstrap/bootstrap.md
 docs/dev/javascript/javascript.md
 docs/dev/css_base/css_base.md
 docs/dev/sass_base/sass_base.md
+docs/dev/css_design/css_design.md
 docs/ops/build_vagrant.md
 docs/ops/build_docker.md
 docs/ops/build_app_components.md
