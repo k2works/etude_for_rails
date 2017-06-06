@@ -38,5 +38,9 @@ module Bowling
       end
       score
     end
+
+    def get_current_frame
+      1
+    end
   end
 end
