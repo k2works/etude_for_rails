@@ -2,7 +2,7 @@
 cd /home/ec2-user/ruby-on-rails
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 source ~/.nvm/nvm.sh
-nvm install 7.4.0
+nvm install 8.0.0
 yum install postgresql-devel -y
 wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
 curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
@@ -11,7 +11,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 curl -L get.rvm.io | bash -s stable
 source /etc/profile.d/rvm.sh
 rvm requirements
-rvm install 2.4.0
+rvm install 2.4.1
 gem install rails
 bundle install
 chmod 755 bin/webpack
