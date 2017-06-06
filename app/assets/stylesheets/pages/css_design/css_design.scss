@@ -45,6 +45,154 @@
   }
 }
 
+.Chap2_2 {
+  @extend .CssDesign;
+
+  .c2_2_1 {
+    h2.title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    ul.link-list li {
+      padding-left: 20px;
+      background: blue no-repeat left center;
+    }
+    li > a {
+      color: white;
+    }
+  }
+  .c2_2_2 {
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .link-list li {
+      padding-left: 20px;
+      background: blue no-repeat left center;
+      > a {
+        color: white;
+      }
+    }
+  }
+  .c2_2_3 {
+    .links li a {
+      display: block;
+      color: blue;
+    }
+  }
+  .c2_2_4 {
+    .links a {
+      display: block;
+      color: blue;
+    }
+  }
+  .c2_2_5 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    #sidebar ul li {
+      border-bottom: 1px dashed #CC;
+    }
+    #sidebar ul li a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    #sidebar ul li a:hover {
+      background-color: #FFFFFF;
+    }
+
+    #sidebar .widget {
+      padding: 10px;
+    }
+    #sidebar .links li {
+      border-bottom: 0;
+    }
+    #sidebar .links li a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    #sidebar .links li a:hover {
+      background-color: #7BC;
+    }
+  }
+  .c2_2_6 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    #sidebar > ul > li {
+      border-bottom: 1px dashed #CC;
+    }
+    #sidebar > ul > li > a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    #sidebar > ul > li > a:hover {
+      background-color: #FFFFFF;
+    }
+
+    .widget {
+      padding: 10px;
+    }
+    .links > li {
+      border-bottom: 0;
+    }
+    .links > li > a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    .links > li > a:hover {
+      background-color: #7BC;
+    }
+  }
+  .c2_2_7 {
+    #sidebar {
+      border: 1px solid #CCC;
+      width: 300px;
+      background-color: #FAFAFA;
+    }
+    .menus > li {
+      border-bottom: 1px dashed #CC;
+    }
+    .menus > li > a {
+      display: block;
+      padding: 0.5em 1em;
+      font-weight: bold;
+      color: #489;
+    }
+    .menus > li > a:hover {
+      background-color: #FFFFFF;
+    }
+
+    .widget {
+      padding: 10px;
+    }
+    .links > li {
+      border-bottom: 0;
+    }
+    .links > li > a {
+      padding: 0.5em;
+      background-color: #6AB;
+      font-weight: normal;
+      color: #FFF;
+    }
+    .links > li > a:hover {
+      background-color: #7BC;
+    }
+  }
+}
+
 .Chap4_2 {
   @extend .CssDesign;
 
