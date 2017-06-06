@@ -72,14 +72,22 @@ module Bowling
       frame_score = @first_throw + second_throw
 
       # スペアの得点計算には次のフレームの第１投が必要
-      if frame_score == 10
+      if spare
         @ball += 2
-        score += frame_score + @its_throws[@ball]
+        score += frame_score + next_ball
       else
         @ball += 2
         score += frame_score
       end
       score
+    end
+
+    def spare
+      @its_throws[@ball] + @its_throws[@ball+1] == 10
+    end
+
+    def next_ball
+      @its_throws[@ball]
     end
   end
 end
