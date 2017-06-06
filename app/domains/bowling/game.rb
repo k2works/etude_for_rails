@@ -6,6 +6,7 @@ module Bowling
       @its_throws = Array.new(21,0)
       @its_current_frame = 1
       @first_throw = true
+      @its_scorer = Scorer.new
     end
 
     def score
