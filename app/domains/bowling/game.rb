@@ -26,11 +26,11 @@ module Bowling
       current_frame = 0
       while  current_frame < the_frame
         if strike
+          score += 10 + next_two_balls_for_strike
           @ball += 1
-          score += 10 + next_two_balls
         elsif spare
+          score += 10 + next_ball_for_spare
           @ball += 2
-          score += 10 + next_ball
         else
           score += two_balls_in_frame
           @ball += 2
@@ -50,8 +50,8 @@ module Bowling
       @its_throws[@ball] == 10
     end
 
-    def next_two_balls
-      @its_throws[@ball] + @its_throws[@ball+1]
+    def next_two_balls_for_strike
+      @its_throws[@ball+1] + @its_throws[@ball+2]
     end
 
     def adjust_current_frame(pins)
@@ -73,8 +73,8 @@ module Bowling
       @its_throws[@ball] + @its_throws[@ball+1] == 10
     end
 
-    def next_ball
-      @its_throws[@ball]
+    def next_ball_for_spare
+      @its_throws[@ball+2]
     end
 
     def two_balls_in_frame
