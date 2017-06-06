@@ -21,11 +21,15 @@ module Bowling
 
     private
     def adjust_current_frame(pins)
-      if strike(pins) || !@first_throw
+      if last_ball_in_frame(pins)
         advance_frame
       else
         @first_throw = false
       end
+    end
+
+    def last_ball_in_frame(pins)
+      strike(pins) || !@first_throw
     end
 
     def strike(pins)
