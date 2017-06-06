@@ -79,7 +79,7 @@ describe Bowling::Game do
         12.times do
           g.add(10)
         end
-        expect(g.get_current_frame).to eq(10)
+        expect(g.get_current_frame).to eq(11)
       end
     end
   end
