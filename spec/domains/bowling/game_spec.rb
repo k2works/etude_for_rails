@@ -51,8 +51,16 @@ describe Bowling::Game do
 
   describe '#get_current_frame' do
     context 'when one throw' do
-      it 'is one frame' do
+      it 'is first frame' do
         g.add(5)
+        expect(g.get_current_frame).to eq(1)
+      end
+    end
+
+    context 'when two throws' do
+      it 'is first frame' do
+        g.add(5)
+        g.add(4)
         expect(g.get_current_frame).to eq(1)
       end
     end
