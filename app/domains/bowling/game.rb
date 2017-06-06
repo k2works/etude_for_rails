@@ -2,7 +2,7 @@ module Bowling
   class Game
     def initialize
       @its_score = 0
-      @current_throw = 0
+      @its_current_throw = 0
       @its_throws = Array.new(21,0)
     end
 
@@ -11,8 +11,8 @@ module Bowling
     end
 
     def add(pins)
-      @its_throws[@current_throw] =  pins
-      @current_throw += 1
+      @its_throws[@its_current_throw] =  pins
+      @its_current_throw += 1
       @its_score += pins
     end
 
@@ -40,7 +40,7 @@ module Bowling
     end
 
     def get_current_frame
-      1 + (@current_throw - 1) / 2
+      1 + (@its_current_throw - 1) / 2
     end
   end
 end
