@@ -53,6 +53,31 @@ describe Bowling::Game do
         expect(g.score).to eq(20)
       end
     end
+
+    context 'when playing one game' do
+      it 'is scored' do
+        g.add(1)
+        g.add(4)
+        g.add(4)
+        g.add(5)
+        g.add(6)
+        g.add(4)
+        g.add(5)
+        g.add(5)
+        g.add(10)
+        g.add(0)
+        g.add(1)
+        g.add(7)
+        g.add(3)
+        g.add(6)
+        g.add(4)
+        g.add(10)
+        g.add(2)
+        g.add(8)
+        g.add(6)
+        expect(g.score).to eq(133)
+      end
+    end
   end
 
   describe '#score_for_frame' do
