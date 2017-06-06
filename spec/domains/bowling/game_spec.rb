@@ -35,7 +35,7 @@ describe Bowling::Game do
 
   describe '#score_for_frame' do
     context 'when four throws' do
-      it 'is scored' do
+      it 'is scored by frame' do
         g.add(5)
         g.add(4)
         g.add(7)
@@ -46,7 +46,7 @@ describe Bowling::Game do
     end
 
     context 'when spare' do
-      it 'is scored' do
+      it 'is scored by frame' do
         g.add(3)
         g.add(7)
         g.add(3)
@@ -57,7 +57,7 @@ describe Bowling::Game do
     end
 
     context 'when strike' do
-      it 'is scored' do
+      it 'is scored by frame' do
         g.add(10)
         g.add(3)
         g.add(6)
