@@ -31,6 +31,15 @@ describe Bowling::Game do
         expect(g.score).to eq(28)
       end
     end
+
+    context 'when perfect game' do
+      it 'is scored' do
+        12.times do
+          g.add(10)
+        end
+        expect(g.score).to eq(300)
+      end
+    end
   end
 
   describe '#score_for_frame' do
@@ -62,6 +71,15 @@ describe Bowling::Game do
         g.add(3)
         g.add(6)
         expect(g.score_for_frame(1)).to eq(19)
+      end
+    end
+
+    context 'when perfect game' do
+      it 'current frame is' do
+        12.times do
+          g.add(10)
+        end
+        expect(g.get_current_frame).to eq(10)
       end
     end
   end
