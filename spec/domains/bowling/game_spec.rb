@@ -58,20 +58,20 @@ describe Bowling::Game do
     end
 
     context 'when two throws' do
-      it 'is first frame' do
+      it 'is second frame' do
         g.add(5)
         g.add(4)
-        expect(g.get_current_frame).to eq(1)
+        expect(g.get_current_frame).to eq(2)
       end
     end
 
     context 'when spare' do
-      it 'is second frame' do
+      it 'is third frame' do
         g.add(3)
         g.add(7)
         g.add(3)
         g.add(2)
-        expect(g.get_current_frame).to eq(2)
+        expect(g.get_current_frame).to eq(3)
       end
     end
   end
