@@ -64,5 +64,15 @@ describe Bowling::Game do
         expect(g.get_current_frame).to eq(1)
       end
     end
+
+    context 'when spare' do
+      it 'is second frame' do
+        g.add(3)
+        g.add(7)
+        g.add(3)
+        g.add(2)
+        expect(g.get_current_frame).to eq(2)
+      end
+    end
   end
 end
