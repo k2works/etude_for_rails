@@ -34,24 +34,29 @@ Railsアプリケーションのための練習プログラム集
 
 **[⬆ back to top](#構成)**
 
+## 運用
+### [ソフトウェアのバージョン更新](https://github.com/k2works/etude_for_rails/commit/5801ca56ab74b6e75145e37f475f453cd2881ce2)
+
+**[⬆ back to top](#運用)**
+
 ## 開発
-### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
-### [HTMLCSSBook](dev/html_css_book/html_css_book.md)
-### [ビールリスト](dev/beer_list/beer_list.md)
-### [React入門](dev/intro_to_react/intro_to_react.md) 
-### [Reactビギナーズガイド Exce](dev/react_beginners_guide/excel.md)
-### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
-### [Bootstrap](dev/bootstrap/bootstrap.md)
-### [JavaScript](dev/javascript/javascript.md)
-### [CSSBase](dev/css_base/css_base.md)
-### [SassBase](dev/sass_base/sass_base.md) 
-### [CSSDesign](dev/css_design/css_design.md)
-### [BowlingGame](dev/bowling_game/bowling_game.md)
+### Presentation
+#### [HTMLCSSBook](dev/html_css_book/html_css_book.md)
+#### [Bootstrap](dev/bootstrap/bootstrap.md)
+#### [JavaScript](dev/javascript/javascript.md)
+#### [CSSBase](dev/css_base/css_base.md)
+#### [SassBase](dev/sass_base/sass_base.md) 
+#### [CSSDesign](dev/css_design/css_design.md)
+#### [ビールリスト](dev/beer_list/beer_list.md)
+#### [React入門](dev/intro_to_react/intro_to_react.md) 
+#### [Reactビギナーズガイド Exce](dev/react_beginners_guide/excel.md)
+#### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
+### Domain
+#### [BowlingGame](dev/bowling_game/bowling_game.md)
+### Application
+#### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
 
 **[⬆ back to top](#構成)**
-
-## 運用
-**[⬆ back to top](#運用)**
 
 # 参照 #
 + [capybara cheat shee](https://gist.github.com/zhengjia/428105)
