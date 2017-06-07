@@ -47,7 +47,7 @@ Railsアプリケーションのための練習プログラム集
 ### [SassBase](dev/sass_base/sass_base.md) 
 ### [CSSDesign](dev/css_design/css_design.md)
 ### [BowlingGame](dev/bowling_game/bowling_game.md)
-
+### [RentalVideo](dev/rental_video/rental_video.md)
 **[⬆ back to top](#構成)**
 
 ## 運用
