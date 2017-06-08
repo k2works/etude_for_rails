@@ -16,14 +16,55 @@ describe RentalVideo::Customer do
   end
 
   describe '#statement' do
-    it 'calculate price' do
-      customer.add_rental(rental_movie(7,RentalVideo::Movie::REGULAR))
-      expect(customer.statement).to be_include '9.5'
+    context 'reqular' do
+      it 'calculate price' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::REGULAR))
+        expect(customer.statement).to be_include '9.5'
+      end
+
+      it 'earned frequent renter points' do
+        customer.add_rental(rental_movie(7, RentalVideo::Movie::REGULAR))
+        expect(customer.statement).to be_include '1'
+      end
+
+      it 'print statement' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::REGULAR))
+        expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t9.5\nAmount owed is 0.0\nYou earned 1 frequent renter points'
+      end
     end
 
-    it 'print statement' do
-      customer.add_rental(rental_movie(7,RentalVideo::Movie::REGULAR))
-      expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t9.5\nAmount owed is 0.0\nYou earned 1 frequent renter points'
+    context 'new release' do
+      it 'calculate price' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::NEW_REREASE))
+        expect(customer.statement).to be_include '21'
+      end
+
+      it 'earned frequent renter points' do
+        customer.add_rental(rental_movie(7, RentalVideo::Movie::NEW_REREASE))
+        expect(customer.statement).to be_include '2'
+      end
+
+      it 'print statement' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::NEW_REREASE))
+        expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t21\nAmount owed is 0\nYou earned 2 frequent renter points'
+      end
+    end
+
+    context 'children' do
+      it 'calculate price' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::CHILDRENS))
+        expect(customer.statement).to be_include '7.5'
+      end
+
+      it 'earned frequent renter points' do
+        customer.add_rental(rental_movie(7, RentalVideo::Movie::CHILDRENS))
+        expect(customer.statement).to be_include '1'
+      end
+
+      it 'print statement' do
+        customer.add_rental(rental_movie(7,RentalVideo::Movie::CHILDRENS))
+        expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t7.5\nAmount owed is 0.0\nYou earned 1 frequent renter points'
+      end
     end
   end
 end
