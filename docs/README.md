@@ -15,31 +15,51 @@ Railsアプリケーションのための練習プログラム集
 | docker-compose |1.8.0    |             |
 
 # 構成 #
-1. [構築](#構築)
-1. [配置](#配置)
 1. [運用](#運用)
 1. [開発](#開発)
 
-## 構築
-### [開発用仮想マシン構築](./ops/build_vagrant.md)
-### [開発用コンテナ構築](./ops/build_docker.md)
-### [アプリケーションコンポーネント構築](./ops/build_app_components.md)
-
-**[⬆ back to top](#構成)**
-
-## 配置
-### [Jenkins配置](./ops/ship_jenkins.md)
-### [CircleCI配置](./ops/ship_circleci.md)
-### [Heroku配置](./ops/ship_heroku.md)
-
-**[⬆ back to top](#構成)**
-
 ## 運用
-### [ソフトウェアのバージョン更新](https://github.com/k2works/etude_for_rails/commit/5801ca56ab74b6e75145e37f475f453cd2881ce2)
+### 開発環境
+#### 構築
+##### [開発用仮想マシン構築](./ops/build_vagrant.md)
+##### [開発用コンテナ構築](./ops/build_docker.md)
+##### [アプリケーションコンポーネント構築](./ops/build_app_components.md)
+
+#### 配置
+##### [Jenkins配置](./ops/ship_jenkins.md)
+
+#### 保守
+
+**[⬆ back to top](#運用)**
+
+### ステージング環境
+#### 構築
+
+#### 配置
+##### [CircleCI配置](./ops/ship_circleci.md)
+##### [Heroku配置](./ops/ship_heroku.md)
+
+#### 保守
+
+**[⬆ back to top](#運用)**
+
+### 本番環境
+#### 構築
+#### 配置
+#### 保守
+
+**[⬆ back to top](#運用)**
+
+### 共通環境
+#### 構築
+#### 配置
+#### 保守
+##### [ソフトウェアのバージョン更新](https://github.com/k2works/etude_for_rails/commit/5801ca56ab74b6e75145e37f475f453cd2881ce2)
 
 **[⬆ back to top](#運用)**
 
 ## 開発
+### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
 ### Presentation
 #### [HTMLCSSBook](dev/html_css_book/html_css_book.md)
 #### [Bootstrap](dev/bootstrap/bootstrap.md)
@@ -51,11 +71,11 @@ Railsアプリケーションのための練習プログラム集
 #### [React入門](dev/intro_to_react/intro_to_react.md) 
 #### [Reactビギナーズガイド Exce](dev/react_beginners_guide/excel.md)
 #### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
+### Application
 ### Domain
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
 #### [RentalVideo](dev/rental_video/rental_video.md)
-### Application
-#### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
+### infrastructure
 
 **[⬆ back to top](#構成)**
 
