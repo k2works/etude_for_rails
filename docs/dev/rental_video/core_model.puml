@@ -1,0 +1,54 @@
+@startuml
+
+Movie "1"<-u- Rental
+Rental "*"<-l- "1"Customer
+Movie "*"-r->"1"Price
+Price <|-d- ChildrenPrice
+Price <|-d- RegularPrice
+Price <|-d- NewReleasePrice
+DefaultPrice <|-u- RegularPrice
+DefaultPrice <|-u- ChildrenPrice
+
+class Movie {
+- title
+charge(days_rented)
+frequent_renter_points(days_rented)
+}
+
+class Rental {
+- days_rented
+charge(days_rented)
+frequent_renter_points(days_rented)
+}
+
+class Customer {
+- name
+statement()
+html_statement()
+total_charge()
+total_frequent_renter_points()
+}
+
+interface Price<<protocol>> {
+charge(days_rented)
+}
+
+class NewReleasePrice {
+charge(days_rented)
+frequent_renter_points(days_rented)
+}
+
+class RegularPrice {
+charge(days_rented)
+}
+
+class ChildrenPrice {
+charge(days_rented)
+}
+
+class DefaultPrice<<module>> {
+frequent_renter_points(days_rented)
+}
+
+
+@enduml

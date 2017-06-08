@@ -53,6 +53,7 @@ Railsアプリケーションのための練習プログラム集
 #### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
 ### Domain
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
+#### [RentalVideo](dev/rental_video/rental_video.md)
 ### Application
 #### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
 
