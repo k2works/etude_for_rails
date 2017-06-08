@@ -22,9 +22,9 @@ module RentalVideo
           when Movie::REGULAR
             this_amount += 2
             this_amount += (element.days_rented - 2) * 1.5 if element.days_rented > 2
-          when Movie::NEW_REREASE
+          when Movie::NEW_RELEASE
             this_amount += element.days_rented * 3
-          when Movie::CHILDRENS
+          when Movie::CHILDREN
             this_amount += 1.5
             this_amount += (element.days_rented - 3) * 1.5 if element.days_rented > 3
         end
@@ -32,7 +32,7 @@ module RentalVideo
         # レンタルポイントを加算
         frequent_renter_points += 1
         # 新作２日間レンタルでボーナス点を加算
-        if element.movie.price_code == Movie::NEW_REREASE && element.days_rented > 1
+        if element.movie.price_code == Movie::NEW_RELEASE && element.days_rented > 1
           frequent_renter_points += 1
         end
         # このレンタルの料金を表示

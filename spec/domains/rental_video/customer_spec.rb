@@ -58,17 +58,17 @@ describe RentalVideo::Customer do
       context 'rental a week' do
         days_rented = 7
         it 'calculate price' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '21'
         end
 
         it 'earned frequent renter points' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '2'
         end
 
         it 'print statement' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t21\nAmount owed is 0\nYou earned 2 frequent renter points'
         end
       end
@@ -76,17 +76,17 @@ describe RentalVideo::Customer do
       context 'rental 3 days' do
         days_rented = 3
         it 'calculate price' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '9'
         end
 
         it 'earned frequent renter points' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '2'
         end
 
         it 'print statement' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t9\nAmount owed is 0\nYou earned 2 frequent renter points'
         end
       end
@@ -94,17 +94,17 @@ describe RentalVideo::Customer do
       context 'rental a day' do
         days_rented = 1
         it 'calculate price' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '3'
         end
 
         it 'earned frequent renter points' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_include '1'
         end
 
         it 'print statement' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_REREASE))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::NEW_RELEASE))
           expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t3\nAmount owed is 0\nYou earned 1 frequent renter points'
         end
       end
@@ -114,17 +114,17 @@ describe RentalVideo::Customer do
       context 'rental a week' do
         days_rented = 7
         it 'calculate price' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_include '7.5'
         end
 
         it 'earned frequent renter points' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_include '1'
         end
 
         it 'print statement' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t7.5\nAmount owed is 0.0\nYou earned 1 frequent renter points'
         end
       end
@@ -132,17 +132,17 @@ describe RentalVideo::Customer do
       context 'rental 3 days' do
         days_rented = 3
         it 'calculate price' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_include '1.5'
         end
 
         it 'earned frequent renter points' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_include '1'
         end
 
         it 'print statement' do
-          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDRENS))
+          customer.add_rental(rental_movie(days_rented, RentalVideo::Movie::CHILDREN))
           expect(customer.statement).to be_match 'Rental Record for Taro\n\tAttack of the Killer Tomatoes!\t1.5\nAmount owed is 0.0\nYou earned 1 frequent renter points'
         end
       end
