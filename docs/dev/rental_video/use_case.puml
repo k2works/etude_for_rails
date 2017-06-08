@@ -1,0 +1,10 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor customer
+rectangle VedioRental {
+  customer -- (レンタルする)
+              (レンタル料金を計算する)
+              (計算書を印刷する)
+}
+@enduml
