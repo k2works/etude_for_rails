@@ -334,3 +334,23 @@ describe Payroll::ChangeHoldTransaction do
   end
 end
 
+describe Payroll::ChangeMemberTransaction do
+  describe '#execute' do
+    it 'change union affiliation' do
+      emp_id = 2
+      member_id = 7734
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cmt = Payroll::ChangeMemberTransaction.new(emp_id, member_id, 99.42)
+      cmt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      affiliation = e.affiliation
+      expect(affiliation).to be_an_instance_of(Payroll::UnionAffiliation)
+      expect(affiliation.get_dues).to eq(99.42)
+      member = Payroll::PayrollDatabase.get_union_member(member_id)
+      expect(member).not_to be_nil
+      expect(member).to eq(e)
+    end
+  end
+end
+
