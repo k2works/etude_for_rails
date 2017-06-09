@@ -245,3 +245,23 @@ describe Payroll::ChangeHourlyTransaction do
     end
   end
 end
+
+describe Payroll::ChangeSalariedTransaction do
+  describe '#execute' do
+    it 'change hourly rate' do
+      emp_id = 3
+      t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
+      t.execute
+      cht = Payroll::ChangeSalariedTransaction.new(emp_id, 25000)
+      cht.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      classification = e.classification
+      expect(classification).not_to be_nil
+      expect(classification).to be_an_instance_of(Payroll::SalariedClassification)
+      expect(classification.get_salary).to eq(25000.0)
+      schedule = e.schedule
+      expect(schedule).to be_an_instance_of(Payroll::MonthlySchedule)
+    end
+  end
+end
+
