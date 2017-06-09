@@ -14,5 +14,8 @@ module Payroll
     def get_account
       @its_account
     end
+
+    def pay(paycheck)
+    end
   end
 end

@@ -26,5 +26,9 @@ module Payroll
     def self.remove_union_member(member_id)
       @@its_union_members.delete(member_id)
     end
+
+    def self.get_all_employee_ids
+      @@its_employees.keys
+    end
   end
 end

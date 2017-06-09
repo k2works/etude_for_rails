@@ -26,5 +26,9 @@ module Payroll
     def get_dues
       @its_dues
     end
+
+    def calculate_deductions(paycheck)
+      0
+    end
   end
 end

@@ -19,5 +19,8 @@ module Payroll
       @its_time_cards.store(tc.get_date, tc)
     end
 
+    def calculate_pay(paycheck)
+      0
+    end
   end
 end

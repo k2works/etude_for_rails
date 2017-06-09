@@ -23,5 +23,9 @@ module Payroll
     def get_receipt(date)
       @its_receipts.fetch(date)
     end
+
+    def calculate_pay(paycheck)
+      0
+    end
   end
 end

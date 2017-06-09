@@ -8,5 +8,8 @@ module Payroll
     def get_address
       @its_address
     end
+
+    def pay(paycheck)
+    end
   end
 end

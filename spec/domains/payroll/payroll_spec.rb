@@ -374,3 +374,26 @@ describe Payroll::ChangeUnaffiliatedTransaction do
     end
   end
 end
+
+describe Payroll::PaydayTransaction do
+  def validate_paycheck(emp_id, pay, pay_date, pt)
+    pc = pt.get_paycheck(emp_id)
+    expect(pc.pay_period_end_date).to eq(pay_date)
+    expect(pc.gross_pay).to eq(pay)
+    expect(pc.get_field('Disposition')).to eq('Hold')
+    expect(pc.deducations).to eq(0.0)
+    expect(pc.net_pay).to eq(pay)
+  end
+
+  describe '#execute' do
+    it 'create pay check for single salaried employee' do
+      emp_id = 1
+      t = Payroll::AddSalariedEmployee.new(emp_id, 'Bob', 'Home', 1000.00)
+      t.execute
+      pay_date = Date.new(2001,11,30)
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      validate_paycheck(emp_id, 1000.00, pay_date, pt)
+    end
+  end
+end
