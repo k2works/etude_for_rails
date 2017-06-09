@@ -175,3 +175,24 @@ describe Payroll::SalesReceiptTransaction do
     end
   end
 end
+
+describe Payroll::ServiceChargeTransaction do
+  describe '#execute' do
+    it 'store service charge' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      tct = Payroll::TimeCardTransaction.new(20011031,8.0,emp_id)
+      tct.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      af = Payroll::UnionAffiliation.new(12.5)
+      e.affiliation = af
+      member_id = 86
+      Payroll::PayrollDatabase.add_union_member(member_id, e)
+      sct = ServiceChargeTransaction.new(member_id, 20011031, 12.95)
+      sct.execute
+      sc = af.get_service_charge(20011031)
+      expect(sc).to eq(12.95)
+    end
+  end
+end
