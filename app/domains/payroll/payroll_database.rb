@@ -7,11 +7,11 @@ module Payroll
     end
 
     def self.get_employee(emp_id)
-      @@its_employees.fetch(emp_id)
+      @@its_employees.try(:fetch, emp_id, nil)
     end
 
-    def self.clear
-      @@its_employees.clear
+    def self.delete_employee(its_emp_id)
+      @@its_employees.delete(its_emp_id)
     end
   end
 end

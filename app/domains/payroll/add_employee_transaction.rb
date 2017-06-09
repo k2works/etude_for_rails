@@ -1,5 +1,7 @@
 module Payroll
-  class AddEmployeeTransaction < Transaction
+  class AddEmployeeTransaction
+    include Transaction
+
     def initialize(emp_id, name, address)
       @its_emp_id = emp_id
       @its_name = name

@@ -1,5 +1,5 @@
 module Payroll
-  class Transaction
+  module Transaction
     def execute
     end
   end

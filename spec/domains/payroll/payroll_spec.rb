@@ -120,3 +120,22 @@ describe Payroll::AddCommissionedEmployee do
     end
   end
 end
+
+describe Payroll::DeleteEmployeeTransaction do
+  def setup_employee
+    emp_id = 3
+    t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
+    t.execute
+    Payroll::PayrollDatabase.get_employee(emp_id)
+  end
+
+  describe '#execute' do
+    it 'delete record' do
+      setup_employee
+      dt = Payroll::DeleteEmployeeTransaction.new(emp_id)
+      dt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      expect(e).to be_nil
+    end
+  end
+end
