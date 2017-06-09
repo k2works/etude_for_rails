@@ -1,4 +1,4 @@
 module Payroll
-  class PaymentClassification
+  module PaymentClassification
   end
 end
