@@ -284,3 +284,20 @@ describe Payroll::ChangeCommissionedTransaction do
     end
   end
 end
+
+describe Payroll::ChangeMailTransaction do
+  describe '#execute' do
+    it 'change mail send address' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cmt = Payroll::ChangeMailTransaction.new(emp_id, '4080 El Cerrito Road')
+      cmt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      hold_method = e.hold_method
+      expect(hold_method).to be_an_instance_of(Payroll::MailMethod)
+      expect(hold_method.get_address).to eq('4080 El Cerrito Road')
+    end
+  end
+
+end
