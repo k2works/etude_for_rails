@@ -211,3 +211,18 @@ describe Payroll::ChangeNameTransaction do
     end
   end
 end
+
+describe Payroll::ChangeAddressTransaction do
+  describe '#execute' do
+    it 'rename employee' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cnt = Payroll::ChangeAddressTransaction.new(emp_id, 'Second Home')
+      cnt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      expect(e).not_to be_nil
+      expect(e.address).to eq('Second Home')
+    end
+  end
+end
