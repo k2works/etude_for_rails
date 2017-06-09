@@ -318,3 +318,19 @@ describe Payroll::ChangeDirectTransaction do
   end
 end
 
+describe Payroll::ChangeHoldTransaction do
+  describe '#execute' do
+    it 'change payment method' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cht = ChangeHoldTransaction.new(emp_id)
+      cht.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      payment_method = e.hold_method
+      expect(payment_method).not_to be_nil
+      expect(payment_method).to be_an_instance_of(Payroll::HoldMethod)
+    end
+  end
+end
+
