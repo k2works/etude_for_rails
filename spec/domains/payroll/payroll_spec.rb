@@ -139,3 +139,21 @@ describe Payroll::DeleteEmployeeTransaction do
     end
   end
 end
+
+describe Payroll::TimeCardTransaction do
+  describe '#execute' do
+    it 'store timecard' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      tct = Payroll::TimeCardTransaction.new(20011031,8.0,emp_id)
+      tct.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      hc = e.classification
+      expect(hc).not_to be_nil
+      tc = hc.get_time_card(20011031)
+      expect(tc).not_to be_nil
+      expect(tc.get_hours).to eq(8.0)
+    end
+  end
+end
