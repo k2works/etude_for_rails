@@ -354,3 +354,23 @@ describe Payroll::ChangeMemberTransaction do
   end
 end
 
+describe Payroll::ChangeUnaffiliatedTransaction do
+  describe '#execute' do
+    it 'delete union member' do
+      emp_id = 2
+      member_id = 7734
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cmt = Payroll::ChangeMemberTransaction.new(emp_id, member_id, 99.42)
+      cmt.execute
+      cuat = Payroll::ChangeUnaffiliatedTransaction.new(emp_id)
+      cuat.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      affiliation = e.affiliation
+      expect(affiliation).to be_an_instance_of(Payroll::NoAffiliation)
+      expect(affiliation.get_service_charge(20011031)).to eq(0)
+      member = Payroll::PayrollDatabase.get_union_member(member_id)
+      expect(member).to be_nil
+    end
+  end
+end

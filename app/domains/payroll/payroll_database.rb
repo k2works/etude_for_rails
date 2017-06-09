@@ -20,7 +20,11 @@ module Payroll
     end
 
     def self.get_union_member(member_id)
-      @@its_union_members.fetch(member_id)
+      @@its_union_members.try(:fetch, member_id, nil)
+    end
+
+    def self.remove_union_member(member_id)
+      @@its_union_members.delete(member_id)
     end
   end
 end
