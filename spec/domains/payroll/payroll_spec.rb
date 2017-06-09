@@ -157,3 +157,21 @@ describe Payroll::TimeCardTransaction do
     end
   end
 end
+
+describe Payroll::SalesReceiptTransaction do
+  describe '#execute' do
+    it 'store sales receipt' do
+      emp_id = 3
+      t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
+      t.execute
+      srt = SalesReceiptTransaction.new(20011112, 25000, emp_id)
+      srt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      pc = e.classification
+      expect(pc).not_to be_nil
+      receipt = pc.get_receipt(20011112)
+      expect(receipt).not_to be_nil
+      expect(receipt.get_amount).to eq(25000.0)
+    end
+  end
+end
