@@ -1,4 +1,5 @@
 module Payroll
-  class HoldMethod < PaymentMethod
+  class HoldMethod
+    include PaymentMethod
   end
 end

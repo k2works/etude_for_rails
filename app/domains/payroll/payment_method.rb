@@ -1,4 +1,4 @@
 module Payroll
-  class PaymentMethod
+  module PaymentMethod
   end
 end

@@ -1,5 +1,6 @@
 module Payroll
-  class MailMethod < PaymentMethod
+  class MailMethod
+    include PaymentMethod
     def initialize(address)
       @its_address = address
     end
