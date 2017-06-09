@@ -299,5 +299,22 @@ describe Payroll::ChangeMailTransaction do
       expect(hold_method.get_address).to eq('4080 El Cerrito Road')
     end
   end
-
 end
+
+describe Payroll::ChangeDirectTransaction do
+  describe '#execute' do
+    it 'change direct' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cdt = Payroll::ChangeDirectTransaction.new(emp_id, 'FirstNational', '1058209')
+      cdt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      hold_method = e.hold_method
+      expect(hold_method).to be_an_instance_of(Payroll::DirectMethod)
+      expect(hold_method.get_bank).to eq('FirstNational')
+      expect(hold_method.get_account).to eq('1058209')
+    end
+  end
+end
+
