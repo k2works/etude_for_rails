@@ -196,3 +196,18 @@ describe Payroll::ServiceChargeTransaction do
     end
   end
 end
+
+describe Payroll::ChangeNameTransaction do
+  describe '#execute' do
+    it 'rename employee' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      cnt = Payroll::ChangeNameTransaction.new(emp_id, 'Bob')
+      cnt.execute
+      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      expect(e).not_to be_nil
+      expect(e.name).to eq('Bob')
+    end
+  end
+end
