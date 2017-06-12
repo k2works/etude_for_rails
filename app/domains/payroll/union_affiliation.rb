@@ -28,7 +28,28 @@ module Payroll
     end
 
     def calculate_deductions(paycheck)
-      0
+      total_service_charge = 0
+      total_dues = 0
+
+      @its_service_charges.values.each do |sc|
+        if paycheck.pay_period_start_date < sc.get_date && paycheck.pay_period_end_date >= sc.get_date
+          total_service_charge += sc.get_amount
+        end
+      end
+
+      fridays = number_of_fridays_in_pay_period(paycheck.pay_period_start_date, paycheck.pay_period_end_date)
+      total_dues = @its_dues * fridays
+      total_dues + total_service_charge
+    end
+
+    def number_of_fridays_in_pay_period(pay_period_start, pay_period_end)
+      fridays = 0
+      pay_period = pay_period_start
+      while pay_period <= pay_period_end
+        fridays += 1 if pay_period.friday?
+        pay_period += 1
+      end
+      fridays
     end
   end
 end

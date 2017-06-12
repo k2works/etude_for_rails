@@ -1,7 +1,7 @@
 module Payroll
   class Paycheck
     attr_reader :pay_period_start_date,:pay_period_end_date
-    attr_accessor :gross_pay,:deducations,:net_pay
+    attr_accessor :gross_pay,:deductions,:net_pay
 
     def initialize(pay_period_start_date, pay_period_end_date)
       @pay_period_start_date = pay_period_start_date

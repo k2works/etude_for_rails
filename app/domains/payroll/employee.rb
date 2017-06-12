@@ -23,7 +23,7 @@ module Payroll
       deductions = @affiliation.calculate_deductions(paycheck)
       net_pay = gross_pay - deductions
       paycheck.gross_pay = gross_pay
-      paycheck.deducations = deductions
+      paycheck.deductions = deductions
       paycheck.net_pay = net_pay
       @hold_method.pay(paycheck)
     end
