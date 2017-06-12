@@ -395,5 +395,16 @@ describe Payroll::PaydayTransaction do
       pt.execute
       validate_paycheck(emp_id, 1000.00, pay_date, pt)
     end
+
+    it 'not create pay check for single salaried employee on wrong date' do
+      emp_id = 1
+      t = Payroll::AddSalariedEmployee.new(emp_id, 'Bob', 'Home', 1000.00)
+      t.execute
+      pay_date = Date.new(2001,11,29)
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      pc = pt.get_paycheck(emp_id)
+      expect(pc).to be_nil
+    end
   end
 end
