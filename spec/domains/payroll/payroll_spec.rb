@@ -406,5 +406,15 @@ describe Payroll::PaydayTransaction do
       pc = pt.get_paycheck(emp_id)
       expect(pc).to be_nil
     end
+
+    it 'create pay check for single hourly employee no time cards' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      pay_date = Date.new(2001,11,9)
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      validate_paycheck(emp_id, 0.0, pay_date, pt)
+    end
   end
 end
