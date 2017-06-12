@@ -467,5 +467,20 @@ describe Payroll::PaydayTransaction do
       pt.execute
       validate_paycheck(emp_id, 7 * 15.25, pay_date, pt)
     end
+
+    it 'create pay check for single hourly employee overtime with two time cards spanning two pay periods' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      pay_date = Date.new(2001,11,9)
+      date_in_previous_pay_period = Date.new(2001,11,2)
+      tc = TimeCardTransaction.new(pay_date, 2.0, emp_id)
+      tc.execute
+      tc2 = TimeCardTransaction.new(date_in_previous_pay_period, 5.0, emp_id)
+      tc2.execute
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      validate_paycheck(emp_id, 2 * 15.25, pay_date, pt)
+    end
   end
 end
