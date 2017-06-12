@@ -560,5 +560,26 @@ describe Payroll::PaydayTransaction do
       expect(pc.deductions).to eq(fridays * 9.42)
       expect(pc.net_pay).to eq(1000.0 - fridays * 9.42)
     end
+
+    it 'create pay check for hourly union members employee' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      member_id = 7734
+      cmt = ChangeMemberTransaction.new(emp_id, member_id, 9.42)
+      cmt.execute
+      pay_date = Date.new(2001,11,9)
+      tct = TimeCardTransaction.new(pay_date, 8.0, emp_id)
+      tct.execute
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      pc = pt.get_paycheck(emp_id)
+      expect(pc).not_to be_nil
+      expect(pc.pay_period_end_date).to eq(pay_date)
+      expect(pc.gross_pay).to eq(8 * 15.25)
+      expect(pc.get_field('Disposition')).to eq('Hold')
+      expect(pc.deductions).to eq(9.42)
+      expect(pc.net_pay).to eq(8 * 15.25 - 9.42)
+    end
   end
 end
