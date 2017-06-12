@@ -482,5 +482,15 @@ describe Payroll::PaydayTransaction do
       pt.execute
       validate_paycheck(emp_id, 2 * 15.25, pay_date, pt)
     end
+
+    it 'create pay check for single commissioned employee with no sales receipts' do
+      emp_id = 3
+      t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
+      t.execute
+      pay_date = Date.new(2001,11,9)
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      validate_paycheck(emp_id, 2500.00, pay_date, pt)
+    end
   end
 end

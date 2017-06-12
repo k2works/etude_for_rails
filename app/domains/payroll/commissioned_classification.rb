@@ -25,7 +25,13 @@ module Payroll
     end
 
     def calculate_pay(paycheck)
-      0
+      commission = 0.0
+      @its_receipts.values.each do |receipt|
+        if paycheck.pay_period_start_date < receipt.get_date && paycheck.pay_period_end_date >= receipt.get_date
+          commission += receipt.get_amount * @its_commission_rate
+        end
+      end
+      @its_salary + commission
     end
   end
 end
