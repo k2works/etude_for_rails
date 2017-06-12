@@ -655,3 +655,23 @@ describe Payroll::PaydayTransaction do
     end
   end
 end
+
+describe Payroll::PayrollApplication do
+  describe '#set_source' do
+    it 'parse text file and execute' do
+      application = PayrollApplication.new
+      application.set_source("spec/domains/payroll/META-INF/Main.txt")
+      date = Date.new(2001, 10, 31)
+      emp_id = 2
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
+      cf = e.classification
+      tc = cf.get_time_card(date)
+      puts tc.get_hours
+
+      expect(e.name).to eq('Bill')
+      expect(e.address).to eq('Home')
+      expect(tc.get_date).to eq(date)
+      expect(tc.get_hours).to eq(8)
+    end
+  end
+end

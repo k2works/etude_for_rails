@@ -12,7 +12,7 @@ module Payroll
     end
 
     def get_time_card(date)
-      @its_time_cards.fetch(date)
+      @its_time_cards.try(:fetch,date,nil)
     end
 
     def add_time_card(tc)
