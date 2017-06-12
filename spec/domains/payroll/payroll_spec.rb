@@ -440,5 +440,18 @@ describe Payroll::PaydayTransaction do
       pt.execute
       validate_paycheck(emp_id, (8 + 1.5) * 15.25, pay_date, pt)
     end
+
+    it 'create pay check for single hourly employee on wrong date' do
+      emp_id = 2
+      t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
+      t.execute
+      pay_date = Date.new(2001,11,8)
+      tc = TimeCardTransaction.new(pay_date, 9.0, emp_id)
+      tc.execute
+      pt = Payroll::PaydayTransaction.new(pay_date)
+      pt.execute
+      pc = pt.get_paycheck(emp_id)
+      expect(pc).to be_nil
+    end
   end
 end
