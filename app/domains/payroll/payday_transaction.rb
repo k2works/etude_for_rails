@@ -8,9 +8,9 @@ module Payroll
     end
 
     def execute
-      emp_ids = PayrollDatabase.get_all_employee_ids
+      emp_ids = GlobalDatabase.instance.payroll_db.get_all_employee_ids
       emp_ids.each do |emp_id|
-        e = PayrollDatabase.get_employee(emp_id)
+        e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
         if e.is_pay_date(@its_pay_date)
           pc = Paycheck.new(e.get_pay_period_start_date(@its_pay_date), @its_pay_date)
           @its_pay_checks.store(emp_id, pc)

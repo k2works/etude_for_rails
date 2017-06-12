@@ -7,7 +7,7 @@ module Payroll
     end
 
     def execute
-      e = PayrollDatabase.get_employee(@its_emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(@its_emp_id)
       if !e.nil?
         change(e)
       end

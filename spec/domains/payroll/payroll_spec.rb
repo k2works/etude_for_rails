@@ -6,7 +6,7 @@ describe Payroll::AddSalariedEmployee do
     emp_id = 1
     t = Payroll::AddSalariedEmployee.new(emp_id, 'Bob', 'Home', 1000.00)
     t.execute
-    Payroll::PayrollDatabase.get_employee(emp_id)
+    GlobalDatabase.instance.payroll_db.get_employee(emp_id)
   end
 
   describe '#execute' do
@@ -46,7 +46,7 @@ describe Payroll::AddHourlyEmployee do
     emp_id = 2
     t = Payroll::AddHourlyEmployee.new(emp_id, 'Bill', 'Home', 15.25)
     t.execute
-    Payroll::PayrollDatabase.get_employee(emp_id)
+    GlobalDatabase.instance.payroll_db.get_employee(emp_id)
   end
 
   describe '#execute' do
@@ -86,7 +86,7 @@ describe Payroll::AddCommissionedEmployee do
     emp_id = 3
     t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
     t.execute
-    Payroll::PayrollDatabase.get_employee(emp_id)
+    GlobalDatabase.instance.payroll_db.get_employee(emp_id)
   end
 
   describe '#execute' do
@@ -126,7 +126,7 @@ describe Payroll::DeleteEmployeeTransaction do
     emp_id = 3
     t = Payroll::AddCommissionedEmployee.new(emp_id, 'Lance', 'Home', 2500, 3.2)
     t.execute
-    Payroll::PayrollDatabase.get_employee(emp_id)
+    GlobalDatabase.instance.payroll_db.get_employee(emp_id)
   end
 
   describe '#execute' do
@@ -134,7 +134,7 @@ describe Payroll::DeleteEmployeeTransaction do
       setup_employee
       dt = Payroll::DeleteEmployeeTransaction.new(emp_id)
       dt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       expect(e).to be_nil
     end
   end
@@ -148,7 +148,7 @@ describe Payroll::TimeCardTransaction do
       t.execute
       tct = Payroll::TimeCardTransaction.new(20011031,8.0,emp_id)
       tct.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       hc = e.classification
       expect(hc).not_to be_nil
       tc = hc.get_time_card(20011031)
@@ -166,7 +166,7 @@ describe Payroll::SalesReceiptTransaction do
       t.execute
       srt = SalesReceiptTransaction.new(20011112, 25000, emp_id)
       srt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       pc = e.classification
       expect(pc).not_to be_nil
       receipt = pc.get_receipt(20011112)
@@ -184,11 +184,11 @@ describe Payroll::ServiceChargeTransaction do
       t.execute
       tct = Payroll::TimeCardTransaction.new(20011031,8.0,emp_id)
       tct.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       af = Payroll::UnionAffiliation.new(12.5)
       e.affiliation = af
       member_id = 86
-      Payroll::PayrollDatabase.add_union_member(member_id, e)
+      GlobalDatabase.instance.payroll_db.add_union_member(member_id, e)
       sct = ServiceChargeTransaction.new(member_id, 20011031, 12.95)
       sct.execute
       sc = af.get_service_charge(20011031)
@@ -205,7 +205,7 @@ describe Payroll::ChangeNameTransaction do
       t.execute
       cnt = Payroll::ChangeNameTransaction.new(emp_id, 'Bob')
       cnt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       expect(e).not_to be_nil
       expect(e.name).to eq('Bob')
     end
@@ -220,7 +220,7 @@ describe Payroll::ChangeAddressTransaction do
       t.execute
       cnt = Payroll::ChangeAddressTransaction.new(emp_id, 'Second Home')
       cnt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       expect(e).not_to be_nil
       expect(e.address).to eq('Second Home')
     end
@@ -235,7 +235,7 @@ describe Payroll::ChangeHourlyTransaction do
       t.execute
       cht = Payroll::ChangeHourlyTransaction.new(emp_id, 27.52)
       cht.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       classification = e.classification
       expect(classification).not_to be_nil
       expect(classification).to be_an_instance_of(Payroll::HourlyClassification)
@@ -254,7 +254,7 @@ describe Payroll::ChangeSalariedTransaction do
       t.execute
       cht = Payroll::ChangeSalariedTransaction.new(emp_id, 25000)
       cht.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       classification = e.classification
       expect(classification).not_to be_nil
       expect(classification).to be_an_instance_of(Payroll::SalariedClassification)
@@ -273,7 +273,7 @@ describe Payroll::ChangeCommissionedTransaction do
       t.execute
       cht = Payroll::ChangeCommissionedTransaction.new(emp_id, 25000, 4.5)
       cht.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       classification = e.classification
       expect(classification).not_to be_nil
       expect(classification).to be_an_instance_of(Payroll::CommissionedClassification)
@@ -293,7 +293,7 @@ describe Payroll::ChangeMailTransaction do
       t.execute
       cmt = Payroll::ChangeMailTransaction.new(emp_id, '4080 El Cerrito Road')
       cmt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       hold_method = e.hold_method
       expect(hold_method).to be_an_instance_of(Payroll::MailMethod)
       expect(hold_method.get_address).to eq('4080 El Cerrito Road')
@@ -309,7 +309,7 @@ describe Payroll::ChangeDirectTransaction do
       t.execute
       cdt = Payroll::ChangeDirectTransaction.new(emp_id, 'FirstNational', '1058209')
       cdt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       hold_method = e.hold_method
       expect(hold_method).to be_an_instance_of(Payroll::DirectMethod)
       expect(hold_method.get_bank).to eq('FirstNational')
@@ -326,7 +326,7 @@ describe Payroll::ChangeHoldTransaction do
       t.execute
       cht = ChangeHoldTransaction.new(emp_id)
       cht.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       payment_method = e.hold_method
       expect(payment_method).not_to be_nil
       expect(payment_method).to be_an_instance_of(Payroll::HoldMethod)
@@ -343,11 +343,11 @@ describe Payroll::ChangeMemberTransaction do
       t.execute
       cmt = Payroll::ChangeMemberTransaction.new(emp_id, member_id, 99.42)
       cmt.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       affiliation = e.affiliation
       expect(affiliation).to be_an_instance_of(Payroll::UnionAffiliation)
       expect(affiliation.get_dues).to eq(99.42)
-      member = Payroll::PayrollDatabase.get_union_member(member_id)
+      member = GlobalDatabase.instance.payroll_db.get_union_member(member_id)
       expect(member).not_to be_nil
       expect(member).to eq(e)
     end
@@ -365,11 +365,11 @@ describe Payroll::ChangeUnaffiliatedTransaction do
       cmt.execute
       cuat = Payroll::ChangeUnaffiliatedTransaction.new(emp_id)
       cuat.execute
-      e = Payroll::PayrollDatabase.get_employee(emp_id)
+      e = GlobalDatabase.instance.payroll_db.get_employee(emp_id)
       affiliation = e.affiliation
       expect(affiliation).to be_an_instance_of(Payroll::NoAffiliation)
       expect(affiliation.get_service_charge(20011031)).to eq(0)
-      member = Payroll::PayrollDatabase.get_union_member(member_id)
+      member = GlobalDatabase.instance.payroll_db.get_union_member(member_id)
       expect(member).to be_nil
     end
   end

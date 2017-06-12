@@ -12,7 +12,7 @@ module Payroll
       af = employee.affiliation
       if af.instance_of?(UnionAffiliation)
         member_id = af.get_member_id
-        PayrollDatabase.remove_union_member(member_id)
+        GlobalDatabase.instance.payroll_db.remove_union_member(member_id)
       end
     end
   end

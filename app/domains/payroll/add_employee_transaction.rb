@@ -16,7 +16,7 @@ module Payroll
       e.classification = pc
       e.schedule = ps
       e.hold_method = pm
-      PayrollDatabase.add_employee(@its_emp_id, e)
+      GlobalDatabase.instance.payroll_db.add_employee(@its_emp_id, e)
     end
 
     def get_schedule

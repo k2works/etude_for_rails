@@ -11,7 +11,7 @@ module Payroll
     end
 
     def record_membership(employee)
-      PayrollDatabase.add_union_member(@its_member_id, employee)
+      GlobalDatabase.instance.payroll_db.add_union_member(@its_member_id, employee)
     end
   end
 end

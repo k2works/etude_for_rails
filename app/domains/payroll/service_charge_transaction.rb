@@ -9,7 +9,7 @@ module Payroll
     end
 
     def execute
-      e = PayrollDatabase.get_union_member(@its_member_id)
+      e = GlobalDatabase.instance.payroll_db.get_union_member(@its_member_id)
       affiliation = e.affiliation
       if affiliation.instance_of? UnionAffiliation
         affiliation.add_service_charge(@its_date, @its_amount)

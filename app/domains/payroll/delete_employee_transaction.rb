@@ -7,7 +7,7 @@ module Payroll
     end
 
     def execute
-      PayrollDatabase.delete_employee(@its_emp_id)
+      GlobalDatabase.instance.payroll_db.delete_employee(@its_emp_id)
     end
   end
 end
