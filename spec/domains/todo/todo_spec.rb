@@ -13,4 +13,18 @@ describe Todo::Command do
       expect(Todo::Task.where(name:'create_name').count).to eq(1)
     end
   end
+
+  describe '#update_task' do
+    it 'update task' do
+      task = command.create_task('create_name1', 'create_content1')
+      command.update_task(task.id, {content: 'sample1', status: 'done'})
+      expect(command.find_tasks('done').exists?).to be_truthy
+    end
+
+    it 'delete task' do
+      task = command.create_task('create_name1', 'create_content1')
+      command.delete_task(task.id)
+      expect(command.find_tasks('not_yet').exists?).to be_falsey
+    end
+  end
 end

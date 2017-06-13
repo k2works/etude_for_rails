@@ -2,6 +2,7 @@ module Todo
   # taskテーブルを表現するモデルクラスです
   # @author k2works
   class Task < ActiveRecord::Base
+    scope :status_is, ->(status) { where(status: status) }
 
     NOT_YET = 0 # タスクが完了していない
 
