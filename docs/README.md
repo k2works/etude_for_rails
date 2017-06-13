@@ -74,6 +74,7 @@ Railsアプリケーションのための練習プログラム集
 ### Application
 ### Domain
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
+#### [PayRoll](dev/payroll/payroll.md)
 #### [RentalVideo](dev/rental_video/rental_video.md)
 ### infrastructure
 
