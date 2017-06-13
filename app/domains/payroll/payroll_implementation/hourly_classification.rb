@@ -23,7 +23,10 @@ module Payroll
       def calculate_pay(paycheck)
         total_pay = 0
         @its_time_cards.values.each do |tc|
-          if paycheck.pay_period_start_date < tc.get_date && paycheck.pay_period_end_date >= tc.get_date
+          the_date = tc.get_date
+          start_date = paycheck.pay_period_start_date
+          end_date = paycheck.pay_period_end_date
+          if PayrollUtil::Date.is_between(end_date, start_date, the_date)
             if 8 < tc.get_hours
               total_pay += @its_hourly_rate * 8 + @its_hourly_rate * (tc.get_hours - 8) * 1.5
             else
