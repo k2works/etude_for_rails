@@ -190,3 +190,5 @@ build-iPhoneSimulator/
 /public/packs
 /node_modules
 *.pem
+
+db/todo.sqlite3
