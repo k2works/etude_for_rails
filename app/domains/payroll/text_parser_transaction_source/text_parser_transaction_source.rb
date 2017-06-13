@@ -1,6 +1,10 @@
 module Payroll
   module TextParserTransactionSource
     class TextParserTransactionSource < TransactionApplicationSource::TransactionSource
+      def initialize(transaction_factory)
+        @its_transaction_factory = transaction_factory
+      end
+
       def execute
         parse
       end
@@ -100,14 +104,14 @@ module Payroll
         emp_id = line.fetch(1).to_i
         if line.fetch(4).eql?("H")
           hourly_rate = line.fetch(5).to_d
-          t = AddHourlyEmployee.new(emp_id, line.fetch(2), line.fetch(3), hourly_rate)
+          t = @its_transaction_factory.make_add_hourly_employee(emp_id, line.fetch(2), line.fetch(3), hourly_rate)
         elsif line.fetch(4).eql?("S")
           salary = line.fetch(5)
-          t = AddSalariedEmployee.new(emp_id, line.fetch(2), line.fetch(3), salary)
+          t = @its_transaction_factory.make_add_salaried_employee(emp_id, line.fetch(2), line.fetch(3), salary)
         elsif line.fetch(4).eql?("C")
           salary = line.fetch(5)
           commision_rate = line.fetch(6)
-          t = AddCommissionedEmployee(emp_id, line.fetch(2), line.fetch(3), salary, commision_rate)
+          t = @its_transaction_factory.make_add_commissioned_employee(emp_id, line.fetch(2), line.fetch(3), salary, commision_rate)
         end
         t
       end
@@ -118,35 +122,35 @@ module Payroll
         change_info = line.fetch(2)
         if change_info.eql?("Name")
           name = line.fetch(3)
-          t = ChangeNameTransaction.new(emp_id, name)
+          t = @its_transaction_factory.make_change_name_transaction(emp_id, name)
         elsif change_info.eql?("Address")
           address = line.fetch(3)
-          t = ChangeAddressTransaction(emp_id, address)
+          t = @its_transaction_factory.make_change_address_transaction(emp_id, address)
         elsif change_info.eql?("Hourly")
           hourly = line.fetch(3).to_d
-          t = ChangeHourlyTransaction.new(emp_id, hourly)
+          t = @its_transaction_factory.make_change_hourly_transaction(emp_id, hourly)
         elsif change_info.eql?("Salaried")
           salary = line.fetch(3)
-          t = ChangeSalariedTransaction.new(emp_id, salary)
+          t = @its_transaction_factory.make_change_salaried_transaction(emp_id, salary)
         elsif change_info.eql?("Commissioned")
           salary = line.fetch(3).to_d
           rate = line.fetch(4).to_d
-          t = ChangeCommissionedTransaction.new(emp_id,salary,rate)
+          t = @its_transaction_factory.make_change_commissioned_transaction(emp_id,salary,rate)
         elsif change_info.eql?("Hold")
-          t = ChangeHoldTransaction.new(emp_id)
+          t = @its_transaction_factory.make_change_hold_transaction(emp_id)
         elsif change_info.eql?("Direct")
           bank = line.fetch(3)
           account = line.fetch(4)
-          t = ChangeDirectTransaction.new(emp_id, bank, account)
+          t = @its_transaction_factory.make_change_direct_transaction(emp_id, bank, account)
         elsif change_info.eql?("Mail")
           address = line.fetch(3)
-          t = ChangeMailTransaction.new(emp_id,address)
+          t = @its_transaction_factory.make_change_mail_transaction(emp_id,address)
         elsif change_info.eql?("Member")
           member_id = line.fetch(3).to_i
           dues = line.fetch(5).to_d
-          t = ChangeMemberTransaction.new(emp_id, member_id, dues)
+          t = @its_transaction_factory.make_change_member_transaction(emp_id, member_id, dues)
         elsif change_info.eql?("NoMember")
-          t = ChangeUnaffiliatedTransaction.new(emp_id)
+          t = @its_transaction_factory.make_change_unaffiliated_transaction(emp_id)
         end
         t
       end

@@ -1,12 +1,13 @@
 module Payroll
   module TransactionImplementation
     class ChangeUnaffiliatedTransaction < AbstractTransactions::ChangeAffiliationTransaction
-      def initialize(emp_id)
+      def initialize(emp_id, payroll_factory)
         super(emp_id)
+        @its_payroll_factory = payroll_factory
       end
 
       def get_affiliation
-        PayrollDomain::NoAffiliation.new
+        @its_payroll_factory.make_no_affiliation
       end
 
       def record_membership(employee)

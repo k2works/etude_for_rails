@@ -1,17 +1,18 @@
 module Payroll
   module TransactionImplementation
     class ChangeHourlyTransaction < AbstractTransactions::ChangeClassificationTransaction
-      def initialize(emp_id, rate)
+      def initialize(emp_id, rate, payroll_factory)
         super(emp_id)
         @its_rate = rate
+        @its_payroll_factory = payroll_factory
       end
 
       def get_schedule
-        PayrollImplementation::WeeklySchedule.new
+        @its_payroll_factory.make_weekly_schedule
       end
 
       def get_classification
-        PayrollImplementation::HourlyClassification.new(@its_rate)
+        @its_payroll_factory.make_hourly_classification(@its_rate)
       end
     end
   end

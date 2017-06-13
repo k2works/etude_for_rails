@@ -3,7 +3,9 @@ module Payroll
     class PayrollApplication < TransactionApplicationSource::TransactionApplication
 
       def initialize
-        @transaction_source = TextParserTransactionSource::TextParserTransactionSource.new
+        payroll_factory = PayrollFactoryImplementation.new
+        transaction_factory = TransactionFactoryImplementation.new(payroll_factory)
+        @transaction_source = TextParserTransactionSource::TextParserTransactionSource.new(transaction_factory)
       end
 
       def set_source(source)

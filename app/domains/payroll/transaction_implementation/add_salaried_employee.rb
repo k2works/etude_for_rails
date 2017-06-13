@@ -1,8 +1,8 @@
 module Payroll
   module TransactionImplementation
     class AddSalariedEmployee < AbstractTransactions::AddEmployeeTransaction
-      def initialize(emp_id, name, address, salary)
-        super(emp_id, name, address)
+      def initialize(emp_id, name, address, salary, payroll_factory)
+        super(emp_id, name, address, payroll_factory)
         @its_salary = salary
       end
 

@@ -3,10 +3,11 @@ module Payroll
     class AddEmployeeTransaction
       include TransactionApplicationSource::Transaction
 
-      def initialize(emp_id, name, address)
+      def initialize(emp_id, name, address, payroll_factory)
         @its_emp_id = emp_id
         @its_name = name
         @its_address = address
+        @its_payroll_factory = payroll_factory
       end
 
       def execute

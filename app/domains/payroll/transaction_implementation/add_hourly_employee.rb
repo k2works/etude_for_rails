@@ -1,8 +1,8 @@
 module Payroll
   module TransactionImplementation
     class AddHourlyEmployee < AbstractTransactions::AddEmployeeTransaction
-      def initialize(emp_id, name, address, hourly_rate)
-        super(emp_id, name, address)
+      def initialize(emp_id, name, address, hourly_rate, payroll_factory)
+        super(emp_id, name, address, payroll_factory)
         @its_hourly_rate = hourly_rate
       end
 

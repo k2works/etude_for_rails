@@ -1,19 +1,28 @@
 module Payroll
   module PayrollDomain
-    class Paycheck
-      attr_reader :pay_period_start_date,:pay_period_end_date
-      attr_accessor :gross_pay,:deductions,:net_pay
+    module Paycheck
+      def get_pay_period_start_date
+      end
 
-      def initialize(pay_period_start_date, pay_period_end_date)
-        @pay_period_start_date = pay_period_start_date
-        @pay_period_end_date = pay_period_end_date
+      def get_pay_period_end_date
+      end
+
+      def get_gross_pay
       end
 
       def get_field(string)
-        if string == 'Disposition'
-          return 'Hold'
-        end
-        nil
+      end
+
+      def get_deductions
+      end
+
+      def set_deductions(deductions)
+      end
+
+      def get_net_pay
+      end
+
+      def set_net_pay
       end
     end
   end

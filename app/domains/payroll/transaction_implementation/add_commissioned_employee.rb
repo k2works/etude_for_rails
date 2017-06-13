@@ -2,8 +2,8 @@
 module Payroll
   module TransactionImplementation
     class AddCommissionedEmployee < AbstractTransactions::AddEmployeeTransaction
-      def initialize(emp_id, name, address, salary, commission_rate)
-        super(emp_id, name, address)
+      def initialize(emp_id, name, address, salary, commission_rate, payroll_factory)
+        super(emp_id, name, address, payroll_factory)
         @its_salary = salary
         @its_commission_rate = commission_rate
       end
