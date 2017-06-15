@@ -7,12 +7,12 @@ module Todo
       new(argv).execute
     end
 
-    def initialize(argv)
+    def initialize(argv=nil)
       @argv = argv
     end
 
     def execute
-      options = Options.parse!(@argv)
+      options = Options.parse!(@argv) unless @argv.nil?
 
       DB.prepare
     end
