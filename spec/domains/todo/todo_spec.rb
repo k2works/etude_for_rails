@@ -12,6 +12,14 @@ describe Todo::Command do
       command.create_task('create_name', 'create_content')
       expect(Todo::Task.where(name:'create_name').count).to eq(1)
     end
+
+    it 'validate name' do
+      expect{(command.create_task('', 'create_content'))}.to raise_exception(ActiveRecord::RecordInvalid)
+    end
+
+    it 'validate content' do
+      expect{(command.create_task('create_name', ''))}.to raise_exception(ActiveRecord::RecordInvalid)
+    end
   end
 
   describe '#update_task' do

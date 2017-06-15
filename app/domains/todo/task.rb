@@ -16,5 +16,9 @@ module Todo
         'DONE' => DONE,
         'PENDING' => PENDING
     }.freeze
+
+    validates :name, presence: true, length: {maximum: 140}
+    validates :content, presence: true
+    validates :status, numericality: true, inclusion: {in: STATUS.values}
   end
 end
