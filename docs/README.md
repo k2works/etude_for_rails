@@ -54,7 +54,8 @@ Railsアプリケーションのための練習プログラム集
 **[⬆ back to top](#構成)**
 
 ## 開発
-### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
+### Architecture
+#### [アプリケーションアーキテクチャ](./dev/app_architecture.md)
 ### Presentation
 #### [HTMLCSSBook](dev/html_css_book/html_css_book.md)
 #### [Bootstrap](dev/bootstrap/bootstrap.md)
