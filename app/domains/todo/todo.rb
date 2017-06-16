@@ -1,0 +1,7 @@
+require 'active_record'
+require 'fileutils'
+require_relative './../../../app/domains/todo/command'
+require_relative './../../../app/domains/todo/command/options'
+require_relative '../../../app/domains/todo/db'
+require_relative '../../../app/domains/todo/task'
+require_relative '../../../app/domains/todo/version'
