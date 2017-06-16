@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="Todo">
 
-<p>
-  <strong>Name:</strong>
-  <%= @todo_task.name %>
-</p>
+  <%= render 'todo/tasks/navbar' %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @todo_task.content %>
-</p>
+  <div class="container">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @todo_task.status %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @todo_task.name %>
+    </p>
 
-<%= link_to 'Edit', edit_todo_task_path(@todo_task) %> |
-<%= link_to 'Back', todo_tasks_path %>
+    <p>
+      <strong>Content:</strong>
+      <%= @todo_task.content %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @todo_task.status_name %>
+    </p>
+
+  </div>
+
+</div>
