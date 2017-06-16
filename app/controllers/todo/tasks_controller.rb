@@ -5,7 +5,19 @@ class Todo::TasksController < ApplicationController
   # GET /todo/tasks
   # GET /todo/tasks.json
   def index
-    @todo_tasks = Todo::Task.all
+    @todo_tasks = Todo::Task.order('created_at DESC')
+    if @status = params[:status]
+      case @status
+        when 'not_yet'
+          @todo_tasks = @todo_tasks.status_is_not_yet
+        when 'done'
+          @todo_tasks = @todo_tasks.status_is_done
+        when 'pending'
+          @todo_tasks = @todo_tasks.status_is_pending
+        else
+          @status = nil
+      end
+    end
   end
 
   # GET /todo/tasks/1
