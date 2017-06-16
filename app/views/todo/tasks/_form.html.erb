@@ -1,0 +1,32 @@
+<%= form_with(model: todo_task, local: true) do |form| %>
+  <% if todo_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todo_task.errors.count, "error") %> prohibited this todo_task from being saved:</h2>
+
+      <ul>
+      <% todo_task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :todo_task_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :todo_task_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status, id: :todo_task_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
