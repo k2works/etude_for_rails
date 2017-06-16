@@ -1,22 +1,6 @@
 <div class="Todo">
 
-  <div class='navbar navbar-default'>
-    <%= link_to('Todo Application', todo_tasks_path,{class:'navbar-brand'}) %>
-    <ul class='nav navbar-nav'>
-      <li class=<%= 'active' unless @status %>>
-        <%= link_to('All Task', todo_tasks_path) %>
-      </li>
-      <li class=<%= 'active' unless @status == 'not_yet' %>>
-        <%= link_to('NOT YET Tasks', todo_tasks_path(status:'not_yet')) %>
-      </li>
-      <li class=<%= 'active' unless @status == 'pending' %>>
-        <%= link_to('PENDING Tasks', todo_tasks_path(status:'pending')) %>
-      </li>
-      <li class=<%= 'active' unless @status == 'done' %>>
-        <%= link_to('DONE Tasks', todo_tasks_path(status:'done')) %>
-      </li>
-    </ul>
-  </div>
+  <%= render 'todo/tasks/navbar' %>
 
   <div class="container">
     <h1>Listing Tasks</h1>
