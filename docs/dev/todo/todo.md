@@ -39,6 +39,7 @@ delete <id>
 ```
 
 ## コアモデル
+![](./images/core_model.png)
 
 ## 参照
 + [パーフェクトRuby](https://www.amazon.co.jp/dp/B00P0UR1CA/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)

@@ -1,0 +1,26 @@
+@startuml
+
+Command *-l- Options
+Command --> DB
+Command -r-> Task
+DB --> Task
+
+class Command {
+execute()
+}
+
+class Options {
+parse()
+}
+
+class DB {
+prepare()
+}
+
+class Task {
+name
+content
+status
+}
+
+@enduml
