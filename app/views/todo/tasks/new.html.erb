@@ -1,5 +1,10 @@
-<h1>New Todo Task</h1>
+<div class="Todo">
 
-<%= render 'form', todo_task: @todo_task %>
+  <%= render 'todo/tasks/navbar' %>
 
-<%= link_to 'Back', todo_tasks_path %>
+  <div class="container">
+    <h1>New Todo Task</h1>
+
+    <%= render 'form', todo_task: @todo_task %>
+  </div>
+</div>
