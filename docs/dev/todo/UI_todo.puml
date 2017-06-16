@@ -1,0 +1,17 @@
+@startuml
+salt
+{+
+  Listing Tasks
+  {
+   [New]
+  }
+
+  {#
+  ID       | Name   | Content | Status  | Action
+  Integer  | String | String  | String  | [Edit] | [Delete]
+  Integer  | String | String  | String  | [Edit] | [Delete]
+  Integer  | String | String  | String  | [Edit] | [Delete]
+  Integer  | String | String  | String  | [Edit] | [Delete]
+  }
+}
+@enduml
