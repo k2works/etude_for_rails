@@ -7,11 +7,11 @@ salt
   }
 
   {#
-  ID       | Name   | Content | Status  | Action
-  Integer  | String | String  | String  | [Edit] | [Delete]
-  Integer  | String | String  | String  | [Edit] | [Delete]
-  Integer  | String | String  | String  | [Edit] | [Delete]
-  Integer  | String | String  | String  | [Edit] | [Delete]
+  ID       | Name   | Content | Status  | Created Time | Action
+  Integer  | String | String  | String  | Datetime | [Show] | [Edit] | [Delete]
+  Integer  | String | String  | String  | Datetime | [Show] | [Edit] | [Delete]
+  Integer  | String | String  | String  | Datetime | [Show] | [Edit] | [Delete]
+  Integer  | String | String  | String  | Datetime | [Show] | [Edit] | [Delete]
   }
 }
 @enduml

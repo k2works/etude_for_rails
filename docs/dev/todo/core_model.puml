@@ -1,5 +1,6 @@
 @startuml
 
+ActiveRecord::Base <|-- Task
 Command *-l- Options
 Command --> DB
 Command -r-> Task
