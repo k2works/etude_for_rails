@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   namespace :awesome_events do
     resources :welcome, only:[:index]
   end
+  get 'auth/:provider/callback' =>'awesome_events/sessions#create'
 
   namespace :todo do
     resources :tasks
