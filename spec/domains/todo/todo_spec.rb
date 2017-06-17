@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Todo::Command do
   before(:all) do
-    Todo::DB.prepare
+    Todo::DB.prepare_for_test
   end
 
   let!(:command) {Todo::Command.new(nil)}
