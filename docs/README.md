@@ -69,6 +69,7 @@ Railsアプリケーションのための練習プログラム集
 #### [Reactビギナーズガイド Whinepad](dev/react_beginners_guide/whinepad.md)
 ### Application
 #### [ToDo](dev/todo/todo.md)
+#### [ToDo2](dev/todo/todo2.md)
 ### Domain
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
 #### [PayRoll](dev/payroll/payroll.md)

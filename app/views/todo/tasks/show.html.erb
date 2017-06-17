@@ -1,0 +1,26 @@
+<div class="Todo">
+
+  <%= render 'todo/tasks/navbar' %>
+
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @todo_task.name %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= @todo_task.content %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= @todo_task.status_name %>
+    </p>
+
+    <%= link_to 'Back', todo_tasks_path ,class:'btn btn-default'%>
+  </div>
+
+</div>

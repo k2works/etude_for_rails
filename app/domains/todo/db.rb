@@ -1,10 +1,20 @@
 module Todo
   module DB
     def self.prepare
-      database_path = File.join(Dir.pwd, 'db', 'todo.sqlite3')
+      if Rails.env != 'test'
+        database_path = File.join(Dir.pwd, 'db', 'todo.sqlite3')
+
+        connect_database database_path
+        create_table_if_not_exists database_path
+      end
+    end
+
+    def self.prepare_for_test
+      database_path = File.join(Dir.pwd, 'db', 'todo_test.sqlite3')
 
       connect_database database_path
       create_table_if_not_exists database_path
+
     end
 
     def self.connect_database(path)
