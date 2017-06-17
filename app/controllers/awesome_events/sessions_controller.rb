@@ -4,4 +4,9 @@ class AwesomeEvents::SessionsController < ApplicationController
     session[:user_id] = user.id
     redirect_to awesome_events_welcome_index_path, notice: 'ログインしました'
   end
+
+  def destroy
+    reset_session
+    redirect_to awesome_events_welcome_index_path, notice: 'ログアウトしました'
+  end
 end

@@ -2,6 +2,8 @@
 #
 #                                         Prefix Verb   URI Pattern                                           Controller#Action
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                     awesome_events/welcome#index
+#                          awesome_events_logout GET    /awesome_events/logout(.:format)                      awesome_events/sessions#destroy
+#                                                GET    /auth/:provider/callback(.:format)                    awesome_events/sessions#create
 #                                     todo_tasks GET    /todo/tasks(.:format)                                 todo/tasks#index
 #                                                POST   /todo/tasks(.:format)                                 todo/tasks#create
 #                                  new_todo_task GET    /todo/tasks/new(.:format)                             todo/tasks#new
@@ -72,6 +74,7 @@
 Rails.application.routes.draw do
   namespace :awesome_events do
     resources :welcome, only:[:index]
+    get '/logout' => 'sessions#destroy', as: :logout
   end
   get 'auth/:provider/callback' =>'awesome_events/sessions#create'
 
