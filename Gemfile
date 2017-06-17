@@ -98,3 +98,7 @@ gem 'etude_for_aws', '~> 0.7.10'
 
 # For CodeStar
 gem 'passenger'
+
+# For AwesomeEvents
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
+gem 'omniauth-twitter', '~> 1.4'

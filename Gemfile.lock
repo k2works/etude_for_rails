@@ -136,6 +136,7 @@ GEM
     guard-yard (2.2.0)
       guard (>= 1.1.0)
       yard (>= 0.7.0)
+    hashie (3.5.5)
     http_parser.rb (0.6.0)
     i18n (0.8.1)
     jbuilder (2.6.4)
@@ -178,6 +179,16 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oauth (0.5.3)
+    omniauth (1.6.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     passenger (5.1.4)
       rack
       rake (>= 0.8.1)
@@ -337,6 +348,8 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   migration_comments
   minitest (= 5.10.1)
+  omniauth (~> 1.6, >= 1.6.1)
+  omniauth-twitter (~> 1.4)
   passenger
   pg
   puma (~> 3.7)
