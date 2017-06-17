@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                           Controller#Action
+#                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                     awesome_events/welcome#index
 #                                     todo_tasks GET    /todo/tasks(.:format)                                 todo/tasks#index
 #                                                POST   /todo/tasks(.:format)                                 todo/tasks#create
 #                                  new_todo_task GET    /todo/tasks/new(.:format)                             todo/tasks#new
@@ -69,6 +70,10 @@
 #
 
 Rails.application.routes.draw do
+  namespace :awesome_events do
+    resources :welcome, only:[:index]
+  end
+
   namespace :todo do
     resources :tasks
   end
