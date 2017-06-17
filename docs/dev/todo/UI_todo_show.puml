@@ -1,0 +1,13 @@
+@startuml
+salt
+{+
+  {
+  Name:     String
+  Content:  String
+  Satus:      String
+  {
+  [Back]
+  }
+  }
+}
+@enduml

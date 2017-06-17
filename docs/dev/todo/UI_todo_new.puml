@@ -1,0 +1,17 @@
+@startuml
+salt
+{+
+  New Tasks
+  {#
+   ・Show Error Message
+  }
+
+  {
+  Name    [例：買い物]
+  Content  [例：牛乳を買う]
+  {
+  [Create]|[Back]
+  }
+  }
+}
+@enduml

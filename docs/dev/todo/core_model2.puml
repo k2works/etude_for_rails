@@ -1,0 +1,30 @@
+@startuml
+
+ApplicationController <|-- TasksController
+ActiveRecord::Base <|-- Task
+TasksController --> DB
+TasksController -r-> Task
+DB --> Task
+TasksController --> View
+
+class TasksController {
+}
+
+class DB {
+prepare()
+}
+
+class Task {
+name
+content
+status
+}
+
+package View {
+class index
+class show
+class new
+class edit
+}
+
+@enduml
