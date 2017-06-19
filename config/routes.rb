@@ -2,6 +2,14 @@
 #
 #                                         Prefix Verb   URI Pattern                                           Controller#Action
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                     awesome_events/welcome#index
+#                          awesome_events_events GET    /awesome_events/events(.:format)                      awesome_events/events#index
+#                                                POST   /awesome_events/events(.:format)                      awesome_events/events#create
+#                       new_awesome_events_event GET    /awesome_events/events/new(.:format)                  awesome_events/events#new
+#                      edit_awesome_events_event GET    /awesome_events/events/:id/edit(.:format)             awesome_events/events#edit
+#                           awesome_events_event GET    /awesome_events/events/:id(.:format)                  awesome_events/events#show
+#                                                PATCH  /awesome_events/events/:id(.:format)                  awesome_events/events#update
+#                                                PUT    /awesome_events/events/:id(.:format)                  awesome_events/events#update
+#                                                DELETE /awesome_events/events/:id(.:format)                  awesome_events/events#destroy
 #                          awesome_events_logout GET    /awesome_events/logout(.:format)                      awesome_events/sessions#destroy
 #                                                GET    /auth/:provider/callback(.:format)                    awesome_events/sessions#create
 #                                     todo_tasks GET    /todo/tasks(.:format)                                 todo/tasks#index
@@ -74,6 +82,7 @@
 Rails.application.routes.draw do
   namespace :awesome_events do
     resources :welcome, only:[:index]
+    resources :events
     get '/logout' => 'sessions#destroy', as: :logout
   end
   get 'auth/:provider/callback' =>'awesome_events/sessions#create'
