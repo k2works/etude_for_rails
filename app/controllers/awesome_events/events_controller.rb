@@ -17,7 +17,7 @@ class AwesomeEvents::EventsController < AwesomeEvents::ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(
+    params.require(:awesome_events_event).permit(
                               :name, :place, :content, :start_time, :end_time
     )
   end
