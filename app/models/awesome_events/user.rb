@@ -12,9 +12,9 @@
 #
 
 class AwesomeEvents::User < ApplicationRecord
-  def self.find_or_create_from_auth_hash(auth_hash)
-    has_many :created_events, class_name: 'AwesomeEvents::Event', foreign_key: :owner_id
+  has_many :created_events, class_name: 'AwesomeEvents::Event', foreign_key: :owner_id
 
+  def self.find_or_create_from_auth_hash(auth_hash)
     provider = auth_hash[:provider]
     uid = auth_hash[:uid]
     nickname = auth_hash[:info][:nickname]

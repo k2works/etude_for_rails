@@ -139,6 +139,8 @@ GEM
     hashie (3.5.5)
     http_parser.rb (0.6.0)
     i18n (0.8.1)
+    i18n_generators (2.1.1)
+      rails (>= 3.0.0)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2)
@@ -342,6 +344,7 @@ DEPENDENCIES
   foreman
   guard-livereload (~> 2.5)
   guard-yard
+  i18n_generators
   jbuilder (~> 2.5)
   jquery-rails
   js_cookie_rails

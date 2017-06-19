@@ -68,6 +68,7 @@ group :development do
   gem 'annotate', group: :doc
   gem 'kss-rails'
   gem 'scss_lint', require: false
+  gem 'i18n_generators'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
