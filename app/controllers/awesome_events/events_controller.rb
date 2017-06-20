@@ -31,6 +31,12 @@ class AwesomeEvents::EventsController < AwesomeEvents::ApplicationController
     end
   end
 
+  def destroy
+    @event = current_user.created_events.find(params[:id])
+    @event.destroy!
+    redirect_to awesome_events_welcome_index_path, notice: '削除しました'
+  end
+
   private
 
   def event_params
