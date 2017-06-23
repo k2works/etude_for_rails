@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619081450) do
+ActiveRecord::Schema.define(version: 20170622075218) do
 
-  create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
+  create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
     t.string "name", null: false, comment: "イベントの名前"
     t.string "place", null: false, comment: "イベントの開催場所"
@@ -23,7 +23,19 @@ ActiveRecord::Schema.define(version: 20170619081450) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "awesome_events_users", force: :cascade, comment: "ログインユーザ" do |t|
+  create_table "awesome_events_tickets", force: :cascade,  comment: "チケット" do |t|
+    t.bigint "awesome_events_user_id", comment: "ユーザID"
+    t.bigint "awesome_events_event_id", comment: "イベントID"
+    t.string "comment", comment: "コメント"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["awesome_events_event_id", "awesome_events_user_id"], name: "by_event_id_user_id", unique: true
+    t.index ["awesome_events_event_id"], name: "index_awesome_events_tickets_on_awesome_events_event_id"
+    t.index ["awesome_events_user_id", "awesome_events_event_id"], name: "by_user_id_event_id", unique: true
+    t.index ["awesome_events_user_id"], name: "index_awesome_events_tickets_on_awesome_events_user_id"
+  end
+
+  create_table "awesome_events_users", force: :cascade,  comment: "ログインユーザ" do |t|
     t.string "provider", comment: "プロバイダ名"
     t.string "uid", comment: "ブロバイダ別ユーザ識別子"
     t.string "nickname", comment: "TwitterID"
@@ -32,4 +44,6 @@ ActiveRecord::Schema.define(version: 20170619081450) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "awesome_events_tickets", "awesome_events_events"
+  add_foreign_key "awesome_events_tickets", "awesome_events_users"
 end

@@ -14,7 +14,8 @@
 #
 
 class AwesomeEvents::Event < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
+  has_many :tickets, class_name: 'AwesomeEvents::Ticket', foreign_key: :awesome_events_event_id
+  belongs_to :owner, class_name: 'AwesomeEvents::User', foreign_key: :id, optional: true
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :place, length: { maximum: 100 }, presence: true
