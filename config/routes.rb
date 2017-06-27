@@ -2,6 +2,14 @@
 #
 #                                         Prefix Verb   URI Pattern                                                 Controller#Action
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                           awesome_events/welcome#index
+#                     retire_awesome_events_user GET    /awesome_events/user/retire(.:format)                       awesome_events/users#retire
+#                        new_awesome_events_user GET    /awesome_events/user/new(.:format)                          awesome_events/users#new
+#                       edit_awesome_events_user GET    /awesome_events/user/edit(.:format)                         awesome_events/users#edit
+#                            awesome_events_user GET    /awesome_events/user(.:format)                              awesome_events/users#show
+#                                                PATCH  /awesome_events/user(.:format)                              awesome_events/users#update
+#                                                PUT    /awesome_events/user(.:format)                              awesome_events/users#update
+#                                                DELETE /awesome_events/user(.:format)                              awesome_events/users#destroy
+#                                                POST   /awesome_events/user(.:format)                              awesome_events/users#create
 #                   awesome_events_event_tickets GET    /awesome_events/events/:event_id/tickets(.:format)          awesome_events/tickets#index
 #                                                POST   /awesome_events/events/:event_id/tickets(.:format)          awesome_events/tickets#create
 #                new_awesome_events_event_ticket GET    /awesome_events/events/:event_id/tickets/new(.:format)      awesome_events/tickets#new
@@ -90,6 +98,11 @@
 Rails.application.routes.draw do
   namespace :awesome_events do
     resources :welcome, only:[:index]
+
+    resource :user do
+      get 'retire'
+    end
+
     resources :events do
       resources :tickets
     end
