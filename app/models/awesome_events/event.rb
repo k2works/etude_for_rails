@@ -2,18 +2,21 @@
 #
 # Table name: awesome_events_events # イベント
 #
-#  id         :integer          not null, primary key
-#  owner_id   :integer                                # イベントを作成したユーザのID
-#  name       :string(255)      not null              # イベントの名前
-#  place      :string(255)      not null              # イベントの開催場所
-#  start_time :datetime         not null              # イベント開始時間
-#  end_time   :datetime         not null              # イベント終了時間
-#  content    :text(65535)      not null              # イベントの詳細
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  owner_id    :integer                                # イベントを作成したユーザのID
+#  name        :string(255)      not null              # イベントの名前
+#  place       :string(255)      not null              # イベントの開催場所
+#  start_time  :datetime         not null              # イベント開始時間
+#  end_time    :datetime         not null              # イベント終了時間
+#  content     :text(65535)      not null              # イベントの詳細
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  event_image :string(255)                            # 画像用カラム
 #
 
 class AwesomeEvents::Event < ApplicationRecord
+  mount_uploader :event_image, EventImageUploader
+
   has_many :tickets, class_name: 'AwesomeEvents::Ticket', foreign_key: :awesome_events_event_id, dependent: :destroy
   belongs_to :owner, class_name: 'AwesomeEvents::User', foreign_key: :id, optional: true
 

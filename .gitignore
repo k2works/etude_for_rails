@@ -192,3 +192,4 @@ build-iPhoneSimulator/
 *.pem
 
 db/todo.sqlite3
+public/uploads
