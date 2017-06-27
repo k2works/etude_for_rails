@@ -18,4 +18,10 @@ class AwesomeEvents::TicketsController < AwesomeEvents::ApplicationController
       render json: { message: ticket.errors.full_messages }, status: 422
     end
   end
+
+  def destroy
+    ticket = current_user.tickets.find_by!(awesome_events_event_id: params[:event_id])
+    ticket.destroy!
+    redirect_to awesome_events_event_path(params[:event_id]), notice: 'このイベントの参加をキャンセルしました'
+  end
 end

@@ -3,6 +3,7 @@ class AwesomeEvents::EventsController < AwesomeEvents::ApplicationController
 
   def show
     @event = AwesomeEvents::Event.find(params[:id])
+    @ticket = current_user && current_user.tickets.find_by(awesome_events_event_id: params[:id])
     @tickets = @event.tickets.includes(:user).order(:created_at)
   end
 
