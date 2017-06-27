@@ -64,6 +64,7 @@
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, rbenv: 2.4.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="etude_for_aws (v0.7.10, rbenv: 2.4.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.2.3, rbenv: 2.4.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="exception_notification (v4.2.1, rbenv: 2.4.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, rbenv: 2.4.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.8.0, rbenv: 2.4.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.8.0, rbenv: 2.4.1) [gem]" level="application" />

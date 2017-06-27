@@ -104,3 +104,5 @@ gem 'passenger'
 # For AwesomeEvents
 gem 'omniauth', '~> 1.6', '>= 1.6.1'
 gem 'omniauth-twitter', '~> 1.4'
+# exception_notification
+gem 'exception_notification'
