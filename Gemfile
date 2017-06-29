@@ -41,6 +41,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'ruby-debug-ide', '~>0.6.1.beta4'
   gem 'debase', '~>0.2.2.beta9'
   gem 'better_errors'
@@ -52,6 +53,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'minitest', '5.10.1'
+  gem 'database_rewinder'
 end
 
 group :development do
