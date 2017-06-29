@@ -12,6 +12,7 @@ test:
     - bin/yarn
     - bin/webpack
     - bin/rails assets:precompile
+    - RAILS_ENV=test bin/rake db:test:prepare
   override:
     - bin/rspec
     - bin/rails test

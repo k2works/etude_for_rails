@@ -31,6 +31,7 @@ phases:
       - chmod 755 bin/webpack
       - bin/webpack
       - bin/rails assets:precompile
+      - RAILS_ENV=test bin/rake db:test:prepare
       - bin/rspec
       - bin/rails test
       - npm test
