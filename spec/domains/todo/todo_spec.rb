@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Todo::Command do
+=begin
   before(:all) do
     Todo::DB.prepare_for_test
   end
@@ -37,4 +38,5 @@ describe Todo::Command do
       expect(Todo::Task.where(name:'create_name1').count).to eq(0)
     end
   end
+=end
 end
