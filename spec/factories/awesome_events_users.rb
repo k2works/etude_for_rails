@@ -12,10 +12,10 @@
 #
 
 FactoryGirl.define do
-  factory :awesome_events_user, class: 'AwesomeEvents::User' do
-    provider "MyString"
-    uid "MyString"
-    nickname "MyString"
-    image_url "MyString"
+  factory :awesome_events_user, class: 'AwesomeEvents::User', aliases: [:owner] do
+    provider 'twitter'
+    sequence(:uid) { |i| "uid#{i}" }
+    sequence(:nickname) { |i| "nickname#{i}" }
+    sequence(:image_url) { |i| "http://example.com/image#{i}.jpb"}
   end
 end
