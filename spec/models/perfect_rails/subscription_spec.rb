@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: perfect_rails_subscriptions
+#
+#  id           :integer          not null, primary key
+#  signed_up_on :date
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe PerfectRails::Subscription, type: :model do

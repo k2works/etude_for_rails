@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: awesome_events_events
+#
+#  id          :integer          not null, primary key
+#  owner_id    :integer
+#  name        :string           not null
+#  place       :string           not null
+#  start_time  :datetime         not null
+#  end_time    :datetime         not null
+#  content     :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  event_image :string
+#
+
 require 'rails_helper'
 
 RSpec.describe AwesomeEvents::Event, type: :model do

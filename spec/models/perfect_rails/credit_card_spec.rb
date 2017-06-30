@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: perfect_rails_credit_cards
+#
+#  id         :integer          not null, primary key
+#  number     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe PerfectRails::CreditCard, type: :model do

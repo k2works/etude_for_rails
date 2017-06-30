@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630031720) do
+ActiveRecord::Schema.define(version: 20170630070233) do
 
-  create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
-    t.integer "owner_id", comment: "イベントを作成したユーザのID"
-    t.string "name", null: false, comment: "イベントの名前"
-    t.string "place", null: false, comment: "イベントの開催場所"
-    t.datetime "start_time", null: false, comment: "イベント開始時間"
-    t.datetime "end_time", null: false, comment: "イベント終了時間"
-    t.text "content", null: false, comment: "イベントの詳細"
+  create_table "awesome_events_events", force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "name", null: false
+    t.string "place", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "event_image", comment: "画像用カラム"
+    t.string "event_image"
   end
 
-  create_table "awesome_events_tickets", force: :cascade,  comment: "チケット" do |t|
-    t.bigint "awesome_events_user_id", comment: "ユーザID"
-    t.bigint "awesome_events_event_id", comment: "イベントID"
-    t.string "comment", comment: "コメント"
+  create_table "awesome_events_tickets", force: :cascade do |t|
+    t.integer "awesome_events_user_id"
+    t.integer "awesome_events_event_id"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["awesome_events_event_id", "awesome_events_user_id"], name: "by_event_id_user_id", unique: true
@@ -36,33 +36,44 @@ ActiveRecord::Schema.define(version: 20170630031720) do
     t.index ["awesome_events_user_id"], name: "index_awesome_events_tickets_on_awesome_events_user_id"
   end
 
-  create_table "awesome_events_users", force: :cascade,  comment: "ログインユーザ" do |t|
-    t.string "provider", comment: "プロバイダ名"
-    t.string "uid", comment: "ブロバイダ別ユーザ識別子"
-    t.string "nickname", comment: "TwitterID"
-    t.string "image_url", comment: "Twitterアイコン画像URL"
+  create_table "awesome_events_users", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "nickname"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_bank_accounts", force: :cascade  do |t|
+  create_table "perfect_rails_bank_accounts", force: :cascade do |t|
     t.string "credit_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_credit_cards", force: :cascade  do |t|
+  create_table "perfect_rails_credit_cards", force: :cascade do |t|
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_subscriptions", force: :cascade  do |t|
+  create_table "perfect_rails_rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_schedules", force: :cascade do |t|
+    t.integer "room_id"
+    t.datetime "finished_at"
+    t.datetime "started_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_subscriptions", force: :cascade do |t|
     t.date "signed_up_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "awesome_events_tickets", "awesome_events_events"
-  add_foreign_key "awesome_events_tickets", "awesome_events_users"
 end
