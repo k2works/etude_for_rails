@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627080727) do
+ActiveRecord::Schema.define(version: 20170630031720) do
 
-  create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
+  create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
     t.string "name", null: false, comment: "イベントの名前"
     t.string "place", null: false, comment: "イベントの開催場所"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170627080727) do
     t.string "event_image", comment: "画像用カラム"
   end
 
-  create_table "awesome_events_tickets", force: :cascade, comment: "チケット" do |t|
+  create_table "awesome_events_tickets", force: :cascade,  comment: "チケット" do |t|
     t.bigint "awesome_events_user_id", comment: "ユーザID"
     t.bigint "awesome_events_event_id", comment: "イベントID"
     t.string "comment", comment: "コメント"
@@ -36,11 +36,29 @@ ActiveRecord::Schema.define(version: 20170627080727) do
     t.index ["awesome_events_user_id"], name: "index_awesome_events_tickets_on_awesome_events_user_id"
   end
 
-  create_table "awesome_events_users", force: :cascade, comment: "ログインユーザ" do |t|
+  create_table "awesome_events_users", force: :cascade,  comment: "ログインユーザ" do |t|
     t.string "provider", comment: "プロバイダ名"
     t.string "uid", comment: "ブロバイダ別ユーザ識別子"
     t.string "nickname", comment: "TwitterID"
     t.string "image_url", comment: "Twitterアイコン画像URL"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_bank_accounts", force: :cascade  do |t|
+    t.string "credit_card_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_credit_cards", force: :cascade  do |t|
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_subscriptions", force: :cascade  do |t|
+    t.date "signed_up_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
