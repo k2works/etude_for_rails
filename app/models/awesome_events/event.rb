@@ -40,6 +40,10 @@ class AwesomeEvents::Event < ApplicationRecord
     []
   end
 
+  def rails?
+    !!(name =~ /Rails/)
+  end
+
   private
 
   def start_time_should_be_before_end_time

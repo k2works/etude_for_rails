@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe AwesomeEvents::Event, type: :model do
+  describe '#rails?' do
+    context '#nameが"Rails勉強会"のとき' do
+      it 'true を返すこと' do
+        event = create(:event, name: 'Rails勉強会')
+        expect(event.rails?).to eq true
+      end
+    end
+
+    context '#nameが"Ruby勉強会"のとき' do
+      it 'false を返すこと' do
+        event = create(:event, name: 'Ruby勉強会')
+        expect(event.rails?).to eq false
+      end
+    end
+  end
+
   describe '#name' do
     it { should validate_presence_of(:name) }
     it { should validate_length_of(:name).is_at_most(50) }
