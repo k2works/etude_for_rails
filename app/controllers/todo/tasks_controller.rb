@@ -1,6 +1,5 @@
 class Todo::TasksController < ApplicationController
   before_action :set_todo_task, only: [:show, :edit, :update, :destroy]
-  before_action :prepare
 
   # GET /todo/tasks
   # GET /todo/tasks.json
@@ -83,9 +82,5 @@ class Todo::TasksController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def todo_task_params
     params.require(:todo_task).permit(:name, :content, :status)
-  end
-
-  def prepare
-    Todo::DB.prepare
   end
 end
