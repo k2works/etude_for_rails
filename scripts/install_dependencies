@@ -3,7 +3,7 @@ cd /home/ec2-user/ruby-on-rails
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 8.0.0
-yum install postgresql-devel -y
+yum install postgresql-devel mysql-devel git -y
 wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
 curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 yum install yarn -y
@@ -17,6 +17,7 @@ bundle install
 chmod 755 bin/webpack
 bin/yarn
 bin/webpack
+bin/rails db:create
 bin/rails db:migrate
 bin/rails assets:precompile
 bundle exec passenger start -p 80 -a 0.0.0.0 -d
