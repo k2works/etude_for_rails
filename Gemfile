@@ -54,6 +54,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'minitest', '5.10.1'
   gem 'database_rewinder'
+  gem 'rspec-json_matcher', require: 'rspec/json_matcher'
 end
 
 group :development do

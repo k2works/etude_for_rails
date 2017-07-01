@@ -19,8 +19,11 @@
 require 'simplecov'
 require 'factory_girl_rails'
 require 'capybara'
+require 'rspec/json_matcher'
 SimpleCov.start
 RSpec.configure do |config|
+  config.include RSpec::JsonMatcher
+
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:all, type: :feature) do
