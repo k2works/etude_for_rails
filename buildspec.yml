@@ -30,7 +30,6 @@ phases:
       - bin/yarn
       - chmod 755 bin/webpack
       - bin/webpack
-      - bin/rails db:migrate
       - bin/rails assets:precompile
       - RAILS_ENV=test bin/rake db:test:prepare
       - bin/rspec
