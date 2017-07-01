@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701023355) do
+ActiveRecord::Schema.define(version: 20170701061008) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -103,6 +103,14 @@ ActiveRecord::Schema.define(version: 20170701023355) do
     t.string "prefecture", comment: "都道府県"
     t.string "city", comment: "市町村"
     t.string "house_number", comment: "番地"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todo_tasks", force: :cascade,  comment: "タスク" do |t|
+    t.string "name", null: false, comment: "名前"
+    t.text "content", null: false, comment: "内容"
+    t.integer "status", default: 0, null: false, comment: "ステータス 0:NOT_YET 1:DONE 2:PENDING"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
