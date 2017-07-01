@@ -12,15 +12,14 @@
 #
 
 class PerfectRails::User < ApplicationRecord
-  # 都道府県が同じかどうかを返す
-  # @retrun [Boolean]
-  def same_prefecture?(other)
-    prefecture == other.prefecture
+  def address
+    @address ||= PerfectRails::Address.new(prefecture, city, house_number)
   end
 
-  # 市町村が同じかどうかを返す
-  # @return [Boolean]
-  def same_city?(other)
-    city == other.city
+  def address=(address)
+    self.prefecture= address.prefecture
+    self.city = address.city
+    self.house_number = address.house_number
+    @address = address
   end
 end
