@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630070233) do
+ActiveRecord::Schema.define(version: 20170701001646) do
 
   create_table "awesome_events_events", force: :cascade do |t|
     t.integer "owner_id"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170630070233) do
   end
 
   create_table "awesome_events_tickets", force: :cascade do |t|
-    t.integer "awesome_events_user_id"
-    t.integer "awesome_events_event_id"
+    t.bigint "awesome_events_user_id"
+    t.bigint "awesome_events_event_id"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20170630070233) do
 
   create_table "perfect_rails_subscriptions", force: :cascade do |t|
     t.date "signed_up_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_users", force: :cascade do |t|
+    t.string "name"
+    t.string "prefecture"
+    t.string "city"
+    t.string "house_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
