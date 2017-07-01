@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701020023) do
+ActiveRecord::Schema.define(version: 20170701023355) do
 
   create_table "awesome_events_events", force: :cascade do |t|
     t.integer "owner_id"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20170701020023) do
   end
 
   create_table "awesome_events_tickets", force: :cascade do |t|
-    t.bigint "awesome_events_user_id"
-    t.bigint "awesome_events_event_id"
+    t.integer "awesome_events_user_id"
+    t.integer "awesome_events_event_id"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20170701020023) do
     t.string "uid"
     t.string "nickname"
     t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "perfect_rails_accounts", force: :cascade do |t|
+    t.integer "amount"
+    t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
