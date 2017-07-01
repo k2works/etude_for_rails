@@ -12,5 +12,5 @@
 
 class PerfectRails::Schedule < ApplicationRecord
   belongs_to :room, class_name: 'PerfectRails::Room', foreign_key: :id, optional: true
-  validates_with MustNotOverlapValidator
+  validates_with PerfectRails::MustNotOverlapValidator
 end

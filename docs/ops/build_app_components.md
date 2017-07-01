@@ -77,3 +77,5 @@ https://gist.github.com/lambdahands/d19e0da96285b749f0ef
 + [SimpleCov](https://github.com/colszowka/simplecov)
 + [k2works/etude_for_rails](https://codeclimate.com/github/k2works/etude_for_rails)
 + [rails 5.1 babel-preset-env "Missing class properties transform" の回避](http://qiita.com/github0013@github/items/f3843ec8593a663e13e3)
++ [Amazon LinuxにMySQLをセットアップする方法](http://promamo.com/?p=2933)
++ [Install PostgreSQL on AWS EC2(Amazon Linux AMI 2013.03.1)](http://dev.classmethod.jp/cloud/aws/install-postgresql-on-aws-ec2/)
