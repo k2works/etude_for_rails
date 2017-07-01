@@ -17,5 +17,6 @@ bundle install
 chmod 755 bin/webpack
 bin/yarn
 bin/webpack
+bin/rails db:migrate
 bin/rails assets:precompile
 bundle exec passenger start -p 80 -a 0.0.0.0 -d
