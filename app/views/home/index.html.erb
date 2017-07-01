@@ -4,6 +4,10 @@
   </div>
   <ol class="NewsList">
     <li class="NewsList__item">
+      <time class="NewsList__head" datatime="2017-07-01">2017.07.01</time>
+      <span class="NewsList__body"><%= link_to 'リリース v0.21.0' , todo_tasks_url, target: "_blank" %></span>
+    </li>
+    <li class="NewsList__item">
       <time class="NewsList__head" datatime="2017-06-17">2017.06.17</time>
       <span class="NewsList__body"><%= link_to 'リリース v0.20.0' , todo_tasks_url, target: "_blank" %></span>
     </li>
@@ -18,10 +22,6 @@
     <li class="NewsList__item">
       <time class="NewsList__head" datatime="2017-06-08">2017.06.08</time>
       <span class="NewsList__body">リリース v0.16.0</span>
-    </li>  
-    <li class="NewsList__item">
-      <time class="NewsList__head" datatime="2017-06-06">2017.06.06</time>
-      <span class="NewsList__body">リリース v0.15.0</span>
     </li>
   </ol>
 </section>
@@ -278,6 +278,25 @@
           </div>
           <div class="EntryPanel__foot">
             <a href="https://k2works.github.io/etude_for_rails/dev/todo/todo2.html" class="button" target="_blank">READ SPEC</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="Section l-column">
+    <div class="l-row">
+      <div class="EntryPanel l-halfColumn">
+        <div class="EntryPanel__sub">
+          <%= link_to image_tag('https://images-na.ssl-images-amazon.com/images/I/51gar5P8bEL._SX380_BO1,204,203,200_.jpg',class: 'EntryPanel__thumb' , width: '150' , height: '150'), awesome_events_welcome_index_path , target: "_blank" %>
+        </div>
+        <div id="EntryPanel__main">
+          <h3 class="EntryPanel__head">AwesomeEvents</h3>
+          <div class="EntryPanel__body">
+            <a href="https://www.amazon.co.jp/%E3%83%91%E3%83%BC%E3%83%95%E3%82%A7%E3%82%AF%E3%83%88-Ruby-Rails-%E3%81%99%E3%81%8C%E3%82%8F%E3%82%89-%E3%81%BE%E3%81%95%E3%81%AE%E3%82%8A/dp/4774165166">パーフェクトRuby on Rails</a>　イベント管理アプリケーション 写経
+          </div>
+          <div class="EntryPanel__foot">
+            <a href="https://k2works.github.io/etude_for_rails/dev/awesome_events/awesome_events.html" class="button" target="_blank">READ SPEC</a>
           </div>
         </div>
       </div>

@@ -12,22 +12,22 @@
 
 ActiveRecord::Schema.define(version: 20170701023355) do
 
-  create_table "awesome_events_events", force: :cascade do |t|
-    t.integer "owner_id"
-    t.string "name", null: false
-    t.string "place", null: false
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
-    t.text "content", null: false
+  create_table "awesome_events_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "イベント" do |t|
+    t.integer "owner_id", comment: "イベントを作成したユーザのID"
+    t.string "name", null: false, comment: "イベントの名前"
+    t.string "place", null: false, comment: "イベントの開催場所"
+    t.datetime "start_time", null: false, comment: "イベント開始時間"
+    t.datetime "end_time", null: false, comment: "イベント終了時間"
+    t.text "content", null: false, comment: "イベントの詳細"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "event_image"
+    t.string "event_image", comment: "画像用カラム"
   end
 
-  create_table "awesome_events_tickets", force: :cascade do |t|
-    t.integer "awesome_events_user_id"
-    t.integer "awesome_events_event_id"
-    t.string "comment"
+  create_table "awesome_events_tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "チケット" do |t|
+    t.bigint "awesome_events_user_id", comment: "ユーザID"
+    t.bigint "awesome_events_event_id", comment: "イベントID"
+    t.string "comment", comment: "コメント"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["awesome_events_event_id", "awesome_events_user_id"], name: "by_event_id_user_id", unique: true
@@ -36,46 +36,46 @@ ActiveRecord::Schema.define(version: 20170701023355) do
     t.index ["awesome_events_user_id"], name: "index_awesome_events_tickets_on_awesome_events_user_id"
   end
 
-  create_table "awesome_events_users", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.string "nickname"
-    t.string "image_url"
+  create_table "awesome_events_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ログインユーザ" do |t|
+    t.string "provider", comment: "プロバイダ名"
+    t.string "uid", comment: "ブロバイダ別ユーザ識別子"
+    t.string "nickname", comment: "TwitterID"
+    t.string "image_url", comment: "Twitterアイコン画像URL"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_accounts", force: :cascade do |t|
-    t.integer "amount"
-    t.string "currency"
+  create_table "perfect_rails_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "口座" do |t|
+    t.integer "amount", comment: "金額"
+    t.string "currency", comment: "通貨"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_bank_accounts", force: :cascade do |t|
+  create_table "perfect_rails_bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "credit_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_comments", force: :cascade do |t|
+  create_table "perfect_rails_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_credit_cards", force: :cascade do |t|
+  create_table "perfect_rails_credit_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_rooms", force: :cascade do |t|
+  create_table "perfect_rails_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_schedules", force: :cascade do |t|
+  create_table "perfect_rails_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "room_id"
     t.datetime "finished_at"
     t.datetime "started_at"
@@ -83,28 +83,30 @@ ActiveRecord::Schema.define(version: 20170701023355) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_subscriptions", force: :cascade do |t|
+  create_table "perfect_rails_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date "signed_up_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_user2s", force: :cascade do |t|
-    t.string "name"
-    t.string "prefecture"
-    t.string "city"
-    t.string "house_number"
+  create_table "perfect_rails_user2s", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ユーザ２" do |t|
+    t.string "name", comment: "名前"
+    t.string "prefecture", comment: "都道府県"
+    t.string "city", comment: "市町村"
+    t.string "house_number", comment: "番地"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_users", force: :cascade do |t|
-    t.string "name"
-    t.string "prefecture"
-    t.string "city"
-    t.string "house_number"
+  create_table "perfect_rails_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ユーザ" do |t|
+    t.string "name", comment: "名前"
+    t.string "prefecture", comment: "都道府県"
+    t.string "city", comment: "市町村"
+    t.string "house_number", comment: "番地"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "awesome_events_tickets", "awesome_events_events"
+  add_foreign_key "awesome_events_tickets", "awesome_events_users"
 end
