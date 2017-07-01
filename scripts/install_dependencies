@@ -17,6 +17,7 @@ bundle install
 chmod 755 bin/webpack
 bin/yarn
 bin/webpack
+bundle install
 bin/rails db:create
 bin/rails db:migrate
 bin/rails assets:precompile
