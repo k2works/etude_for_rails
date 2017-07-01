@@ -17,8 +17,26 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'simplecov'
+require 'factory_girl_rails'
+require 'capybara'
+require 'rspec/json_matcher'
 SimpleCov.start
 RSpec.configure do |config|
+  config.include RSpec::JsonMatcher
+
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:all, type: :feature) do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+        provider: 'twitter',
+        uid: '12345',
+        info: {
+            nickname: 'netwillnet',
+            image: 'http://example.com/netwillnet.jpg'
+        }})
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -99,3 +117,35 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+=begin
+# use_browser
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+
+Capybara.configure do |config|
+  config.default_max_wait_time = 10 # seconds
+  config.default_driver        = :selenium
+end
+=end
+
+# use_headless
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+# use_browser
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: %w(headless disable-gpu) }
+  )
+
+  Capybara::Selenium::Driver.new app,
+                                 browser: :chrome,
+                                 desired_capabilities: capabilities
+end
+
+Capybara.javascript_driver = :headless_chrome

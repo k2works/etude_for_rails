@@ -21,12 +21,11 @@ COPY . $APP_ROOT
 RUN $APP_ROOT/bin/yarn
 RUN $APP_ROOT/bin/webpack
 RUN $APP_ROOT/bin/rails assets:precompile
-#RUN RAILS_ENV=test $APP_ROOT/bin/rake db:setup
-#RUN $APP_ROOT/bin/rake db:test:prepare
+RUN $APP_ROOT/bin/rails db:environment:set RAILS_ENV=test
+RUN RAILS_ENV=test $APP_ROOT/bin/rake db:test:prepare
 RUN $APP_ROOT/bin/rspec
 RUN $APP_ROOT/bin/rails test
 RUN npm test
-RUN xvfb-run $APP_ROOT/bin/rails test:system
 RUN bundle exec yard
 
 EXPOSE  3000

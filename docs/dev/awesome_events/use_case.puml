@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor ユーザ
+rectangle AwesomeEvents {
+  ユーザ -- (イベント情報を閲覧する)
+  ユーザ -- (ログインする)
+  ユーザ -- (イベントを作成する)
+  ユーザ -- (イベントを削除する)
+  ユーザ -- (イベントに参加する)
+  ユーザ -- (退会する)
+}
+@enduml
