@@ -16,9 +16,12 @@ docs/dev/payroll/payroll.md
 docs/dev/rental_video/rental_video.md
 docs/dev/todo/todo.md
 docs/dev/todo/todo2.md
+docs/dev/awesome_events/awesome_events.md
 docs/ops/build_vagrant.md
 docs/ops/build_docker.md
 docs/ops/build_app_components.md
 docs/ops/ship_jenkins.md
 docs/ops/ship_circleci.md
 docs/ops/ship_heroku.md
+docs/mgt/xp/xp.md
+docs/mgt/scrum/scrum.md

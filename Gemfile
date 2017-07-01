@@ -11,6 +11,7 @@ end
 gem 'rails', '~> 5.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
+gem 'mysql2', group: :development
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -38,8 +39,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13.0'
+  gem 'capybara', '~> 2.14.0'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'ruby-debug-ide', '~>0.6.1.beta4'
   gem 'debase', '~>0.2.2.beta9'
   gem 'better_errors'
@@ -51,6 +53,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'minitest', '5.10.1'
+  gem 'database_rewinder'
+  gem 'rspec-json_matcher', require: 'rspec/json_matcher'
 end
 
 group :development do
@@ -67,6 +71,7 @@ group :development do
   gem 'annotate', group: :doc
   gem 'kss-rails'
   gem 'scss_lint', require: false
+  gem 'i18n_generators'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -98,3 +103,18 @@ gem 'etude_for_aws', '~> 0.7.10'
 
 # For CodeStar
 gem 'passenger'
+
+# For AwesomeEvents
+gem 'omniauth', '~> 1.6', '>= 1.6.1'
+gem 'omniauth-twitter', '~> 1.4'
+# exception_notification
+gem 'exception_notification'
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0', '>= 3.0.1'
+gem 'ransack'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+end

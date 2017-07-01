@@ -1,6 +1,7 @@
 require 'application_system_test_case'
 
 class TodoTest < ApplicationSystemTestCase
+=begin
   test 'visiting the index' do
     Todo::DB.prepare_for_test
 
@@ -43,6 +44,7 @@ class TodoTest < ApplicationSystemTestCase
 
     assert_text 'Task was successfully updated.'
   end
+=end
 
 =begin
   ChromeHeadlessではモーダルを使ったシステムテストができない #26
