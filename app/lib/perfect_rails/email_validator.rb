@@ -1,4 +1,7 @@
-class PerfectRails::EmailValidator < ActiveModel::EachValidator
+class EmailValidator < ActiveModel::EachValidator
+end
+
+class PerfectRails::EmailValidator < EmailValidator
   def validate_each(record, attribute, value)
     record.errors.add attribute, (options[:message] || "is not an email") unless
         value =~ /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
