@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= document_title %></title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EtudeForRails</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'baukis_admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'baukis_admin', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div id="wrapper">
+  <%= render 'shared/baukis/header' %>
+    <div id="container">
+      <%= yield %>
+    </div>
+  <%= render 'shared/baukis/footer' %>
+  </div>
+  </body>
+
+</html>
