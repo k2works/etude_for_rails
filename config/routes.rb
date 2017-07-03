@@ -1,6 +1,9 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                            Controller#Action
+#                              baukis_staff_root GET    /baukis/staff(.:format)                                baukis/staff/top#index
+#                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
+#                           baukis_customer_root GET    /baukis/customer(.:format)                             baukis/customer/top#index
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                      awesome_events/welcome#index
 #                          awesome_events_logout GET    /awesome_events/logout(.:format)                       awesome_events/sessions#destroy
 #                     retire_awesome_events_user GET    /awesome_events/user/retire(.:format)                  awesome_events/users#retire
@@ -85,6 +88,20 @@
 #
 
 Rails.application.routes.draw do
+  namespace :baukis do
+    namespace :staff do
+      root 'top#index'
+    end
+
+    namespace :admin do
+      root 'top#index'
+    end
+
+    namespace :customer do
+      root 'top#index'
+    end
+  end
+
   namespace :awesome_events do
     resources :welcome, only:[:index]
     get '/logout' => 'sessions#destroy', as: :logout
