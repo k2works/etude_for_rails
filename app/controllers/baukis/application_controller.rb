@@ -8,6 +8,7 @@ class Baukis::ApplicationController <  ActionController::Base
   rescue_from Exception, with: :rescue500
   rescue_from Forbidden, with: :rescue403
   rescue_from IpAddressRejected, with: :rescue403
+  rescue_from ActionController::RoutingError, with: :rescue404
 
   private
   def set_layout
@@ -21,6 +22,11 @@ class Baukis::ApplicationController <  ActionController::Base
   def rescue403(e)
     @exception = e
     render 'baukis/errors/forbidden', status: 403
+  end
+
+  def rescue404(e)
+    @exception = e
+    render 'baukis/errors/not_found', status: 404
   end
 
   def rescue500(e)
