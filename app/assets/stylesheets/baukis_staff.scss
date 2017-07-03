@@ -2,16 +2,17 @@
 // Base
 // ===========================
 @import "./base/lib/sanitize";
+@import "./base/baukis/staff/colors";
 
 // ===========================
 // Components
 // ===========================
+@import "components/baukis/staff/layout";
+@import "components/baukis/staff/container";
 
 // ===========================
 // Pages
 // ===========================
-@import "./pages/baukis/staff/layout";
-@import "./pages/baukis/staff/container";
 
 // ===========================
 // Utils
