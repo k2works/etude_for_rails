@@ -6,7 +6,7 @@ class Baukis::ApplicationController <  ActionController::Base
   class IpAddressRejected < ActionController::ActionControllerError; end
 
   rescue_from Exception, with: :rescue500
-  rescue_from Forbidden, with: :rescure403
+  rescue_from Forbidden, with: :rescue403
   rescue_from IpAddressRejected, with: :rescue403
 
   private
