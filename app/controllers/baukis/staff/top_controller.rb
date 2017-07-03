@@ -1,6 +1,4 @@
-class Baukis::Staff::TopController < ApplicationController
-  layout 'baukis'
-
+class Baukis::Staff::TopController < Baukis::ApplicationController
   def index
     render action: 'index'
   end

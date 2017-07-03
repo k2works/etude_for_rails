@@ -3,4 +3,4 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require js.cookie
-//= require baukis/
+//= require_tree ./baukis
