@@ -14,9 +14,14 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
       staff_member = Baukis::StaffMember.find_by(email_for_index: @form.email.downcase)
     end
     if Baukis::Staff::Authenticator.new(staff_member).authenticate(@form.password)
-      session[:staff_member_id] = staff_member.id
-      flash.notice = 'ログインしました。'
-      redirect_to :baukis_staff_root
+      if staff_member.suspended?
+        flash.now.alert = 'アカウントが停止されています。'
+        render action: 'new'
+      else
+        session[:staff_member_id] = staff_member.id
+        flash.notice = 'ログインしました。'
+        redirect_to :baukis_staff_root
+      end
     else
       flash.now.alert = 'メールアドレスまたはパスワードが正しくありません。'
       render action: 'new'

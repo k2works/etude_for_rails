@@ -18,11 +18,6 @@ describe Baukis::Staff::Authenticator do
       expect(Baukis::Staff::Authenticator.new(m).authenticate('pw')).to be_falsey
     end
 
-    example '停止フラグが立っていればfalseを返す' do
-      m = build(:staff_member, suspended: true)
-      expect(Baukis::Staff::Authenticator.new(m).authenticate('pw')).to be_falsey
-    end
-
     example '開始前ならfalseを返す' do
       m = build(:staff_member, start_date: Date.tomorrow)
       expect(Baukis::Staff::Authenticator.new(m).authenticate('pw')).to be_falsey
