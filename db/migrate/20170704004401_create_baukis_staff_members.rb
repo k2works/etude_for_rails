@@ -1,6 +1,6 @@
 class CreateBaukisStaffMembers < ActiveRecord::Migration[5.1]
   def change
-    create_table :staff_members, comment: '職員' do |t|
+    create_table :baukis_staff_members, comment: '職員' do |t|
       t.string :email, null: false, comment: 'メールアドレス'
       t.string :email_for_index, null: false, comment: '索引用メールアドレス'
       t.string :family_name, null: false, comment: '姓'
@@ -15,7 +15,7 @@ class CreateBaukisStaffMembers < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :staff_members, :email_for_index, unique: true
-    add_index :staff_members, [ :family_name_kana, :given_name_kana ]
+    add_index :baukis_staff_members, :email_for_index, unique: true, name: 'baukis_staff_members_email'
+    add_index :baukis_staff_members, [ :family_name_kana, :given_name_kana ], name: 'baukis_staff_members_name_kana'
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701061008) do
+ActiveRecord::Schema.define(version: 20170704004401) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -43,6 +43,23 @@ ActiveRecord::Schema.define(version: 20170701061008) do
     t.string "image_url", comment: "Twitterアイコン画像URL"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "baukis_staff_members", force: :cascade,  comment: "職員" do |t|
+    t.string "email", null: false, comment: "メールアドレス"
+    t.string "email_for_index", null: false, comment: "索引用メールアドレス"
+    t.string "family_name", null: false, comment: "姓"
+    t.string "given_name", null: false, comment: "名"
+    t.string "family_name_kana", null: false, comment: "姓（カナ）"
+    t.string "given_name_kana", null: false, comment: "名（カナ）"
+    t.string "hashed_password", comment: "パスワード"
+    t.date "start_date", null: false, comment: "開始日"
+    t.date "end_date", comment: "終了日"
+    t.boolean "suspended", default: false, null: false, comment: "停止フラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_for_index"], name: "baukis_staff_members_email", unique: true
+    t.index ["family_name_kana", "given_name_kana"], name: "baukis_staff_members_name_kana"
   end
 
   create_table "perfect_rails_accounts", force: :cascade,  comment: "口座" do |t|
