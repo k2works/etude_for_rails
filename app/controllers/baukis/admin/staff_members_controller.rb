@@ -11,4 +11,8 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
   def new
     @staff_member = Baukis::StaffMember.new
   end
+
+  def edit
+    @staff_member = Baukis::StaffMember.find(params[:id])
+  end
 end
