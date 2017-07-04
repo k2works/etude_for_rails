@@ -2,8 +2,13 @@
 #
 #                                         Prefix Verb   URI Pattern                                            Controller#Action
 #                              baukis_staff_root GET    /baukis/staff(.:format)                                baukis/staff/top#index
+#                             baukis_staff_login GET    /baukis/staff/login(.:format)                          baukis/staff/session#new
+#                           baukis_staff_session POST   /baukis/staff/session(.:format)                        baukis/staff/sessions#create
+#                                                DELETE /baukis/staff/session(.:format)                        baukis/staff/session#destroy
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
 #                           baukis_customer_root GET    /baukis/customer(.:format)                             baukis/customer/top#index
+#                                    baukis_root GET    /baukis(.:format)                                      baukis/errors#routing_error
+#                                         baukis GET    /baukis/*anything(.:format)                            baukis/errors#routing_error
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                      awesome_events/welcome#index
 #                          awesome_events_logout GET    /awesome_events/logout(.:format)                       awesome_events/sessions#destroy
 #                     retire_awesome_events_user GET    /awesome_events/user/retire(.:format)                  awesome_events/users#retire
@@ -91,6 +96,9 @@ Rails.application.routes.draw do
   namespace :baukis do
     namespace :staff do
       root 'top#index'
+      get 'login' => 'session#new', as: :login
+      post 'session' => 'sessions#create', as: :session
+      delete 'session' => 'session#destroy'
     end
 
     namespace :admin do
