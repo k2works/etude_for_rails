@@ -3,19 +3,16 @@
 #                                         Prefix Verb   URI Pattern                                            Controller#Action
 #                              baukis_staff_root GET    /baukis(.:format)                                      baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                baukis/staff/sessions#new
-#                           baukis_staff_session POST   /baukis/session(.:format)                              baukis/staff/sessions#create
-#                                                DELETE /baukis/session(.:format)                              baukis/staff/sessions#destroy
-#                       new_baukis_staff_account GET    /baukis/account/new(.:format)                          baukis/staff/accounts#new
+#                           baukis_staff_session DELETE /baukis/session(.:format)                              baukis/staff/sessions#destroy
+#                                                POST   /baukis/session(.:format)                              baukis/staff/sessions#create
 #                      edit_baukis_staff_account GET    /baukis/account/edit(.:format)                         baukis/staff/accounts#edit
 #                           baukis_staff_account GET    /baukis/account(.:format)                              baukis/staff/accounts#show
 #                                                PATCH  /baukis/account(.:format)                              baukis/staff/accounts#update
 #                                                PUT    /baukis/account(.:format)                              baukis/staff/accounts#update
-#                                                DELETE /baukis/account(.:format)                              baukis/staff/accounts#destroy
-#                                                POST   /baukis/account(.:format)                              baukis/staff/accounts#create
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/sessions#new
-#                           baukis_admin_session POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
-#                                                DELETE /baukis/admin/session(.:format)                        baukis/admin/sessions#destroy
+#                           baukis_admin_session DELETE /baukis/admin/session(.:format)                        baukis/admin/sessions#destroy
+#                                                POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
 #                     baukis_admin_staff_members GET    /baukis/admin/staff_members(.:format)                  baukis/admin/staff_members#index
 #                                                POST   /baukis/admin/staff_members(.:format)                  baukis/admin/staff_members#create
 #                  new_baukis_admin_staff_member GET    /baukis/admin/staff_members/new(.:format)              baukis/admin/staff_members#new
@@ -115,16 +112,14 @@ Rails.application.routes.draw do
     namespace :staff, path: '' do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
-      post 'session' => 'sessions#create', as: :session
-      delete 'session' => 'sessions#destroy'
-      resource :account
+      resource :session, only:[ :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ]
     end
 
     namespace :admin do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
-      post 'session' => 'sessions#create', as: :session
-      delete 'session' => 'sessions#destroy'
+      resource :session, only:[ :create, :destroy ]
       resources :staff_members
       # resources :staff_members, only: [ :index, :new, :create ]
       # resources :staff_members, except: [ :show, :destroy ]
