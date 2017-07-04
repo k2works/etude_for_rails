@@ -15,14 +15,17 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
     end
     if Baukis::Staff::Authenticator.new(staff_member).authenticate(@form.password)
       session[:staff_member_id] = staff_member.id
+      flash.notice = 'ログインしました。'
       redirect_to :baukis_staff_root
     else
+      flash.now.alert = 'メールアドレスまたはパスワードが正しくありません。'
       render action: 'new'
     end
   end
 
   def destroy
     session.delete(:staff_member_id)
+    flash.notice = 'ログアウトしました。'
     redirect_to :baukis_staff_root
   end
 
