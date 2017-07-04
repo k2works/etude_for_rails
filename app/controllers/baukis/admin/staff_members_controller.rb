@@ -26,6 +26,16 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
     end
   end
 
+  def update
+    @staff_member = Baukis::StaffMember.find(params[:id])
+    @staff_member.assign_attributes(staff_member_params)
+    if @staff_member.save
+      flash.notice = '職員アカウントを更新しました。'
+      redirect_to :baukis_admin_staff_members
+    else
+      render action: 'edit'
+    end
+  end
 
   private
   def staff_member_params
