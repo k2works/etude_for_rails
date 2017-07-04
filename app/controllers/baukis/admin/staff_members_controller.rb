@@ -15,4 +15,30 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
   def edit
     @staff_member = Baukis::StaffMember.find(params[:id])
   end
+
+  def create
+    @staff_member = Baukis::StaffMember.new(staff_member_params)
+    if @staff_member.save
+      flash.notice = '職員アカウントを新規登録しました。'
+      redirect_to :baukis_admin_staff_members
+    else
+      render action: 'new'
+    end
+  end
+
+
+  private
+  def staff_member_params
+    params.require(:baukis_staff_member).permit(
+        :email,
+        :password,
+        :family_name,
+        :given_name,
+        :family_name_kana,
+        :given_name_kana,
+        :start_date,
+        :end_date,
+        :suspended
+    )
+  end
 end
