@@ -13,7 +13,7 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
     if @form.email.present?
       staff_member = Baukis::StaffMember.find_by(email_for_index: @form.email.downcase)
     end
-    if staff_member
+    if Baukis::Staff::Authenticator.new(staff_member).authenticate(@form.password)
       session[:staff_member_id] = staff_member.id
       redirect_to :baukis_staff_root
     else
