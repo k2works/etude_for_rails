@@ -9,6 +9,14 @@
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/sessions#new
 #                           baukis_admin_session POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
 #                                                DELETE /baukis/admin/session(.:format)                        baukis/admin/sessions#destroy
+#                     baukis_admin_staff_members GET    /baukis/admin/staff_members(.:format)                  baukis/admin/staff_members#index
+#                                                POST   /baukis/admin/staff_members(.:format)                  baukis/admin/staff_members#create
+#                  new_baukis_admin_staff_member GET    /baukis/admin/staff_members/new(.:format)              baukis/admin/staff_members#new
+#                 edit_baukis_admin_staff_member GET    /baukis/admin/staff_members/:id/edit(.:format)         baukis/admin/staff_members#edit
+#                      baukis_admin_staff_member GET    /baukis/admin/staff_members/:id(.:format)              baukis/admin/staff_members#show
+#                                                PATCH  /baukis/admin/staff_members/:id(.:format)              baukis/admin/staff_members#update
+#                                                PUT    /baukis/admin/staff_members/:id(.:format)              baukis/admin/staff_members#update
+#                                                DELETE /baukis/admin/staff_members/:id(.:format)              baukis/admin/staff_members#destroy
 #                           baukis_customer_root GET    /baukis/customer(.:format)                             baukis/customer/top#index
 #                                    baukis_root GET    /baukis(.:format)                                      baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                            baukis/errors#routing_error
@@ -109,6 +117,7 @@ Rails.application.routes.draw do
       get 'login' => 'sessions#new', as: :login
       post 'session' => 'sessions#create', as: :session
       delete 'session' => 'sessions#destroy'
+      resources :staff_members
     end
 
     namespace :customer do
