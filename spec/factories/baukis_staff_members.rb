@@ -19,14 +19,14 @@
 
 FactoryGirl.define do
   factory :staff_member, class: 'Baukis::StaffMember' do
-    email 'String'
-    email_for_index 'String'
-    family_name 'String'
-    given_name 'String'
-    family_name_kana 'String'
-    given_name_kana 'String'
-    hashed_password 'String'
-    start_date Date.today
-    end_date Date.today + 1
+    sequence(:email) { |n| "memeber#{n}@example.com"}
+    family_name '山田'
+    given_name '太郎'
+    family_name_kana 'ヤマダ'
+    given_name_kana 'タロウ'
+    password 'pw'
+    start_date { Date.yesterday }
+    end_date nil
+    suspended false
   end
 end
