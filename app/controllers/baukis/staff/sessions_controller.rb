@@ -7,4 +7,25 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
       render action: 'new'
     end
   end
+
+  def create
+    @form = Baukis::Staff::LoginForm.new(session_params)
+    if @form.email.present?
+      staff_member = Baukis::StaffMember.find_by(email_for_index: @form.email.downcase)
+    end
+    if staff_member
+      session[:staff_member_id] = staff_member.id
+      redirect_to :baukis_staff_root
+    else
+      render action: 'new'
+    end
+  end
+
+  private
+  def session_params
+    params.require(:baukis_staff_login_form).permit(
+        :email,
+        :password
+    )
+  end
 end
