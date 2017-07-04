@@ -13,9 +13,8 @@
 
 FactoryGirl.define do
   factory :administrator, class: 'Baukis::Administrator' do
-    email "MyString"
-    email_for_index "MyString"
-    hashed_password "MyString"
+    sequence(:email) { |n| "member#{n}@example.com"}
+    password 'pw'
     suspended false
   end
 end
