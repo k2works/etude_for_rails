@@ -1,14 +1,14 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                            Controller#Action
-#                              baukis_staff_root GET    /baukis/staff(.:format)                                baukis/staff/top#index
-#                             baukis_staff_login GET    /baukis/staff/login(.:format)                          baukis/staff/session#new
-#                           baukis_staff_session POST   /baukis/staff/session(.:format)                        baukis/staff/sessions#create
-#                                                DELETE /baukis/staff/session(.:format)                        baukis/staff/session#destroy
+#                              baukis_staff_root GET    /baukis(.:format)                                      baukis/staff/top#index
+#                             baukis_staff_login GET    /baukis/login(.:format)                                baukis/staff/sessions#new
+#                           baukis_staff_session POST   /baukis/session(.:format)                              baukis/staff/sessions#create
+#                                                DELETE /baukis/session(.:format)                              baukis/staff/sessions#destroy
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
-#                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/session#new
+#                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/sessions#new
 #                           baukis_admin_session POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
-#                                                DELETE /baukis/admin/session(.:format)                        baukis/admin/session#destroy
+#                                                DELETE /baukis/admin/session(.:format)                        baukis/admin/sessions#destroy
 #                           baukis_customer_root GET    /baukis/customer(.:format)                             baukis/customer/top#index
 #                                    baukis_root GET    /baukis(.:format)                                      baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                            baukis/errors#routing_error
@@ -97,7 +97,7 @@
 
 Rails.application.routes.draw do
   namespace :baukis do
-    namespace :staff do
+    namespace :staff, path: '' do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       post 'session' => 'sessions#create', as: :session
