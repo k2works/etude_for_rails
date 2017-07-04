@@ -20,5 +20,10 @@
 require 'rails_helper'
 
 RSpec.describe Baukis::StaffMember, type: :model do
-  it { Baukis::StaffMember.new }
+  describe '#email_for_index' do
+    let(:staff_member) { create(:staff_member, email:'TEST@TEST.COM') }
+    it '小文字に変換される' do
+      expect(staff_member.email_for_index).to eq 'test@test.com'
+    end
+  end
 end
