@@ -5,6 +5,13 @@
 #                             baukis_staff_login GET    /baukis/login(.:format)                                baukis/staff/sessions#new
 #                           baukis_staff_session POST   /baukis/session(.:format)                              baukis/staff/sessions#create
 #                                                DELETE /baukis/session(.:format)                              baukis/staff/sessions#destroy
+#                       new_baukis_staff_account GET    /baukis/account/new(.:format)                          baukis/staff/accounts#new
+#                      edit_baukis_staff_account GET    /baukis/account/edit(.:format)                         baukis/staff/accounts#edit
+#                           baukis_staff_account GET    /baukis/account(.:format)                              baukis/staff/accounts#show
+#                                                PATCH  /baukis/account(.:format)                              baukis/staff/accounts#update
+#                                                PUT    /baukis/account(.:format)                              baukis/staff/accounts#update
+#                                                DELETE /baukis/account(.:format)                              baukis/staff/accounts#destroy
+#                                                POST   /baukis/account(.:format)                              baukis/staff/accounts#create
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/sessions#new
 #                           baukis_admin_session POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
@@ -110,6 +117,7 @@ Rails.application.routes.draw do
       get 'login' => 'sessions#new', as: :login
       post 'session' => 'sessions#create', as: :session
       delete 'session' => 'sessions#destroy'
+      resource :account
     end
 
     namespace :admin do
