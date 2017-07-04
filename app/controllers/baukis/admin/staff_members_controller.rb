@@ -7,4 +7,8 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
     staff_member = Baukis::StaffMember.find(params[:id])
     redirect_to edit_baukis_admin_staff_member_url(staff_member)
   end
+
+  def new
+    @staff_member = Baukis::StaffMember.new
+  end
 end
