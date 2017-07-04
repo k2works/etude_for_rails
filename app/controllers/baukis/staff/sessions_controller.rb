@@ -21,6 +21,11 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
     end
   end
 
+  def destroy
+    session.delete(:staff_member_id)
+    redirect_to :baukis_staff_root
+  end
+
   private
   def session_params
     params.require(:baukis_staff_login_form).permit(
