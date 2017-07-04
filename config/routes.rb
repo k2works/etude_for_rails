@@ -118,6 +118,10 @@ Rails.application.routes.draw do
       post 'session' => 'sessions#create', as: :session
       delete 'session' => 'sessions#destroy'
       resources :staff_members
+      # resources :staff_members, only: [ :index, :new, :create ]
+      # resources :staff_members, except: [ :show, :destroy ]
+      # resources :staff_members, controller: 'employees'
+      # resources :staff_members, path: 'staff'
     end
 
     namespace :customer do
