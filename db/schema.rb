@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704004401) do
+ActiveRecord::Schema.define(version: 20170704040540) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20170704004401) do
     t.string "image_url", comment: "Twitterアイコン画像URL"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "baukis_administrators", force: :cascade,  comment: "管理者" do |t|
+    t.string "email", null: false, comment: "メールアドレス"
+    t.string "email_for_index", null: false, comment: "索引用メールアドレス"
+    t.string "hashed_password", comment: "パスワード"
+    t.boolean "suspended", default: false, null: false, comment: "停止フラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
   end
 
   create_table "baukis_staff_members", force: :cascade,  comment: "職員" do |t|

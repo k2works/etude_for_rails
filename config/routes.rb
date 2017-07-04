@@ -6,6 +6,9 @@
 #                           baukis_staff_session POST   /baukis/staff/session(.:format)                        baukis/staff/sessions#create
 #                                                DELETE /baukis/staff/session(.:format)                        baukis/staff/session#destroy
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                baukis/admin/top#index
+#                             baukis_admin_login GET    /baukis/admin/login(.:format)                          baukis/admin/session#new
+#                           baukis_admin_session POST   /baukis/admin/session(.:format)                        baukis/admin/sessions#create
+#                                                DELETE /baukis/admin/session(.:format)                        baukis/admin/session#destroy
 #                           baukis_customer_root GET    /baukis/customer(.:format)                             baukis/customer/top#index
 #                                    baukis_root GET    /baukis(.:format)                                      baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                            baukis/errors#routing_error
@@ -103,6 +106,9 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root 'top#index'
+      get 'login' => 'session#new', as: :login
+      post 'session' => 'sessions#create', as: :session
+      delete 'session' => 'session#destroy'
     end
 
     namespace :customer do
