@@ -6,6 +6,7 @@ class Baukis::Admin::StaffEventsController < Baukis::Admin::Base
     else
       @events = Baukis::StaffEvent.order(occurred_at: :desc)
     end
+    @events = @events.includes(:member)
     @events = @events.page(params[:pgae])
   end
 end
