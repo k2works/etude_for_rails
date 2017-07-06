@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704040540) do
+ActiveRecord::Schema.define(version: 20170706041834) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20170704040540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
+  end
+
+  create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
+    t.bigint "baukis_staff_member_id", null: false, comment: "職員レコードへの外部キー"
+    t.string "event_type", null: false, comment: "イベントタイプ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["baukis_staff_member_id", "created_at"], name: "baukis_staff_events_member_id_created_at"
+    t.index ["baukis_staff_member_id"], name: "index_baukis_staff_events_on_baukis_staff_member_id"
+    t.index ["created_at"], name: "baukis_staff_events_created_at"
   end
 
   create_table "baukis_staff_members", force: :cascade,  comment: "職員" do |t|
@@ -144,4 +154,5 @@ ActiveRecord::Schema.define(version: 20170704040540) do
 
   add_foreign_key "awesome_events_tickets", "awesome_events_events"
   add_foreign_key "awesome_events_tickets", "awesome_events_users"
+  add_foreign_key "baukis_staff_events", "baukis_staff_members"
 end

@@ -23,6 +23,8 @@
 #
 
 class Baukis::StaffMember < ApplicationRecord
+  has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
+
   before_validation do
     self.email_for_index = email.downcase if email
   end
