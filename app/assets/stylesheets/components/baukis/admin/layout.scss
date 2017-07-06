@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
 }
+
 div#wrapper {
   position: relative;
   box-sizing: border-box;
@@ -11,6 +12,7 @@ div#wrapper {
   padding-bottom: ($wide + $moderate) * 2 + $standard_line_height;
   background-color: $gray;
 }
+
 header {
   padding: $moderate;
   background-color: $very_dark_magenta;
@@ -23,8 +25,10 @@ header {
   a {
     float: right;
     color: $very_light_gray;
+    margin-left: $wide;
   }
 }
+
 footer {
   bottom: 0;
   position: absolute;
