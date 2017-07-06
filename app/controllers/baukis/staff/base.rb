@@ -1,4 +1,6 @@
 class Baukis::Staff::Base < Baukis::ApplicationController
+  before_action :authorize
+
   private
   def current_staff_member
     if session[:staff_member_id]
@@ -7,4 +9,11 @@ class Baukis::Staff::Base < Baukis::ApplicationController
   end
 
   helper_method :current_staff_member
+
+  def authorize
+    unless current_staff_member
+      flash.alert = '職員としてログインしてください。'
+      redirect_to :baukis_staff_login
+    end
+  end
 end

@@ -1,4 +1,6 @@
 class Baukis::Staff::SessionsController < Baukis::Staff::Base
+  skip_before_action :authorize
+
   def new
     if current_staff_member
       redirect_to :baukis_staff_root
