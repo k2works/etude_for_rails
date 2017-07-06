@@ -1,5 +1,6 @@
 class Baukis::Staff::Base < Baukis::ApplicationController
   before_action :authorize
+  before_action :check_account
 
   private
   def current_staff_member
@@ -14,6 +15,14 @@ class Baukis::Staff::Base < Baukis::ApplicationController
     unless current_staff_member
       flash.alert = '職員としてログインしてください。'
       redirect_to :baukis_staff_login
+    end
+  end
+
+  def check_account
+    if current_staff_member && !current_staff_member.active?
+      session.delete(:staff_member_id)
+      flash.alert = 'アカウントが無効になりました。'
+      redirect_to :baukis_staff_root
     end
   end
 end
