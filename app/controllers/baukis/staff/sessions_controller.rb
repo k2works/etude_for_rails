@@ -21,6 +21,7 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
         render action: 'new'
       else
         session[:staff_member_id] = staff_member.id
+        session[:last_access_time] = Time.zone.now
         flash.notice = 'ログインしました。'
         redirect_to :baukis_staff_root
       end
