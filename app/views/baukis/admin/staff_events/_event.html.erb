@@ -2,7 +2,7 @@
   <% unless @staff_member %>
       <td>
         <%= link_to(event.member.family_name + event.member.given_name,
-                    baukis_admin_staff_member_staff_events_path(event.member) ) %>
+                     ) %>
       </td>
   <% end %>
   <td><%= event.description %></td>
