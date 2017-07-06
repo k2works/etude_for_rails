@@ -119,3 +119,7 @@ gem 'mini_magick'
 group :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
+
+# For Baukis
+gem 'date_validator', '~> 0.9.0'
+gem 'email_validator', '~> 1.6'
