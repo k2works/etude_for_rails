@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+describe Baukis::Staff::AccountsController, 'ログイン前' do
+  it_behaves_like 'a protected staff controller'
+end
+
 describe Baukis::Staff::AccountsController do
   describe '#update' do
     let(:params_hash) { attributes_for(:staff_member) }

@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+describe Baukis::Admin::StaffMembersController, 'ログイン前' do
+  it_behaves_like 'a protected admin controller'
+end
+
 describe Baukis::Admin::StaffMembersController do
   let(:params_hash) { attributes_for(:staff_member) }
   let(:administrator) { create(:administrator) }
