@@ -27,4 +27,8 @@ class Baukis::Administrator < ApplicationRecord
       self.hashed_password = nil
     end
   end
+
+  def active?
+    !suspended?
+  end
 end

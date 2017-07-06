@@ -21,6 +21,7 @@ class Baukis::Admin::SessionsController < Baukis::Admin::Base
         render action: 'new'
       else
         session[:administrator_id] = administrator.id
+        session[:last_access_time] = Time.zone.now
         flash.notice = 'ログインしました'
         redirect_to :baukis_admin_root
       end
