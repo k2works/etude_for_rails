@@ -28,6 +28,7 @@ class Baukis::StaffMember < ApplicationRecord
   has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
 
   before_validation do
+    self.email = normalize_as_email(email)
     self.email_for_index = email.downcase if email
     self.family_name = normalize_as_name(family_name)
     self.given_name = normalize_as_name(given_name)
@@ -46,6 +47,15 @@ class Baukis::StaffMember < ApplicationRecord
       before: -> (obj) { 1.year.from_now.to_date },
       allow_blank: true
   }
+
+  validates :email_for_index, uniqueness: { allow_blank: true }
+  after_validation do
+    if errors.include?(:email_for_index)
+      errors.add(:email, :taken)
+      errors.delete(:email_for_index)
+    end
+  end
+
   validates :end_date, date: {
       after: :start_date,
       before: -> (obj) { 1.year.from_now.to_date },
