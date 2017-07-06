@@ -9,6 +9,10 @@
 #                           baukis_staff_account GET    /baukis/account(.:format)                                           baukis/staff/accounts#show
 #                                                PATCH  /baukis/account(.:format)                                           baukis/staff/accounts#update
 #                                                PUT    /baukis/account(.:format)                                           baukis/staff/accounts#update
+#                     edit_baukis_staff_password GET    /baukis/password/edit(.:format)                                     baukis/staff/passwords#edit
+#                          baukis_staff_password GET    /baukis/password(.:format)                                          baukis/staff/passwords#show
+#                                                PATCH  /baukis/password(.:format)                                          baukis/staff/passwords#update
+#                                                PUT    /baukis/password(.:format)                                          baukis/staff/passwords#update
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                             baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                                       baukis/admin/sessions#new
 #                           baukis_admin_session DELETE /baukis/admin/session(.:format)                                     baukis/admin/sessions#destroy
@@ -116,6 +120,7 @@ Rails.application.routes.draw do
       get 'login' => 'sessions#new', as: :login
       resource :session, only:[ :create, :destroy ]
       resource :account, except: [ :new, :create, :destroy ]
+      resource :password, only: [ :show, :edit, :update ]
     end
 
     namespace :admin do
