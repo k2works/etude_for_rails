@@ -1,4 +1,6 @@
 class Baukis::Admin::SessionsController < Baukis::Admin::Base
+  skip_before_action :authorize
+
   def new
     if current_administrator
       redirect_to :admin_root

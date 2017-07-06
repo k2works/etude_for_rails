@@ -1,5 +1,4 @@
 class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
-  before_action :authorize
 
   def index
     unless current_administrator
@@ -50,12 +49,6 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
   end
 
   private
-  def authorize
-    unless current_administrator
-      flash.alert = '管理者としてログインしてください。'
-      redirect_to :baukis_admin_login
-    end
-  end
 
   def staff_member_params
     params.require(:baukis_staff_member).permit(
