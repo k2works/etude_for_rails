@@ -17,11 +17,13 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
     end
     if Baukis::Staff::Authenticator.new(staff_member).authenticate(@form.password)
       if staff_member.suspended?
+        staff_member.events.create!(event_type: 'rejected')
         flash.now.alert = 'アカウントが停止されています。'
         render action: 'new'
       else
         session[:staff_member_id] = staff_member.id
         session[:last_access_time] = Time.zone.now
+        staff_member.events.create!(event_type: 'logged_in')
         flash.notice = 'ログインしました。'
         redirect_to :baukis_staff_root
       end
@@ -32,6 +34,9 @@ class Baukis::Staff::SessionsController < Baukis::Staff::Base
   end
 
   def destroy
+    if current_staff_member
+      current_staff_member.events.create!(event_type: 'loged_out')
+    end
     session.delete(:staff_member_id)
     flash.notice = 'ログアウトしました。'
     redirect_to :baukis_staff_root
