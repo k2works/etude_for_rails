@@ -38,4 +38,11 @@ class Baukis::Staff::CustomersController < Baukis::Staff::Base
       render action: 'new'
     end
   end
+
+  def destroy
+    customer = Baukis::Customer.find(params[:id])
+    customer.destroy!
+    flash.notice = '顧客アカウントを削除しました。'
+    redirect_to :baukis_staff_customers
+  end
 end
