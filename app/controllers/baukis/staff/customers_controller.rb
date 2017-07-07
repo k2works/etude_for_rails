@@ -6,4 +6,12 @@ class Baukis::Staff::CustomersController < Baukis::Staff::Base
   def show
     @customer = Baukis::Customer.find(params[:id])
   end
+
+  def new
+    @customer_form = Baukis::Staff::CustomerForm.new
+  end
+
+  def edit
+    @customer_form = Baukis::CustomerForm.new(Baukis::Customer.find(params[:id]))
+  end
 end
