@@ -18,20 +18,20 @@
 
 FactoryGirl.define do
   factory :home_address, class: 'Baukis::HomeAddress' do
-    customer
-    postal_code 'String'
-    prefecture 'String'
-    city 'String'
-    address1 'String'
-    address2  'String'
+    postal_code '100000'
+    prefecture '東京都'
+    city '千代田区'
+    address1 '試験1-1-1'
+    address2  ''
   end
 
   factory :work_address, class: 'Baukis::WorkAddress' do
-    customer
-    postal_code 'String'
-    prefecture 'String'
-    city 'String'
-    address1 'String'
-    address2  'String'
+    company_name 'テスト'
+    division_name '開発'
+    postal_code '1050000'
+    prefecture '東京都'
+    city '港区'
+    address1 '試験1-1-1'
+    address2  ''
   end
 end
