@@ -13,6 +13,14 @@
 #                          baukis_staff_password GET    /baukis/password(.:format)                                          baukis/staff/passwords#show
 #                                                PATCH  /baukis/password(.:format)                                          baukis/staff/passwords#update
 #                                                PUT    /baukis/password(.:format)                                          baukis/staff/passwords#update
+#                         baukis_staff_customers GET    /baukis/customers(.:format)                                         baukis/staff/customers#index
+#                                                POST   /baukis/customers(.:format)                                         baukis/staff/customers#create
+#                      new_baukis_staff_customer GET    /baukis/customers/new(.:format)                                     baukis/staff/customers#new
+#                     edit_baukis_staff_customer GET    /baukis/customers/:id/edit(.:format)                                baukis/staff/customers#edit
+#                          baukis_staff_customer GET    /baukis/customers/:id(.:format)                                     baukis/staff/customers#show
+#                                                PATCH  /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
+#                                                PUT    /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
+#                                                DELETE /baukis/customers/:id(.:format)                                     baukis/staff/customers#destroy
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                             baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                                       baukis/admin/sessions#new
 #                           baukis_admin_session DELETE /baukis/admin/session(.:format)                                     baukis/admin/sessions#destroy
@@ -121,6 +129,7 @@ Rails.application.routes.draw do
       resource :session, only:[ :create, :destroy ]
       resource :account, except: [ :new, :create, :destroy ]
       resource :password, only: [ :show, :edit, :update ]
+      resources :customers
     end
 
     namespace :admin do
