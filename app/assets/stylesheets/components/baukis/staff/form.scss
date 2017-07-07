@@ -25,6 +25,7 @@ div#wrapper {
         }
         div.input-block {
           input { margin-right: $narrow * 2; }
+          .disable { background-color: $light_gray }
         }
         div.notes {
           text-align: right;
