@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706041834) do
+ActiveRecord::Schema.define(version: 20170707041023) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -45,6 +45,23 @@ ActiveRecord::Schema.define(version: 20170706041834) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "baukis_addresses", force: :cascade,  comment: "住所" do |t|
+    t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
+    t.string "type", null: false, comment: "継承カラム"
+    t.string "postal_code", null: false, comment: "郵便番号"
+    t.string "prefecture", null: false, comment: "都道府県"
+    t.string "city", null: false, comment: "市区町村"
+    t.string "address1", null: false, comment: "町域、番地等"
+    t.string "address2", null: false, comment: "建物名、部屋番号等"
+    t.string "company_name", default: "", null: false, comment: "会社名"
+    t.string "division_name", default: "", null: false, comment: "部署名"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["baukis_customer_id"], name: "baukis_addresses_customer_id"
+    t.index ["baukis_customer_id"], name: "index_baukis_addresses_on_baukis_customer_id"
+    t.index ["type", "baukis_customer_id"], name: "baukis_addresses_type_customer_id", unique: true
+  end
+
   create_table "baukis_administrators", force: :cascade,  comment: "管理者" do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "email_for_index", null: false, comment: "索引用メールアドレス"
@@ -53,6 +70,22 @@ ActiveRecord::Schema.define(version: 20170706041834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
+  end
+
+  create_table "baukis_customers", force: :cascade,  comment: "顧客" do |t|
+    t.string "email", null: false, comment: "メールアドレス"
+    t.string "email_for_index", null: false, comment: "索引用メールアドレス"
+    t.string "family_name", null: false, comment: "姓"
+    t.string "given_name", null: false, comment: "名"
+    t.string "family_name_kana", null: false, comment: "姓（カナ）"
+    t.string "given_name_kana", null: false, comment: "名（カナ）"
+    t.string "gender", comment: "性別"
+    t.date "birthday", comment: "誕生日"
+    t.string "hashed_password", comment: "パスワード"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_for_index"], name: "baukis_customers_email_for_index", unique: true
+    t.index ["family_name_kana", "given_name_kana"], name: "baukis_customers_nanme_kana"
   end
 
   create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
@@ -154,5 +187,6 @@ ActiveRecord::Schema.define(version: 20170706041834) do
 
   add_foreign_key "awesome_events_tickets", "awesome_events_events"
   add_foreign_key "awesome_events_tickets", "awesome_events_users"
+  add_foreign_key "baukis_addresses", "baukis_customers"
   add_foreign_key "baukis_staff_events", "baukis_staff_members"
 end
