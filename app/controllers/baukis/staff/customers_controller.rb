@@ -12,6 +12,6 @@ class Baukis::Staff::CustomersController < Baukis::Staff::Base
   end
 
   def edit
-    @customer_form = Baukis::CustomerForm.new(Baukis::Customer.find(params[:id]))
+    @customer_form = Baukis::Staff::CustomerForm.new(Baukis::Customer.find(params[:id]))
   end
 end
