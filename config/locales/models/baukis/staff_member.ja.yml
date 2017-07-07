@@ -1,7 +1,7 @@
 ja:
   activerecord:
     attributes:
-      staff_member:
+      baukis/staff_member:
         email: メールアドレス
         family_name: 氏名（姓）
         given_name: 氏名（名）
@@ -11,7 +11,7 @@ ja:
         end_date: 終了日
     errors:
       models:
-        staff_member:
+        baukis/staff_member:
           attributes:
             email:
               taken: が他の職員と重複しています。
