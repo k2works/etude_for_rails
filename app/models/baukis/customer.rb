@@ -14,11 +14,21 @@
 #  hashed_password  :string(255)                            # パスワード
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  birth_year       :integer                                # 誕生年
+#  birth_month      :integer                                # 誕生月
+#  birth_mday       :integer                                # 誕生日
 #
 # Indexes
 #
-#  baukis_customers_email_for_index  (email_for_index) UNIQUE
-#  baukis_customers_nanme_kana       (family_name_kana,given_name_kana)
+#  baukis_customers_biarth_day_name_kana         (birth_mday,given_name_kana)
+#  baukis_customers_birth_month_day              (birth_month,birth_mday)
+#  baukis_customers_birth_year_month_day         (birth_year,birth_month,birth_mday)
+#  baukis_customers_email_for_index              (email_for_index) UNIQUE
+#  baukis_customers_name_kana                    (given_name_kana)
+#  baukis_customers_nanme_kana                   (family_name_kana,given_name_kana)
+#  baukis_customers_on_birth_mday_and_furigana   (birth_mday,family_name_kana,given_name_kana)
+#  baukis_customers_on_birth_month_and_furigana  (birth_month,family_name_kana,given_name_kana)
+#  baukis_customers_on_birth_year_and_furigana   (birth_year,family_name_kana,given_name_kana)
 #
 
 class Baukis::Customer < ApplicationRecord

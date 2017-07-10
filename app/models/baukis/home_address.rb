@@ -17,8 +17,12 @@
 #
 # Indexes
 #
+#  baukis_addresses_city                         (city)
 #  baukis_addresses_customer_id                  (baukis_customer_id)
+#  baukis_addresses_prefecture_city              (prefecture,city)
+#  baukis_addresses_type_city                    (type,city)
 #  baukis_addresses_type_customer_id             (type,baukis_customer_id) UNIQUE
+#  baukis_addresses_type_prefecture_city         (type,prefecture,city)
 #  index_baukis_addresses_on_baukis_customer_id  (baukis_customer_id)
 #
 # Foreign Keys

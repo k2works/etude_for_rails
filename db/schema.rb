@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710062941) do
+ActiveRecord::Schema.define(version: 20170710092934) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -59,7 +59,11 @@ ActiveRecord::Schema.define(version: 20170710062941) do
     t.datetime "updated_at", null: false
     t.index ["baukis_customer_id"], name: "baukis_addresses_customer_id"
     t.index ["baukis_customer_id"], name: "index_baukis_addresses_on_baukis_customer_id"
+    t.index ["city"], name: "baukis_addresses_city"
+    t.index ["prefecture", "city"], name: "baukis_addresses_prefecture_city"
     t.index ["type", "baukis_customer_id"], name: "baukis_addresses_type_customer_id", unique: true
+    t.index ["type", "city"], name: "baukis_addresses_type_city"
+    t.index ["type", "prefecture", "city"], name: "baukis_addresses_type_prefecture_city"
   end
 
   create_table "baukis_administrators", force: :cascade,  comment: "管理者" do |t|
@@ -84,8 +88,18 @@ ActiveRecord::Schema.define(version: 20170710062941) do
     t.string "hashed_password", comment: "パスワード"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "birth_year", comment: "誕生年"
+    t.integer "birth_month", comment: "誕生月"
+    t.integer "birth_mday", comment: "誕生日"
+    t.index ["birth_mday", "family_name_kana", "given_name_kana"], name: "baukis_customers_on_birth_mday_and_furigana"
+    t.index ["birth_mday", "given_name_kana"], name: "baukis_customers_biarth_day_name_kana"
+    t.index ["birth_month", "birth_mday"], name: "baukis_customers_birth_month_day"
+    t.index ["birth_month", "family_name_kana", "given_name_kana"], name: "baukis_customers_on_birth_month_and_furigana"
+    t.index ["birth_year", "birth_month", "birth_mday"], name: "baukis_customers_birth_year_month_day"
+    t.index ["birth_year", "family_name_kana", "given_name_kana"], name: "baukis_customers_on_birth_year_and_furigana"
     t.index ["email_for_index"], name: "baukis_customers_email_for_index", unique: true
     t.index ["family_name_kana", "given_name_kana"], name: "baukis_customers_nanme_kana"
+    t.index ["given_name_kana"], name: "baukis_customers_name_kana"
   end
 
   create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
