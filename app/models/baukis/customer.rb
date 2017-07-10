@@ -24,6 +24,7 @@
 class Baukis::Customer < ApplicationRecord
   include Baukis::EmailHolder
   include Baukis::PersonalNameHolder
+  include Baukis::PasswordHolder
 
   has_one :home_address, class_name:'Baukis::HomeAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
   has_one :work_address, class_name:'Baukis::WorkAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
@@ -34,12 +35,4 @@ class Baukis::Customer < ApplicationRecord
       before: -> (obj) { Date.today },
       allow_blank: true
   }
-
-  def password=(raw_password)
-    if raw_password.kind_of?(String)
-      self.hashed_password = BCrypt::Password.create(raw_password)
-    elsif raw_password.nil?
-      self.hashed_password = nil
-    end
-  end
 end
