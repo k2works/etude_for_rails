@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170710062941) do
     t.bigint "baukis_address_id", comment: "住所への外部キー"
     t.string "number", null: false, comment: "電話番号"
     t.string "number_for_index", null: false, comment: "索引用電話番号"
-    t.boolean "primary", null: false, comment: "優先フラグ"
+    t.boolean "primary", default: false, null: false, comment: "優先フラグ"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["baukis_address_id"], name: "baukis_phones_address_id"

@@ -3,11 +3,11 @@
 # Table name: baukis_phones # 電話番号
 #
 #  id                 :integer          not null, primary key
-#  baukis_customer_id :integer          not null              # 顧客への外部キー
-#  baukis_address_id  :integer                                # 住所への外部キー
-#  number             :string(255)      not null              # 電話番号
-#  number_for_index   :string(255)      not null              # 索引用電話番号
-#  primary            :boolean          not null              # 優先フラグ
+#  baukis_customer_id :integer          not null                 # 顧客への外部キー
+#  baukis_address_id  :integer                                   # 住所への外部キー
+#  number             :string(255)      not null                 # 電話番号
+#  number_for_index   :string(255)      not null                 # 索引用電話番号
+#  primary            :boolean          default(FALSE), not null # 優先フラグ
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -33,7 +33,7 @@ class Baukis::Phone < ApplicationRecord
 
   before_validation do
     self.number = normalize_as_phone_number(number)
-    self.number = number.gsub(/\D/,'') if number
+    self.number_for_index = number.gsub(/\D/,'') if number
   end
 
   before_create do

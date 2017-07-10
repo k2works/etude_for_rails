@@ -30,6 +30,7 @@ class Baukis::Address < ApplicationRecord
   include Baukis::StringNormalizer
 
   belongs_to :customer, class_name: 'Baukis::Customer', foreign_key: :baukis_customer_id, optional: true
+  has_many :phones, class_name: 'Baukis::Phone', foreign_key: :baukis_address_id, dependent: :destroy, autosave: true
 
   before_validation do
     self.postal_code = normalize_as_postal_code(postal_code)
