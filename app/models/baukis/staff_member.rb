@@ -23,7 +23,7 @@
 #
 
 class Baukis::StaffMember < ApplicationRecord
-  include StringNormalizer
+  include Baukis::StringNormalizer
 
   has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
 

@@ -18,7 +18,7 @@
 
 FactoryGirl.define do
   factory :home_address, class: 'Baukis::HomeAddress' do
-    postal_code '100000'
+    postal_code '1000001'
     prefecture '東京都'
     city '千代田区'
     address1 '試験1-1-1'
