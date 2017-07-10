@@ -1,5 +1,6 @@
 class Baukis::Staff::CustomersController < Baukis::Staff::Base
   def index
+    @search_form = Baukis::Staff::CustomerSearchForm.new
     @customers = Baukis::Customer.order(:family_name_kana, :given_name_kana).page(params[:page])
   end
 
