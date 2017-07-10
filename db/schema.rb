@@ -4,13 +4,13 @@
 #
 # Note that this schema.rb definition is the authoritative source for your
 # database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, rnot running all the migrations
+# system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707041023) do
+ActiveRecord::Schema.define(version: 20170710062941) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -86,6 +86,21 @@ ActiveRecord::Schema.define(version: 20170707041023) do
     t.datetime "updated_at", null: false
     t.index ["email_for_index"], name: "baukis_customers_email_for_index", unique: true
     t.index ["family_name_kana", "given_name_kana"], name: "baukis_customers_nanme_kana"
+  end
+
+  create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
+    t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
+    t.bigint "baukis_address_id", comment: "住所への外部キー"
+    t.string "number", null: false, comment: "電話番号"
+    t.string "number_for_index", null: false, comment: "索引用電話番号"
+    t.boolean "primary", null: false, comment: "優先フラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["baukis_address_id"], name: "baukis_phones_address_id"
+    t.index ["baukis_address_id"], name: "index_baukis_phones_on_baukis_address_id"
+    t.index ["baukis_customer_id"], name: "baukis_phones_customer_id"
+    t.index ["baukis_customer_id"], name: "index_baukis_phones_on_baukis_customer_id"
+    t.index ["number_for_index"], name: "baukis_phones_number_for_index"
   end
 
   create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
@@ -188,5 +203,7 @@ ActiveRecord::Schema.define(version: 20170707041023) do
   add_foreign_key "awesome_events_tickets", "awesome_events_events"
   add_foreign_key "awesome_events_tickets", "awesome_events_users"
   add_foreign_key "baukis_addresses", "baukis_customers"
+  add_foreign_key "baukis_phones", "baukis_addresses"
+  add_foreign_key "baukis_phones", "baukis_customers"
   add_foreign_key "baukis_staff_events", "baukis_staff_members"
 end
