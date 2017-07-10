@@ -20,11 +20,9 @@ class Baukis::Staff::CustomerForm
   end
 
   def save
-    ActiveRecord::Base.transaction do
-      customer.save!
-      customer.home_address.save!
-      customer.work_address.save!
-    end
+    customer.save!
+    customer.home_address.save!
+    customer.work_address.save!
   end
 
   private

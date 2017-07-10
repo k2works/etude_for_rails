@@ -27,7 +27,16 @@
 #
 
 class Baukis::Address < ApplicationRecord
+  include Baukis::StringNormalizer
+
   belongs_to :customer, class_name: 'Baukis::Customer', foreign_key: :baukis_customer_id
+
+  before_validation do
+    self.postal_code = normalize_as_postal_code(postal_code)
+    self.city = normalize_as_name(city)
+    self.address1 = normalize_as_name(address1)
+    self.address2 = normalize_as_name(address2)
+  end
 
   PREFECTURE_NAMES = %w(
     北海道
@@ -41,4 +50,7 @@ class Baukis::Address < ApplicationRecord
     沖縄県
     日本国外
   )
+
+  validates :postal_code, format: { with: /\A\d{7}\z/, allow_blank: true }
+  validates :prefecture, inclusion: { in: PREFECTURE_NAMES, allow_blank: true }
 end
