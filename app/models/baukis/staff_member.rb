@@ -23,17 +23,11 @@
 #
 
 class Baukis::StaffMember < ApplicationRecord
-  include Baukis::StringNormalizer
+  include Baukis::EmailHolder
   include Baukis::PersonalNameHolder
 
   has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
 
-  before_validation do
-    self.email = normalize_as_email(email)
-    self.email_for_index = email.downcase if email
-  end
-
-  validates :email, presence: true, email: { allow_blank: true }
   validates :start_date, presence: true, date: {
       after_or_equal_to: Date.new(2000,1,1),
       before: -> (obj) { 1.year.from_now.to_date },
@@ -41,12 +35,6 @@ class Baukis::StaffMember < ApplicationRecord
   }
 
   validates :email_for_index, uniqueness: { allow_blank: true }
-  after_validation do
-    if errors.include?(:email_for_index)
-      errors.add(:email, :taken)
-      errors.delete(:email_for_index)
-    end
-  end
 
   validates :end_date, date: {
       after: :start_date,

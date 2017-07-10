@@ -16,9 +16,7 @@
 #
 
 class Baukis::Administrator < ApplicationRecord
-  before_validation do
-    self.email_for_index = email.downcase if email
-  end
+  include Baukis::EmailHolder
 
   def password=(raw_password)
     if raw_password.kind_of?(String)

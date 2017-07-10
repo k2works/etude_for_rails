@@ -22,14 +22,11 @@
 #
 
 class Baukis::Customer < ApplicationRecord
+  include Baukis::EmailHolder
   include Baukis::PersonalNameHolder
 
   has_one :home_address, class_name:'Baukis::HomeAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
   has_one :work_address, class_name:'Baukis::WorkAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
-
-  before_validation do
-    self.email_for_index = email.downcase if email
-  end
 
   validates :gender, inclusion: { in: %w(male female), allow_blank: true }
   validates :birthday, date: {
