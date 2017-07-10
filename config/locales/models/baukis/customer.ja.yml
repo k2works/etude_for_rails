@@ -7,7 +7,7 @@ ja:
         family_name: 氏名（姓）
         given_name: 氏名（名）
         family_name_kana: フリガナ（姓）
-        given_anme_kana: フリガナ（名）
+        given_name_kana: フリガナ（名）
         birthday: 生年月日
         gender: 性別
     errors:
