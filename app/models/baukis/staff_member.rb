@@ -24,24 +24,16 @@
 
 class Baukis::StaffMember < ApplicationRecord
   include Baukis::StringNormalizer
+  include Baukis::PersonalNameHolder
 
   has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
 
   before_validation do
     self.email = normalize_as_email(email)
     self.email_for_index = email.downcase if email
-    self.family_name = normalize_as_name(family_name)
-    self.given_name = normalize_as_name(given_name)
-    self.family_name_kana = normalize_as_furigana(family_name_kana)
-    self.given_name_kana = normalize_as_furigana(given_name_kana)
   end
 
-  KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/
-
   validates :email, presence: true, email: { allow_blank: true }
-  validates :family_name, :given_name, presence: true
-  validates :family_name_kana, :given_name_kana, presence: true,
-            format: { with: KATAKANA_REGEXP, allow_blank: true }
   validates :start_date, presence: true, date: {
       after_or_equal_to: Date.new(2000,1,1),
       before: -> (obj) { 1.year.from_now.to_date },
