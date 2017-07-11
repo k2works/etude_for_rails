@@ -1,4 +1,4 @@
-class Baukis::Customer::Base < ApplicationController
+class Baukis::Customer::Base < Baukis::ApplicationController
   before_action :authorize
 
   private

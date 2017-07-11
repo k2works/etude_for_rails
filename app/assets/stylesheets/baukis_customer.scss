@@ -11,10 +11,12 @@
 @import "components/baukis/errors";
 @import "components/baukis/customer/layout";
 @import "components/baukis/customer/container";
+@import "components/baukis/customer/flash";
 
 // ===========================
 // Pages
 // ===========================
+@import "pages/baukis/customer/session";
 
 // ===========================
 // Utils
