@@ -59,4 +59,8 @@ Rails.application.configure do
   Rails.application.config.rack_dev_mark.theme = [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right', fixed: true, color: 'red')]
 
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
+  config.baukis = {
+      restrict_ip_addresses: true
+  }
 end

@@ -6,6 +6,8 @@ class Baukis::ApplicationController <  ActionController::Base
   class IpAddressRejected < ActionController::ActionControllerError; end
 
   include Baukis::ErrorHandlers if Rails.env.production?
+  rescue_from Baukis::ApplicationController::Forbidden, with: :rescue403
+  rescue_from Baukis::ApplicationController::IpAddressRejected, with: :rescue403
 
   private
   def set_layout
@@ -14,5 +16,10 @@ class Baukis::ApplicationController <  ActionController::Base
     else
       'baukis_customer'
     end
+  end
+
+  def rescue403(e)
+    @exception = e
+    render 'baukis/errors/forbidden', status: 403
   end
 end
