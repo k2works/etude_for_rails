@@ -1,4 +1,4 @@
-module ErrorHandlers
+module Baukis::ErrorHandlers
   extend ActiveSupport::Concern
 
   included do
