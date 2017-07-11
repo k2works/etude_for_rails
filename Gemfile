@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -55,6 +55,7 @@ group :development, :test do
   gem 'minitest', '5.10.1'
   gem 'database_rewinder'
   gem 'rspec-json_matcher', require: 'rspec/json_matcher'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -118,3 +119,8 @@ gem 'mini_magick'
 group :test do
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
+
+# For Baukis
+gem 'date_validator', '~> 0.9.0'
+gem 'email_validator', '~> 1.6'
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
