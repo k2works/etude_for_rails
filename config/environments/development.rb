@@ -61,6 +61,6 @@ Rails.application.configure do
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   config.baukis = {
-      restrict_ip_addresses: true
+      restrict_ip_addresses: false
   }
 end
