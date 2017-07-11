@@ -1,7 +1,11 @@
 <% @title = '許可IPアドレス一覧' %>
 <h1><%= @title %></h1>
 
-<div class="table-wrapper">
+<div id="generic-form" class="table-wrapper">
+  <div>
+    <%= render 'new_allowed_source' %>
+  </div>
+
   <table class="listing">
     <tr>
       <th>IPアドレス</th>
