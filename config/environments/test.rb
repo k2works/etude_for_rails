@@ -44,4 +44,8 @@ Rails.application.configure do
   # リボンの色と位置の指定
   # オプションの指定 position: 'right'で右上、 color: 'red'  でリボンを赤色に指定
   Rails.application.config.rack_dev_mark.theme = [:title, Rack::DevMark::Theme::GithubForkRibbon.new(position: 'right', fixed: true, color: 'red')]
+
+  config.baukis = {
+      restrict_ip_addresses: false
+  }
 end
