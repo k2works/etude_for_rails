@@ -36,8 +36,9 @@ class Baukis::Customer < ApplicationRecord
   include Baukis::PersonalNameHolder
   include Baukis::PasswordHolder
 
-  has_one :home_address, class_name:'Baukis::HomeAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
-  has_one :work_address, class_name:'Baukis::WorkAddress', foreign_key: :baukis_customer_id, dependent: :destroy, autosave: true
+  has_many :addresses, :class_name => 'Baukis::Address', foreign_key: :baukis_customer_id, dependent: :destroy
+  has_one :home_address, class_name:'Baukis::HomeAddress', foreign_key: :baukis_customer_id, autosave: true
+  has_one :work_address, class_name:'Baukis::WorkAddress', foreign_key: :baukis_customer_id, autosave: true
   has_many :phones, :class_name => 'Baukis::Phone', foreign_key: :baukis_customer_id, dependent: :destroy
   has_many :personal_phones, -> { where(baukis_address_id: nil).order(:id) }, :class_name => 'Baukis::Phone', foreign_key: :baukis_customer_id,autosave: true
 

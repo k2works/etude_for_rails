@@ -16,5 +16,28 @@ class Baukis::Staff::CustomerSearchForm
     rel = rel.where(birth_mday: birth_mday) if birth_mday.present?
 
     rel.order(:family_name_kana, :given_name_kana)
+
+    if prefecture.present? || city.present?
+      case address_type
+        when 'home'
+          rel = rel.joins(:home_address)
+        when 'work'
+          rel = rel.joins(:work_address)
+        when ''
+          rel = rel.joins(:addresses)
+        else
+          raise
+      end
+      if prefecture.present?
+        rel = rel.where('baukis_addresses.prefecture' => prefecture)
+      end
+      rel = rel.where('baukis_addresses.city' => city) if city.present?
+    end
+
+    if phone_number.present?
+      rel = rel.joins(:phones).where('baukis_phones.number_for_index' => phone_number)
+    end
+
+    rel.order(:family_name_kana, :given_name_kana)
   end
 end
