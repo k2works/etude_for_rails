@@ -1,7 +1,11 @@
 class Baukis::Staff::CustomersController < Baukis::Staff::Base
   def index
-    @search_form = Baukis::Staff::CustomerSearchForm.new
-    @customers = Baukis::Customer.order(:family_name_kana, :given_name_kana).page(params[:page])
+    if params[:search].nil?
+      @search_form = Baukis::Staff::CustomerSearchForm.new
+    else
+      @search_form = Baukis::Staff::CustomerSearchForm.new(search_params)
+    end
+    @customers = @search_form.search.page(params[:page])
   end
 
   def show
@@ -45,5 +49,23 @@ class Baukis::Staff::CustomersController < Baukis::Staff::Base
     customer.destroy!
     flash.notice = '顧客アカウントを削除しました。'
     redirect_to :baukis_staff_customers
+  end
+
+  private
+  def search_params
+    params.require(:search).permit(
+        :family_name_kana,
+        :given_name_kana,
+        :birth_year,
+        :birth_month,
+        :birth_mday,
+        :address_type,
+        :prefecture,
+        :city,
+        :phone_number,
+        :gender,
+        :postal_code,
+        :last_four_digits
+    )
   end
 end
