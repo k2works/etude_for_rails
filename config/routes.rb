@@ -38,6 +38,7 @@
 #                           baukis_customer_root GET    /baukis/customer(.:format)                                          baukis/customer/top#index
 #                                    baukis_root GET    /baukis(.:format)                                                   baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                                         baukis/errors#routing_error
+#                            awesome_events_root GET    /awesome_events(.:format)                                           awesome_events/welcome#index
 #                   awesome_events_welcome_index GET    /awesome_events/welcome(.:format)                                   awesome_events/welcome#index
 #                          awesome_events_logout GET    /awesome_events/logout(.:format)                                    awesome_events/sessions#destroy
 #                     retire_awesome_events_user GET    /awesome_events/user/retire(.:format)                               awesome_events/users#retire
@@ -155,6 +156,7 @@ Rails.application.routes.draw do
   end
 
   namespace :awesome_events do
+    root 'welcome#index'
     resources :welcome, only:[:index]
     get '/logout' => 'sessions#destroy', as: :logout
 
