@@ -1,8 +1,30 @@
 require 'rails_helper'
 
 describe Baukis::Admin::TopController do
+  context 'ログイン前' do
+    let(:administrator) {create(:administrator)}
+
+    describe 'IPアドレスによるアクセス制限' do
+      before do
+        Rails.application.config.baukis[:restrict_ip_addresses] = true
+      end
+
+      example '許可' do
+        Baukis::AllowedSource.create!(namespace: 'admin', ip_address: '0.0.0.0')
+        get :index
+        expect(response).to render_template('admin/top/index')
+      end
+
+      example '拒否' do
+        Baukis::AllowedSource.create!(namespace: 'admin', ip_address: '192.168.0.*')
+        get :index
+        expect(response).to render_template('errors/forbidden')
+      end
+    end
+  end
+
   context 'ログイン後' do
-    let(:administrator) { create(:administrator) }
+    let(:administrator) {create(:administrator)}
 
     before do
       session[:administrator_id] = administrator.id
