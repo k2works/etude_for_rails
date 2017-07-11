@@ -16,7 +16,12 @@ class Baukis::Customer::SessionsController < Baukis::Customer::Base
       customer = Baukis::Customer.find_by(email_for_index: @form.email.downcase)
     end
     if Baukis::Customer::Authenticator.new(customer).authenticate(@form.password)
-      session[:customer_id] = customer.id
+      if @form.remember_me?
+        cookies.permanent.signed[:customer_id] = customer.id
+      else
+        cookies.delete(:customer_id)
+        session[:customer_id] = customer.id
+      end
       flash.notice = 'ログインしました。'
       redirect_to :baukis_customer_root
     else
