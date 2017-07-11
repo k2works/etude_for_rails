@@ -35,6 +35,9 @@
 #                                                PUT    /baukis/admin/staff_members/:id(.:format)                           baukis/admin/staff_members#update
 #                                                DELETE /baukis/admin/staff_members/:id(.:format)                           baukis/admin/staff_members#destroy
 #                      baukis_admin_staff_events GET    /baukis/admin/staff_events(.:format)                                baukis/admin/staff_events#index
+#            delete_baukis_admin_allowed_sources DELETE /baukis/admin/allowed_sources/delete(.:format)                      baukis/admin/allowed_sources#delete
+#                   baukis_admin_allowed_sources GET    /baukis/admin/allowed_sources(.:format)                             baukis/admin/allowed_sources#index
+#                                                POST   /baukis/admin/allowed_sources(.:format)                             baukis/admin/allowed_sources#create
 #                           baukis_customer_root GET    /baukis/customer(.:format)                                          baukis/customer/top#index
 #                          baukis_customer_login GET    /baukis/customer/login(.:format)                                    baukis/customer/sessions#new
 #                        baukis_customer_session DELETE /baukis/customer/session(.:format)                                  baukis/customer/sessions#destroy
@@ -148,6 +151,9 @@ Rails.application.routes.draw do
       # resources :staff_members, except: [ :show, :destroy ]
       # resources :staff_members, controller: 'employees'
       # resources :staff_members, path: 'staff'
+      resources :allowed_sources, only: [ :index, :create ] do
+        delete :delete, on: :collection
+      end
     end
 
     namespace :customer do
