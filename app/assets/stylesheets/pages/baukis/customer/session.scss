@@ -29,6 +29,7 @@ div#wrapper {
           input[type='submit'] {
             padding: $wide * 2;
           }
+          input[type='checkbox']+label { display: inline-block }
         }
       }
     }
