@@ -1,0 +1,12 @@
+<% @title = '顧客アカウントの編集' %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_with model: @customer_form, as: 'form', url:baukis_staff_customer_path,class:'edit_customer_form' do |f| %>
+      <%= render 'form', f: f %>
+      <div class="buttons">
+        <%= f.submit '更新' %>
+        <%= link_to 'キャンセル', :baukis_staff_customers %>
+      </div>
+  <% end %>
+</div>
