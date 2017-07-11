@@ -2,7 +2,7 @@ class Baukis::Staff::CustomerSearchForm
   include ActiveModel::Model
   include Baukis::StringNormalizer
 
-  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number
+  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number, :gender
 
   def search
     normalize_values
@@ -39,6 +39,17 @@ class Baukis::Staff::CustomerSearchForm
 
     if phone_number.present?
       rel = rel.joins(:phones).where('baukis_phones.number_for_index' => phone_number)
+    end
+
+    if gender.present?
+      case gender
+        when '男性'
+          rel = rel.where(gender: 'male')
+        when '女性'
+          rel = rel.where(gender: 'female')
+        else
+          raise
+      end
     end
 
     rel.order(:family_name_kana, :given_name_kana)

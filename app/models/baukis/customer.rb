@@ -29,6 +29,7 @@
 #  baukis_customers_on_birth_mday_and_furigana   (birth_mday,family_name_kana,given_name_kana)
 #  baukis_customers_on_birth_month_and_furigana  (birth_month,family_name_kana,given_name_kana)
 #  baukis_customers_on_birth_year_and_furigana   (birth_year,family_name_kana,given_name_kana)
+#  baukis_customers_on_gender_and_furigana       (gender,family_name_kana,given_name_kana)
 #
 
 class Baukis::Customer < ApplicationRecord
