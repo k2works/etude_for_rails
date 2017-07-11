@@ -2,7 +2,7 @@ class Baukis::Staff::CustomerSearchForm
   include ActiveModel::Model
   include Baukis::StringNormalizer
 
-  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number, :gender
+  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number, :gender, :postal_code
 
   def search
     normalize_values
@@ -37,6 +37,20 @@ class Baukis::Staff::CustomerSearchForm
       rel = rel.where('baukis_addresses.city' => city) if city.present?
     end
 
+    if postal_code.present?
+      case address_type
+        when 'home'
+          rel = rel.joins(:home_address)
+        when 'work'
+          rel = rel.joins(:work_address)
+        when ''
+          rel = rel.joins(:addresses)
+        else
+          raise
+      end
+      rel = rel.where('baukis_addresses.postal_code' => postal_code)
+    end
+
     if phone_number.present?
       rel = rel.joins(:phones).where('baukis_phones.number_for_index' => phone_number)
     end
@@ -61,5 +75,6 @@ class Baukis::Staff::CustomerSearchForm
     self.given_name_kana = normalize_as_furigana(given_name_kana)
     self.city = normalize_as_name(city)
     self.phone_number = normalize_as_phone_number(phone_number).try(:gsub, /\D/, '')
+    self.postal_code = normalize_as_postal_code(postal_code)
   end
 end

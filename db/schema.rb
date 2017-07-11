@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711021823) do
+ActiveRecord::Schema.define(version: 20170711022829) do
 
   create_table "awesome_events_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170711021823) do
     t.index ["baukis_customer_id"], name: "baukis_addresses_customer_id"
     t.index ["baukis_customer_id"], name: "index_baukis_addresses_on_baukis_customer_id"
     t.index ["city"], name: "baukis_addresses_city"
+    t.index ["postal_code"], name: "baukis_addresses_postal_code"
     t.index ["prefecture", "city"], name: "baukis_addresses_prefecture_city"
     t.index ["type", "baukis_customer_id"], name: "baukis_addresses_type_customer_id", unique: true
     t.index ["type", "city"], name: "baukis_addresses_type_city"

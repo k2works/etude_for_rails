@@ -19,6 +19,7 @@
 #
 #  baukis_addresses_city                         (city)
 #  baukis_addresses_customer_id                  (baukis_customer_id)
+#  baukis_addresses_postal_code                  (postal_code)
 #  baukis_addresses_prefecture_city              (prefecture,city)
 #  baukis_addresses_type_city                    (type,city)
 #  baukis_addresses_type_customer_id             (type,baukis_customer_id) UNIQUE
