@@ -42,7 +42,8 @@ class Baukis::Customer::SessionsController < Baukis::Customer::Base
   def session_params
     params.require(:baukis_customer_login_form).permit(
         :email,
-        :password
+        :password,
+        :remember_me
     )
   end
 end
