@@ -2,7 +2,11 @@ class Baukis::Staff::CustomerSearchForm
   include ActiveModel::Model
   include Baukis::StringNormalizer
 
-  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number, :gender, :postal_code
+  attr_accessor :family_name_kana, :given_name_kana, :birth_year, :birth_month, :birth_mday, :address_type, :prefecture, :city, :phone_number, :gender, :postal_code, :last_four_digits_of_phone_number
+
+  def initialize(params={})
+    assign_attributes(search_params(params)) unless params.empty?
+  end
 
   def search
     normalize_values
@@ -17,6 +21,10 @@ class Baukis::Staff::CustomerSearchForm
     rel = rel.where(birth_year: birth_year) if birth_year.present?
     rel = rel.where(birth_month: birth_month) if birth_month.present?
     rel = rel.where(birth_mday: birth_mday) if birth_mday.present?
+
+    if last_four_digits_of_phone_number.present?
+      rel = rel.joins(:phones).where('baukis_phones.last_four_digits' => last_four_digits_of_phone_number)
+    end
 
     rel.order(:family_name_kana, :given_name_kana)
 
@@ -70,6 +78,23 @@ class Baukis::Staff::CustomerSearchForm
   end
 
   private
+  def search_params(params)
+    params.require(:search).permit(
+        :family_name_kana,
+        :given_name_kana,
+        :birth_year,
+        :birth_month,
+        :birth_mday,
+        :address_type,
+        :prefecture,
+        :city,
+        :phone_number,
+        :gender,
+        :postal_code,
+        :last_four_digits_of_phone_number
+    )
+  end
+
   def normalize_values
     self.family_name_kana = normalize_as_furigana(family_name_kana)
     self.given_name_kana = normalize_as_furigana(given_name_kana)

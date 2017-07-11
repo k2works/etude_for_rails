@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711022829) do
+ActiveRecord::Schema.define(version: 20170711024030) do
 
-  create_table "awesome_events_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "イベント" do |t|
+  create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
     t.string "name", null: false, comment: "イベントの名前"
     t.string "place", null: false, comment: "イベントの開催場所"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.string "event_image", comment: "画像用カラム"
   end
 
-  create_table "awesome_events_tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "チケット" do |t|
+  create_table "awesome_events_tickets", force: :cascade,  comment: "チケット" do |t|
     t.bigint "awesome_events_user_id", comment: "ユーザID"
     t.bigint "awesome_events_event_id", comment: "イベントID"
     t.string "comment", comment: "コメント"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["awesome_events_user_id"], name: "index_awesome_events_tickets_on_awesome_events_user_id"
   end
 
-  create_table "awesome_events_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ログインユーザ" do |t|
+  create_table "awesome_events_users", force: :cascade,  comment: "ログインユーザ" do |t|
     t.string "provider", comment: "プロバイダ名"
     t.string "uid", comment: "ブロバイダ別ユーザ識別子"
     t.string "nickname", comment: "TwitterID"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "baukis_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "住所" do |t|
+  create_table "baukis_addresses", force: :cascade,  comment: "住所" do |t|
     t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
     t.string "type", null: false, comment: "継承カラム"
     t.string "postal_code", null: false, comment: "郵便番号"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["type", "prefecture", "city"], name: "baukis_addresses_type_prefecture_city"
   end
 
-  create_table "baukis_administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "管理者" do |t|
+  create_table "baukis_administrators", force: :cascade,  comment: "管理者" do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "email_for_index", null: false, comment: "索引用メールアドレス"
     t.string "hashed_password", comment: "パスワード"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
   end
 
-  create_table "baukis_customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "顧客" do |t|
+  create_table "baukis_customers", force: :cascade,  comment: "顧客" do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "email_for_index", null: false, comment: "索引用メールアドレス"
     t.string "family_name", null: false, comment: "姓"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["given_name_kana"], name: "baukis_customers_name_kana"
   end
 
-  create_table "baukis_phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "電話番号" do |t|
+  create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
     t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
     t.bigint "baukis_address_id", comment: "住所への外部キー"
     t.string "number", null: false, comment: "電話番号"
@@ -112,14 +112,16 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.boolean "primary", default: false, null: false, comment: "優先フラグ"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_four_digits", comment: "電話番号下４桁"
     t.index ["baukis_address_id"], name: "baukis_phones_address_id"
     t.index ["baukis_address_id"], name: "index_baukis_phones_on_baukis_address_id"
     t.index ["baukis_customer_id"], name: "baukis_phones_customer_id"
     t.index ["baukis_customer_id"], name: "index_baukis_phones_on_baukis_customer_id"
+    t.index ["last_four_digits"], name: "baukis_phones_last_four_digits"
     t.index ["number_for_index"], name: "baukis_phones_number_for_index"
   end
 
-  create_table "baukis_staff_events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "イベント" do |t|
+  create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
     t.bigint "baukis_staff_member_id", null: false, comment: "職員レコードへの外部キー"
     t.string "event_type", null: false, comment: "イベントタイプ"
     t.datetime "created_at", null: false
@@ -129,7 +131,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["created_at"], name: "baukis_staff_events_created_at"
   end
 
-  create_table "baukis_staff_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "職員" do |t|
+  create_table "baukis_staff_members", force: :cascade,  comment: "職員" do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "email_for_index", null: false, comment: "索引用メールアドレス"
     t.string "family_name", null: false, comment: "姓"
@@ -146,37 +148,37 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.index ["family_name_kana", "given_name_kana"], name: "baukis_staff_members_name_kana"
   end
 
-  create_table "perfect_rails_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "口座" do |t|
+  create_table "perfect_rails_accounts", force: :cascade,  comment: "口座" do |t|
     t.integer "amount", comment: "金額"
     t.string "currency", comment: "通貨"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_bank_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_bank_accounts", force: :cascade do |t|
     t.string "credit_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_comments", force: :cascade do |t|
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_credit_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_credit_cards", force: :cascade do |t|
     t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_rooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_schedules", force: :cascade do |t|
     t.integer "room_id"
     t.datetime "finished_at"
     t.datetime "started_at"
@@ -184,13 +186,13 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "perfect_rails_subscriptions", force: :cascade do |t|
     t.date "signed_up_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_user2s", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ユーザ２" do |t|
+  create_table "perfect_rails_user2s", force: :cascade,  comment: "ユーザ２" do |t|
     t.string "name", comment: "名前"
     t.string "prefecture", comment: "都道府県"
     t.string "city", comment: "市町村"
@@ -199,7 +201,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "perfect_rails_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ユーザ" do |t|
+  create_table "perfect_rails_users", force: :cascade,  comment: "ユーザ" do |t|
     t.string "name", comment: "名前"
     t.string "prefecture", comment: "都道府県"
     t.string "city", comment: "市町村"
@@ -208,7 +210,7 @@ ActiveRecord::Schema.define(version: 20170711022829) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "todo_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "タスク" do |t|
+  create_table "todo_tasks", force: :cascade,  comment: "タスク" do |t|
     t.string "name", null: false, comment: "名前"
     t.text "content", null: false, comment: "内容"
     t.integer "status", default: 0, null: false, comment: "ステータス 0:NOT_YET 1:DONE 2:PENDING"

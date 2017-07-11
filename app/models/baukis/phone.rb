@@ -10,11 +10,13 @@
 #  primary            :boolean          default(FALSE), not null # 優先フラグ
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  last_four_digits   :string(255)                               # 電話番号下４桁
 #
 # Indexes
 #
 #  baukis_phones_address_id                   (baukis_address_id)
 #  baukis_phones_customer_id                  (baukis_customer_id)
+#  baukis_phones_last_four_digits             (last_four_digits)
 #  baukis_phones_number_for_index             (number_for_index)
 #  index_baukis_phones_on_baukis_address_id   (baukis_address_id)
 #  index_baukis_phones_on_baukis_customer_id  (baukis_customer_id)
@@ -38,6 +40,9 @@ class Baukis::Phone < ApplicationRecord
 
   before_create do
     self.customer = address.customer if address
+    if number_for_index && number_for_index.size >= 4
+      self.last_four_digits = number_for_index[-4, 4]
+    end
   end
 
   validates :number, presence: true, format: { with: /\A\+?\d+(-\d+)*\z/, allow_blank: true }
