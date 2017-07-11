@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711024030) do
+ActiveRecord::Schema.define(version: 20170711070337) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -75,6 +75,18 @@ ActiveRecord::Schema.define(version: 20170711024030) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
+  end
+
+  create_table "baukis_allowed_sources", force: :cascade,  comment: "許可IPアドレス" do |t|
+    t.string "namespace", null: false, comment: "名前空間"
+    t.integer "octet1", null: false, comment: "第１オクテット"
+    t.integer "octet2", null: false, comment: "第２オクテット"
+    t.integer "octet3", null: false, comment: "第３オクテット"
+    t.integer "octet4", null: false, comment: "第４オクテット"
+    t.boolean "wildcard", default: false, null: false, comment: "ワイルドカード"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["namespace", "octet1", "octet2", "octet3", "octet4"], name: "baukis_allowed_sources_on_namespace_and_octets", unique: true
   end
 
   create_table "baukis_customers", force: :cascade,  comment: "顧客" do |t|
