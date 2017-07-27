@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711070337) do
+ActiveRecord::Schema.define(version: 20170727044301) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(version: 20170711070337) do
     t.index ["given_name_kana"], name: "baukis_customers_name_kana"
   end
 
+  create_table "baukis_entries", force: :cascade,  comment: "申し込み" do |t|
+    t.bigint "program_id", null: false
+    t.bigint "customer_id", null: false
+    t.boolean "approved", default: false, null: false, comment: "承認済みフラグ"
+    t.boolean "canceled", default: false, null: false, comment: "取り消しフラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "baukis_entries_customer_id"
+    t.index ["customer_id"], name: "index_baukis_entries_on_customer_id"
+    t.index ["program_id", "customer_id"], name: "baukis_entries_program_id_customer_id", unique: true
+    t.index ["program_id"], name: "index_baukis_entries_on_program_id"
+  end
+
   create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
     t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
     t.bigint "baukis_address_id", comment: "住所への外部キー"
@@ -131,6 +144,21 @@ ActiveRecord::Schema.define(version: 20170711070337) do
     t.index ["baukis_customer_id"], name: "index_baukis_phones_on_baukis_customer_id"
     t.index ["last_four_digits"], name: "baukis_phones_last_four_digits"
     t.index ["number_for_index"], name: "baukis_phones_number_for_index"
+  end
+
+  create_table "baukis_programs", force: :cascade,  comment: "プログラム" do |t|
+    t.bigint "registrant_id", null: false, comment: "登録職員（外部キー）"
+    t.string "title", null: false, comment: "タイトル"
+    t.text "description", comment: "説明"
+    t.datetime "application_start_time", null: false, comment: "申し込み開始日時"
+    t.datetime "application_end_time", null: false, comment: "申し込み終了日時"
+    t.integer "min_number_of_participants", comment: "最小参加者数"
+    t.integer "max_number_of_participants", comment: "最大参加者数"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_start_time"], name: "baukis_programs_application_start_time"
+    t.index ["registrant_id"], name: "baukis_programs_registrant_id"
+    t.index ["registrant_id"], name: "index_baukis_programs_on_registrant_id"
   end
 
   create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
