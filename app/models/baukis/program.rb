@@ -26,7 +26,7 @@ class Baukis::Program < ApplicationRecord
   belongs_to :registrant, class_name: 'Baukis::StaffMember'
 
   scope :listing, -> {
-    joins(:entries)
+    joins('LEFT JOIN baukis_entries ON baukis_programs.id = baukis_entries.program_id')
         .select('baukis_programs.*, COUNT(baukis_entries.id) AS number_of_applicants')
         .group('baukis_programs.id')
         .order(application_start_time: :desc)
