@@ -19,4 +19,6 @@
 #
 
 class Baukis::Entry < ApplicationRecord
+  belongs_to :program, :class_name => 'Baukis::Program'
+  belongs_to :customer, :class_name => 'Baukis::Customer'
 end
