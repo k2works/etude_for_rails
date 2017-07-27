@@ -24,7 +24,7 @@ module Baukis
     end
 
     def number_of_applicants
-      number_with_delimiter(object.entries.count)
+      number_with_delimiter(object.number_of_applicants)
     end
 
     def registrant

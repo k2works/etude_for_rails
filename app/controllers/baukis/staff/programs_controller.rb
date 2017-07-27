@@ -4,6 +4,6 @@ class Baukis::Staff::ProgramsController < Baukis::Staff::Base
   end
 
   def show
-    @program = Baukis::Program.find(params[:id])
+    @program = Baukis::Program.listing.find(params[:id])
   end
 end
