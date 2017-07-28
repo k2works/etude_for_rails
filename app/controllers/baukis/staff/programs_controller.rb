@@ -39,4 +39,11 @@ class Baukis::Staff::ProgramsController < Baukis::Staff::Base
       render action: 'edit'
     end
   end
+
+  def destroy
+    program = Baukis::Program.find(params[:id])
+    program.destroy!
+    flash.notice = 'プログラムを削除しました。'
+    redirect_to :baukis_staff_programs
+  end
 end
