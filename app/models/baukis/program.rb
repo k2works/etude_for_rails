@@ -25,6 +25,8 @@ class Baukis::Program < ApplicationRecord
   has_many :applicants, through: :entries, source: :customer
   belongs_to :registrant, class_name: 'Baukis::StaffMember'
 
+  attr_accessor :application_start_date, :application_start_hour, :application_start_minute, :application_end_date, :application_end_hour, :application_end_minute
+
   scope :listing, -> {
     joins('LEFT JOIN baukis_entries ON baukis_programs.id = baukis_entries.program_id')
         .select('baukis_programs.*, COUNT(baukis_entries.id) AS number_of_applicants')
