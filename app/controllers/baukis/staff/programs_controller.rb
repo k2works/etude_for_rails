@@ -46,4 +46,13 @@ class Baukis::Staff::ProgramsController < Baukis::Staff::Base
     flash.notice = 'プログラムを削除しました。'
     redirect_to :baukis_staff_programs
   end
+
+  # PATCH
+  def entries
+    entries_form = Baukis::Staff::EntriesForm.new(Baukis::Program.find(params[:id]))
+    entries_form.assign_attributes(params[:form])
+    entries_form.save
+    flash.notice = 'プログラム申し込みフラグを更新しました。'
+    redirect_to :baukis_staff_programs
+  end
 end
