@@ -1,7 +1,7 @@
 module Baukis
   class ProgramPresenter < ModelPresenter
     delegate :title, :description, to: :object
-    delegate :number_with_delimiter, to: :view_context
+    delegate :number_with_delimiter, :button_to, :baukis_customer_program_entries_path, to: :view_context
 
     def application_start_time
       object.application_start_time.strftime('%Y-%m-%d %H:%M')
@@ -29,6 +29,12 @@ module Baukis
 
     def registrant
       object.registrant.family_name + ' ' + object.registrant.given_name
+    end
+
+    def apply_or_cancel_button
+      closed = object.application_end_time < Time.current
+      label_text = closed ? '募集終了' : '申し込む'
+      button_to label_text, baukis_customer_program_entries_path(object), disabled: closed, method: :post, data: { confirm: '本当に申し込みますか?'}
     end
   end
 end
