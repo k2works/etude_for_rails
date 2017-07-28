@@ -51,6 +51,7 @@
 #                          baukis_customer_login GET    /baukis/customer/login(.:format)                                    baukis/customer/sessions#new
 #                        baukis_customer_session DELETE /baukis/customer/session(.:format)                                  baukis/customer/sessions#destroy
 #                                                POST   /baukis/customer/session(.:format)                                  baukis/customer/sessions#create
+#                confirm_baukis_customer_account PATCH  /baukis/customer/account/confirm(.:format)                          baukis/customer/accounts#confirm
 #                   edit_baukis_customer_account GET    /baukis/customer/account/edit(.:format)                             baukis/customer/accounts#edit
 #                        baukis_customer_account GET    /baukis/customer/account(.:format)                                  baukis/customer/accounts#show
 #                                                PATCH  /baukis/customer/account(.:format)                                  baukis/customer/accounts#update
@@ -180,7 +181,9 @@ Rails.application.routes.draw do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       resource :session, only: [ :create, :destroy ]
-      resource :account, except: [ :new, :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ] do
+        patch :confirm
+      end
       resources :programs, only: [ :index, :show ] do
         resources :entries, only: [ :create ] do
           patch :cancel, on: :member
