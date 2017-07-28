@@ -9,6 +9,15 @@ class Baukis::Customer::EntriesController < Baukis::Customer::Base
       when :closed
         flash.alert = 'プログラムの申し込み期限が終了しました。'
     end
-    redirect_to :baukis_customer_programs
+    redirect_to baukis_customer_program_url(program)
+  end
+
+  # PATCH
+  def cancel
+    program = Baukis::Program.published.find(params[:program_id])
+    entry = program.entries.where(customer_id: current_customer.id).first!
+    entry.update_column(:canceled, true)
+    flash.notice = 'プログラムへの申込をキャンセルしました。'
+    redirect_to baukis_customer_program_url(program)
   end
 end
