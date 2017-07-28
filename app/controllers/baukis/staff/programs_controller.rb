@@ -29,7 +29,7 @@ class Baukis::Staff::ProgramsController < Baukis::Staff::Base
   end
 
   def update
-    @program_form = Baukis::ProgramForm.new(Baukis::Program.find(params[:id]))
+    @program_form = Baukis::Staff::ProgramForm.new(Baukis::Program.find(params[:id]))
     @program_form.assign_attributes(params[:form])
     if @program_form.save
       flash.notice = 'プログラムを更新しました。'
@@ -42,8 +42,12 @@ class Baukis::Staff::ProgramsController < Baukis::Staff::Base
 
   def destroy
     program = Baukis::Program.find(params[:id])
-    program.destroy!
-    flash.notice = 'プログラムを削除しました。'
+    if program.deletable?
+      program.destroy!
+      flash.notice = 'プログラムを削除しました。'
+    else
+      flash.alert = 'このプログラムは削除できません。'
+    end
     redirect_to :baukis_staff_programs
   end
 

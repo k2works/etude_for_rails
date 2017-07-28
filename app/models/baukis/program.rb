@@ -21,7 +21,7 @@
 #
 
 class Baukis::Program < ApplicationRecord
-  has_many :entries, :class_name => 'Baukis::Entry'
+  has_many :entries, :class_name => 'Baukis::Entry', dependent: :restrict_with_exception
   has_many :applicants, through: :entries, source: :customer
   belongs_to :registrant, class_name: 'Baukis::StaffMember'
 
@@ -47,6 +47,10 @@ class Baukis::Program < ApplicationRecord
       only_integer: true, greater_than_or_equal_to: 1,
       less_than_or_equal_to: 1000, allow_blank: true
   }
+  validates :max_number_of_participants, numericality: {
+      only_integer: true, greater_than_or_equal_to: 1,
+      less_than_or_equal_to: 1000, allow_blank: true
+  }
   validate do
     if min_number_of_participants && max_number_of_participants && min_number_of_participants > max_number_of_participants
       errors.add(:max_number_of_participants, :less_than_min_number)
@@ -60,6 +64,10 @@ class Baukis::Program < ApplicationRecord
         .order(application_start_time: :desc)
         .includes(:registrant)
   }
+
+  def deletable?
+    entries.empty?
+  end
 
   private
   def set_application_start_time
