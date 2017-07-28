@@ -21,6 +21,7 @@
 #                                                PATCH  /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
 #                                                PUT    /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
 #                                                DELETE /baukis/customers/:id(.:format)                                     baukis/staff/customers#destroy
+#                   entries_baukis_staff_program PATCH  /baukis/programs/:id/entries(.:format)                              baukis/staff/programs#entries
 #                          baukis_staff_programs GET    /baukis/programs(.:format)                                          baukis/staff/programs#index
 #                                                POST   /baukis/programs(.:format)                                          baukis/staff/programs#create
 #                       new_baukis_staff_program GET    /baukis/programs/new(.:format)                                      baukis/staff/programs#new
@@ -145,7 +146,9 @@ Rails.application.routes.draw do
       resource :account, except: [ :new, :create, :destroy ]
       resource :password, only: [ :show, :edit, :update ]
       resources :customers
-      resources :programs
+      resources :programs do
+        patch :entries, on: :member
+      end
     end
 
     namespace :admin do
@@ -158,7 +161,7 @@ Rails.application.routes.draw do
       resources :staff_events, only: [ :index ]
       # resources :staff_members, only: [ :index, :new, :create ]
       # resources :staff_members, except: [ :show, :destroy ]
-      # resources :staff_members, controller: 'employees'
+      # resources :staff_members, controller: 'employees' do
       # resources :staff_members, path: 'staff'
       resources :allowed_sources, only: [ :index, :create ] do
         delete :delete, on: :collection
