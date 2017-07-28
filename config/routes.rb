@@ -51,7 +51,8 @@
 #                          baukis_customer_login GET    /baukis/customer/login(.:format)                                    baukis/customer/sessions#new
 #                        baukis_customer_session DELETE /baukis/customer/session(.:format)                                  baukis/customer/sessions#destroy
 #                                                POST   /baukis/customer/session(.:format)                                  baukis/customer/sessions#create
-#                       baukis_customer_programs GET    /baukis/customer/programs(.:format)                                 baukis/customer/programs#show
+#                       baukis_customer_programs GET    /baukis/customer/programs(.:format)                                 baukis/customer/programs#index
+#                        baukis_customer_program GET    /baukis/customer/programs/:id(.:format)                             baukis/customer/programs#show
 #                                    baukis_root GET    /baukis(.:format)                                                   baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                                         baukis/errors#routing_error
 #                            awesome_events_root GET    /awesome_events(.:format)                                           awesome_events/welcome#index
@@ -173,7 +174,7 @@ Rails.application.routes.draw do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       resource :session, only: [ :create, :destroy ]
-      resource :programs, only: [ :index, :show ]
+      resources :programs, only: [ :index, :show ]
     end
 
     root 'errors#routing_error'
