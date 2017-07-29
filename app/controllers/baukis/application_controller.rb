@@ -22,4 +22,8 @@ class Baukis::ApplicationController <  ActionController::Base
     @exception = e
     render 'baukis/errors/forbidden', status: 403
   end
+
+  def reject_non_xhr
+    raise ActionController::BadRequest unless request.xhr?
+  end
 end
