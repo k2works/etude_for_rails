@@ -47,4 +47,6 @@ class Baukis::Message < ApplicationRecord
       self.root = parent.root || parent
     end
   end
+
+  default_scope { order(created_at: :desc) }
 end
