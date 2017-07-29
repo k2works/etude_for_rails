@@ -21,6 +21,7 @@ class Baukis::Customer::AccountsController < Baukis::Customer::Base
 
   def update
     @customer_form = Baukis::Customer::AccountForm.new(current_customer)
+    update_address_option
     @customer_form.assign_attributes(params[:form])
     if params[:commit]
       if @customer_form.save
@@ -33,5 +34,15 @@ class Baukis::Customer::AccountsController < Baukis::Customer::Base
     else
       render action: 'edit'
     end
+  end
+
+  private
+  def update_address_option
+    params.require(:form).permit(
+        :inputs_home_address,
+        :inputs_work_address
+    )
+    params[:form][:inputs_home_address] = '1' if params[:form][:inputs_home_address]
+    params[:form][:inputs_work_address] = '1' if params[:form][:inputs_work_address]
   end
 end
