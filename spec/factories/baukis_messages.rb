@@ -1,13 +1,14 @@
 FactoryGirl.define do
-  factory :outbound_message, class: 'Baukis::CustomerMessage' do
+  factory :customer_message, class: 'Baukis::CustomerMessage' do
+    subject 'Subject'
+    body "Body.\nBody."
     customer
-    subject 'OutboundMessage'
-    body 'XXXXXXXXXXX'
   end
 
-  factory :inbound_message, class: 'Baukis::StaffMessage' do
-    customer
-    subject 'InboundMessage'
-    body 'XXXXXXXXXXX'
+  factory :staff_message, class: 'Baukis::StaffMessage' do
+    subject 'Subject'
+    body "Body.\nBody."
+    parent { FactoryGirl.create(:customer_message) }
+    staff_member
   end
 end
