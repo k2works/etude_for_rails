@@ -52,7 +52,7 @@ module Baukis
     end
 
     def tree
-      expand(object.root || object)
+      expand(object.tree.root)
     end
 
     private
@@ -64,7 +64,7 @@ module Baukis
           else
             m << link_to(node.subject, view_context.baukis_staff_message_path(node))
           end
-          node.children.each do |c|
+          node.child_nodes.each do |c|
             m << expand(c)
           end
         end

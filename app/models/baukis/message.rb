@@ -36,7 +36,6 @@ class Baukis::Message < ApplicationRecord
   belongs_to :staff_member, :class_name => 'Baukis::StaffMember', optional: true
   belongs_to :root, :class_name => 'Baukis::Message', foreign_key: 'root_id', optional: true
   belongs_to :parent, :class_name => 'Baukis::Message', foreign_key: 'parent_id', optional: true
-  has_many :children, :class_name => 'Baukis::Message', foreign_key: 'parent_id'
 
   validates :subject, :body, presence: true
   validates :subject, length: { maximum: 80, allow_blank: true }
@@ -50,4 +49,13 @@ class Baukis::Message < ApplicationRecord
   end
 
   default_scope { order(created_at: :desc) }
+
+  attr_accessor :child_nodes
+
+  def tree
+    return @tree if @tree
+    r = root || self
+    messages = Baukis::Message.where(root_id: r.id).select(:id, :parent_id, :subject)
+    @tree = Baukis::SimpleTree.new(r, messages)
+  end
 end
