@@ -1,5 +1,11 @@
 FactoryGirl.define do
-  factory :baukis_message, class: 'Baukis::Message' do
-    
+  factory :outbound_message, class: 'Baukis::CustomerMessage' do
+    customer
+    subject 'OutboundMessage'
+  end
+
+  factory :inbound_message, class: 'Baukis::StaffMessage' do
+    customer
+    subject 'InboundMessage'
   end
 end
