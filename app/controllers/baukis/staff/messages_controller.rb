@@ -28,6 +28,10 @@ class Baukis::Staff::MessagesController < Baukis::Staff::Base
     render plain: Baukis::CustomerMessage.unprocessed.count
   end
 
+  def show
+    @message = Baukis::Message.find(params[:id])
+  end
+
   def destroy
     message = Baukis::CustomerMessage.find(params[:id])
     message.update_column(:deleted, true)

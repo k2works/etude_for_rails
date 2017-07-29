@@ -39,6 +39,10 @@ module Baukis
       view_context.truncate(subject, length: 20)
     end
 
+    def formatted_body
+      ERB::Util.html_escape(body).gsub(/\n/, '<br />').html_safe
+    end
+
     def created_at
       if object.created_at > Time.current.midnight
         object.created_at.strftime('%H:%M:%S')
