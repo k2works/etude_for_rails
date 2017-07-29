@@ -16,7 +16,7 @@ describe Baukis::Staff::AccountsController do
 
     example 'email属性を変更する' do
       params_hash.merge!(email: 'test@example.com')
-      patch :update, params: {id: staff_member.id, baukis_staff_member: params_hash}
+      patch :update, params: {id: staff_member.id, commit: '更新', form: params_hash}
       staff_member.reload
       expect(staff_member.email).to eq('test@example.com')
     end
@@ -29,7 +29,7 @@ describe Baukis::Staff::AccountsController do
 
     example 'end_dateの値は書き換え不可' do
       params_hash.merge!(end_date: Date.tomorrow)
-      expect { patch :update, params: {id: staff_member.id, baukis_staff_member: params_hash}
+      expect { patch :update, params: {id: staff_member.id, commit: '更新', form: params_hash}
       }.not_to change { staff_member.end_date }
     end
   end
