@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727044301) do
+ActiveRecord::Schema.define(version: 20170729023123) do
 
-  create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
+  create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
     t.string "name", null: false, comment: "イベントの名前"
     t.string "place", null: false, comment: "イベントの開催場所"
@@ -127,6 +127,32 @@ ActiveRecord::Schema.define(version: 20170727044301) do
     t.index ["customer_id"], name: "index_baukis_entries_on_customer_id"
     t.index ["program_id", "customer_id"], name: "baukis_entries_program_id_customer_id", unique: true
     t.index ["program_id"], name: "index_baukis_entries_on_program_id"
+  end
+
+  create_table "baukis_messages", force: :cascade,  comment: "問い合わせ" do |t|
+    t.bigint "customer_id", null: false, comment: "顧客への外部キー"
+    t.bigint "staff_member_id", comment: "職員への外部キー"
+    t.integer "root_id", comment: "Messageへの外部キー"
+    t.integer "parent_id", comment: "Messageへの外部キー"
+    t.string "type", null: false, comment: "継承カラム"
+    t.string "status", default: "new", null: false, comment: "状態（職員向け）"
+    t.string "subject", null: false, comment: "件名"
+    t.text "body", comment: "本文"
+    t.text "remarks", comment: "備考（職員向け）"
+    t.boolean "discarded", default: false, null: false, comment: "顧客側の削除フラグ"
+    t.boolean "deleted", default: false, null: false, comment: "職員側の削除フラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "deleted", "created_at"], name: "baukis_messages_customer_id_deleted_created_at"
+    t.index ["customer_id", "deleted", "status", "created_at"], name: "baukis_messages_custoemr_id_deleted_status_created_at"
+    t.index ["customer_id", "discarded", "created_at"], name: "baukis_messages_customer_id_discarded_created_at"
+    t.index ["customer_id"], name: "baukis_messages_customer_id"
+    t.index ["customer_id"], name: "index_baukis_messages_on_customer_id"
+    t.index ["root_id", "deleted", "created_at"], name: "baukis_messages_root_id_deleted_created_at"
+    t.index ["staff_member_id"], name: "baukis_messages_staff_member_id"
+    t.index ["staff_member_id"], name: "index_baukis_messages_on_staff_member_id"
+    t.index ["type", "customer_id"], name: "baukis_messages_type_customer_id"
+    t.index ["type", "staff_member_id"], name: "baukis_messages_type_staff_member_id"
   end
 
   create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
