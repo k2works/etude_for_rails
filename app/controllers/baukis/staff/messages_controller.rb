@@ -27,4 +27,11 @@ class Baukis::Staff::MessagesController < Baukis::Staff::Base
   def count
     render plain: Baukis::CustomerMessage.unprocessed.count
   end
+
+  def destroy
+    message = Baukis::CustomerMessage.find(params[:id])
+    message.update_column(:deleted, true)
+    flash.notice = '問い合わせを削除しました。'
+    redirect_back(fallback_location: baukis_staff_root_path)
+  end
 end
