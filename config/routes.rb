@@ -5,6 +5,7 @@
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
 #                                                POST   /baukis/session(.:format)                                           baukis/staff/sessions#create
+#                   confirm_baukis_staff_account PATCH  /baukis/account/confirm(.:format)                                   baukis/staff/accounts#confirm
 #                      edit_baukis_staff_account GET    /baukis/account/edit(.:format)                                      baukis/staff/accounts#edit
 #                           baukis_staff_account GET    /baukis/account(.:format)                                           baukis/staff/accounts#show
 #                                                PATCH  /baukis/account(.:format)                                           baukis/staff/accounts#update
@@ -152,7 +153,9 @@ Rails.application.routes.draw do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       resource :session, only:[ :create, :destroy ]
-      resource :account, except: [ :new, :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ] do
+        patch :confirm
+      end
       resource :password, only: [ :show, :edit, :update ]
       resources :customers
       resources :programs do
