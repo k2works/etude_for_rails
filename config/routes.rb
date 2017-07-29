@@ -31,7 +31,7 @@
 #                                                PATCH  /baukis/programs/:id(.:format)                                      baukis/staff/programs#update
 #                                                PUT    /baukis/programs/:id(.:format)                                      baukis/staff/programs#update
 #                                                DELETE /baukis/programs/:id(.:format)                                      baukis/staff/programs#destroy
-#               count_baukis_staff_message_index GET    /baukis/message/count(.:format)                                     baukis/staff/message#count
+#                    count_baukis_staff_messages GET    /baukis/messages/count(.:format)                                    baukis/staff/messages#count
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                             baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                                       baukis/admin/sessions#new
 #                           baukis_admin_session DELETE /baukis/admin/session(.:format)                                     baukis/admin/sessions#destroy
@@ -165,7 +165,7 @@ Rails.application.routes.draw do
       resources :programs do
         patch :entries, on: :member
       end
-      resources :message, only: [] do
+      resources :messages, only: [] do
         get :count, on: :collection
       end
     end
