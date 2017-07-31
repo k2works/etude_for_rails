@@ -1,5 +1,6 @@
 FactoryGirl.define do
-  factory :baukis_message_tag_link, class: 'Baukis::MessageTagLink' do
-    
+  factory :message_tag_link, class: 'Baukis::MessageTagLink' do
+    message
+    tag
   end
 end

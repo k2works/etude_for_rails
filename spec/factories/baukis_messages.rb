@@ -11,4 +11,10 @@ FactoryGirl.define do
     parent { FactoryGirl.create(:customer_message) }
     staff_member
   end
+
+  factory :message, class: 'Baukis::CustomerMessage' do
+    subject 'Subject'
+    body "Body.\nBody."
+    customer
+  end
 end

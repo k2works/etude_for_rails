@@ -14,4 +14,6 @@
 #
 
 class Baukis::MessageTagLink < ApplicationRecord
+  belongs_to :message, :class_name => 'Baukis::Message', optional: true
+  belongs_to :tag, :class_name => 'Baukis::Tag', optional: true
 end

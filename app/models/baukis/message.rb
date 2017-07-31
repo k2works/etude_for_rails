@@ -36,6 +36,8 @@ class Baukis::Message < ApplicationRecord
   belongs_to :staff_member, :class_name => 'Baukis::StaffMember', optional: true
   belongs_to :root, :class_name => 'Baukis::Message', foreign_key: 'root_id', optional: true
   belongs_to :parent, :class_name => 'Baukis::Message', foreign_key: 'parent_id', optional: true
+  has_many :message_tag_links, :class_name => 'Baukis::MessageTagLink', dependent: :destroy
+  has_many :tags, -> { order(:value) } , through: :message_tag_links
 
   validates :subject, :body, presence: true
   validates :subject, length: { maximum: 80, allow_blank: true }
