@@ -78,6 +78,9 @@
 #                       baukis_customer_programs GET    /baukis/customer/programs(.:format)                                 baukis/customer/programs#index
 #                        baukis_customer_program GET    /baukis/customer/programs/:id(.:format)                             baukis/customer/programs#show
 #               confirm_baukis_customer_messages POST   /baukis/customer/messages/confirm(.:format)                         baukis/customer/messages#confirm
+#          confirm_baukis_customer_message_reply POST   /baukis/customer/messages/:message_id/reply/confirm(.:format)       baukis/customer/replies#confirm
+#              new_baukis_customer_message_reply GET    /baukis/customer/messages/:message_id/reply/new(.:format)           baukis/customer/replies#new
+#                  baukis_customer_message_reply POST   /baukis/customer/messages/:message_id/reply(.:format)               baukis/customer/replies#create
 #                       baukis_customer_messages GET    /baukis/customer/messages(.:format)                                 baukis/customer/messages#index
 #                                                POST   /baukis/customer/messages(.:format)                                 baukis/customer/messages#create
 #                    new_baukis_customer_message GET    /baukis/customer/messages/new(.:format)                             baukis/customer/messages#new
@@ -229,6 +232,9 @@ Rails.application.routes.draw do
       end
       resources :messages, except: [ :edit, :update ] do
         post :confirm, on: :collection
+        resource :reply, only: [ :new, :create ] do
+          post :confirm
+        end
       end
     end
 
