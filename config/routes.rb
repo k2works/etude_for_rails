@@ -78,7 +78,8 @@
 #                       baukis_customer_programs GET    /baukis/customer/programs(.:format)                                 baukis/customer/programs#index
 #                        baukis_customer_program GET    /baukis/customer/programs/:id(.:format)                             baukis/customer/programs#show
 #               confirm_baukis_customer_messages POST   /baukis/customer/messages/confirm(.:format)                         baukis/customer/messages#confirm
-#                       baukis_customer_messages POST   /baukis/customer/messages(.:format)                                 baukis/customer/messages#create
+#                       baukis_customer_messages GET    /baukis/customer/messages(.:format)                                 baukis/customer/messages#index
+#                                                POST   /baukis/customer/messages(.:format)                                 baukis/customer/messages#create
 #                    new_baukis_customer_message GET    /baukis/customer/messages/new(.:format)                             baukis/customer/messages#new
 #                                    baukis_root GET    /baukis(.:format)                                                   baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                                         baukis/errors#routing_error
@@ -224,7 +225,7 @@ Rails.application.routes.draw do
           patch :cancel, on: :member
         end
       end
-      resources :messages, only: [ :new, :create ] do
+      resources :messages, only: [ :index, :new, :create ] do
         post :confirm, on: :collection
       end
     end

@@ -1,4 +1,8 @@
 class Baukis::Customer::MessagesController < Baukis::Customer::Base
+  def index
+    @messages = current_customer.inbound_messages.page(params[:page])
+  end
+
   def new
     @message = Baukis::CustomerMessage.new
   end
