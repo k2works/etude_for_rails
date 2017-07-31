@@ -4,6 +4,10 @@ class Baukis::Staff::MessagesController < Baukis::Staff::Base
 
   def index
     @messages = Baukis::Message.where(deleted: false).page(params[:page])
+    if params[:tag_id]
+      @messages = @messages.joins(:message_tag_links).where('baukis_message_tag_links.tag_id' => params[:tag_id])
+    end
+    @messages = @messages.page(params[:page])
   end
 
   # GET
