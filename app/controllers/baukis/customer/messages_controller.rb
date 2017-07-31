@@ -3,6 +3,10 @@ class Baukis::Customer::MessagesController < Baukis::Customer::Base
     @messages = current_customer.inbound_messages.page(params[:page])
   end
 
+  def show
+    @message = current_customer.inbound_messages.find(params[:id])
+  end
+
   def new
     @message = Baukis::CustomerMessage.new
   end
