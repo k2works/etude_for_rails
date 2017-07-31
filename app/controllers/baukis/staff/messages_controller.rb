@@ -4,27 +4,31 @@ class Baukis::Staff::MessagesController < Baukis::Staff::Base
 
   def index
     @messages = Baukis::Message.where(deleted: false).page(params[:page])
-    if params[:tag_id]
-      @messages = @messages.joins(:message_tag_links).where('baukis_message_tag_links.tag_id' => params[:tag_id])
-    end
+    narrow_down
     @messages = @messages.page(params[:page])
   end
 
   # GET
   def inbound
-    @messages = Baukis::CustomerMessage.where(deleted: false).page(params[:page])
+    @messages = Baukis::CustomerMessage.where(deleted: false)
+    narrow_down
+    @messages = @messages.page(params[:page])
     render action: 'index'
   end
 
   # GET
   def outbound
-    @messages = Baukis::StaffMessage.where(deleted: false).page(params[:page])
+    @messages = Baukis::StaffMessage.where(deleted: false)
+    narrow_down
+    @messages = @messages.page(params[:page])
     render action: 'index'
   end
 
   # GET
   def deleted
-    @messages = Baukis::Message.where(deleted: true).page(params[:page])
+    @messages = Baukis::Message.where(deleted: true)
+    narrow_down
+    @messages = @messages.page(params[:page])
     render action: 'index'
   end
 
@@ -55,5 +59,12 @@ class Baukis::Staff::MessagesController < Baukis::Staff::Base
       raise
     end
     render plain: 'OK'
+  end
+
+  private
+  def narrow_down
+    if params[:tag_id]
+      @messages = @messages.joins(:message_tag_links).where('baukis_message_tag_links.tag_id' => params[:tag_id])
+    end
   end
 end
