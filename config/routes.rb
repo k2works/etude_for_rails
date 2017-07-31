@@ -43,6 +43,10 @@
 #                          baukis_staff_messages GET    /baukis/messages(.:format)                                          baukis/staff/messages#index
 #                           baukis_staff_message GET    /baukis/messages/:id(.:format)                                      baukis/staff/messages#show
 #                                                DELETE /baukis/messages/:id(.:format)                                      baukis/staff/messages#destroy
+#              inbound_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/inbound(.:format)                     baukis/staff/messages#inbound
+#             outbound_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/outbound(.:format)                    baukis/staff/messages#outbound
+#              deleted_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/deleted(.:format)                     baukis/staff/messages#deleted
+#                      baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages(.:format)                             baukis/staff/messages#index
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                             baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                                       baukis/admin/sessions#new
 #                           baukis_admin_session DELETE /baukis/admin/session(.:format)                                     baukis/admin/sessions#destroy
@@ -182,6 +186,11 @@ Rails.application.routes.draw do
         delete :tag, on: :member
         resource :reply, only: [ :new, :create ] do
           post :confirm
+        end
+      end
+      resources :tags, only: [] do
+        resources :messages, only: [ :index ] do
+          get :inbound, :outbound, :deleted, on: :collection
         end
       end
     end
