@@ -67,4 +67,25 @@ class Baukis::Message < ApplicationRecord
     messages = Baukis::Message.where(root_id: r.id).select(:id, :parent_id, :subject)
     @tree = Baukis::SimpleTree.new(r, messages)
   end
+
+  def add_tag(label)
+    self.class.transaction do
+      tag = Baukis::Tag.find_by(value: label)
+      tag ||= Baukis::Tag.create!(value: label)
+      unless message_tag_links.where(tag_id: tag.id).exists?
+        message_tag_links.create!(tag_id: tag.id)
+      end
+    end
+  end
+
+  def remove_tag(label)
+    self.class.transaction do
+      if tag = Baukis::Tag.find_by(value: label)
+        message_tag_links.find_by(tag_id: tag.id).destroy
+        if tag.message_tag_links.empty?
+          tag.destroy
+        end
+      end
+    end
+  end
 end

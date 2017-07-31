@@ -35,6 +35,8 @@
 #                 outbound_baukis_staff_messages GET    /baukis/messages/outbound(.:format)                                 baukis/staff/messages#outbound
 #                  deleted_baukis_staff_messages GET    /baukis/messages/deleted(.:format)                                  baukis/staff/messages#deleted
 #                    count_baukis_staff_messages GET    /baukis/messages/count(.:format)                                    baukis/staff/messages#count
+#                       tag_baukis_staff_message POST   /baukis/messages/:id/tag(.:format)                                  baukis/staff/messages#tag
+#                                                DELETE /baukis/messages/:id/tag(.:format)                                  baukis/staff/messages#tag
 #             confirm_baukis_staff_message_reply POST   /baukis/messages/:message_id/reply/confirm(.:format)                baukis/staff/replies#confirm
 #                 new_baukis_staff_message_reply GET    /baukis/messages/:message_id/reply/new(.:format)                    baukis/staff/replies#new
 #                     baukis_staff_message_reply POST   /baukis/messages/:message_id/reply(.:format)                        baukis/staff/replies#create
@@ -176,6 +178,8 @@ Rails.application.routes.draw do
       end
       resources :messages, only: [ :index, :show, :destroy ] do
         get :inbound, :outbound, :deleted, :count, on: :collection
+        post :tag, on: :member
+        delete :tag, on: :member
         resource :reply, only: [ :new, :create ] do
           post :confirm
         end
