@@ -18,6 +18,7 @@
           <td><%= p.created_at %></td>
           <td class="actions">
             <%= link_to '詳細', baukis_customer_message_path(m) %>
+            <%= link_to '削除', baukis_customer_message_path(m), method: :delete, data: { confirm: '本当に削除しますか？' } %>
           </td>
         </tr>
     <% end %>

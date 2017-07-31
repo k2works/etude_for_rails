@@ -1,6 +1,6 @@
 class Baukis::Customer::MessagesController < Baukis::Customer::Base
   def index
-    @messages = current_customer.inbound_messages.page(params[:page])
+    @messages = current_customer.inbound_messages.where(discarded: false).page(params[:page])
   end
 
   def show
@@ -37,6 +37,13 @@ class Baukis::Customer::MessagesController < Baukis::Customer::Base
     else
       render action: 'new'
     end
+  end
+
+  def destroy
+    message = Baukis::StaffMessage.find(params[:id])
+    message.update_column(:discarded, true)
+    flash.notice = 'メッセージを削除しました。'
+    redirect_back(fallback_location: baukis_customer_root_path)
   end
 
   private

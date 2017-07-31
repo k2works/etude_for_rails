@@ -82,6 +82,7 @@
 #                                                POST   /baukis/customer/messages(.:format)                                 baukis/customer/messages#create
 #                    new_baukis_customer_message GET    /baukis/customer/messages/new(.:format)                             baukis/customer/messages#new
 #                        baukis_customer_message GET    /baukis/customer/messages/:id(.:format)                             baukis/customer/messages#show
+#                                                DELETE /baukis/customer/messages/:id(.:format)                             baukis/customer/messages#destroy
 #                                    baukis_root GET    /baukis(.:format)                                                   baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                                         baukis/errors#routing_error
 #                            awesome_events_root GET    /awesome_events(.:format)                                           awesome_events/welcome#index
@@ -226,7 +227,7 @@ Rails.application.routes.draw do
           patch :cancel, on: :member
         end
       end
-      resources :messages, only: [ :index, :show, :new, :create ] do
+      resources :messages, except: [ :edit, :update ] do
         post :confirm, on: :collection
       end
     end
