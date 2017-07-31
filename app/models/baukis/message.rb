@@ -70,6 +70,7 @@ class Baukis::Message < ApplicationRecord
 
   def add_tag(label)
     self.class.transaction do
+      Baukis::HashLock.acquire('tags', 'value', label)
       tag = Baukis::Tag.find_by(value: label)
       tag ||= Baukis::Tag.create!(value: label)
       unless message_tag_links.where(tag_id: tag.id).exists?
@@ -80,6 +81,7 @@ class Baukis::Message < ApplicationRecord
 
   def remove_tag(label)
     self.class.transaction do
+      Baukis::HashLock.acquire('tags', 'value', label)
       if tag = Baukis::Tag.find_by(value: label)
         message_tag_links.find_by(tag_id: tag.id).destroy
         if tag.message_tag_links.empty?
