@@ -1,3 +1,6 @@
+class DateStringValidator < ActiveModel::EachValidator
+end
+
 module Baukis
   class DateStringValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
