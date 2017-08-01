@@ -1,0 +1,9 @@
+<div class="links">
+  <%= link_to '問い合わせ一覧', :inbound_baukis_staff_messages %>
+  <%= link_to '返信一覧', :outbound_baukis_staff_messages %>
+  <%= link_to '全メッセージ一覧', :baukis_staff_messages %>
+  <%= link_to 'ゴミ箱', :deleted_baukis_staff_messages %>
+  <% if @message.kind_of?(Baukis::CustomerMessage) %>
+      <%= link_to '返信する', new_baukis_staff_message_reply_path(@message) %>
+  <% end %>
+</div>

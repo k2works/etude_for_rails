@@ -5,5 +5,7 @@
 //= require js.cookie
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-ja
+//= require jquery-ui
+//= require tag-it
 //= require_tree ./baukis/staff
 //= require_tree ./baukis/shared

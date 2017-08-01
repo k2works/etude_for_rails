@@ -13,8 +13,8 @@ feature '職員による顧客電話番号管理' do
     click_link '顧客管理'
     first('table.listing').click_link '編集'
 
-    fill_in 'baukis_staff_customer_form_customer_phones_0_number', with: '090-9999-9999'
-    check 'baukis_staff_customer_form_customer_phones_0_primary'
+    fill_in 'form_customer_phones_0_number', with: '090-9999-9999'
+    check 'form_customer_phones_0_primary'
     click_button '更新'
 
     customer.reload
@@ -26,8 +26,8 @@ feature '職員による顧客電話番号管理' do
     click_link '顧客管理'
     first('table.listing').click_link '編集'
 
-    fill_in 'baukis_staff_customer_form_home_address_phones_0_number', with: '03-9999-9999'
-    check 'baukis_staff_customer_form_home_address_phones_0_primary'
+    fill_in 'form_home_address_phones_0_number', with: '03-9999-9999'
+    check 'form_home_address_phones_0_primary'
     click_button '更新'
 
     customer.reload
@@ -39,8 +39,8 @@ feature '職員による顧客電話番号管理' do
     click_link '顧客管理'
     first('table.listing').click_link '編集'
 
-    fill_in 'baukis_staff_customer_form_work_address_phones_0_number', with: '03-9999-9999'
-    check 'baukis_staff_customer_form_work_address_phones_0_primary'
+    fill_in 'form_work_address_phones_0_number', with: '03-9999-9999'
+    check 'form_work_address_phones_0_primary'
     click_button '更新'
 
     customer.reload

@@ -43,8 +43,12 @@ class Baukis::Admin::StaffMembersController < Baukis::Admin::Base
 
   def destroy
     staff_member = Baukis::StaffMember.find(params[:id])
-    staff_member.destroy!
-    flash.notice = '職員アカウントを削除しました。'
+    if staff_member.deletable?
+      staff_member.destroy!
+      flash.notice = '職員アカウントを削除しました。'
+    else
+      flash.alert = 'この職員アカウントは削除できません。'
+    end
     redirect_to :baukis_admin_staff_members
   end
 

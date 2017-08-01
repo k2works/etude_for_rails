@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor 管理者
+actor 職員
+actor 顧客
+rectangle Baukis {
+  管理者 -- (認証)
+  管理者 -- (職員アカウント管理)
+  管理者 -- (職員のログイン・ログアウト管理)
+  職員 -- (認証)
+  職員 -- (職員アカウント管理)
+  職員 -- (顧客アカウント管理)
+  職員 -- (プログラムの管理)
+  職員 -- (問い合わせ管理)
+  (認証) -- 顧客
+  (プログラムの申込み) -- 顧客
+  (問い合わせ) -- 顧客
+  (顧客アカウント管理) -- 顧客
+}
+@enduml

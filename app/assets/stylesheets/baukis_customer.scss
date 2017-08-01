@@ -1,7 +1,7 @@
 // ===========================
 // Base
 // ===========================
-@import "./base/lib/sanitize";
+//@import "./base/lib/sanitize";
 @import "./base/baukis/customer/colors";
 @import "./base/baukis/customer/dimensions";
 
@@ -11,10 +11,16 @@
 @import "components/baukis/errors";
 @import "components/baukis/customer/layout";
 @import "components/baukis/customer/container";
+@import "components/baukis/customer/flash";
+@import "components/baukis/customer/tables";
+@import "components/baukis/customer/pagination";
+@import "components/baukis/customer/divs_and_spans";
+@import "components/baukis/customer/form";
 
 // ===========================
 // Pages
 // ===========================
+@import "pages/baukis/customer/session";
 
 // ===========================
 // Utils

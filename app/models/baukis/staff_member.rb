@@ -28,6 +28,7 @@ class Baukis::StaffMember < ApplicationRecord
   include Baukis::PasswordHolder
 
   has_many :events, class_name: 'Baukis::StaffEvent', foreign_key: :baukis_staff_member_id, dependent: :destroy
+  has_many :programs, :class_name => 'Baukis::Program', foreign_key: 'registrant_id', dependent: :restrict_with_exception
 
   validates :start_date, presence: true, date: {
       after_or_equal_to: Date.new(2000,1,1),
@@ -46,5 +47,9 @@ class Baukis::StaffMember < ApplicationRecord
   def active?
     !suspended? && start_date <= Date.today &&
         (end_date.nil? || end_date > Date.today)
+  end
+
+  def deletable?
+    programs.empty?
   end
 end
