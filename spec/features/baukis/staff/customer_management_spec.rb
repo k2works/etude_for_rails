@@ -14,10 +14,10 @@ feature '職員による顧客管理' do
     first('div.links').click_link '新規登録'
     fill_in 'メールアドレス', with: 'test@example.jp'
     fill_in 'パスワード', with: 'pw'
-    fill_in 'baukis_staff_customer_form_customer_family_name', with: '試験'
-    fill_in 'baukis_staff_customer_form_customer_given_name', with: '花子'
-    fill_in 'baukis_staff_customer_form_customer_family_name_kana', with: 'シケン'
-    fill_in 'baukis_staff_customer_form_customer_given_name_kana', with: 'ハナコ'
+    fill_in 'family_name', with: '試験'
+    fill_in 'given_name', with: '花子'
+    fill_in 'family_name_kana', with: 'シケン'
+    fill_in 'given_name_kana', with: 'ハナコ'
     fill_in '生年月日', with: '1970-01-01'
     choose '女性'
     click_button '登録'
@@ -37,13 +37,13 @@ feature '職員による顧客管理' do
 
     fill_in 'メールアドレス', with: 'test@example.jp'
     fill_in 'パスワード', with: 'pw'
-    fill_in 'baukis_staff_customer_form_customer_family_name', with: '試験'
-    fill_in 'baukis_staff_customer_form_customer_given_name', with: '花子'
-    fill_in 'baukis_staff_customer_form_customer_family_name_kana', with: 'シケン'
-    fill_in 'baukis_staff_customer_form_customer_given_name_kana', with: 'ハナコ'
+    fill_in 'family_name', with: '試験'
+    fill_in 'given_name', with: '花子'
+    fill_in 'family_name_kana', with: 'シケン'
+    fill_in 'given_name_kana', with: 'ハナコ'
     fill_in '生年月日', with: '1970-01-01'
     choose '女性'
-    check 'baukis_staff_customer_form[inputs_home_address]'
+    check 'form[inputs_home_address]'
     within('fieldset#home-address-fields') do
       fill_in '郵便番号', with: '1000001'
       select '東京都', from: '都道府県'
@@ -51,7 +51,7 @@ feature '職員による顧客管理' do
       fill_in '町域、番地等', with: '千代田1-1-1'
       fill_in '建物名、部屋番号等', with: ''
     end
-    check 'baukis_staff_customer_form[inputs_work_address]'
+    check 'form[inputs_work_address]'
     within('fieldset#work-address-fields') do
       fill_in '会社名', with: 'テスト'
       fill_in '部署名', with: ''
@@ -59,7 +59,7 @@ feature '職員による顧客管理' do
       select '', from: '都道府県'
       fill_in '市区町村', with: ''
       fill_in '町域、番地等', with: ''
-      fill_in 'baukis_staff_customer_form_work_address_address2', with: ''
+      fill_in 'form_work_address_address2', with: ''
     end
     click_button '登録'
 
@@ -104,8 +104,8 @@ feature '職員による顧客管理' do
     click_button '更新'
 
     expect(page).to have_css('header span.alert')
-    expect(page).to have_css('div.field_with_errors input#baukis_staff_customer_form_customer_birthday')
-    expect(page).to have_css('div.field_with_errors input#baukis_staff_customer_form_home_address_postal_code')
+    expect(page).to have_css('div.field_with_errors input#form_customer_birthday')
+    expect(page).to have_css('div.field_with_errors input#form_home_address_postal_code')
   end
 
   scenario '職員が生年月日と自宅の郵便番号に無効な値を入力する' do
@@ -119,8 +119,8 @@ feature '職員による顧客管理' do
     click_button '更新'
 
     expect(page).to have_css('header span.alert')
-    expect(page).to have_css('div.field_with_errors input#baukis_staff_customer_form_customer_birthday')
-    expect(page).to have_css('div.field_with_errors input#baukis_staff_customer_form_home_address_postal_code')
+    expect(page).to have_css('div.field_with_errors input#form_customer_birthday')
+    expect(page).to have_css('div.field_with_errors input#form_home_address_postal_code')
   end
 
   scenario '職員が勤務先データのない既存顧客に会社名の情報を追加する' do
@@ -128,7 +128,7 @@ feature '職員による顧客管理' do
     click_link '顧客管理'
     first('table.listing').click_link '編集'
 
-    check 'baukis_staff_customer_form[inputs_work_address]'
+    check 'form[inputs_work_address]'
     within('fieldset#work-address-fields') do
       fill_in '会社名', with: 'テスト'
     end

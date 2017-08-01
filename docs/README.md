@@ -71,6 +71,7 @@ Railsアプリケーションのための練習プログラム集
 #### [ToDo](dev/todo/todo.md)
 #### [ToDo2](dev/todo/todo2.md)
 #### [AwesomeEvents](dev/awesome_events/awesome_events.md)
+#### [Baukis](dev/baukis/baukis.md)
 ### Domain
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
 #### [PayRoll](dev/payroll/payroll.md)

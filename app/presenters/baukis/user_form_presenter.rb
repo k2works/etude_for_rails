@@ -17,8 +17,18 @@ module Baukis
     def full_name_block(name1, name2, label_text, options = {} )
       markup(:div, class: 'input-block') do |m|
         m << decorated_label(name1, label_text, options)
-        m << text_field(name1, options)
-        m << text_field(name2, options)
+        m << text_field(name1, options.merge(id:'family_name'))
+        m << text_field(name2, options.merge(id:'given_name'))
+        m << error_messages_for(name1)
+        m << error_messages_for(name2)
+      end
+    end
+
+    def full_name_kana_block(name1, name2, label_text, options = {} )
+      markup(:div, class: 'input-block') do |m|
+        m << decorated_label(name1, label_text, options)
+        m << text_field(name1, options.merge(id:'family_name_kana'))
+        m << text_field(name2, options.merge(id:'given_name_kana'))
         m << error_messages_for(name1)
         m << error_messages_for(name2)
       end

@@ -1,0 +1,10 @@
+<div class="tags">
+  タグ：
+  <% Baukis::Tag.all.each do |tag| %>
+      <% if tag.id == params[:tag_id].to_i %>
+          <span class="current_tag"><%= tag.value %></span>
+      <% else %>
+          <%= link_to tag.value, baukis_staff_tag_messages_path(tag) %>
+      <% end %>
+  <% end %>
+</div>

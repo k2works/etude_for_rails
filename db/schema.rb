@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711024030) do
+ActiveRecord::Schema.define(version: 20170731045549) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 20170711024030) do
     t.index ["email_for_index"], name: "baukis_administrators_email", unique: true
   end
 
+  create_table "baukis_allowed_sources", force: :cascade,  comment: "許可IPアドレス" do |t|
+    t.string "namespace", null: false, comment: "名前空間"
+    t.integer "octet1", null: false, comment: "第１オクテット"
+    t.integer "octet2", null: false, comment: "第２オクテット"
+    t.integer "octet3", null: false, comment: "第３オクテット"
+    t.integer "octet4", null: false, comment: "第４オクテット"
+    t.boolean "wildcard", default: false, null: false, comment: "ワイルドカード"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["namespace", "octet1", "octet2", "octet3", "octet4"], name: "baukis_allowed_sources_on_namespace_and_octets", unique: true
+  end
+
   create_table "baukis_customers", force: :cascade,  comment: "顧客" do |t|
     t.string "email", null: false, comment: "メールアドレス"
     t.string "email_for_index", null: false, comment: "索引用メールアドレス"
@@ -104,6 +116,61 @@ ActiveRecord::Schema.define(version: 20170711024030) do
     t.index ["given_name_kana"], name: "baukis_customers_name_kana"
   end
 
+  create_table "baukis_entries", force: :cascade,  comment: "申し込み" do |t|
+    t.bigint "program_id", null: false
+    t.bigint "customer_id", null: false
+    t.boolean "approved", default: false, null: false, comment: "承認済みフラグ"
+    t.boolean "canceled", default: false, null: false, comment: "取り消しフラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "baukis_entries_customer_id"
+    t.index ["customer_id"], name: "index_baukis_entries_on_customer_id"
+    t.index ["program_id", "customer_id"], name: "baukis_entries_program_id_customer_id", unique: true
+    t.index ["program_id"], name: "index_baukis_entries_on_program_id"
+  end
+
+  create_table "baukis_hash_locks", force: :cascade,  comment: "排他制御" do |t|
+    t.string "table", null: false, comment: "テーブル"
+    t.string "column", null: false, comment: "カラム"
+    t.string "key", null: false, comment: "キー"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "baukis_message_tag_links", force: :cascade,  comment: "メッセージタグリンク" do |t|
+    t.bigint "message_id", null: false, comment: "メッセージへの外部キー"
+    t.bigint "tag_id", null: false, comment: "タグへの外部キー"
+    t.index ["message_id", "tag_id"], name: "baukis_message_tag_links_message_id_tag_id", unique: true
+    t.index ["message_id"], name: "index_baukis_message_tag_links_on_message_id"
+    t.index ["tag_id"], name: "index_baukis_message_tag_links_on_tag_id"
+  end
+
+  create_table "baukis_messages", force: :cascade,  comment: "問い合わせ" do |t|
+    t.bigint "customer_id", null: false, comment: "顧客への外部キー"
+    t.bigint "staff_member_id", comment: "職員への外部キー"
+    t.integer "root_id", comment: "Messageへの外部キー"
+    t.integer "parent_id", comment: "Messageへの外部キー"
+    t.string "type", null: false, comment: "継承カラム"
+    t.string "status", default: "new", null: false, comment: "状態（職員向け）"
+    t.string "subject", null: false, comment: "件名"
+    t.text "body", comment: "本文"
+    t.text "remarks", comment: "備考（職員向け）"
+    t.boolean "discarded", default: false, null: false, comment: "顧客側の削除フラグ"
+    t.boolean "deleted", default: false, null: false, comment: "職員側の削除フラグ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "deleted", "created_at"], name: "baukis_messages_customer_id_deleted_created_at"
+    t.index ["customer_id", "deleted", "status", "created_at"], name: "baukis_messages_custoemr_id_deleted_status_created_at"
+    t.index ["customer_id", "discarded", "created_at"], name: "baukis_messages_customer_id_discarded_created_at"
+    t.index ["customer_id"], name: "baukis_messages_customer_id"
+    t.index ["customer_id"], name: "index_baukis_messages_on_customer_id"
+    t.index ["root_id", "deleted", "created_at"], name: "baukis_messages_root_id_deleted_created_at"
+    t.index ["staff_member_id"], name: "baukis_messages_staff_member_id"
+    t.index ["staff_member_id"], name: "index_baukis_messages_on_staff_member_id"
+    t.index ["type", "customer_id"], name: "baukis_messages_type_customer_id"
+    t.index ["type", "staff_member_id"], name: "baukis_messages_type_staff_member_id"
+  end
+
   create_table "baukis_phones", force: :cascade,  comment: "電話番号" do |t|
     t.bigint "baukis_customer_id", null: false, comment: "顧客への外部キー"
     t.bigint "baukis_address_id", comment: "住所への外部キー"
@@ -119,6 +186,21 @@ ActiveRecord::Schema.define(version: 20170711024030) do
     t.index ["baukis_customer_id"], name: "index_baukis_phones_on_baukis_customer_id"
     t.index ["last_four_digits"], name: "baukis_phones_last_four_digits"
     t.index ["number_for_index"], name: "baukis_phones_number_for_index"
+  end
+
+  create_table "baukis_programs", force: :cascade,  comment: "プログラム" do |t|
+    t.bigint "registrant_id", null: false, comment: "登録職員（外部キー）"
+    t.string "title", null: false, comment: "タイトル"
+    t.text "description", comment: "説明"
+    t.datetime "application_start_time", null: false, comment: "申し込み開始日時"
+    t.datetime "application_end_time", null: false, comment: "申し込み終了日時"
+    t.integer "min_number_of_participants", comment: "最小参加者数"
+    t.integer "max_number_of_participants", comment: "最大参加者数"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_start_time"], name: "baukis_programs_application_start_time"
+    t.index ["registrant_id"], name: "baukis_programs_registrant_id"
+    t.index ["registrant_id"], name: "index_baukis_programs_on_registrant_id"
   end
 
   create_table "baukis_staff_events", force: :cascade,  comment: "イベント" do |t|
@@ -146,6 +228,11 @@ ActiveRecord::Schema.define(version: 20170711024030) do
     t.datetime "updated_at", null: false
     t.index ["email_for_index"], name: "baukis_staff_members_email", unique: true
     t.index ["family_name_kana", "given_name_kana"], name: "baukis_staff_members_name_kana"
+  end
+
+  create_table "baukis_tags", force: :cascade,  comment: "タグ" do |t|
+    t.string "value", null: false, comment: "値"
+    t.index ["value"], name: "index_baukis_tags_on_value", unique: true
   end
 
   create_table "perfect_rails_accounts", force: :cascade,  comment: "口座" do |t|

@@ -42,6 +42,11 @@ class Baukis::Customer < ApplicationRecord
   has_one :work_address, class_name:'Baukis::WorkAddress', foreign_key: :baukis_customer_id, autosave: true
   has_many :phones, :class_name => 'Baukis::Phone', foreign_key: :baukis_customer_id, dependent: :destroy
   has_many :personal_phones, -> { where(baukis_address_id: nil).order(:id) }, :class_name => 'Baukis::Phone', foreign_key: :baukis_customer_id,autosave: true
+  has_many :entries, :class_name => 'Baukis::Entry', dependent: :destroy
+  has_many :programs, :class_name => 'Baukis::Program', through: :entries
+  has_many :messages, :class_name => 'Baukis::Message'
+  has_many :outbound_messages, :class_name => 'Baukis::CustomerMessage', foreign_key: :customer_id
+  has_many :inbound_messages, :class_name => 'Baukis::StaffMessage', foreign_key: :customer_id
 
   validates :gender, inclusion: { in: %w(male female), allow_blank: true }
   validates :birthday, date: {

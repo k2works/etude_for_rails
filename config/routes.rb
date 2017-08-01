@@ -5,6 +5,7 @@
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
 #                                                POST   /baukis/session(.:format)                                           baukis/staff/sessions#create
+#                   confirm_baukis_staff_account PATCH  /baukis/account/confirm(.:format)                                   baukis/staff/accounts#confirm
 #                      edit_baukis_staff_account GET    /baukis/account/edit(.:format)                                      baukis/staff/accounts#edit
 #                           baukis_staff_account GET    /baukis/account(.:format)                                           baukis/staff/accounts#show
 #                                                PATCH  /baukis/account(.:format)                                           baukis/staff/accounts#update
@@ -21,6 +22,31 @@
 #                                                PATCH  /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
 #                                                PUT    /baukis/customers/:id(.:format)                                     baukis/staff/customers#update
 #                                                DELETE /baukis/customers/:id(.:format)                                     baukis/staff/customers#destroy
+#                   entries_baukis_staff_program PATCH  /baukis/programs/:id/entries(.:format)                              baukis/staff/programs#entries
+#                          baukis_staff_programs GET    /baukis/programs(.:format)                                          baukis/staff/programs#index
+#                                                POST   /baukis/programs(.:format)                                          baukis/staff/programs#create
+#                       new_baukis_staff_program GET    /baukis/programs/new(.:format)                                      baukis/staff/programs#new
+#                      edit_baukis_staff_program GET    /baukis/programs/:id/edit(.:format)                                 baukis/staff/programs#edit
+#                           baukis_staff_program GET    /baukis/programs/:id(.:format)                                      baukis/staff/programs#show
+#                                                PATCH  /baukis/programs/:id(.:format)                                      baukis/staff/programs#update
+#                                                PUT    /baukis/programs/:id(.:format)                                      baukis/staff/programs#update
+#                                                DELETE /baukis/programs/:id(.:format)                                      baukis/staff/programs#destroy
+#                  inbound_baukis_staff_messages GET    /baukis/messages/inbound(.:format)                                  baukis/staff/messages#inbound
+#                 outbound_baukis_staff_messages GET    /baukis/messages/outbound(.:format)                                 baukis/staff/messages#outbound
+#                  deleted_baukis_staff_messages GET    /baukis/messages/deleted(.:format)                                  baukis/staff/messages#deleted
+#                    count_baukis_staff_messages GET    /baukis/messages/count(.:format)                                    baukis/staff/messages#count
+#                       tag_baukis_staff_message POST   /baukis/messages/:id/tag(.:format)                                  baukis/staff/messages#tag
+#                                                DELETE /baukis/messages/:id/tag(.:format)                                  baukis/staff/messages#tag
+#             confirm_baukis_staff_message_reply POST   /baukis/messages/:message_id/reply/confirm(.:format)                baukis/staff/replies#confirm
+#                 new_baukis_staff_message_reply GET    /baukis/messages/:message_id/reply/new(.:format)                    baukis/staff/replies#new
+#                     baukis_staff_message_reply POST   /baukis/messages/:message_id/reply(.:format)                        baukis/staff/replies#create
+#                          baukis_staff_messages GET    /baukis/messages(.:format)                                          baukis/staff/messages#index
+#                           baukis_staff_message GET    /baukis/messages/:id(.:format)                                      baukis/staff/messages#show
+#                                                DELETE /baukis/messages/:id(.:format)                                      baukis/staff/messages#destroy
+#              inbound_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/inbound(.:format)                     baukis/staff/messages#inbound
+#             outbound_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/outbound(.:format)                    baukis/staff/messages#outbound
+#              deleted_baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages/deleted(.:format)                     baukis/staff/messages#deleted
+#                      baukis_staff_tag_messages GET    /baukis/tags/:tag_id/messages(.:format)                             baukis/staff/messages#index
 #                              baukis_admin_root GET    /baukis/admin(.:format)                                             baukis/admin/top#index
 #                             baukis_admin_login GET    /baukis/admin/login(.:format)                                       baukis/admin/sessions#new
 #                           baukis_admin_session DELETE /baukis/admin/session(.:format)                                     baukis/admin/sessions#destroy
@@ -35,7 +61,31 @@
 #                                                PUT    /baukis/admin/staff_members/:id(.:format)                           baukis/admin/staff_members#update
 #                                                DELETE /baukis/admin/staff_members/:id(.:format)                           baukis/admin/staff_members#destroy
 #                      baukis_admin_staff_events GET    /baukis/admin/staff_events(.:format)                                baukis/admin/staff_events#index
+#            delete_baukis_admin_allowed_sources DELETE /baukis/admin/allowed_sources/delete(.:format)                      baukis/admin/allowed_sources#delete
+#                   baukis_admin_allowed_sources GET    /baukis/admin/allowed_sources(.:format)                             baukis/admin/allowed_sources#index
+#                                                POST   /baukis/admin/allowed_sources(.:format)                             baukis/admin/allowed_sources#create
 #                           baukis_customer_root GET    /baukis/customer(.:format)                                          baukis/customer/top#index
+#                          baukis_customer_login GET    /baukis/customer/login(.:format)                                    baukis/customer/sessions#new
+#                        baukis_customer_session DELETE /baukis/customer/session(.:format)                                  baukis/customer/sessions#destroy
+#                                                POST   /baukis/customer/session(.:format)                                  baukis/customer/sessions#create
+#                confirm_baukis_customer_account PATCH  /baukis/customer/account/confirm(.:format)                          baukis/customer/accounts#confirm
+#                   edit_baukis_customer_account GET    /baukis/customer/account/edit(.:format)                             baukis/customer/accounts#edit
+#                        baukis_customer_account GET    /baukis/customer/account(.:format)                                  baukis/customer/accounts#show
+#                                                PATCH  /baukis/customer/account(.:format)                                  baukis/customer/accounts#update
+#                                                PUT    /baukis/customer/account(.:format)                                  baukis/customer/accounts#update
+#           cancel_baukis_customer_program_entry PATCH  /baukis/customer/programs/:program_id/entries/:id/cancel(.:format)  baukis/customer/entries#cancel
+#                baukis_customer_program_entries POST   /baukis/customer/programs/:program_id/entries(.:format)             baukis/customer/entries#create
+#                       baukis_customer_programs GET    /baukis/customer/programs(.:format)                                 baukis/customer/programs#index
+#                        baukis_customer_program GET    /baukis/customer/programs/:id(.:format)                             baukis/customer/programs#show
+#               confirm_baukis_customer_messages POST   /baukis/customer/messages/confirm(.:format)                         baukis/customer/messages#confirm
+#          confirm_baukis_customer_message_reply POST   /baukis/customer/messages/:message_id/reply/confirm(.:format)       baukis/customer/replies#confirm
+#              new_baukis_customer_message_reply GET    /baukis/customer/messages/:message_id/reply/new(.:format)           baukis/customer/replies#new
+#                  baukis_customer_message_reply POST   /baukis/customer/messages/:message_id/reply(.:format)               baukis/customer/replies#create
+#                       baukis_customer_messages GET    /baukis/customer/messages(.:format)                                 baukis/customer/messages#index
+#                                                POST   /baukis/customer/messages(.:format)                                 baukis/customer/messages#create
+#                    new_baukis_customer_message GET    /baukis/customer/messages/new(.:format)                             baukis/customer/messages#new
+#                        baukis_customer_message GET    /baukis/customer/messages/:id(.:format)                             baukis/customer/messages#show
+#                                                DELETE /baukis/customer/messages/:id(.:format)                             baukis/customer/messages#destroy
 #                                    baukis_root GET    /baukis(.:format)                                                   baukis/errors#routing_error
 #                                         baukis GET    /baukis/*anything(.:format)                                         baukis/errors#routing_error
 #                            awesome_events_root GET    /awesome_events(.:format)                                           awesome_events/welcome#index
@@ -128,9 +178,27 @@ Rails.application.routes.draw do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       resource :session, only:[ :create, :destroy ]
-      resource :account, except: [ :new, :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ] do
+        patch :confirm
+      end
       resource :password, only: [ :show, :edit, :update ]
       resources :customers
+      resources :programs do
+        patch :entries, on: :member
+      end
+      resources :messages, only: [ :index, :show, :destroy ] do
+        get :inbound, :outbound, :deleted, :count, on: :collection
+        post :tag, on: :member
+        delete :tag, on: :member
+        resource :reply, only: [ :new, :create ] do
+          post :confirm
+        end
+      end
+      resources :tags, only: [] do
+        resources :messages, only: [ :index ] do
+          get :inbound, :outbound, :deleted, on: :collection
+        end
+      end
     end
 
     namespace :admin do
@@ -143,12 +211,31 @@ Rails.application.routes.draw do
       resources :staff_events, only: [ :index ]
       # resources :staff_members, only: [ :index, :new, :create ]
       # resources :staff_members, except: [ :show, :destroy ]
-      # resources :staff_members, controller: 'employees'
+      # resources :staff_members, controller: 'employees' do
       # resources :staff_members, path: 'staff'
+      resources :allowed_sources, only: [ :index, :create ] do
+        delete :delete, on: :collection
+      end
     end
 
     namespace :customer do
       root 'top#index'
+      get 'login' => 'sessions#new', as: :login
+      resource :session, only: [ :create, :destroy ]
+      resource :account, except: [ :new, :create, :destroy ] do
+        patch :confirm
+      end
+      resources :programs, only: [ :index, :show ] do
+        resources :entries, only: [ :create ] do
+          patch :cancel, on: :member
+        end
+      end
+      resources :messages, except: [ :edit, :update ] do
+        post :confirm, on: :collection
+        resource :reply, only: [ :new, :create ] do
+          post :confirm
+        end
+      end
     end
 
     root 'errors#routing_error'
