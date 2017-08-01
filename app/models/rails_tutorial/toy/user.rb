@@ -10,4 +10,5 @@
 #
 
 class RailsTutorial::Toy::User < ApplicationRecord
+  has_many :microposts, :class_name => 'RailsTutorial::Toy::Micropost'
 end
