@@ -1,4 +1,4 @@
-class RailsTutorial::Toy::UsersController < ApplicationController
+class RailsTutorial::Toy::UsersController < RailsTutorial::ApplicationController
   before_action :set_rails_tutorial_toy_user, only: [:show, :edit, :update, :destroy]
 
   # GET /rails_tutorial/toy/users
