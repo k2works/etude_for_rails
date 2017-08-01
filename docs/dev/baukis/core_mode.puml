@@ -1,0 +1,20 @@
+@startuml
+
+Administrator -> StaffMember
+StaffMember --r Customer
+StaffMember"1" o-- "0..*"StaffEvent
+StaffMember"1" o-- "0..*"Program
+StaffMember"1" *-- "1..*"Message
+Program"1" *-- "0..*"StaffEvent
+Customer"1" *-- "1..*"Address
+Customer"1" *-- "1..*"Phone
+Customer"1" *-- "1..*"Message
+Customer"1" o-- "0..*"StaffEvent
+Customer"1" o-- "0..*"Program
+Address <|-- HomeAddress
+Address <|-- WorkAddress
+Phone <|-- PersonalPhone
+Message <|-- InboundMessage
+Message <|-- OutboundMessage
+
+@enduml
