@@ -1,18 +1,14 @@
 # == Schema Information
 #
-# Table name: baukis_administrators # 管理者
+# Table name: baukis_administrators
 #
 #  id              :integer          not null, primary key
-#  email           :string(255)      not null                 # メールアドレス
-#  email_for_index :string(255)      not null                 # 索引用メールアドレス
-#  hashed_password :string(255)                               # パスワード
-#  suspended       :boolean          default(FALSE), not null # 停止フラグ
+#  email           :string           not null
+#  email_for_index :string           not null
+#  hashed_password :string
+#  suspended       :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#
-# Indexes
-#
-#  baukis_administrators_email  (email_for_index) UNIQUE
 #
 
 class Baukis::Administrator < ApplicationRecord

@@ -1,12 +1,12 @@
 # == Schema Information
 #
-# Table name: perfect_rails_users # ユーザ
+# Table name: perfect_rails_users
 #
 #  id           :integer          not null, primary key
-#  name         :string(255)                            # 名前
-#  prefecture   :string(255)                            # 都道府県
-#  city         :string(255)                            # 市町村
-#  house_number :string(255)                            # 番地
+#  name         :string
+#  prefecture   :string
+#  city         :string
+#  house_number :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

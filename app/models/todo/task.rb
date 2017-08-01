@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: todo_tasks # タスク
+# Table name: todo_tasks
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)      not null              # 名前
-#  content    :text(65535)      not null              # 内容
-#  status     :integer          default(0), not null  # ステータス 0:NOT_YET 1:DONE 2:PENDING
+#  name       :string           not null
+#  content    :text             not null
+#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

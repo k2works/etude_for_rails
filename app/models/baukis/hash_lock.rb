@@ -1,11 +1,11 @@
 # == Schema Information
 #
-# Table name: baukis_hash_locks # 排他制御
+# Table name: baukis_hash_locks
 #
 #  id         :integer          not null, primary key
-#  table      :string(255)      not null              # テーブル
-#  column     :string(255)      not null              # カラム
-#  key        :string(255)      not null              # キー
+#  table      :string           not null
+#  column     :string           not null
+#  key        :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

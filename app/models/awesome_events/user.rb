@@ -1,12 +1,12 @@
 # == Schema Information
 #
-# Table name: awesome_events_users # ログインユーザ
+# Table name: awesome_events_users
 #
 #  id         :integer          not null, primary key
-#  provider   :string(255)                            # プロバイダ名
-#  uid        :string(255)                            # ブロバイダ別ユーザ識別子
-#  nickname   :string(255)                            # TwitterID
-#  image_url  :string(255)                            # Twitterアイコン画像URL
+#  provider   :string
+#  uid        :string
+#  nickname   :string
+#  image_url  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

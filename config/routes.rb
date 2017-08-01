@@ -1,6 +1,14 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                                         Controller#Action
+#                  rails_tutorial_toy_microposts GET    /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#index
+#                                                POST   /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#create
+#               new_rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/new(.:format)                        rails_tutorial/toy/microposts#new
+#              edit_rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/:id/edit(.:format)                   rails_tutorial/toy/microposts#edit
+#                   rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#show
+#                                                PATCH  /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#update
+#                                                PUT    /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#update
+#                                                DELETE /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#destroy
 #                       rails_tutorial_toy_users GET    /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#index
 #                                                POST   /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#create
 #                    new_rails_tutorial_toy_user GET    /rails_tutorial/toy/users/new(.:format)                             rails_tutorial/toy/users#new
@@ -183,9 +191,12 @@
 Rails.application.routes.draw do
   namespace :rails_tutorial do
     namespace :toy do
+      resources :microposts
       resources :users
+      root 'users#index'
     end
   end
+
   namespace :baukis do
     namespace :staff, path: '' do
       root 'top#index'

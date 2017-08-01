@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: rails_tutorial_toy_users
+# Table name: rails_tutorial_toy_microposts
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  email      :string
+#  content    :text
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class RailsTutorial::Toy::User < ApplicationRecord
+class RailsTutorial::Toy::Micropost < ApplicationRecord
 end
