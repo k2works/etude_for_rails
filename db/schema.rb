@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731045549) do
+ActiveRecord::Schema.define(version: 20170801063811) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -293,6 +293,13 @@ ActiveRecord::Schema.define(version: 20170731045549) do
     t.string "prefecture", comment: "都道府県"
     t.string "city", comment: "市町村"
     t.string "house_number", comment: "番地"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rails_tutorial_toy_users", force: :cascade,  comment: "ユーザー" do |t|
+    t.string "name", comment: "名前"
+    t.string "email", comment: "メールアドレス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

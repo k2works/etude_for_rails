@@ -1,6 +1,14 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                                         Controller#Action
+#                       rails_tutorial_toy_users GET    /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#index
+#                                                POST   /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#create
+#                    new_rails_tutorial_toy_user GET    /rails_tutorial/toy/users/new(.:format)                             rails_tutorial/toy/users#new
+#                   edit_rails_tutorial_toy_user GET    /rails_tutorial/toy/users/:id/edit(.:format)                        rails_tutorial/toy/users#edit
+#                        rails_tutorial_toy_user GET    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#show
+#                                                PATCH  /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
+#                                                PUT    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
+#                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -173,6 +181,11 @@
 #
 
 Rails.application.routes.draw do
+  namespace :rails_tutorial do
+    namespace :toy do
+      resources :users
+    end
+  end
   namespace :baukis do
     namespace :staff, path: '' do
       root 'top#index'
