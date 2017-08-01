@@ -11,5 +11,5 @@
 
 class RailsTutorial::Toy::Micropost < ApplicationRecord
   belongs_to :user, :class_name => 'RailsTutorial::Toy::User'
-  validates :content, length: { maximum: 140 }
+  validates :content, length: { maximum: 140 }, presence: true
 end

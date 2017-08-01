@@ -11,4 +11,6 @@
 
 class RailsTutorial::Toy::User < ApplicationRecord
   has_many :microposts, :class_name => 'RailsTutorial::Toy::Micropost'
+  validates :name, presence: true
+  validates :email, presence: true
 end
