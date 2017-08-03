@@ -6,4 +6,8 @@ class RailsTutorial::Sample::StaticPagesController < RailsTutorial::ApplicationC
   def help
 
   end
+
+  def about
+
+  end
 end
