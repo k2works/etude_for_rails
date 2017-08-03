@@ -162,6 +162,9 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
+    guard-minitest (2.4.4)
+      guard-compat (~> 1.2)
+      minitest (>= 3.0)
     guard-yard (2.2.0)
       guard (>= 1.1.0)
       yard (>= 0.7.0)
@@ -422,6 +425,7 @@ DEPENDENCIES
   font-awesome-rails
   foreman
   guard-livereload (~> 2.5)
+  guard-minitest (= 2.4.4)
   guard-yard
   i18n_generators
   jbuilder (~> 2.5)

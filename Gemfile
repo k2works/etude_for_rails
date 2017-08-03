@@ -57,6 +57,7 @@ group :development, :test do
   gem 'rspec-json_matcher', require: 'rspec/json_matcher'
   gem 'rails-controller-testing'
   gem 'minitest-reporters',       '1.1.14'
+  gem 'guard-minitest',           '2.4.4'
 end
 
 group :development do
