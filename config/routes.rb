@@ -20,7 +20,6 @@
 #                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
 #                        rails_tutorial_toy_root GET    /rails_tutorial/toy(.:format)                                       rails_tutorial/toy/users#index
 #                     rails_tutorial_sample_root GET    /rails_tutorial/sample(.:format)                                    rails_tutorial/sample/static_pages#home
-#                     rails_tutorial_sample_home GET    /rails_tutorial/sample/home(.:format)                               rails_tutorial/sample/static_pages#home
 #                     rails_tutorial_sample_help GET    /rails_tutorial/sample/help(.:format)                               rails_tutorial/sample/static_pages#help
 #                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
 #                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
@@ -209,10 +208,9 @@ Rails.application.routes.draw do
 
     namespace :sample do
       root 'static_pages#home'
-      get 'home' => 'static_pages#home', as: :home
-      get 'help' => 'static_pages#help', as: :help
-      get 'about' => 'static_pages#about', as: :about
-      get 'contact' => 'static_pages#contact', as: :contact
+      get '/help', to:'static_pages#help'
+      get '/about', to:'static_pages#about'
+      get '/contact', to:'static_pages#contact'
       get 'signup' => '#signup', as: :signup
       get 'login' => '#login', as: :login
     end
