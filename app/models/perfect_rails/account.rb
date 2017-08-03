@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: perfect_rails_accounts
+# Table name: perfect_rails_accounts # 口座
 #
 #  id         :integer          not null, primary key
-#  amount     :integer
-#  currency   :string
+#  amount     :integer                                # 金額
+#  currency   :string(255)                            # 通貨
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

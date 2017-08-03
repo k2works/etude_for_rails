@@ -1,10 +1,16 @@
 # == Schema Information
 #
-# Table name: baukis_message_tag_links
+# Table name: baukis_message_tag_links # メッセージタグリンク
 #
 #  id         :integer          not null, primary key
-#  message_id :integer          not null
-#  tag_id     :integer          not null
+#  message_id :integer          not null              # メッセージへの外部キー
+#  tag_id     :integer          not null              # タグへの外部キー
+#
+# Indexes
+#
+#  baukis_message_tag_links_message_id_tag_id    (message_id,tag_id) UNIQUE
+#  index_baukis_message_tag_links_on_message_id  (message_id)
+#  index_baukis_message_tag_links_on_tag_id      (tag_id)
 #
 
 class Baukis::MessageTagLink < ApplicationRecord
