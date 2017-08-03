@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SiteLayoutTest < ActionDispatch::IntegrationTest
+class RailsTutorial::SiteLayoutTest < ActionDispatch::IntegrationTest
 
   test "layout links" do
     get rails_tutorial_sample_root_path
@@ -9,5 +9,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", rails_tutorial_sample_help_path
     assert_select "a[href=?]", rails_tutorial_sample_about_path
     assert_select "a[href=?]", rails_tutorial_sample_contact_path
+    get rails_tutorial_sample_contact_path
+    assert_select "title", full_title("(test) Contact")
   end
 end
