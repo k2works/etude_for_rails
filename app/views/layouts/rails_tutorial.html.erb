@@ -9,10 +9,7 @@
 
     <%= stylesheet_link_tag    'rails_tutorial', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'rails_tutorial', 'data-turbolinks-track': 'reload' %>
-    <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
-    </script>
-    <![endif]-->
+    <%= render 'rails_tutorial/shared/shim' %>
   </head>
 
   <body>
