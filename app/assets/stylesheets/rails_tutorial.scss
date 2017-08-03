@@ -6,10 +6,13 @@
 // ===========================
 // Components
 // ===========================
+@import "components/rails_tutorials/layout";
 
 // ===========================
 // Pages
 // ===========================
+@import "pages/rails_tutorials/sample/home";
+@import "pages/rails_tutorials/sample/help";
 
 // ===========================
 // Utils
