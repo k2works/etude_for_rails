@@ -19,4 +19,10 @@ class RailsTutorial::Sample::StaticPagesControllerTest < ActionDispatch::Integra
     assert_select "title", "(test) About | Ruby on Rails Tutorial Sample App"
   end
 
+  test "should get contact" do
+    get rails_tutorial_sample_static_pages_contact_url
+    assert_response :success
+    assert_select "title", "(test) Contact | Ruby on Rails Tutorial Sample App"
+  end
+
 end

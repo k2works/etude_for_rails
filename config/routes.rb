@@ -22,6 +22,7 @@
 #        rails_tutorial_sample_static_pages_home GET    /rails_tutorial/sample/static_pages/home(.:format)                  rails_tutorial/sample/static_pages#home
 #        rails_tutorial_sample_static_pages_help GET    /rails_tutorial/sample/static_pages/help(.:format)                  rails_tutorial/sample/static_pages#help
 #       rails_tutorial_sample_static_pages_about GET    /rails_tutorial/sample/static_pages/about(.:format)                 rails_tutorial/sample/static_pages#about
+#     rails_tutorial_sample_static_pages_contact GET    /rails_tutorial/sample/static_pages/contact(.:format)               rails_tutorial/sample/static_pages#contact
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -207,6 +208,7 @@ Rails.application.routes.draw do
       get 'static_pages/home'
       get 'static_pages/help'
       get 'static_pages/about'
+      get 'static_pages/contact'
     end
   end
 

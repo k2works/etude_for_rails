@@ -10,4 +10,8 @@ class RailsTutorial::Sample::StaticPagesController < RailsTutorial::ApplicationC
   def about
 
   end
+
+  def contact
+
+  end
 end
