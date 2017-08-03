@@ -23,7 +23,7 @@
 #                     rails_tutorial_sample_help GET    /rails_tutorial/sample/help(.:format)                               rails_tutorial/sample/static_pages#help
 #                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
 #                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
-#                rails_tutorial_sample_users_new GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
+#                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#new
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -210,7 +210,7 @@ Rails.application.routes.draw do
       get '/help', to:'static_pages#help'
       get '/about', to:'static_pages#about'
       get '/contact', to:'static_pages#contact'
-      get 'users/new'
+      get '/signup', to:'users#new'
     end
   end
 
