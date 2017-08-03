@@ -5,10 +5,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= full_title(yield(:title)) %></title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'rails_tutorial', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'rails_tutorial', 'data-turbolinks-track': 'reload' %>
+    <%= render 'rails_tutorial/shared/rails_default' %>
     <%= render 'rails_tutorial/shared/shim' %>
   </head>
 
