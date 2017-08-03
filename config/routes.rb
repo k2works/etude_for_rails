@@ -20,10 +20,12 @@
 #                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
 #                        rails_tutorial_toy_root GET    /rails_tutorial/toy(.:format)                                       rails_tutorial/toy/users#index
 #                     rails_tutorial_sample_root GET    /rails_tutorial/sample(.:format)                                    rails_tutorial/sample/static_pages#home
-#        rails_tutorial_sample_static_pages_home GET    /rails_tutorial/sample/static_pages/home(.:format)                  rails_tutorial/sample/static_pages#home
-#        rails_tutorial_sample_static_pages_help GET    /rails_tutorial/sample/static_pages/help(.:format)                  rails_tutorial/sample/static_pages#help
-#       rails_tutorial_sample_static_pages_about GET    /rails_tutorial/sample/static_pages/about(.:format)                 rails_tutorial/sample/static_pages#about
-#     rails_tutorial_sample_static_pages_contact GET    /rails_tutorial/sample/static_pages/contact(.:format)               rails_tutorial/sample/static_pages#contact
+#                     rails_tutorial_sample_home GET    /rails_tutorial/sample/home(.:format)                               rails_tutorial/sample/static_pages#home
+#                     rails_tutorial_sample_help GET    /rails_tutorial/sample/help(.:format)                               rails_tutorial/sample/static_pages#help
+#                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
+#                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
+#                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/#signup
+#                    rails_tutorial_sample_login GET    /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/#login
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -207,10 +209,12 @@ Rails.application.routes.draw do
 
     namespace :sample do
       root 'static_pages#home'
-      get 'static_pages/home'
-      get 'static_pages/help'
-      get 'static_pages/about'
-      get 'static_pages/contact'
+      get 'home' => 'static_pages#home', as: :home
+      get 'help' => 'static_pages#help', as: :help
+      get 'about' => 'static_pages#about', as: :about
+      get 'contact' => 'static_pages#contact', as: :contact
+      get 'signup' => '#signup', as: :signup
+      get 'login' => '#login', as: :login
     end
   end
 
