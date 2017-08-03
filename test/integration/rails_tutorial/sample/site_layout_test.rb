@@ -11,5 +11,7 @@ class RailsTutorial::SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", rails_tutorial_sample_contact_path
     get rails_tutorial_sample_contact_path
     assert_select "title", full_title("(test) Contact")
+    get rails_tutorial_sample_signup_path
+    assert_select "title", full_title("(test) Sign up")
   end
 end
