@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                                         Controller#Action
+#                            rails_tutorial_root GET    /rails_tutorial(.:format)                                           rails_tutorial/application#hello
 #                  rails_tutorial_toy_microposts GET    /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#index
 #                                                POST   /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#create
 #               new_rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/new(.:format)                        rails_tutorial/toy/microposts#new
@@ -17,6 +18,7 @@
 #                                                PATCH  /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
 #                                                PUT    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
 #                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
+#                        rails_tutorial_toy_root GET    /rails_tutorial/toy(.:format)                                       rails_tutorial/toy/users#index
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -190,6 +192,8 @@
 
 Rails.application.routes.draw do
   namespace :rails_tutorial do
+    root 'application#hello'
+
     namespace :toy do
       resources :microposts
       resources :users
