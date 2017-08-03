@@ -1,4 +1,4 @@
-class RailsTutorial::Sample::UsersController < ApplicationController
+class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationController
   def new
   end
 end
