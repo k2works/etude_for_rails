@@ -51,6 +51,7 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
+    ansi (1.5.0)
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
     arel (8.0.0)
@@ -220,6 +221,11 @@ GEM
     mini_magick (4.7.2)
     mini_portile2 (2.2.0)
     minitest (5.10.1)
+    minitest-reporters (1.1.14)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multi_json (1.12.1)
     mysql2 (0.4.6)
     nenv (0.3.0)
@@ -323,6 +329,7 @@ GEM
     rspec-support (3.6.0)
     ruby-debug-ide (0.6.1.beta4)
       rake (>= 0.8.1)
+    ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.4.23)
@@ -428,6 +435,7 @@ DEPENDENCIES
   migration_comments
   mini_magick
   minitest (= 5.10.1)
+  minitest-reporters (= 1.1.14)
   mysql2
   omniauth (~> 1.6, >= 1.6.1)
   omniauth-twitter (~> 1.4)

@@ -56,6 +56,7 @@ group :development, :test do
   gem 'database_rewinder'
   gem 'rspec-json_matcher', require: 'rspec/json_matcher'
   gem 'rails-controller-testing'
+  gem 'minitest-reporters',       '1.1.14'
 end
 
 group :development do
