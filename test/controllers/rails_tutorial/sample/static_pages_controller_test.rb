@@ -4,7 +4,7 @@ class RailsTutorial::Sample::StaticPagesControllerTest < ActionDispatch::Integra
   test "should get home" do
     get rails_tutorial_sample_root_url
     assert_response :success
-    assert_select "title", "(test) Home | Ruby on Rails Tutorial Sample App"
+    assert_select "title", "(test) Ruby on Rails Tutorial Sample App"
   end
 
   test "should get help" do
