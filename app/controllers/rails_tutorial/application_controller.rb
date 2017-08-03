@@ -1,6 +1,6 @@
 class RailsTutorial::ApplicationController <  ActionController::Base
   protect_from_forgery with: :exception
-  #layout :set_layout
+  layout :set_layout
 
   def hello
     render html: "hello, world!"
