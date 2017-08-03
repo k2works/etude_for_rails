@@ -19,6 +19,7 @@
 #                                                PUT    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
 #                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
 #                        rails_tutorial_toy_root GET    /rails_tutorial/toy(.:format)                                       rails_tutorial/toy/users#index
+#                     rails_tutorial_sample_root GET    /rails_tutorial/sample(.:format)                                    rails_tutorial/sample/static_pages#home
 #        rails_tutorial_sample_static_pages_home GET    /rails_tutorial/sample/static_pages/home(.:format)                  rails_tutorial/sample/static_pages#home
 #        rails_tutorial_sample_static_pages_help GET    /rails_tutorial/sample/static_pages/help(.:format)                  rails_tutorial/sample/static_pages#help
 #       rails_tutorial_sample_static_pages_about GET    /rails_tutorial/sample/static_pages/about(.:format)                 rails_tutorial/sample/static_pages#about
@@ -205,6 +206,7 @@ Rails.application.routes.draw do
     end
 
     namespace :sample do
+      root 'static_pages#home'
       get 'static_pages/home'
       get 'static_pages/help'
       get 'static_pages/about'
