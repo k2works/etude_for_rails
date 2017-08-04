@@ -9,8 +9,15 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
+require 'test_helper'
 
-RSpec.describe RailsTutorial::Sample::User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class RailsTutorial::Sample::UserTest < ActiveSupport::TestCase
+
+  def setup
+    @user = RailsTutorial::Sample::User.new(name: "Example User", email: "user@example.com")
+  end
+
+  test "should be valid" do
+    assert @user.valid?
+  end
 end

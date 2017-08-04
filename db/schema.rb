@@ -299,7 +299,7 @@ ActiveRecord::Schema.define(version: 20170803090824) do
 
   create_table "rails_tutorial_sample_users", force: :cascade,  comment: "ユーザ" do |t|
     t.string "name", comment: "名前"
-    t.string "emial", comment: "メールアドレス"
+    t.string "email", comment: "メールアドレス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
