@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803090824) do
+ActiveRecord::Schema.define(version: 20170804043919) do
 
   create_table "awesome_events_events", force: :cascade,  comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -302,6 +302,7 @@ ActiveRecord::Schema.define(version: 20170803090824) do
     t.string "email", comment: "メールアドレス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_rails_tutorial_sample_users_on_email", unique: true
   end
 
   create_table "rails_tutorial_toy_microposts", force: :cascade,  comment: "マイクロポスト" do |t|
