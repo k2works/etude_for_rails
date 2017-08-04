@@ -24,6 +24,14 @@
 #                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
 #                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
 #                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#new
+#                    rails_tutorial_sample_users GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
+#                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
+#                 new_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
+#                edit_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/edit(.:format)                     rails_tutorial/sample/users#edit
+#                     rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#show
+#                                                PATCH  /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -211,6 +219,7 @@ Rails.application.routes.draw do
       get '/about', to:'static_pages#about'
       get '/contact', to:'static_pages#contact'
       get '/signup', to:'users#new'
+      resources:users
     end
   end
 
