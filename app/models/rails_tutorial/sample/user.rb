@@ -10,6 +10,6 @@
 #
 
 class RailsTutorial::Sample::User < ApplicationRecord
-  validates :name, presence:true
-  validates :email, presence:true
+  validates :name, presence:true,length:{ maximum:50 }
+  validates :email, presence:true, length:{ maximum:225 }
 end
