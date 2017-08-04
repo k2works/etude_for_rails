@@ -24,6 +24,7 @@
 #                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
 #                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
 #                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#new
+#                                                POST   /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#create
 #                    rails_tutorial_sample_users GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
 #                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
 #                 new_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
@@ -219,7 +220,8 @@ Rails.application.routes.draw do
       get '/about', to:'static_pages#about'
       get '/contact', to:'static_pages#contact'
       get '/signup', to:'users#new'
-      resources:users
+      post '/signup',  to: 'users#create'
+      resources :users
     end
   end
 
