@@ -14,7 +14,7 @@ require 'test_helper'
 class RailsTutorial::Sample::UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = RailsTutorial::Sample::User.new(name: "Example User", email: "user@example.com")
+    @user = RailsTutorial::Sample::User.new(name: "Example User", email: "user@example.com",password:"foobar",password_confirmation:"foobar")
   end
 
   test "should be valid" do
