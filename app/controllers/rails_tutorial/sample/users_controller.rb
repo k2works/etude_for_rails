@@ -6,4 +6,12 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   def new
     @user = RailsTutorial::Sample::User.new
   end
+
+  def create
+    @user = RailsTutorial::Sample::User.new(params[:rails_tutorial_sample_user])
+    if @user.save
+    else
+      render 'new'
+    end
+  end
 end
