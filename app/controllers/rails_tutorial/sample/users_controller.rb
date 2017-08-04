@@ -10,6 +10,7 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   def create
     @user = RailsTutorial::Sample::User.new(user_params)
     if @user.save
+      redirect_to @user
     else
       render 'new'
     end
