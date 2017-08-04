@@ -4,5 +4,6 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   end
 
   def new
+    @user = RailsTutorial::Sample::User.new
   end
 end
