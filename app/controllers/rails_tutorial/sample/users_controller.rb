@@ -8,10 +8,16 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   end
 
   def create
-    @user = RailsTutorial::Sample::User.new(params[:rails_tutorial_sample_user])
+    @user = RailsTutorial::Sample::User.new(user_params)
     if @user.save
     else
       render 'new'
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:rails_tutorial_sample_user).permit(:name, :email, :password, :password_confirmation)
   end
 end
