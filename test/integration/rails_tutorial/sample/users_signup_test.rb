@@ -11,4 +11,17 @@ class RailsTutorial::Sample::UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'rails_tutorial/sample/users/new'
   end
+
+  test "valid signup information" do
+    get rails_tutorial_sample_signup_path
+    assert_difference 'RailsTutorial::Sample::User.count', 1 do
+      post rails_tutorial_sample_users_path, params: { rails_tutorial_sample_user: { name:  "Example User",
+                                         email: "user@example.com",
+                                         password:              "password",
+                                         password_confirmation: "password" } }
+    end
+    follow_redirect!
+    assert_template 'rails_tutorial/sample/users/show'
+    assert_not flash.nil?
+  end
 end
