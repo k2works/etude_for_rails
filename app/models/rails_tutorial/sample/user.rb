@@ -9,6 +9,7 @@
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_digest :string(255)
+#  admin           :boolean          default(FALSE)        # 管理者フラグ
 #
 # Indexes
 #

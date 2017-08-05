@@ -39,5 +39,4 @@ class RailsTutorial::Sample::UsersControllerTest < ActionDispatch::IntegrationTe
     assert_not flash.empty?
     assert_redirected_to rails_tutorial_sample_login_url
   end
-
 end
