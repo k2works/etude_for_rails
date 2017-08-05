@@ -29,6 +29,8 @@ class RailsTutorial::Sample::UsersLoginTest < ActionDispatch::IntegrationTest
     delete rails_tutorial_sample_logout_path
     assert_not is_logged_in?
     assert_redirected_to rails_tutorial_sample_root_url
+    # 2番目のウィンドウでログアウトをクリックするユーザーをシミュレートする
+    delete rails_tutorial_sample_logout_path
     follow_redirect!
     assert_select "a[href=?]", rails_tutorial_sample_login_path
     assert_select "a[href=?]", rails_tutorial_sample_logout_path,      count: 0
