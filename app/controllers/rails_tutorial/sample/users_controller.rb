@@ -22,6 +22,15 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
     @user = RailsTutorial::Sample::User.find(params[:id])
   end
 
+  def update
+    @user = RailsTutorial::Sample::User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # 更新に成功した場合を扱う。
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def user_params
