@@ -7,6 +7,7 @@ class RailsTutorial::Sample::UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful edit" do
+    log_in_as(@user)
     get edit_rails_tutorial_sample_user_path(@user)
     assert_template 'rails_tutorial/sample/users/edit'
     patch rails_tutorial_sample_user_path(@user), params: { rails_tutorial_sample_user: { name:  "",
@@ -18,8 +19,9 @@ class RailsTutorial::Sample::UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successful edit" do
+    log_in_as(@user)
     get edit_rails_tutorial_sample_user_path(@user)
-    assert_template 'users/edit'
+    assert_template 'rails_tutorial/sample/users/edit'
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch rails_tutorial_sample_user_path(@user), params: { rails_tutorial_sample_user: { name:  name,
