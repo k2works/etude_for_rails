@@ -17,6 +17,11 @@ class RailsTutorial::Sample::UsersControllerTest < ActionDispatch::IntegrationTe
     @other_user = rails_tutorial_sample_users(:archer)
   end
 
+  test "should redirect index when not logged in" do
+    get rails_tutorial_sample_users_path
+    assert_redirected_to rails_tutorial_sample_login_url
+  end
+
   test "should get new" do
     get rails_tutorial_sample_signup_url
     assert_response :success
