@@ -14,6 +14,7 @@ require 'test_helper'
 class RailsTutorial::Sample::UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = rails_tutorial_sample_users(:michael)
+    @other_user = rails_tutorial_sample_users(:archer)
   end
 
   test "should get new" do
