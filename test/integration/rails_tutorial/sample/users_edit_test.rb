@@ -16,4 +16,20 @@ class RailsTutorial::Sample::UsersEditTest < ActionDispatch::IntegrationTest
 
     assert_template 'rails_tutorial/sample/users/edit'
   end
+
+  test "successful edit" do
+    get edit_rails_tutorial_sample_user_path(@user)
+    assert_template 'users/edit'
+    name  = "Foo Bar"
+    email = "foo@bar.com"
+    patch rails_tutorial_sample_user_path(@user), params: { rails_tutorial_sample_user: { name:  name,
+                                              email: email,
+                                              password:              "",
+                                              password_confirmation: "" } }
+    assert_not flash.empty?
+    assert_redirected_to @user
+    @user.reload
+    assert_equal name,  @user.name
+    assert_equal email, @user.email
+  end
 end

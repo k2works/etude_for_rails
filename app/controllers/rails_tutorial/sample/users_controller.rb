@@ -25,7 +25,8 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   def update
     @user = RailsTutorial::Sample::User.find(params[:id])
     if @user.update_attributes(user_params)
-      # 更新に成功した場合を扱う。
+      flash[:success] = "Profile updated"
+      redirect_to @user
     else
       render 'edit'
     end
