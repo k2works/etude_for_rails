@@ -7,7 +7,7 @@ class RailsTutorial::Sample::SessionsController < RailsTutorial::ApplicationCont
     if user && user.authenticate(params[:session][:password])
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
     else
-      # エラーメッセージを作成する
+      flash[:danger] = 'Invalid email/password combination' # 本当は正しくない
       render 'new'
     end
   end
