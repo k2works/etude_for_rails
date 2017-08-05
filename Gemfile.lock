@@ -139,6 +139,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
@@ -422,6 +424,7 @@ DEPENDENCIES
   etude_for_aws (~> 0.7.10)
   exception_notification
   factory_girl_rails
+  faker (= 1.7.3)
   font-awesome-rails
   foreman
   guard-livereload (~> 2.5)

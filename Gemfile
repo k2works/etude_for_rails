@@ -127,3 +127,6 @@ gem 'date_validator', '~> 0.9.0'
 gem 'email_validator', '~> 1.6'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'tag-it-rails'
+
+# For RailsTutorial
+gem 'faker',          '1.7.3'
