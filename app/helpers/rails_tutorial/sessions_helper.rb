@@ -13,5 +13,11 @@ module RailsTutorial
     def logged_in?
       !current_user.nil?
     end
+
+    # 現在のユーザーをログアウトする
+    def log_out
+      session.delete(:rails_tutorial_sample_user_id)
+      @current_user = nil
+    end
   end
 end

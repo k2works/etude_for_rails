@@ -14,4 +14,24 @@ class RailsTutorial::Sample::UsersLoginTest < ActionDispatch::IntegrationTest
     get rails_tutorial_sample_root_path
     assert flash.empty?
   end
+
+  test "login with valid information followed by logout" do
+    get rails_tutorial_sample_login_path
+    post rails_tutorial_sample_login_path, params: { session: { email:    @user.email,
+                                          password: 'password' } }
+    assert is_logged_in?
+    assert_redirected_to @user
+    follow_redirect!
+    assert_template 'users/show'
+    assert_select "a[href=?]", rails_tutorial_sample_login_path, count: 0
+    assert_select "a[href=?]", rails_tutorial_sample_logout_path
+    assert_select "a[href=?]", rails_tutorial_sample_user_path(@user)
+    delete rails_tutorial_sample_logout_path
+    assert_not is_logged_in?
+    assert_redirected_to rails_tutorial_sample_root_url
+    follow_redirect!
+    assert_select "a[href=?]", rails_tutorial_sample_login_path
+    assert_select "a[href=?]", rails_tutorial_sample_logout_path,      count: 0
+    assert_select "a[href=?]", rails_tutorial_sample_user_path(@user), count: 0
+  end
 end

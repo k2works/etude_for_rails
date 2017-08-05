@@ -8,11 +8,13 @@ class RailsTutorial::Sample::SessionsController < RailsTutorial::ApplicationCont
       log_in user
       redirect_to user
     else
-      flash.now[:danger] = 'Invalid email/password combination' # 本当は正しくない
+      flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
   end
 
   def destroy
+    log_out
+    redirect_to rails_tutorial_sample_root_url
   end
 end
