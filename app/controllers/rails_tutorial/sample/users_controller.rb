@@ -18,6 +18,10 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
     end
   end
 
+  def edit
+    @user = RailsTutorial::Sample::User.find(params[:id])
+  end
+
   private
 
   def user_params
