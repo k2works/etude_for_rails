@@ -44,6 +44,7 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   # ログイン済みユーザーかどうか確認
   def logged_in_user
     unless logged_in?
+      store_location
       flash[:danger] = "Please log in."
       redirect_to rails_tutorial_sample_login_url
     end
