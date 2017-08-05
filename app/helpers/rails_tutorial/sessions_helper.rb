@@ -30,8 +30,16 @@ module RailsTutorial
       !current_user.nil?
     end
 
+    # 永続的セッションを破棄する
+    def forget(user)
+      user.forget
+      cookies.delete(:rails_tutorial_sample_user_id)
+      cookies.delete(:rails_tutorial_sample_remember_token)
+    end
+
     # 現在のユーザーをログアウトする
     def log_out
+      forget(current_user)
       session.delete(:rails_tutorial_sample_user_id)
       @current_user = nil
     end
