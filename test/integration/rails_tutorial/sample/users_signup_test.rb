@@ -23,5 +23,6 @@ class RailsTutorial::Sample::UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'rails_tutorial/sample/users/show'
     assert_not flash.nil?
+    assert is_logged_in?
   end
 end
