@@ -8,6 +8,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
+#  remember_digest :string(255)
 #
 # Indexes
 #
@@ -15,6 +16,7 @@
 #
 
 class RailsTutorial::Sample::User < ApplicationRecord
+  attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name, presence:true,length:{ maximum:50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -28,5 +30,16 @@ class RailsTutorial::Sample::User < ApplicationRecord
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  # ランダムなトークンを返す
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # 永続セッションのためにユーザーをデータベースに記憶する
+  def remember
+    self.remember_token = RailsTutorial::Sample::User.new_token
+    update_attribute(:remember_digest, RailsTutorial::Sample::User.digest(remember_token))
   end
 end
