@@ -4,9 +4,25 @@ module RailsTutorial
     def log_in(user)
       session[:rails_tutorial_sample_user_id] = user.id
     end
-    # 現在ログイン中のユーザーを返す (いる場合)
+
+    # ユーザーを永続的セッションに記憶する
+    def remember(user)
+      user.remember
+      cookies.permanent.signed[:rails_tutorial_sample_user_id] = user.id
+      cookies.permanent[:rails_tutorial_sample_remember_token] = user.remember_token
+    end
+
+    # 記憶トークンcookieに対応するユーザーを返す
     def current_user
-      @current_user ||= RailsTutorial::Sample::User.find_by(id: session[:rails_tutorial_sample_user_id])
+      if (user_id = session[:rails_tutorial_sample_user_id])
+        @current_user ||= RailsTutorial::Sample::User.find_by(id: user_id)
+      elsif (user_id = cookies.signed[:rails_tutorial_sample_user_id])
+        user = RailsTutorial::Sample::User.find_by(id: user_id)
+        if user && user.authenticated?(cookies[:rails_tutorial_sample_remember_token])
+          log_in user
+          @current_user = user
+        end
+      end
     end
 
     # ユーザーがログインしていればtrue、その他ならfalseを返す
