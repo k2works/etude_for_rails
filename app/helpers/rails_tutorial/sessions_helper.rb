@@ -8,5 +8,10 @@ module RailsTutorial
     def current_user
       @current_user ||= RailsTutorial::Sample::User.find_by(id: session[:rails_tutorial_sample_user_id])
     end
+
+    # ユーザーがログインしていればtrue、その他ならfalseを返す
+    def logged_in?
+      !current_user.nil?
+    end
   end
 end
