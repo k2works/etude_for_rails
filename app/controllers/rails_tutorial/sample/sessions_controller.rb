@@ -1,4 +1,4 @@
-class RailsTutorial::Sample::SessionsController < ApplicationController
+class RailsTutorial::Sample::SessionsController < RailsTutorial::ApplicationController
   def new
   end
 end
