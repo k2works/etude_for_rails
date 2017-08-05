@@ -1,6 +1,6 @@
 class RailsTutorial::ApplicationController <  ActionController::Base
   protect_from_forgery with: :exception
-  include SessionHelper
+  include RailsTutorial::SessionsHelper
   layout :set_layout
 
   def hello
