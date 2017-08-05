@@ -25,6 +25,9 @@
 #                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
 #                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#new
 #                                                POST   /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#create
+#                    rails_tutorial_sample_login GET    /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#new
+#                                                POST   /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#create
+#                   rails_tutorial_sample_logout DELETE /rails_tutorial/sample/logout(.:format)                             rails_tutorial/sample/sessions#destroy
 #                    rails_tutorial_sample_users GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
 #                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
 #                 new_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
@@ -221,6 +224,9 @@ Rails.application.routes.draw do
       get '/contact', to:'static_pages#contact'
       get '/signup', to:'users#new'
       post '/signup',  to: 'users#create'
+      get    '/login',   to: 'sessions#new'
+      post   '/login',   to: 'sessions#create'
+      delete '/logout',  to: 'sessions#destroy'
       resources :users
     end
   end
