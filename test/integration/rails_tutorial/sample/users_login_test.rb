@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class RailsTutorial::Sample::UsersLoginTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = rails_tutorial_sample_users(:michael)
+  end
 
   test "login with invalid information" do
     get rails_tutorial_sample_login_path

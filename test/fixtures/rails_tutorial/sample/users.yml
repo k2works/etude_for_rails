@@ -1,0 +1,4 @@
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= RailsTutorial::Sample::User.digest('password') %>
