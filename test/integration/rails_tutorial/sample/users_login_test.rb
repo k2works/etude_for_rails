@@ -36,4 +36,18 @@ class RailsTutorial::Sample::UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", rails_tutorial_sample_logout_path,      count: 0
     assert_select "a[href=?]", rails_tutorial_sample_user_path(@user), count: 0
   end
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_empty cookies['rails_tutorial_sample_remember_token']
+  end
+
+  test "login without remembering" do
+    # クッキーを保存してログイン
+    log_in_as(@user, remember_me: '1')
+    delete rails_tutorial_sample_logout_path
+    # クッキーを削除してログイン
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies['rails_tutorial_sample_remember_token']
+  end
 end
