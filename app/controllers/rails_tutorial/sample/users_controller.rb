@@ -3,7 +3,7 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = RailsTutorial::Sample::User.all
+    @users = RailsTutorial::Sample::User.paginate(page:params[:page])
   end
 
   def show
