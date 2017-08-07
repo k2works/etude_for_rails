@@ -53,15 +53,6 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
 
   # beforeアクション
 
-  # ログイン済みユーザーかどうか確認
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to rails_tutorial_sample_login_url
-    end
-  end
-
   # 正しいユーザーかどうか確認
   def correct_user
     @user = RailsTutorial::Sample::User.find(params[:id])
