@@ -4,11 +4,12 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = RailsTutorial::Sample::User.paginate(page:params[:page])
+    @users = RailsTutorial::Sample::User.where(activated:true).paginate(page:params[:page])
   end
 
   def show
     @user = RailsTutorial::Sample::User.find(params[:id])
+    redirect_to rails_tutorial_sample_root_url and return unless @user.activated?
   end
 
   def new
