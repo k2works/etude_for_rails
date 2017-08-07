@@ -49,4 +49,19 @@ class RailsTutorial::Sample::UsersControllerTest < ActionDispatch::IntegrationTe
                                       admin: true } }
     assert_not @other_user.admin?
   end
+
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'RailsTutorial::Sample::User.count' do
+      delete rails_tutorial_sample_user_path(@user)
+    end
+    assert_redirected_to rails_tutorial_sample_login_url
+  end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    log_in_as(@other_user)
+    assert_no_difference 'RailsTutorial::Sample::User.count' do
+      delete rails_tutorial_sample_user_path(@user)
+    end
+    assert_redirected_to rails_tutorial_sample_root_url
+  end
 end
