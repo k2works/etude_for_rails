@@ -42,6 +42,8 @@
 #      edit_rails_tutorial_sample_password_reset GET    /rails_tutorial/sample/password_resets/:id/edit(.:format)           rails_tutorial/sample/password_resets#edit
 #           rails_tutorial_sample_password_reset PATCH  /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
 #                                                PUT    /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
+#               rails_tutorial_sample_microposts POST   /rails_tutorial/sample/microposts(.:format)                         rails_tutorial/sample/microposts#create
+#                rails_tutorial_sample_micropost DELETE /rails_tutorial/sample/microposts/:id(.:format)                     rails_tutorial/sample/microposts#destroy
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -236,6 +238,7 @@ Rails.application.routes.draw do
       resources :users
       resources :account_activations, only:[:edit]
       resources :password_resets, only:[:new,:create,:edit,:update]
+      resources :microposts, only:[:create, :destroy]
     end
   end
 
