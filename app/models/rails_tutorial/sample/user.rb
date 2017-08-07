@@ -2,14 +2,17 @@
 #
 # Table name: rails_tutorial_sample_users # ユーザ
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)                            # 名前
-#  email           :string(255)                            # メールアドレス
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  password_digest :string(255)
-#  remember_digest :string(255)
-#  admin           :boolean          default(FALSE)        # 管理者フラグ
+#  id                :integer          not null, primary key
+#  name              :string(255)                            # 名前
+#  email             :string(255)                            # メールアドレス
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  password_digest   :string(255)
+#  remember_digest   :string(255)
+#  admin             :boolean          default(FALSE)        # 管理者フラグ
+#  activation_digest :string(255)                            # 認証ダイジェスト
+#  activated         :boolean          default(FALSE)        # 認証フラグ
+#  activated_at      :datetime                               # 認証日
 #
 # Indexes
 #
@@ -17,8 +20,9 @@
 #
 
 class RailsTutorial::Sample::User < ApplicationRecord
-  attr_accessor :remember_token
-  before_save { email.downcase! }
+  attr_accessor :remember_token, :activation_token
+  before_save   :downcase_email
+  before_create :create_activation_digest
   validates :name, presence:true,length:{ maximum:50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:true, length:{ maximum:225 },
@@ -55,5 +59,18 @@ class RailsTutorial::Sample::User < ApplicationRecord
   # ユーザーのログイン情報を破棄する
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  private
+
+  # メールアドレスをすべて小文字にする
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  # 有効化トークンとダイジェストを作成および代入する
+  def create_activation_digest
+    self.activation_token  = RailsTutorial::Sample::User.new_token
+    self.activation_digest = RailsTutorial::Sample::User.digest(activation_token)
   end
 end
