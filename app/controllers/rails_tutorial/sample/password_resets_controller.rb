@@ -1,4 +1,7 @@
 class RailsTutorial::Sample::PasswordResetsController < RailsTutorial::ApplicationController
+  before_action :get_user,   only: [:edit, :update]
+  before_action :valid_user, only: [:edit, :update]
+
   def new
   end
 
@@ -16,5 +19,19 @@ class RailsTutorial::Sample::PasswordResetsController < RailsTutorial::Applicati
   end
 
   def edit
+  end
+
+  private
+
+  def get_user
+    @user = RailsTutorial::Sample::User.find_by(email: params[:email])
+  end
+
+  # 正しいユーザーかどうか確認する
+  def valid_user
+    unless (@user && @user.activated? &&
+        @user.authenticated?(:reset, params[:id]))
+      redirect_to rails_tutorial_sample_root_url
+    end
   end
 end
