@@ -12,6 +12,11 @@ class RailsTutorial::Sample::MicropostsController < RailsTutorial::ApplicationCo
   end
 
   def destroy
-    params.require(:micropost).permit(:content)
+  end
+
+  private
+
+  def micropost_params
+    params.require(:rails_tutorial_sample_micropost).permit(:content)
   end
 end
