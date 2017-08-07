@@ -13,6 +13,8 @@
 #  activation_digest :string(255)                            # 認証ダイジェスト
 #  activated         :boolean          default(FALSE)        # 認証フラグ
 #  activated_at      :datetime                               # 認証日
+#  reset_digest      :string(255)                            # リセットダイジェスト
+#  reset_sent_at     :datetime                               # リセット送信日
 #
 # Indexes
 #
