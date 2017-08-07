@@ -15,7 +15,7 @@ class RailsTutorial::Sample::MicropostTest < ActiveSupport::TestCase
 
   def setup
     @user = rails_tutorial_sample_users(:michael)
-    @micropost = RailsTutorial::Sample::Micropost.new(content: "Lorem ipsum", rails_tutorial_sample_user_id: @user.id)
+    @micropost = @user.microposts.build(content: "Lorem ipsum")
   end
 
   test "should be valid" do

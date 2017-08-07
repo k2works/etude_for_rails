@@ -22,6 +22,7 @@
 #
 
 class RailsTutorial::Sample::User < ApplicationRecord
+  has_many :microposts, :class_name => 'RailsTutorial::Sample::Micropost',foreign_key: :rails_tutorial_sample_user_id
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
