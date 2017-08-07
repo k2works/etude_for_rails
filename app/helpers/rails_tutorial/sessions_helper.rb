@@ -23,7 +23,7 @@ module RailsTutorial
         @current_user ||= RailsTutorial::Sample::User.find_by(id: user_id)
       elsif (user_id = cookies.signed[:rails_tutorial_sample_user_id])
         user = RailsTutorial::Sample::User.find_by(id: user_id)
-        if user && user.authenticated?(cookies[:rails_tutorial_sample_remember_token])
+        if user && user.authenticated?(:remember,cookies[:rails_tutorial_sample_remember_token])
           log_in user
           @current_user = user
         end
