@@ -20,6 +20,7 @@
 
 class RailsTutorial::Sample::Micropost < ApplicationRecord
   belongs_to :user, :class_name => 'RailsTutorial::Sample::User',foreign_key: :rails_tutorial_sample_user_id
+  default_scope -> { order(created_at: :desc) }
   validates :rails_tutorial_sample_user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
 end

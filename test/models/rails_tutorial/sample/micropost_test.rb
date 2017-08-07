@@ -36,4 +36,8 @@ class RailsTutorial::Sample::MicropostTest < ActiveSupport::TestCase
     @micropost.content = "a" * 141
     assert_not @micropost.valid?
   end
+
+  test "order should be most recent first" do
+    assert_equal rails_tutorial_sample_microposts(:most_recent), RailsTutorial::Sample::Micropost.first
+  end
 end
