@@ -2,6 +2,19 @@ class RailsTutorial::Sample::PasswordResetsController < RailsTutorial::Applicati
   def new
   end
 
+  def create
+    @user = RailsTutorial::Sample::User.find_by(email: params[:password_reset][:email].downcase)
+    if @user
+      @user.create_reset_digest
+      @user.send_password_reset_email
+      flash[:info] = "Email sent with password reset instructions"
+      redirect_to rails_tutorial_sample_root_url
+    else
+      flash.now[:danger] = "Email address not found"
+      render 'new'
+    end
+  end
+
   def edit
   end
 end
