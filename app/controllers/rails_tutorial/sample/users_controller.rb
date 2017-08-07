@@ -9,7 +9,7 @@ class RailsTutorial::Sample::UsersController < RailsTutorial::ApplicationControl
 
   def show
     @user = RailsTutorial::Sample::User.find(params[:id])
-    redirect_to rails_tutorial_sample_root_url and return unless @user.activated?
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
