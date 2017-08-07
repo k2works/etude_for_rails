@@ -37,6 +37,11 @@
 #                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
 #                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
 #  edit_rails_tutorial_sample_account_activation GET    /rails_tutorial/sample/account_activations/:id/edit(.:format)       rails_tutorial/sample/account_activations#edit
+#          rails_tutorial_sample_password_resets POST   /rails_tutorial/sample/password_resets(.:format)                    rails_tutorial/sample/password_resets#create
+#       new_rails_tutorial_sample_password_reset GET    /rails_tutorial/sample/password_resets/new(.:format)                rails_tutorial/sample/password_resets#new
+#      edit_rails_tutorial_sample_password_reset GET    /rails_tutorial/sample/password_resets/:id/edit(.:format)           rails_tutorial/sample/password_resets#edit
+#           rails_tutorial_sample_password_reset PATCH  /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
+#                                                PUT    /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -230,6 +235,7 @@ Rails.application.routes.draw do
       delete '/logout',  to: 'sessions#destroy'
       resources :users
       resources :account_activations, only:[:edit]
+      resources :password_resets, only:[:new,:create,:edit,:update]
     end
   end
 
