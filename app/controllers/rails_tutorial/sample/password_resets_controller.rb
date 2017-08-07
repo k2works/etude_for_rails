@@ -28,6 +28,7 @@ class RailsTutorial::Sample::PasswordResetsController < RailsTutorial::Applicati
       render 'edit'
     elsif @user.update_attributes(user_params)          # (4) への対応
       log_in @user
+      @user.update_attribute(:reset_digest, nil)
       flash[:success] = "Password has been reset."
       redirect_to @user
     else

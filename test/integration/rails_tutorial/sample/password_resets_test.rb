@@ -59,4 +59,20 @@ class RailsTutorial::Sample::PasswordResetsTest < ActionDispatch::IntegrationTes
     assert_not flash.empty?
     assert_redirected_to user
   end
+
+  test "expired token" do
+    get new_rails_tutorial_sample_password_reset_path
+    post rails_tutorial_sample_password_resets_path,
+         params: { password_reset: { email: @user.email } }
+
+    @user = assigns(:user)
+    @user.update_attribute(:reset_sent_at, 3.hours.ago)
+    patch rails_tutorial_sample_password_reset_path(@user.reset_token),
+          params: { email: @user.email,
+                    rails_tutorial_sample_user: { password:              "foobar",
+                            password_confirmation: "foobar" } }
+    assert_response :redirect
+    follow_redirect!
+    assert_match /Password reset has expired/i, response.body
+  end
 end
