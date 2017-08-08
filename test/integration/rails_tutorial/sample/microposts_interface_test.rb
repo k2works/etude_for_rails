@@ -10,6 +10,7 @@ class RailsTutorial::Sample::MicropostsInterfaceTest < ActionDispatch::Integrati
     log_in_as(@user)
     get rails_tutorial_sample_root_path
     assert_select 'div.pagination'
+    assert_select 'input[type=file]'
     # 無効な送信
     assert_no_difference 'RailsTutorial::Sample::Micropost.count' do
       post rails_tutorial_sample_microposts_path, params: { rails_tutorial_sample_micropost: { content: "" } }
@@ -17,9 +18,11 @@ class RailsTutorial::Sample::MicropostsInterfaceTest < ActionDispatch::Integrati
     assert_select 'div#error_explanation'
     # 有効な送信
     content = "This micropost really ties the room together"
+    picture = fixture_file_upload('test/fixtures/rails_tutorial/sample/rails.png', 'image/png')
     assert_difference 'RailsTutorial::Sample::Micropost.count', 1 do
-      post rails_tutorial_sample_microposts_path, params: { rails_tutorial_sample_micropost: { content: content } }
+      post rails_tutorial_sample_microposts_path, params: { rails_tutorial_sample_micropost: { content: content, picture: picture } }
     end
+    assert assigns(:micropost).picture?
     assert_redirected_to rails_tutorial_sample_root_url
     follow_redirect!
     assert_match content, response.body
