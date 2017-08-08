@@ -19,4 +19,13 @@ class RailsTutorial::Sample::MicropostsControllerTest < ActionDispatch::Integrat
     end
     assert_redirected_to rails_tutorial_sample_login_url
   end
+
+  test "should redirect destroy for wrong micropost" do
+    log_in_as(rails_tutorial_sample_users(:michael))
+    micropost = rails_tutorial_sample_microposts(:ants)
+    assert_no_difference 'RailsTutorial::Sample::Micropost.count' do
+      delete rails_tutorial_sample_micropost_path(micropost)
+    end
+    assert_redirected_to root_url
+  end
 end

@@ -8,7 +8,8 @@ class RailsTutorial::Sample::MicropostsController < RailsTutorial::ApplicationCo
       flash[:success] = "Micropost created!"
       redirect_to rails_tutorial_sample_root_url
     else
-      render 'static_pages/home'
+      @feed_items = []
+      render 'rails_tutorial/sample/static_pages/home'
     end
   end
 
