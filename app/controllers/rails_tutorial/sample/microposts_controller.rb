@@ -22,7 +22,7 @@ class RailsTutorial::Sample::MicropostsController < RailsTutorial::ApplicationCo
   private
 
   def micropost_params
-    params.require(:rails_tutorial_sample_micropost).permit(:content)
+    params.require(:rails_tutorial_sample_micropost).permit(:content,:picture)
   end
 
   def correct_user

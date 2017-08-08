@@ -7,6 +7,7 @@
 #  rails_tutorial_sample_user_id :integer
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
+#  picture                       :string(255)                            # 画像
 #
 # Indexes
 #
@@ -21,6 +22,7 @@
 class RailsTutorial::Sample::Micropost < ApplicationRecord
   belongs_to :user, :class_name => 'RailsTutorial::Sample::User',foreign_key: :rails_tutorial_sample_user_id
   default_scope -> { order(created_at: :desc) }
+  mount_uploader :picture, RailsTutorial::Sample::PictureUploader
   validates :rails_tutorial_sample_user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
 end
