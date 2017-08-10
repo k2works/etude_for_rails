@@ -18,4 +18,6 @@
 class RailsTutorial::Sample::Relationship < ApplicationRecord
   belongs_to :follower, :class_name => 'RailsTutorial::Sample::User'
   belongs_to :followed, :class_name => 'RailsTutorial::Sample::User'
+  validates :follower_id, presence: true
+  validates :followed_id, presence: true
 end
