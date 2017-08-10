@@ -16,4 +16,6 @@
 #
 
 class RailsTutorial::Sample::Relationship < ApplicationRecord
+  belongs_to :follower, :class_name => 'RailsTutorial::Sample::User'
+  belongs_to :followed, :class_name => 'RailsTutorial::Sample::User'
 end
