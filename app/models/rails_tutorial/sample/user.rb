@@ -99,10 +99,9 @@ class RailsTutorial::Sample::User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # 試作feedの定義
-  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  # ユーザーのステータスフィードを返す
   def feed
-    RailsTutorial::Sample::Micropost.where("rails_tutorial_sample_user_id = ?", id)
+    RailsTutorial::Sample::Micropost.where("rails_tutorial_sample_user_id IN (?) OR rails_tutorial_sample_user_id = ?", following_ids, id)
   end
 
   # ユーザーをフォローする
