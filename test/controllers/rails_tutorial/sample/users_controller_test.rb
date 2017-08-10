@@ -64,4 +64,14 @@ class RailsTutorial::Sample::UsersControllerTest < ActionDispatch::IntegrationTe
     end
     assert_redirected_to rails_tutorial_sample_root_url
   end
+
+  test "should redirect following when not logged in" do
+    get following_rails_tutorial_sample_user_path(@user)
+    assert_redirected_to rails_tutorial_sample_login_url
+  end
+
+  test "should redirect followers when not logged in" do
+    get followers_rails_tutorial_sample_user_path(@user)
+    assert_redirected_to rails_tutorial_sample_login_url
+  end
 end
