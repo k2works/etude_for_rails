@@ -28,11 +28,21 @@
 #                    rails_tutorial_sample_login GET    /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#new
 #                                                POST   /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#create
 #                   rails_tutorial_sample_logout DELETE /rails_tutorial/sample/logout(.:format)                             rails_tutorial/sample/sessions#destroy
+#           following_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/following(.:format)                rails_tutorial/sample/users#following
+#           followers_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/followers(.:format)                rails_tutorial/sample/users#followers
 #                    rails_tutorial_sample_users GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
 #                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
 #                 new_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
 #                edit_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/edit(.:format)                     rails_tutorial/sample/users#edit
 #                     rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#show
+#                                                PATCH  /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
+#                                                GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
+#                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
+#                                                GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
+#                                                GET    /rails_tutorial/sample/users/:id/edit(.:format)                     rails_tutorial/sample/users#edit
+#                                                GET    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#show
 #                                                PATCH  /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
 #                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
 #                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
@@ -44,6 +54,8 @@
 #                                                PUT    /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
 #               rails_tutorial_sample_microposts POST   /rails_tutorial/sample/microposts(.:format)                         rails_tutorial/sample/microposts#create
 #                rails_tutorial_sample_micropost DELETE /rails_tutorial/sample/microposts/:id(.:format)                     rails_tutorial/sample/microposts#destroy
+#            rails_tutorial_sample_relationships POST   /rails_tutorial/sample/relationships(.:format)                      rails_tutorial/sample/relationships#create
+#             rails_tutorial_sample_relationship DELETE /rails_tutorial/sample/relationships/:id(.:format)                  rails_tutorial/sample/relationships#destroy
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -235,10 +247,16 @@ Rails.application.routes.draw do
       get    '/login',   to: 'sessions#new'
       post   '/login',   to: 'sessions#create'
       delete '/logout',  to: 'sessions#destroy'
+      resources :users do
+        member do
+          get :following, :followers
+        end
+      end
       resources :users
       resources :account_activations, only:[:edit]
       resources :password_resets, only:[:new,:create,:edit,:update]
       resources :microposts, only:[:create, :destroy]
+      resources :relationships,       only: [:create, :destroy]
     end
   end
 
