@@ -5,6 +5,7 @@ class RailsTutorial::Sample::FollowingTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = rails_tutorial_sample_users(:michael)
+    @other = rails_tutorial_sample_users(:archer)
     log_in_as(@user)
   end
 
@@ -23,6 +24,34 @@ class RailsTutorial::Sample::FollowingTest < ActionDispatch::IntegrationTest
     assert_match @user.followers.count.to_s, response.body
     @user.followers.each do |user|
       assert_select "a[href=?]", rails_tutorial_sample_user_path(user)
+    end
+  end
+
+  test "should follow a user the standard way" do
+    assert_difference '@user.following.count', 1 do
+      post rails_tutorial_sample_relationships_path, params: { followed_id: @other.id }
+    end
+  end
+
+  test "should follow a user with Ajax" do
+    assert_difference '@user.following.count', 1 do
+      post rails_tutorial_sample_relationships_path, xhr: true, params: { followed_id: @other.id }
+    end
+  end
+
+  test "should unfollow a user the standard way" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete rails_tutorial_sample_relationship_path(relationship)
+    end
+  end
+
+  test "should unfollow a user with Ajax" do
+    @user.follow(@other)
+    relationship = @user.active_relationships.find_by(followed_id: @other.id)
+    assert_difference '@user.following.count', -1 do
+      delete rails_tutorial_sample_relationship_path(relationship), xhr: true
     end
   end
 end
