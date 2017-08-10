@@ -26,6 +26,7 @@ class RailsTutorial::Sample::User < ApplicationRecord
   has_many :active_relationships, :class_name => 'RailsTutorial::Sample::Relationship',
            foreign_key: :follower_id,
            dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
@@ -98,6 +99,21 @@ class RailsTutorial::Sample::User < ApplicationRecord
   # 完全な実装は次章の「ユーザーをフォローする」を参照
   def feed
     RailsTutorial::Sample::Micropost.where("rails_tutorial_sample_user_id = ?", id)
+  end
+
+  # ユーザーをフォローする
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   private
