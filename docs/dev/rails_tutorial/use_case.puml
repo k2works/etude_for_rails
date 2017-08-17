@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor 登録ユーザー
+rectangle Baukis {
+  登録ユーザー -- (ユーザー登録)
+  登録ユーザー -- (認証)
+  登録ユーザー -- (ユーザー情報更新)
+  登録ユーザー -- (マイクロポスト)
+  登録ユーザー -- (フォロー)
+  登録ユーザー -- (フォロー解除)
+  登録ユーザー -- (フィード)
+
+}
+@enduml

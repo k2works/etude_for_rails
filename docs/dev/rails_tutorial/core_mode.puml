@@ -1,0 +1,10 @@
+@startuml
+
+User"1" *--l "0..*"Micropost
+User"1" *-- "0..*"Relationship
+ActiveRelationship"1" -- "1"User
+PassiveRelationship"1" -- "1"User
+Relationship <|-- ActiveRelationship
+Relationship <|-- PassiveRelationship
+
+@enduml
