@@ -4,6 +4,10 @@
   </div>
   <ol class="NewsList">
     <li class="NewsList__item">
+      <time class="NewsList__head" datatime="2017-07-17">2017.08.17</time>
+      <span class="NewsList__body"><%= link_to 'リリース v0.24.0' , rails_tutorial_sample_root_url, target: "_blank" %></span>
+    </li>
+    <li class="NewsList__item">
       <time class="NewsList__head" datatime="2017-07-11">2017.08.01</time>
       <span class="NewsList__body"><%= link_to 'リリース v0.23.0' , baukis_customer_root_url, target: "_blank" %></span>
     </li>
@@ -22,10 +26,6 @@
     <li class="NewsList__item">
       <time class="NewsList__head" datatime="2017-06-16">2017.06.16</time>
       <span class="NewsList__body">リリース v0.19.0</span>
-    </li>
-    <li class="NewsList__item">
-      <time class="NewsList__head" datatime="2017-06-13">2017.06.13</time>
-      <span class="NewsList__body">リリース v0.18.0</span>
     </li>
   </ol>
 </section>
@@ -335,6 +335,21 @@
           </div>
           <div class="EntryPanel__foot">
             <a href="https://k2works.github.io/etude_for_rails/dev/baukis/baukis.html" class="button" target="_blank">READ SPEC</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="EntryPanel l-halfColumn">
+        <div class="EntryPanel__sub">
+          <%= link_to image_tag('http://capture.heartrails.com/200x150/cool?https://railstutorial.jp/' , width: '150' , height: '150'), rails_tutorial_sample_root_path , target: "_blank" %>
+        </div>
+        <div id="EntryPanel__main">
+          <h3 class="EntryPanel__head">RailsTutorial</h3>
+          <div class="EntryPanel__body">
+            <a href="https://railstutorial.jp/">Ruby on Rails チュートリアル</a>
+          </div>
+          <div class="EntryPanel__foot">
+            <a href="https://k2works.github.io/etude_for_rails/dev/rails_tutorial/sample.html" class="button" target="_blank">READ SPEC</a>
           </div>
         </div>
       </div>
