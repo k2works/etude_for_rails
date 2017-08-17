@@ -101,7 +101,8 @@ class RailsTutorial::Sample::User < ApplicationRecord
 
   # ユーザーのステータスフィードを返す
   def feed
-    RailsTutorial::Sample::Micropost.where("rails_tutorial_sample_user_id IN (?) OR rails_tutorial_sample_user_id = ?", following_ids, id)
+    following_ids = "SELECT followed_id FROM rails_tutorial_sample_relationships WHERE follower_id = :user_id"
+    RailsTutorial::Sample::Micropost.where("rails_tutorial_sample_user_id IN(#{following_ids}) OR rails_tutorial_sample_user_id = :user_id", user_id:id)
   end
 
   # ユーザーをフォローする
