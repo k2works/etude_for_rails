@@ -1,6 +1,61 @@
 # == Route Map
 #
 #                                         Prefix Verb   URI Pattern                                                         Controller#Action
+#                            rails_tutorial_root GET    /rails_tutorial(.:format)                                           rails_tutorial/application#hello
+#                  rails_tutorial_toy_microposts GET    /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#index
+#                                                POST   /rails_tutorial/toy/microposts(.:format)                            rails_tutorial/toy/microposts#create
+#               new_rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/new(.:format)                        rails_tutorial/toy/microposts#new
+#              edit_rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/:id/edit(.:format)                   rails_tutorial/toy/microposts#edit
+#                   rails_tutorial_toy_micropost GET    /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#show
+#                                                PATCH  /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#update
+#                                                PUT    /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#update
+#                                                DELETE /rails_tutorial/toy/microposts/:id(.:format)                        rails_tutorial/toy/microposts#destroy
+#                       rails_tutorial_toy_users GET    /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#index
+#                                                POST   /rails_tutorial/toy/users(.:format)                                 rails_tutorial/toy/users#create
+#                    new_rails_tutorial_toy_user GET    /rails_tutorial/toy/users/new(.:format)                             rails_tutorial/toy/users#new
+#                   edit_rails_tutorial_toy_user GET    /rails_tutorial/toy/users/:id/edit(.:format)                        rails_tutorial/toy/users#edit
+#                        rails_tutorial_toy_user GET    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#show
+#                                                PATCH  /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
+#                                                PUT    /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#update
+#                                                DELETE /rails_tutorial/toy/users/:id(.:format)                             rails_tutorial/toy/users#destroy
+#                        rails_tutorial_toy_root GET    /rails_tutorial/toy(.:format)                                       rails_tutorial/toy/users#index
+#                     rails_tutorial_sample_root GET    /rails_tutorial/sample(.:format)                                    rails_tutorial/sample/static_pages#home
+#                     rails_tutorial_sample_help GET    /rails_tutorial/sample/help(.:format)                               rails_tutorial/sample/static_pages#help
+#                    rails_tutorial_sample_about GET    /rails_tutorial/sample/about(.:format)                              rails_tutorial/sample/static_pages#about
+#                  rails_tutorial_sample_contact GET    /rails_tutorial/sample/contact(.:format)                            rails_tutorial/sample/static_pages#contact
+#                   rails_tutorial_sample_signup GET    /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#new
+#                                                POST   /rails_tutorial/sample/signup(.:format)                             rails_tutorial/sample/users#create
+#                    rails_tutorial_sample_login GET    /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#new
+#                                                POST   /rails_tutorial/sample/login(.:format)                              rails_tutorial/sample/sessions#create
+#                   rails_tutorial_sample_logout DELETE /rails_tutorial/sample/logout(.:format)                             rails_tutorial/sample/sessions#destroy
+#           following_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/following(.:format)                rails_tutorial/sample/users#following
+#           followers_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/followers(.:format)                rails_tutorial/sample/users#followers
+#                    rails_tutorial_sample_users GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
+#                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
+#                 new_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
+#                edit_rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id/edit(.:format)                     rails_tutorial/sample/users#edit
+#                     rails_tutorial_sample_user GET    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#show
+#                                                PATCH  /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
+#                                                GET    /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#index
+#                                                POST   /rails_tutorial/sample/users(.:format)                              rails_tutorial/sample/users#create
+#                                                GET    /rails_tutorial/sample/users/new(.:format)                          rails_tutorial/sample/users#new
+#                                                GET    /rails_tutorial/sample/users/:id/edit(.:format)                     rails_tutorial/sample/users#edit
+#                                                GET    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#show
+#                                                PATCH  /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                PUT    /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#update
+#                                                DELETE /rails_tutorial/sample/users/:id(.:format)                          rails_tutorial/sample/users#destroy
+#  edit_rails_tutorial_sample_account_activation GET    /rails_tutorial/sample/account_activations/:id/edit(.:format)       rails_tutorial/sample/account_activations#edit
+#          rails_tutorial_sample_password_resets POST   /rails_tutorial/sample/password_resets(.:format)                    rails_tutorial/sample/password_resets#create
+#       new_rails_tutorial_sample_password_reset GET    /rails_tutorial/sample/password_resets/new(.:format)                rails_tutorial/sample/password_resets#new
+#      edit_rails_tutorial_sample_password_reset GET    /rails_tutorial/sample/password_resets/:id/edit(.:format)           rails_tutorial/sample/password_resets#edit
+#           rails_tutorial_sample_password_reset PATCH  /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
+#                                                PUT    /rails_tutorial/sample/password_resets/:id(.:format)                rails_tutorial/sample/password_resets#update
+#               rails_tutorial_sample_microposts POST   /rails_tutorial/sample/microposts(.:format)                         rails_tutorial/sample/microposts#create
+#                rails_tutorial_sample_micropost DELETE /rails_tutorial/sample/microposts/:id(.:format)                     rails_tutorial/sample/microposts#destroy
+#            rails_tutorial_sample_relationships POST   /rails_tutorial/sample/relationships(.:format)                      rails_tutorial/sample/relationships#create
+#             rails_tutorial_sample_relationship DELETE /rails_tutorial/sample/relationships/:id(.:format)                  rails_tutorial/sample/relationships#destroy
 #                              baukis_staff_root GET    /baukis(.:format)                                                   baukis/staff/top#index
 #                             baukis_staff_login GET    /baukis/login(.:format)                                             baukis/staff/sessions#new
 #                           baukis_staff_session DELETE /baukis/session(.:format)                                           baukis/staff/sessions#destroy
@@ -173,6 +228,38 @@
 #
 
 Rails.application.routes.draw do
+  namespace :rails_tutorial do
+    root 'application#hello'
+
+    namespace :toy do
+      resources :microposts
+      resources :users
+      root 'users#index'
+    end
+
+    namespace :sample do
+      root 'static_pages#home'
+      get '/help', to:'static_pages#help'
+      get '/about', to:'static_pages#about'
+      get '/contact', to:'static_pages#contact'
+      get '/signup', to:'users#new'
+      post '/signup',  to: 'users#create'
+      get    '/login',   to: 'sessions#new'
+      post   '/login',   to: 'sessions#create'
+      delete '/logout',  to: 'sessions#destroy'
+      resources :users do
+        member do
+          get :following, :followers
+        end
+      end
+      resources :users
+      resources :account_activations, only:[:edit]
+      resources :password_resets, only:[:new,:create,:edit,:update]
+      resources :microposts, only:[:create, :destroy]
+      resources :relationships,       only: [:create, :destroy]
+    end
+  end
+
   namespace :baukis do
     namespace :staff, path: '' do
       root 'top#index'

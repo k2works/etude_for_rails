@@ -1,0 +1,27 @@
+<%= form_with(model: rails_tutorial_toy_user, local: true) do |form| %>
+  <% if rails_tutorial_toy_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rails_tutorial_toy_user.errors.count, "error") %> prohibited this rails_tutorial_toy_user from being saved:</h2>
+
+      <ul>
+      <% rails_tutorial_toy_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :rails_tutorial_toy_user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :rails_tutorial_toy_user_email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

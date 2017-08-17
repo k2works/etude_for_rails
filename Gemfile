@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dotenv-rails', groups: [:staging, :development, :test]
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -47,7 +49,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-dev-mark'
-  gem 'dotenv-rails'
   gem 'guard-livereload', '~> 2.5', require: false
   gem 'rack-livereload'
   gem 'rspec-rails', '~> 3.5'
@@ -56,6 +57,8 @@ group :development, :test do
   gem 'database_rewinder'
   gem 'rspec-json_matcher', require: 'rspec/json_matcher'
   gem 'rails-controller-testing'
+  gem 'minitest-reporters',       '1.1.14'
+  gem 'guard-minitest',           '2.4.4'
 end
 
 group :development do
@@ -125,3 +128,9 @@ gem 'date_validator', '~> 0.9.0'
 gem 'email_validator', '~> 1.6'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'tag-it-rails'
+
+# For RailsTutorial
+gem 'faker',          '1.7.3'
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
+gem 'fog',                     '1.40.0'

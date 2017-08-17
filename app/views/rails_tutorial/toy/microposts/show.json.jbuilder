@@ -1,0 +1,1 @@
+json.partial! "rails_tutorial_toy_microposts/rails_tutorial_toy_micropost", rails_tutorial_toy_micropost: @rails_tutorial_toy_micropost
