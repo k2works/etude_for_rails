@@ -1,9 +1,9 @@
 module DesignPattern
   module Strategy
     class PlainTextFormatter < Formatter
-      def output_report(title, text)
-        puts("**** #{title} ****")
-        text.each do |line|
+      def output_report(context)
+        puts("**** #{context.title} ****")
+        context.text.each do |line|
           puts(line)
         end
       end
