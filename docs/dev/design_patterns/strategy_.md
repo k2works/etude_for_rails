@@ -1,3 +1,6 @@
+Strategy Pattern
+---
+
 ![](./images/strategy.png )
   
 ### Procとブロック
