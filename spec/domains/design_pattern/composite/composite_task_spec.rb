@@ -4,8 +4,16 @@ describe DesignPattern::Composite::CompositeTask do
   describe '#add_sub_task' do
     it 'add sub task' do
       composite = DesignPattern::Composite::CompositeTask.new('example')
-      composite.add_sub_task(DesignPattern::Composite::AddDryIngredientsTask.new)
+      task = DesignPattern::Composite::AddDryIngredientsTask.new
+      composite.add_sub_task(task)
       expect(composite.instance_variable_get(:@sub_tasks).first).to be_an_instance_of(DesignPattern::Composite::AddDryIngredientsTask)
+    end
+
+    it 'has parent task' do
+      composite = DesignPattern::Composite::CompositeTask.new('example')
+      task = DesignPattern::Composite::AddDryIngredientsTask.new
+      composite.add_sub_task(task)
+      expect(task.instance_variable_get(:@parent)).to be_an_instance_of(DesignPattern::Composite::CompositeTask)
     end
   end
 
@@ -16,6 +24,14 @@ describe DesignPattern::Composite::CompositeTask do
       composite.add_sub_task(task)
       composite.remove_sub_task(task)
       expect(composite.instance_variable_get(:@sub_tasks)).to be_empty
+    end
+
+    it "does't have parent task" do
+      composite = DesignPattern::Composite::CompositeTask.new('example')
+      task = DesignPattern::Composite::AddDryIngredientsTask.new
+      composite.add_sub_task(task)
+      composite.remove_sub_task(task)
+      expect(task.instance_variable_get(:@parent)).to be_nil
     end
   end
 
