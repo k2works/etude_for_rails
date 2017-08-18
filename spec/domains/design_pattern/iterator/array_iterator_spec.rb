@@ -41,6 +41,26 @@ The element is 30
     end
   end
 
+  describe '.change_resitant_for_each_element' do
+    it 'iterate array items' do
+      a = [10, 20, 30]
+
+      i = lambda do
+        DesignPattern::Iterator::ArrayIterator.change_resitant_for_each_element(a) do |element|
+          puts("The element is #{element}")
+        end
+      end
+
+      expected = <<-EOS
+The element is 10
+The element is 30
+      EOS
+
+      a.delete(20)
+      expect { i.call }.to output(expected).to_stdout
+    end
+  end
+
   describe '.merged' do
     it 'merge array' do
       array1 = [1,2,3]
