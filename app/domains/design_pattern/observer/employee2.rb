@@ -1,7 +1,9 @@
+require 'observer'
 module DesignPattern
     module Observer
-        class Employee
-            include Subject
+        class Employee2
+            include ::Observable
+
             attr_reader :name
             attr_accessor :title, :salary
 
@@ -10,12 +12,12 @@ module DesignPattern
                 @name = name
                 @title = title
                 @salary = salary
-                @observers = []
             end
 
             def salary=(new_salary)
                 @salary = new_salary
-                notify_observers
+                changed
+                notify_observers(self)
             end
         end
     end
