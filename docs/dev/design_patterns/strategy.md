@@ -1,3 +1,4 @@
+![](./images/strategy.png)
 ### Procとブロック
 ```ruby {cmd=true}
 hello = lambda do
