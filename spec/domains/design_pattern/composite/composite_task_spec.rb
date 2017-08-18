@@ -45,4 +45,11 @@ describe DesignPattern::Composite::CompositeTask do
       expect(composite.get_time_required).to eq(11.0)
     end
   end
+
+  describe '#total_number_basic_tasks' do
+    it 'count total number of tasks' do
+      tasks = DesignPattern::Composite::MakeBatterTask.new
+      expect(tasks.total_number_basic_tasks).to eq(3)
+    end
+  end
 end
