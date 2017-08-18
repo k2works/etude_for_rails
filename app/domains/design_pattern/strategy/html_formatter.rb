@@ -1,6 +1,6 @@
 module DesignPattern
   module Strategy
-    class HTMLFormatter < Formatter
+    class HTMLFormatter
       def output_report(context)
         puts('<html>')
         puts('  <head>')
