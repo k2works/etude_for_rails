@@ -4,7 +4,19 @@ describe DesignPattern::Strategy::Report do
   describe '#output_report' do
     context 'format is HTML' do
       it 'output' do
-        report = DesignPattern::Strategy::Report.new(DesignPattern::Strategy::HTMLFormatter.new)
+        HTML_FORMATTER = lambda do |context|
+          puts('<html>')
+          puts('  <head>')
+          puts("    <title>#{context.title}</title>")
+          puts('  </head>')
+          puts('  <body>')
+          context.text.each do |line|
+            puts("    <p>#{line}</p>")
+          end
+          puts('  </body>')
+          puts('</html>')
+        end
+        report = DesignPattern::Strategy::Report.new &HTML_FORMATTER
         expected = <<-EOS
 <html>
   <head>
@@ -23,7 +35,12 @@ describe DesignPattern::Strategy::Report do
 
     context 'format is Plain text' do
       it 'output' do
-        report = DesignPattern::Strategy::Report.new(DesignPattern::Strategy::PlainTextFormatter.new)
+        report = DesignPattern::Strategy::Report.new do |context|
+          puts("**** #{context.title} ****")
+          context.text.each do |line|
+            puts(line)
+          end          
+        end
         expected = <<-EOS
 **** 月次報告 ****
 順調
