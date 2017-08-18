@@ -18,7 +18,7 @@ describe DesignPattern::Iterator::ArrayIterator do
     end
   end
 
-  describe '#for_each_element' do
+  describe '.for_each_element' do
     it 'iterate array items'do
       a = [10, 20, 30]
 
@@ -38,6 +38,15 @@ The element is 30
 
       expect { i.call }.to output(expected).to_stdout
       expect { i2.call }.to output(expected).to_stdout
+    end
+  end
+
+  describe '.merged' do
+    it 'merge array' do
+      array1 = [1,2,3]
+      array2 = [3,4,5]
+      merged = DesignPattern::Iterator::ArrayIterator.merge(array1,array2)
+      expect(merged).to eq([1,2,3,3,4,5])
     end
   end
 end
