@@ -1,0 +1,17 @@
+@startuml
+
+Command <|-- ConcreteCommand1
+Command <|-- ConcreteCommand2
+
+class Command {
+execute()
+}
+
+class ConcreteCommand1 {
+execute()
+}
+
+class ConcreteCommand2 {
+execute()
+}
+@enduml
