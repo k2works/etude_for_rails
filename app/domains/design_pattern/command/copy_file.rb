@@ -8,7 +8,7 @@ module DesignPattern
       end
 
       def execute
-        FileUtiles.copy(@source, @target)
+        FileUtils.copy(@source, @target)
       end
     end
   end
