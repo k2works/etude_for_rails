@@ -1,20 +1,13 @@
 module DesignPattern
   module Proxy
     class BankAccountProxy
-      def initialize(real_object)
-        @real_object = real_object
+      def initialize(real_account)
+        @subject = real_account
       end
 
-      def balance
-        @real_object.balance
-      end
-
-      def deposit(amount)
-        @real_object.deposit(amount)
-      end
-
-      def withdraw(amount)
-        @real_object.withdraw(amount)
+      def method_missing(name, *args)
+        puts("Delegating #{name} message to subject.")
+        @subject.send(name, *args)
       end
     end
   end

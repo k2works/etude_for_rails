@@ -5,19 +5,9 @@ module DesignPattern
         @creation_block = creation_block
       end
 
-      def deposit(amount)
+      def method_missing(name, *args)
         s = subject
-        return s.deposit(amount)
-      end
-
-      def withdraw(amount)
-        s = subject
-        return s.withdraw(amount)
-      end
-
-      def balance
-        s = subject
-        return s.balance
+        s.send( name, *args )
       end
 
       def subject
