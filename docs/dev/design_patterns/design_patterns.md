@@ -40,8 +40,10 @@ Rubyによるデザインパターン
 #### Flyweight	
 多数のインスタンスを共有し、インスタンスの構築のための負荷を減らす。
 
-#### Proxy	
+#### [Proxy](./proxy.md)	
 共通のインタフェースを持つインスタンスを内包し、利用者からのアクセスを代理する。Wrapperとも呼ばれる
+
+![](./images/proxy.png)
 
 ### 振る舞いに関するパターン
 #### Chain of Responsibility	
