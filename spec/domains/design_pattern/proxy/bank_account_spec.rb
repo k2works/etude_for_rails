@@ -48,4 +48,22 @@ describe DesignPattern::Proxy::BankAccount do
       end
     end
   end
+
+  context 'using virtual proxy' do
+    describe '#deposit' do
+      it 'add amount balance' do
+        proxy = DesignPattern::Proxy::VirtualAccountProxy.new { account }
+        proxy.deposit(50)
+        expect(proxy.balance).to eq(150)
+      end
+    end
+
+    describe '#withdraw' do
+      it 'subtract amount balance' do
+        proxy = DesignPattern::Proxy::VirtualAccountProxy.new { account }
+        proxy.withdraw(10)
+        expect(proxy.balance).to eq(90)
+      end
+    end
+  end
 end
