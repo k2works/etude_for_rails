@@ -34,4 +34,18 @@ describe DesignPattern::Proxy::BankAccount do
       end
     end
   end
+
+  context 'using protection proxy' do
+    describe '#balance' do
+      it 'not raise exception' do
+        proxy = DesignPattern::Proxy::AccountProtectionProxy.new(account,'Tom')
+        expect { proxy.balance }.not_to raise_exception
+      end
+
+      it 'raise exception' do
+        proxy = DesignPattern::Proxy::AccountProtectionProxy.new(account,'Dom')
+        expect { proxy.balance }.to raise_exception
+      end
+    end
+  end
 end
