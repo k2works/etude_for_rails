@@ -1,0 +1,3 @@
+DecoratorPattern
+---
+![](./images/decorator.png)

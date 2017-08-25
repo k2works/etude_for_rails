@@ -31,8 +31,10 @@ Rubyによるデザインパターン
 
 ![](./images/composite.png)
 
-#### Decorator	
+#### [Decorator](./decorator.md)	
 あるインスタンスに対し、動的に付加機能を追加する。Filterとも呼ばれる。
+
+![](./images/decorator.png)
 
 #### Facade	
 複数のサブシステムの窓口となる共通のインタフェースを提供する。
