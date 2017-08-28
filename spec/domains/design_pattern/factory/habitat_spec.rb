@@ -3,7 +3,7 @@ require 'rails_helper'
 describe DesignPattern::Factory::Habitat do
   describe '#simulate_ond_day' do
     it 'simulate one day duck pond' do
-      pond = DesignPattern::Factory::Habitat.new(3, DesignPattern::Factory::Duck,0, DesignPattern::Factory::WaterLily)
+      pond = DesignPattern::Factory::Habitat.new(3, 0, DesignPattern::Factory::PondOrganismFactory1.new)
       expected = <<-EOS
 アヒル 動物0がガーガー鳴いています。
 アヒル 動物1がガーガー鳴いています。
@@ -20,7 +20,7 @@ describe DesignPattern::Factory::Habitat do
     end
 
     it 'simulate one day frog habitat' do
-      pond = DesignPattern::Factory::Habitat.new(3, DesignPattern::Factory::Frog, 0, DesignPattern::Factory::WaterLily)
+      pond = DesignPattern::Factory::Habitat.new(3, 0, DesignPattern::Factory::PondOrganismFactory2.new)
       expected = <<-EOS
 カエル 動物0はゲロゲロと鳴いています。
 カエル 動物1はゲロゲロと鳴いています。
@@ -37,7 +37,7 @@ describe DesignPattern::Factory::Habitat do
     end
 
     it 'simulate one day duck waterlily habitat' do
-      pond = DesignPattern::Factory::Habitat.new(2, DesignPattern::Factory::Duck,4, DesignPattern::Factory::WaterLily)
+      pond = DesignPattern::Factory::Habitat.new(2, 4, DesignPattern::Factory::PondOrganismFactory1.new)
       expected = <<-EOS
 スイレン 植物0は浮きながら日光を浴びて育ちます。
 スイレン 植物1は浮きながら日光を浴びて育ちます。
@@ -55,7 +55,7 @@ describe DesignPattern::Factory::Habitat do
     end
 
     it 'simulate one day tiger tree habitat' do
-      pond = DesignPattern::Factory::Habitat.new(1, DesignPattern::Factory::Tiger,4, DesignPattern::Factory::Tree)
+      pond = DesignPattern::Factory::Habitat.new(1, 4, DesignPattern::Factory::JungleOrganismFactory.new)
       expected = <<-EOS
 樹木 植物0が高く育っています。
 樹木 植物1が高く育っています。
