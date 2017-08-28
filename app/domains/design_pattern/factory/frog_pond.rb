@@ -1,7 +1,7 @@
 module DesignPattern
   module Factory
     class FrogPond < Pond
-      def new_animal(name)
+      def new_organism(type,name)
         Frog.new(name)
       end
     end
