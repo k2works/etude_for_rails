@@ -8,8 +8,12 @@ Rubyによるデザインパターン
 #### Builder	
 複合化されたインスタンスの生成過程を隠蔽する。
 
-#### Factory Method	
+#### [Factory Method](./factory.md)	
 実際に生成されるインスタンスに依存しない、インスタンスの生成方法を提供する。
+
+![](./images/factory_method.png)
+
+![](./images/abstract_factory.png)
 
 #### Prototype	
 同様のインスタンスを生成するために、原型のインスタンスを複製する。
