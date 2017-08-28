@@ -6,15 +6,15 @@ module DesignPattern
       end
 
       def eat
-        puts("カエル#{@name}は食事中です。")
+        puts("カエル #{@name}は食事中です。")
       end
 
       def speak
-        puts("カエル#{@name}はゲロゲロと鳴いています。")
+        puts("カエル #{@name}はゲロゲロと鳴いています。")
       end
 
       def sleep
-        puts("カエル#{@name}は眠りません。一晩中ゲロゲロ鳴いています。")
+        puts("カエル #{@name}は眠りません。一晩中ゲロゲロ鳴いています。")
       end
     end
   end
