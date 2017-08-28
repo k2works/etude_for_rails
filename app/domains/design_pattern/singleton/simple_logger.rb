@@ -1,9 +1,6 @@
-require 'singleton'
-
 module DesignPattern
   module Singleton
     class SimpleLogger
-      include ::Singleton
       attr_accessor :level
 
       ERROR = 1
