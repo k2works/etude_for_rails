@@ -26,6 +26,12 @@ module DesignPattern
         @log.puts(msg) if @level >= INFO
         @log.flush
       end
+
+      @@instance = SimpleLogger.new
+
+      def self.instance
+        return @@instance
+      end
     end
   end
 end
