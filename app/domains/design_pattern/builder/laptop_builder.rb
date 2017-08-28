@@ -28,6 +28,10 @@ module DesignPattern
         raise "No hard disk." unless hard_disk
         @computer
       end
+
+      def reset
+        @computer = LaptopComputer.new
+      end
     end
   end
 end

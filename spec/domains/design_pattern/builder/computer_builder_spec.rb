@@ -96,6 +96,20 @@ describe DesignPattern::Builder::ComputerBuilder do
 
         expect { builder.computer }.to raise_error(RuntimeError, "No hard disk.")
       end
+
+      it 'can reuse builder' do
+        builder = DesignPattern::Builder::LaptopBuilder.new
+        builder.turbo
+        builder.add_hard_disk(100000)
+        computer1 = builder.computer
+
+        builder.reset
+        builder.turbo
+        builder.add_hard_disk(100000)
+        computer2 = builder.computer
+
+        expect(computer1).not_to eq(computer2)
+      end
     end
   end
 end
