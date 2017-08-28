@@ -2,18 +2,20 @@ Rubyによるデザインパターン
 ---
 
 ### 生成に関するパターン
-#### Abstract Factory	
+#### [Abstract Factory](./factory.md)	
 関連する一連のインスタンスを状況に応じて、適切に生成する方法を提供する。
 
-#### Builder	
+![](./images/abstract_factory.png)
+
+#### [Builder](./builder.md)	
 複合化されたインスタンスの生成過程を隠蔽する。
+
+![](./images/builder.png)
 
 #### [Factory Method](./factory.md)	
 実際に生成されるインスタンスに依存しない、インスタンスの生成方法を提供する。
 
 ![](./images/factory_method.png)
-
-![](./images/abstract_factory.png)
 
 #### Prototype	
 同様のインスタンスを生成するために、原型のインスタンスを複製する。
