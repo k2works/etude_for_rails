@@ -5,7 +5,7 @@ module DesignPattern
       WARNING = 2
       INFO = 3
 
-      @@log = File.open('log.txt', 'w')
+      @@log = File.open('log2.txt', 'w')
       @@level = WARNING
 
       def self.error(msg)

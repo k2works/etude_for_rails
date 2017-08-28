@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'pathname'
 
 describe DesignPattern::Singleton::ModuleBasedLogger do
-  let(:log_file) { log_file = Pathname.new('log.txt') }
+  let(:log_file) { log_file = Pathname.new('log2.txt') }
 
   describe '#info' do
     it 'logging info' do
@@ -41,7 +41,7 @@ describe DesignPattern::Singleton::ModuleBasedLogger do
   end
 
   after(:all) do
-    log_file = Pathname.new('log.txt')
+    log_file = Pathname.new('log2.txt')
     File.delete(log_file)
   end
 end
