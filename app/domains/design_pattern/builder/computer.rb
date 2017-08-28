@@ -5,7 +5,7 @@ module DesignPattern
       attr_reader :motherboard
       attr_reader :drives
 
-      def initialize(diplay=:crt, motherboard=DesignPattern::Builder::Motherboard.new, drives=[])
+      def initialize(display=:crt, motherboard=DesignPattern::Builder::Motherboard.new, drives=[])
         @motherboard = motherboard
         @drives = drives
         @display = display

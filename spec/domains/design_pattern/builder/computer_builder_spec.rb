@@ -22,6 +22,30 @@ describe DesignPattern::Builder::ComputerBuilder do
         expect(computer.drives.third.size).to eq(100000)
         expect(computer.drives.third.writable).to be true
       end
+
+      it 'cant build when memory size less than 250' do
+        builder = DesignPattern::Builder::DeskTopBuilder.new
+        builder.memory_size(249)
+
+        expect { builder.computer }.to raise_error(RuntimeError, "Not enough memory")
+      end
+
+      it 'cant build when drive more than 5' do
+        builder = DesignPattern::Builder::DeskTopBuilder.new
+        builder.add_cd(true)
+        builder.add_dvd
+        3.times.each { builder.add_hard_disk(100000)}
+
+        expect { builder.computer }.to raise_error(RuntimeError, "Too many drives")
+      end
+
+      it 'cant build when no hard disk' do
+        builder = DesignPattern::Builder::DeskTopBuilder.new
+        builder.add_cd(true)
+        builder.add_dvd
+
+        expect { builder.computer }.to raise_error(RuntimeError, "No hard disk.")
+      end
     end
 
     context 'Using LaptopBuilder' do
@@ -49,6 +73,28 @@ describe DesignPattern::Builder::ComputerBuilder do
         builder = DesignPattern::Builder::LaptopBuilder.new
 
         expect { builder.display = :crt }.to raise_error(RuntimeError, "Laptop display must be lcd")
+      end
+
+      it 'cant build when memory size less than 500' do
+        builder = DesignPattern::Builder::LaptopBuilder.new
+        builder.memory_size(499)
+
+        expect { builder.computer }.to raise_error(RuntimeError, "Not enough memory")
+      end
+
+      it 'cant build when drive more than 4' do
+        builder = DesignPattern::Builder::LaptopBuilder.new
+        builder.add_dvd
+        3.times.each { builder.add_hard_disk(100000)}
+
+        expect { builder.computer }.to raise_error(RuntimeError, "Too many drives")
+      end
+
+      it 'cant build when no hard disk' do
+        builder = DesignPattern::Builder::LaptopBuilder.new
+        builder.add_dvd
+
+        expect { builder.computer }.to raise_error(RuntimeError, "No hard disk.")
       end
     end
   end
