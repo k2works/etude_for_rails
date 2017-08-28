@@ -1,6 +1,9 @@
+require 'singleton'
+
 module DesignPattern
   module Singleton
     class SimpleLogger
+      include ::Singleton
       attr_accessor :level
 
       ERROR = 1
@@ -26,14 +29,6 @@ module DesignPattern
         @log.puts(msg) if @level >= INFO
         @log.flush
       end
-
-      @@instance = SimpleLogger.new
-
-      def self.instance
-        return @@instance
-      end
-
-      private_class_method :new
     end
   end
 end
