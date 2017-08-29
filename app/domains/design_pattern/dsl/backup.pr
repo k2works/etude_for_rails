@@ -1,7 +1,7 @@
 ex = DesignPattern::Interpreter::Expression.new
 
-backup 'spec/domains/dsl/data'
-backup 'spec/domains/dsl/data/music', ex.name('*.mp3') & ex.name('*.wav')
-backup 'spec/domains/dsl/data/images', ex.except(ex.name('*.tmp'))
-to 'spec/domains/dsl/backup'
+backup '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/data'
+backup '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/data/music', ex.name('*.mp3') & ex.name('*.wav')
+backup '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/data/images', ex.except(ex.name('*.tmp'))
+to '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/backup'
 interval 60
