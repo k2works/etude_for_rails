@@ -77,6 +77,7 @@ Railsアプリケーションのための練習プログラム集
 #### [BowlingGame](dev/bowling_game/bowling_game.md)
 #### [PayRoll](dev/payroll/payroll.md)
 #### [RentalVideo](dev/rental_video/rental_video.md)
+#### [DesignPattern](dev/design_patterns/design_patterns.md)
 ### infrastructure
 
 **[⬆ back to top](#構成)**
