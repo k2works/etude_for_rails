@@ -22,5 +22,7 @@ def interval(minutes)
   Backup.instance.interval = minutes
 end
 
-eval(File.read('backup.pr'))
-Backup.instance.run
+if Rails.env.development?
+  eval(File.read('backup.pr'))
+  Backup.instance.run
+end
