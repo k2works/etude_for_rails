@@ -24,14 +24,21 @@ body
     end
 
     it 'send smtp message' do
-      msg = DesignPattern::Coc::Message.new('smtp://tom@sussolsen.com','smtp://fred@sussolsen.com','body')
+      msg = DesignPattern::Coc::Message.new('smtp://tom@russolsen.com','smtp://fred@russolsen.com','body')
       msg_gw = DesignPattern::Coc::MessageGatewayStub.new
       expected = <<-EOF
-tom@sussolsen.com
-fred@sussolsen.com
+tom@russolsen.com
+fred@russolsen.com
 body
       EOF
       expect { msg_gw.process_message(msg) }.to output(expected).to_stdout
+    end
+
+    it 'authorize host' do
+      msg = DesignPattern::Coc::Message.new('smtp://tom@russolsen.com','smtp://fred@russolsen.com','body')
+      msg_gw = DesignPattern::Coc::MessageGatewayStub.new
+
+      expect(msg_gw.authorized?(msg)).to be true
     end
   end
 end
