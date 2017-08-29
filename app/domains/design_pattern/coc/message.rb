@@ -1,11 +1,11 @@
 require 'uri'
 module DesignPattern
-  module CoC
+  module Coc
     class Message
       attr_accessor :from, :to, :body
 
       def initialize(from, to, body)
-        @from = from
+        @from = URI.parse(from)
         @to = URI.parse(to)
         @body = body
       end
