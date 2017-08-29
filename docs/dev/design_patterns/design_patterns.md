@@ -62,8 +62,10 @@ Rubyによるデザインパターン
 
 ![](./images/command.png)
 
-#### Interpreter	
+#### [Interpreter](./interpreter.md)	
 構文解析のために、文法規則を反映するクラス構造を作る。
+
+![](./images/interpreter.png)
 
 #### Iterator	
 複数の要素を内包するオブジェクトのすべての要素に対して、順番にアクセスする方法を提供する。反復子。
