@@ -64,5 +64,20 @@ describe DesignPattern::Interpreter::Expression do
       file = big_and_spec_expr.evaluate(path.to_s)
       expect(file).to include("#{path.to_s}/expression_spec.rb")
     end
+
+    it 'find file using operator' do
+      path = Pathname.new('./spec/domains/design_pattern/interpreter')
+      expr = (DesignPattern::Interpreter::Bigger.new(1000) & DesignPattern::Interpreter::Not.new(DesignPattern::Interpreter::Writable.new)) | DesignPattern::Interpreter::FileName.new("*_spec.rb")
+      file = expr.evaluate(path.to_s)
+      expect(file).to include("#{path.to_s}/expression_spec.rb")
+    end
+
+    it 'find file using operator' do
+      ex = DesignPattern::Interpreter::Expression.new
+      path = Pathname.new('./spec/domains/design_pattern/interpreter')
+      expr = (ex.bigger(1000) & ex.except(ex.writable)) | ex.name("*_spec.rb")
+      file = expr.evaluate(path.to_s)
+      expect(file).to include("#{path.to_s}/expression_spec.rb")
+    end
   end
 end
