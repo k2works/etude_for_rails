@@ -1,0 +1,5 @@
+backup 'spec/domains/dsl/data'
+backup 'spec/domains/dsl/data/music', file_name('*.mp3' & file_name('*.wav')
+backup 'spec/domains/dsl/data/images', except(file_name('*.tmp'))
+to 'spec/domains/dsl/backup'
+interval 60
