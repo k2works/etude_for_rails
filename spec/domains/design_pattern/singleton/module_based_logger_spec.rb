@@ -41,7 +41,7 @@ describe DesignPattern::Singleton::ModuleBasedLogger do
   end
 
   after(:all) do
-    log_file = Pathname.new('log2.txt')
+    log_file = Pathname.new('tmp/log2.txt')
     File.delete(log_file)
   end
 end
