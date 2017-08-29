@@ -16,6 +16,8 @@ module DesignPattern
 end
 }
 
-File.open(file_name, 'w') do |f|
-  f.write(scaffolding)
+if Rails.env.development?
+  File.open(file_name, 'w') do |f|
+    f.write(scaffolding)
+  end
 end

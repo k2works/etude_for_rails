@@ -34,5 +34,7 @@ module DesignPattern
   end
 end
 
-eval(File.read('backup2.pr'))
-DesignPattern::DSL::PackRat2.instance.run
+if Rails.env.development?
+  eval(File.read('backup2.pr'))
+  DesignPattern::DSL::PackRat2.instance.run
+end
