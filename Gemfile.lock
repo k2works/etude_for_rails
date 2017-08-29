@@ -359,6 +359,7 @@ GEM
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.12)
+    madeleine (0.9.0)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -593,6 +594,7 @@ DEPENDENCIES
   kaminari-bootstrap (~> 3.0, >= 3.0.1)
   kss-rails
   listen (>= 3.0.5, < 3.2)
+  madeleine
   migration_comments
   mini_magick
   minitest (= 5.10.1)

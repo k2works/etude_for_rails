@@ -1,0 +1,13 @@
+ex = DesignPattern::Interpreter::Expression.new
+
+DesignPattern::DSL::Backup2.new do |b|
+  b.backup '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/data/music', ex.name('*.mp3') & ex.name('*.wav')
+  b.to '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/backup'
+  b.interval 60
+end
+
+DesignPattern::DSL::Backup2.new do |b|
+  b.backup '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/data/music', ex.name('*.mp3') & ex.name('*.wav')
+  b.to '/Users/k2works/Projects/k2works/etude_for_rails/spec/domains/design_pattern/dsl/backup'
+  b.interval 60
+end

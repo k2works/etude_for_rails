@@ -195,3 +195,4 @@ db/todo.sqlite3
 public/uploads
 public/assets
 .env.*
+employee
