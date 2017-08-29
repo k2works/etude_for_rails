@@ -16,5 +16,19 @@ describe DesignPattern::Interpreter::Expression do
       file = expr_spec.evaluate(path.to_s)
       expect(file).to include("#{path.to_s}/expression_spec.rb")
     end
+
+    it 'find file by size' do
+      path = Pathname.new('./spec/domains/design_pattern/interpreter')
+      expr_file_size = DesignPattern::Interpreter::Bigger.new(900)
+      file = expr_file_size.evaluate(path.to_s)
+      expect(file).to include("#{path.to_s}/expression_spec.rb")
+    end
+
+    it 'find writable file' do
+      path = Pathname.new('./spec/domains/design_pattern/interpreter')
+      expr_file_writable = DesignPattern::Interpreter::Writable.new
+      file = expr_file_writable.evaluate(path.to_s)
+      expect(file).to include("#{path.to_s}/expression_spec.rb")
+    end
   end
 end
