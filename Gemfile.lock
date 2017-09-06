@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:k2works/etude_for_ops.git
+  revision: 4e8911022b72374e0c1d5168f5a3c69c19f7399d
+  branch: feature/onpremis
+  specs:
+    etude_for_ops (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -177,6 +184,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  etude_for_ops!
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
