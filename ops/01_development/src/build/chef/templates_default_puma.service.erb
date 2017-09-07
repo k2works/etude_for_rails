@@ -1,0 +1,13 @@
+[Unit]
+Description=puma
+
+[Service]
+Environment=RAILS_ENV=development
+WorkingDirectory=/var/app/current
+ExecStart=/opt/ruby_build/builds/app/bin/puma -C config/puma.rb
+ExecStop=kill -s SIGTERM `cat /var/app/shared/tmp/pids/puma.pid`
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
