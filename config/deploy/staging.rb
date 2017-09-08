@@ -9,3 +9,4 @@ set(
     keys: [File.expand_path("../../../ops/01_development/.vagrant/machines/default/virtualbox/private_key", __FILE__)],
     user: "vagrant"
 )
+set :rails_env, :staging

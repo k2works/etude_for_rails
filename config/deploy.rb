@@ -36,6 +36,16 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 set :keep_releases, 2
 
+# デプロイ用環境変数の設定
+set :default_env, {
+    AWS_ACCESS_KEY_ID: ENV["AWS_ACCESS_KEY_ID"],
+    AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"],
+    S3_REGION: ENV["S3_REGION "],
+    S3_ACCESS_KEY: ENV["S3_ACCESS_KEY"],
+    S3_SECRET_KEY: ENV["S3_SECRET_KEY"],
+    S3_BUCKET: ENV["S3_BUCKET"],
+}
+
 desc 'Upload database.yml'
 task :upload do
   on roles(:app) do |host|
@@ -56,6 +66,18 @@ task :db_create do
     end
   end
 end
+
+desc 'Create Seed'
+task :db_seed do
+  on roles(:db) do |host|
+    with rails_env: fetch(:rails_env) do
+      within current_path do
+        execute :bundle, :exec, :rake, 'db:seed'
+      end
+    end
+  end
+end
+
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'

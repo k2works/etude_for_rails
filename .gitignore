@@ -138,3 +138,4 @@ bower.json
 .byebug_history
 .env.*
 .capistrano
+public/*
