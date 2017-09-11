@@ -7,3 +7,5 @@ Rails.application.load_tasks
 
 require 'annotate'
 Annotate.load_tasks
+
+load 'etude_for_ops/tasks/ops.rake'

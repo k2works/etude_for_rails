@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/k2works/etude_for_ops.git
+  revision: 02a5cff6eaaf6906f45ec5369b1b375940555753
+  branch: feature/onpremis
+  specs:
+    etude_for_ops (0.1.0)
+
+GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: ead87017a6c15adce66a87dce8ee2ece91d0d27c
   branch: rails-5
@@ -576,6 +583,7 @@ DEPENDENCIES
   dotenv-rails
   email_validator (~> 1.6)
   etude_for_aws (~> 0.7.10)
+  etude_for_ops!
   exception_notification
   factory_girl_rails
   faker (= 1.7.3)
@@ -636,4 +644,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.0
+   1.15.4
