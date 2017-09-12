@@ -198,3 +198,4 @@ public/assets
 employee
 .capistrano
 ops
+archive.tar.gz
