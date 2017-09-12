@@ -199,3 +199,4 @@ employee
 .capistrano
 ops
 archive.tar.gz
+*.dump
