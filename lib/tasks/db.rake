@@ -23,6 +23,33 @@ namespace :db do
     end
   end
 
+  desc "Dumps the database by date"
+  task dump_all: [:environment,:load_config] do
+    if Rails.env.development?
+      Rake::Task["db:mysql:dump_all"].invoke
+    else
+      Rake::Task["db:postgres:dump_all"].invoke
+    end
+  end
+
+  desc "Imort from dumpfile"
+  task :import_all, ['name'] => [:environment,:load_config] do |task, args|
+    args = args[:name]
+    if Rails.env.development?
+      if args.nil?
+        Rake::Task["db:mysql:import_all"].invoke
+      else
+        Rake::Task["db:mysql:import_all"].invoke(args)
+      end
+    else
+      if args[:name].nil?
+        Rake::Task["db:postgres:import_all"].invoke
+      else
+        Rake::Task["db:postgres:import_all"].invoke(args)
+      end
+    end
+  end
+
   namespace :mysql do
     desc "Dumps the database by date"
     task dump_all: [:environment,:load_config] do
