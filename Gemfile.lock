@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/k2works/etude_for_ops.git
-  revision: 45f8b11ac79e95cdddcd913977eaaea5baa0749d
+  revision: cedc4d2b408f803d7853aff3d4b89f428ac63760
   branch: feature/onpremis
   specs:
     etude_for_ops (0.1.0)
@@ -100,6 +100,8 @@ GEM
     capistrano-bundler (1.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-maintenance (1.2.0)
+      capistrano (>= 3.0)
     capistrano-rails (1.3.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -605,6 +607,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
+  capistrano-maintenance (~> 1.0)
   capistrano-rails
   capistrano-rbenv
   capistrano-safe-deploy-to (~> 1.1.1)

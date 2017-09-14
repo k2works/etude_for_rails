@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 group :development do
   gem 'capistrano'
+  gem 'capistrano-maintenance', '~> 1.0', require: false
   gem 'capistrano-scm-copy'
   gem 'capistrano-safe-deploy-to', '~> 1.1.1'
   gem 'capistrano-rails'
