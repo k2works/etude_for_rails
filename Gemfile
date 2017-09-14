@@ -149,3 +149,6 @@ gem 'fog',                     '1.40.0'
 
 # For DesignPattern
 gem 'madeleine'
+
+# crontab管理
+gem 'whenever', require: false
