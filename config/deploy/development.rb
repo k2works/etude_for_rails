@@ -1,6 +1,6 @@
 role :app, %w(127.0.0.1)
 role :db,  %w(127.0.0.1)
-role :web, %w(127.0.0.1)
+#role :web, %w(127.0.0.1)
 
 set(
     :ssh_options,

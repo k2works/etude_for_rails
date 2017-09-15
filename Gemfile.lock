@@ -142,6 +142,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     database_rewinder (0.8.2)
     date_validator (0.9.0)
       activemodel
@@ -411,6 +412,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.12.1)
+    mustermann (1.0.1)
     mysql2 (0.4.6)
     nenv (0.3.0)
     net-scp (1.2.1)
@@ -448,6 +450,8 @@ GEM
     rack-dev-mark (0.7.5)
       rack (>= 1.1)
     rack-livereload (0.3.16)
+      rack
+    rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -499,6 +503,9 @@ GEM
       nokogiri (~> 1.5)
       trollop (~> 2.1)
     redcarpet (3.4.0)
+    redis (3.3.3)
+    redis-namespace (1.5.3)
+      redis (~> 3.0, >= 3.0.4)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -539,11 +546,21 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    sidekiq (5.0.4)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
     slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -663,6 +680,7 @@ DEPENDENCIES
   rails_12factor
   ransack
   redcarpet (~> 3.3, >= 3.3.4)
+  redis-namespace
   rspec-json_matcher
   rspec-rails (~> 3.5)
   ruby-debug-ide (~> 0.6.1.beta4)
@@ -670,7 +688,9 @@ DEPENDENCIES
   scss_lint
   selenium-webdriver
   shoulda-matchers!
+  sidekiq
   simplecov
+  sinatra
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

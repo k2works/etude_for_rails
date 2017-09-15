@@ -152,3 +152,8 @@ gem 'madeleine'
 
 # crontab管理
 gem 'whenever', require: false
+
+# Sidekiq
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'redis-namespace'
