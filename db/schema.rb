@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810034223) do
+ActiveRecord::Schema.define(version: 20170915035555) do
 
   create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -233,6 +233,12 @@ ActiveRecord::Schema.define(version: 20170810034223) do
   create_table "baukis_tags", force: :cascade, comment: "タグ" do |t|
     t.string "value", null: false, comment: "値"
     t.index ["value"], name: "index_baukis_tags_on_value", unique: true
+  end
+
+  create_table "messages", force: :cascade, comment: "ジョブメッセージ" do |t|
+    t.text "body", comment: "本文"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "perfect_rails_accounts", force: :cascade, comment: "口座" do |t|
