@@ -11,11 +11,11 @@ end
 # 毎日 am10:00のスケジューリング
 every 1.day, at: '10:00 am' do
   rake 'db:reset'
-  runner "Message.exec('Job validataion')"
 end
 # 一時間毎のスケジューリング
 every :hour do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   rake 'db:dump_all'
+  runner "Message.exec('Job validataion')"
 end
 # 金曜日のpm5時にスケジューリング
 every :friday, at: '5pm' do # Use any day of the week or :weekend, :weekday

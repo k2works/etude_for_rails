@@ -24,9 +24,6 @@ set :default_env, {
     S3_ACCESS_KEY: ENV["S3_ACCESS_KEY"],
     S3_SECRET_KEY: ENV["S3_SECRET_KEY"],
     S3_BUCKET: ENV["S3_BUCKET"],
-    SENDGRID_USERNAME: ENV["SENDGRID_USERNAME"],
-    SENDGRID_PASSWORD: ENV["SENDGRID_PASSWORD"],
-    ADMIN_MAIL: ENV["ADMIN_MAIL"]
 }
 
 # shared/puma.rb
@@ -63,14 +60,18 @@ namespace :deploy do
   desc 'Start Maintenance'
   task :maintenance_start do
     on roles(:app) do
-      invoke 'maintenance:enable'
+      if test "[ -d #{shared_path} ]"
+        invoke 'maintenance:enable'
+      end
     end
   end
 
   desc 'End Maintenance'
   task :maintenance_end do
     on roles(:app) do
-      invoke 'maintenance:disable'
+      if test "[ -d #{shared_path} ]"
+        invoke 'maintenance:disable'
+      end
     end
   end
 
