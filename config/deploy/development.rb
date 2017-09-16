@@ -10,6 +10,7 @@ set(
     user: "vagrant"
 )
 set :rails_env, :development
+set :branch, 'develop'
 set :bundle_without, []
 # capistrano-scm-copyの設定
 set :scm, :copy
