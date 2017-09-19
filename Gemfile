@@ -132,7 +132,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
 group :test do
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  #gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 # For Baukis
@@ -157,3 +157,6 @@ gem 'whenever', require: false
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'redis-namespace'
+
+# Logger
+gem 'fluent-logger'
