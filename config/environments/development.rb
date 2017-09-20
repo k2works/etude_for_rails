@@ -66,4 +66,11 @@ Rails.application.configure do
   config.baukis = {
       restrict_ip_addresses: false
   }
+
+  config.log_level = :info
+  config.logger = ActFluentLoggerRails::Logger.new
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
 end
