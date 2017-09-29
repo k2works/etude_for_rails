@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/k2works/etude_for_ops.git
-  revision: 7e643b3f029ca40aeaa0348359386de371734ae3
+  revision: 8daa1cf2f17f1deaf34a9aeeb9ea0ebfda80da2e
   branch: feature/onpremis
   specs:
     etude_for_ops (0.1.0)
