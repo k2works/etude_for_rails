@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest:80, host:5000, id:"rails"
   config.vm.network :forwarded_port, guest:9292, host:9292, id:"node"
   config.vm.network :forwarded_port, guest:8808, host:8888, id:"docs"
-  config.vm.network :forwarded_port, guest:8080, host:9000, id:"jenkins"
+  config.vm.network :forwarded_port, guest:8080, host:8080, id:"jenkins"
   config.vm.network :forwarded_port, guest:3306, host:3306, id:"mysql"
   config.vm.network :forwarded_port, guest:5432, host:5432, id:"postgresql"
   config.vm.network :forwarded_port, guest:6379, host:6379, id:"redis"

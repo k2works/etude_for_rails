@@ -14,7 +14,7 @@ class Message < ApplicationRecord
   end
 
   def logging
-    f = Fluent::Logger::LevelFluentLogger.new('fluent')
+    f = Fluent::Logger::LevelFluentLogger.new('app.job')
 
     f.formatter = proc do |severity, datetime, progname, message|
       map = { level: severity }
