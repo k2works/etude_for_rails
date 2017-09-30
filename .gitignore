@@ -200,3 +200,4 @@ employee
 ops
 archive.tar.gz
 *.dump
+vendor/bundler
