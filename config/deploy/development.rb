@@ -15,5 +15,5 @@ set :bundle_without, []
 # capistrano-scm-copyの設定
 set :scm, :copy
 set :include_dir, ["*", '.ruby-version', '.postcssrc.yml', '.env.development']
-set :exclude_dir, ['vendor/bundle', 'log\/*', 'tmp\/*', 'mydb\/*', 'public\/*', 'node_modules\/*', 'ops\/*']
+set :exclude_dir, ['vendor/bundler', 'log\/*', 'tmp\/*', 'mydb\/*', 'public\/*', 'node_modules\/*', 'ops\/*']
 set :db_name, 'etude_for_rails_development'
