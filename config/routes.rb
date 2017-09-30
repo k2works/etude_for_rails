@@ -434,4 +434,7 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

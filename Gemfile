@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 gem 'mysql2', group: :development
@@ -33,7 +33,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-maintenance', '~> 1.0', require: false
+  gem 'capistrano-scm-copy'
+  gem 'capistrano-safe-deploy-to', '~> 1.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-puma'
+end
 
 gem 'dotenv-rails', groups: [:staging, :development, :test]
 
@@ -103,7 +112,10 @@ gem 'bootstrap_form'
 gem 'js_cookie_rails'
 
 # For Ops
-gem 'etude_for_aws', '~> 0.7.10'
+group :development do
+  gem 'etude_for_aws', '~> 0.7.10'
+  gem 'etude_for_ops', git: 'https://github.com/k2works/etude_for_ops.git', branch: 'feature/onpremis'
+end
 
 # For CodeStar
 gem 'passenger'
@@ -120,7 +132,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
 group :test do
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-matchers'
 end
 
 # For Baukis
@@ -137,3 +149,16 @@ gem 'fog',                     '1.40.0'
 
 # For DesignPattern
 gem 'madeleine'
+
+# crontab管理
+gem 'whenever', require: false
+
+# Sidekiq
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'redis-namespace'
+
+# Logger
+gem 'fluent-logger'
+gem 'act-fluent-logger-rails'
+gem 'lograge'
