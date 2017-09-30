@@ -6,6 +6,6 @@ staging:
   :pidfile: /var/app/shared/tmp/pids/sidekiq.pid
   :logfile: /var/app/shared/log/sidekiq_staging.log
 production:
-  :pidfile: /var/app/shared/tmp/pids/sidekiq.pid
-  :logfile: /var/app/shared/log/sidekiq_production.log
-  :concurrency: 50
+  :concurrency: 10
+  :queues:
+    - default
