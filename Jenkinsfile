@@ -5,11 +5,13 @@ node {
 
             docker.build('app:base').inside {
            }
+            docker.build('app:dev','. -f Dockerfile-dev').inside {
+           }
         }
 
         stage("Test") {
 
-            docker.build('app','. -f Dockerfile-dev').inside {
+            docker.build('app:test','. -f Dockerfile-test').inside {
            }
 
         }
