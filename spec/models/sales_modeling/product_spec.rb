@@ -54,6 +54,25 @@ RSpec.describe SalesModeling::Product, type: :model do
       check(new_product,product_c)
     end
   end
+
+  describe '#count' do
+    example '商品A x 1, 商品B x 2, 商品C x 3' do
+      1.times do
+        SalesModeling::Product.new(product_a).save!
+      end
+      2.times do
+        SalesModeling::Product.new(product_b).save!
+      end
+      3.times do
+        SalesModeling::Product.new(product_c).save!
+      end
+
+      expect(SalesModeling::Product.count).to eq 6
+      expect(SalesModeling::Product.where(name:'商品A').count).to eq 1
+      expect(SalesModeling::Product.where(name:'商品B').count).to eq 2
+      expect(SalesModeling::Product.where(name:'商品C').count).to eq 3
+    end
+  end
 end
 
 private
