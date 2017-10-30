@@ -9,15 +9,15 @@ SalesModeling
 #### 分析モデル
   
 
-![](../../../assets/07369ce125477171d3f4392d84e914cc0.png?0.2914215115639063)  
+![](assets/07369ce125477171d3f4392d84e914cc0.png?0.7243314913980632)  
 #### 設計モデル
   
 
-![](../../../assets/07369ce125477171d3f4392d84e914cc1.png?0.33799897217388963)  
+![](assets/07369ce125477171d3f4392d84e914cc1.png?0.08894261231402889)  
 #### ERモデル
   
 
-![](../../../assets/07369ce125477171d3f4392d84e914cc2.png?0.5537414511979135)  
+![](assets/07369ce125477171d3f4392d84e914cc2.png?0.3850099439965218)  
 `Product`
 ```rb
 # == Schema Information
@@ -52,6 +52,39 @@ class SalesModeling::Product < ApplicationRecord
   belongs_to :sales_modeling_color, :class_name => 'SalesModeling::Color'
   belongs_to :sales_modeling_product_category, :class_name => 'SalesModeling::ProductCategory'
   belongs_to :sales_modeling_size, :class_name => 'SalesModeling::Size'
+  
+  def jan
+    @jan ||= SalesModeling::JANCode.new(self.code)
+  end
+  
+  def jan=(jan)
+    self.code = jan.code
+    @jan = jan
+  end
+  
+  def size=(size)
+    self.sales_modeling_size = size
+  end
+  
+  def size
+    self.sales_modeling_size
+  end
+  
+  def color=(color)
+    self.sales_modeling_color = color
+  end
+  
+  def color
+    self.sales_modeling_color
+  end
+  
+  def product_category=(product_category)
+    self.sales_modeling_product_category = product_category
+  end
+  
+  def product_category
+    self.sales_modeling_product_category
+  end
 end
   
 ```  
@@ -108,5 +141,28 @@ class SalesModeling::ProductCategory < ApplicationRecord
   has_many :sales_modeling_products, :class_name => 'SalesModeling::Product'
 end
   
+```  
+`JANCode`
+```rb
+class SalesModeling::JANCode
+  attr_reader :code,:country_code,:maker_code,:product_item_code,:check_digit
+  
+  def initialize(code)
+    @code = code
+    valid?
+    @country_code = @code.slice(0,2)
+    @maker_code = @code.slice(3,7)
+    @product_item_code = @code.slice(9,3)
+    @check_digit = @code.slice(12,1)
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise unless @code.length == 13
+  end
+end
 ```  
   

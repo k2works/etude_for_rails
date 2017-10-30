@@ -2405,16 +2405,16 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="ruby-debug-ide (vbundled(0.6.1.beta4)) [path][gem]">
+      <library name="ruby-debug-ide (vbundled(0.6.1.beta9)) [path][gem]">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/lib" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta4/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/ruby-debug-ide-0.6.1.beta9/lib" />
         </SOURCES>
       </library>
     </orderEntry>

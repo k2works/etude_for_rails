@@ -32,29 +32,39 @@ class 商品区分 {
 #### 設計モデル
 ```puml
 class Product {
-  - code
-  - name
-  - size
-  - color
-  - product_category
-  - unit_purchase_price
-  - unit_sales_price
+  code
+  name
+  size
+  color
+  product_category
+  unit_purchase_price
+  unit_sales_price
+  jan
 }
 class Size {
-  - code
-  - name
+  code
+  name
 }
 class Color {
-  - code
-  - name
+  code
+  name
 }
 class ProductCategory {
-  - code
-  - name
+  code
+  name
 }
+class JANCode {
+  country_code
+  maker_code
+  product_item_code
+  check_digit
+  valid?()
+}
+
 Product --ro Size
 Product -o Color
 Product --o ProductCategory
+Product o-- JANCode
 ```
 #### ERモデル
 ```puml
@@ -95,3 +105,5 @@ Product }-do-|| ProductCategory
 @import "../../../app/models/sales_modeling/color.rb"
 `ProductCategory`
 @import "../../../app/models/sales_modeling/product_category.rb"
+`JANCode`
+@import "../../../app/models/sales_modeling/jan_code.rb"

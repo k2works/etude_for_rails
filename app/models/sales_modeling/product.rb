@@ -31,6 +31,15 @@ class SalesModeling::Product < ApplicationRecord
   belongs_to :sales_modeling_product_category, :class_name => 'SalesModeling::ProductCategory'
   belongs_to :sales_modeling_size, :class_name => 'SalesModeling::Size'
 
+  def jan
+    @jan ||= SalesModeling::JANCode.new(self.code)
+  end
+
+  def jan=(jan)
+    self.code = jan.code
+    @jan = jan
+  end
+
   def size=(size)
     self.sales_modeling_size = size
   end

@@ -13,15 +13,17 @@ RSpec.describe SalesModeling::Product, type: :model do
   let(:special) { create(:sales_modeling_product_category,name:'特価') }
   let(:null) { create(:sales_modeling_product_category,name:'無し') }
 
-  let(:product_a) { { code:'1',name:'商品A',size:s,color:blue, product_category:special } }
-  let(:product_b) { { code:'1',name:'商品B',size:m,color:black, product_category:normal } }
-  let(:product_c) { { code:'1',name:'商品C',size:l,color:red, product_category:null } }
+  let(:jan) { SalesModeling::JANCode.new('1234567890123')}
+
+  let(:product_a) { { code:jan.code,name:'商品A',size:s,color:blue, product_category:special } }
+  let(:product_b) { { code:jan.code,name:'商品B',size:m,color:black, product_category:normal } }
+  let(:product_c) { { code:jan.code,name:'商品C',size:l,color:red, product_category:null } }
 
   describe '#save!' do
     example '商品A サイズ:S・カラー:青・商品区分:特価の商品' do
       product = SalesModeling::Product.new
-      product.code = '1'
       product.name = '商品A'
+      product.jan = jan
       product.size = s
       product.color = blue
       product.product_category = special
@@ -33,8 +35,8 @@ RSpec.describe SalesModeling::Product, type: :model do
 
     example '商品B サイズ:M・カラー:黒・商品区分:定価の商品' do
       product = SalesModeling::Product.new({
-        code: '1',
         name: '商品B',
+        jan: jan,
         size: m,
         color: black,
         product_category: normal
@@ -46,7 +48,7 @@ RSpec.describe SalesModeling::Product, type: :model do
     end
 
     example '商品C サイズ:L・カラー:赤・商品区分:無し' do
-      product = { code:'1',name:'商品C',size:l,color:red, product_category:null }
+      product = { code:jan.code,name:'商品C',size:l,color:red, product_category:null }
       product = SalesModeling::Product.new(product)
       product.save!
 

@@ -53,7 +53,7 @@ group :development, :test do
   gem 'capybara', '~> 2.14.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem 'ruby-debug-ide', '~>0.6.1.beta4'
+  gem 'ruby-debug-ide', '0.6.1.beta9'
   gem 'debase', '~>0.2.2.beta9'
   gem 'better_errors'
   gem 'binding_of_caller'
