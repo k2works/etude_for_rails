@@ -1,5 +1,68 @@
 require 'rails_helper'
 
 RSpec.describe SalesModeling::Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:s) { create(:sales_modeling_size,name:'S') }
+  let(:m) { create(:sales_modeling_size,name:'M') }
+  let(:l) { create(:sales_modeling_size,name:'L') }
+
+  let(:red) { create(:sales_modeling_color,name:'赤') }
+  let(:blue) { create(:sales_modeling_color,name:'青') }
+  let(:black) { create(:sales_modeling_color,name:'黒') }
+
+  let(:normal) { create(:sales_modeling_product_category,name:'定価') }
+  let(:special) { create(:sales_modeling_product_category,name:'特価') }
+  let(:null) { create(:sales_modeling_product_category,name:'無し') }
+
+  let(:product_a) { { code:'1',name:'商品A',size:s,color:blue, product_category:special } }
+  let(:product_b) { { code:'1',name:'商品B',size:m,color:black, product_category:normal } }
+  let(:product_c) { { code:'1',name:'商品C',size:l,color:red, product_category:null } }
+
+  describe '#save!' do
+    example '商品A サイズ:S・カラー:青・商品区分:特価の商品' do
+      product = SalesModeling::Product.new
+      product.code = '1'
+      product.name = '商品A'
+      product.size = s
+      product.color = blue
+      product.product_category = special
+      product.save!
+
+      new_product = SalesModeling::Product.first
+      check(new_product,product_a)
+    end
+
+    example '商品B サイズ:M・カラー:黒・商品区分:定価の商品' do
+      product = SalesModeling::Product.new({
+        code: '1',
+        name: '商品B',
+        size: m,
+        color: black,
+        product_category: normal
+      })
+      product.save!
+
+      new_product = SalesModeling::Product.first
+      check(new_product,product_b)
+    end
+
+    example '商品C サイズ:L・カラー:赤・商品区分:無し' do
+      product = { code:'1',name:'商品C',size:l,color:red, product_category:null }
+      product = SalesModeling::Product.new(product)
+      product.save!
+
+      new_product = SalesModeling::Product.first
+      check(new_product,product_c)
+    end
+  end
 end
+
+private
+
+def check(new_product,check_product)
+  expect(new_product.code).to eq check_product[:code]
+  expect(new_product.name).to eq check_product[:name]
+  expect(new_product.size.name).to eq check_product[:size].name
+  expect(new_product.color.name).to eq check_product[:color].name
+  expect(new_product.product_category.name).to eq check_product[:product_category].name
+end
+
