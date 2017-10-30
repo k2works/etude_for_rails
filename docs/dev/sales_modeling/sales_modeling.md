@@ -87,3 +87,11 @@ Product }-do-||  Size
 Product }-do-|| Color
 Product }-do-|| ProductCategory
 ```
+`Product`
+@import "../../../app/models/sales_modeling/product.rb"
+`Size`
+@import "../../../app/models/sales_modeling/size.rb"
+`Color`
+@import "../../../app/models/sales_modeling/color.rb"
+`ProductCategory`
+@import "../../../app/models/sales_modeling/product_category.rb"

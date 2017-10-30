@@ -26,7 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundler" />
     </content>
-    <orderEntry type="jdk" jdkName="Remote:ruby-2.4.1-p111 (2)" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="rbenv: 2.4.1" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="CFPropertyList (vbundled(2.3.5)) [path][gem]">
@@ -2886,7 +2886,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.14.6, Remote:ruby-2.4.1-p111 (2)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.15.4, rbenv: 2.4.1) [gem]" level="application" />
   </component>
   <component name="PyBDDFrameworkConfig">
     <option name="preferedFrameworkName" value="behave" />
