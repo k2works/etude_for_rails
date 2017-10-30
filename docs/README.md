@@ -78,6 +78,7 @@ Railsアプリケーションのための練習プログラム集
 #### [PayRoll](dev/payroll/payroll.md)
 #### [RentalVideo](dev/rental_video/rental_video.md)
 #### [DesignPattern](dev/design_patterns/design_patterns.md)
+#### [SalesModeling](dev/sales_modeling/sales_modeling_.md)
 ### infrastructure
 
 **[⬆ back to top](#構成)**
