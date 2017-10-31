@@ -93,3 +93,13 @@ Product }-do-|| Category
 Category }-do-|| Category
 Category }-do-|| CategoryClass
 ```
+`Product`
+@import "../../../app/models/sales_modeling/type2/product.rb"
+`Category`
+@import "../../../app/models/sales_modeling/type2/category.rb"
+`CategoryClass`
+@import "../../../app/models/sales_modeling/type2/category_class.rb"
+`ProductCode`
+@import "../../../app/models/sales_modeling/type2/product_code.rb"
+`Money`
+@import "../../../app/models/sales_modeling/type2/money.rb"
