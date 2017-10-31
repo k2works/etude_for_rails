@@ -8,8 +8,10 @@
 #  sales_modeling_size_id             :integer
 #  sales_modeling_color_id            :integer
 #  sales_modeling_product_category_id :integer
-#  unit_purchase_price                :decimal(10, )                          # 仕入単価
-#  unit_sales_price                   :decimal(10, )                          # 販売単価
+#  unit_purchase_price_amount         :decimal(10, )                          # 仕入単価
+#  unit_purchase_price_currency       :string(255)                            # 仕入単価通貨
+#  unit_sales_price_amount            :decimal(10, )                          # 販売単価
+#  unit_sales_price_currency          :string(255)                            # 販売単価通貨
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 #
@@ -62,5 +64,23 @@ class SalesModeling::Product < ApplicationRecord
 
   def product_category
     self.sales_modeling_product_category
+  end
+
+  def unit_purchase_price
+    @unit_purchase_price ||= SalesModeling::Money.new(self.unit_purchase_price_amount)
+  end
+
+  def unit_purchase_price=(money)
+    self.unit_purchase_price_amount = money.amount
+    self.unit_purchase_price_currency = money.currency
+  end
+
+  def unit_sales_price
+    @unit_sales_price ||= SalesModeling::Money.new(self.unit_sales_price_amount)
+  end
+
+  def unit_sales_price=(money)
+    self.unit_sales_price_amount = money.amount
+    self.unit_sales_price_currency = money.currency
   end
 end

@@ -6,8 +6,10 @@ class CreateSalesModelingProducts < ActiveRecord::Migration[5.1]
       t.references :sales_modeling_size, foreign_key: true, index: {name:'index_sales_modeling_on_size_id'}
       t.references :sales_modeling_color, foreign_key: true, index: {name:'index_sales_modeling_on_color_id'}
       t.references :sales_modeling_product_category, foreign_key: true, index: {name:'index_sales_modeling_on_product_category_id'}
-      t.decimal :unit_purchase_price, comment:'仕入単価'
-      t.decimal :unit_sales_price, comment:'販売単価'
+      t.decimal :unit_purchase_price_amount, comment:'仕入単価'
+      t.string :unit_purchase_price_currency, comment:'仕入単価通貨'
+      t.decimal :unit_sales_price_amount, comment:'販売単価'
+      t.string :unit_sales_price_currency, comment:'販売単価通貨'
 
       t.timestamps
     end

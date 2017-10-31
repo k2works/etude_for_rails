@@ -15,6 +15,6 @@ class SalesModeling::JANCode
   end
 
   def valid?
-    raise unless @code.length == 13
+    raise "Not JAN code format" unless @code.length == 13
   end
 end

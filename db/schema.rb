@@ -373,8 +373,10 @@ ActiveRecord::Schema.define(version: 20171030055452) do
     t.bigint "sales_modeling_size_id"
     t.bigint "sales_modeling_color_id"
     t.bigint "sales_modeling_product_category_id"
-    t.decimal "unit_purchase_price", precision: 10, comment: "仕入単価"
-    t.decimal "unit_sales_price", precision: 10, comment: "販売単価"
+    t.decimal "unit_purchase_price_amount", precision: 10, comment: "仕入単価"
+    t.string "unit_purchase_price_currency", comment: "仕入単価通貨"
+    t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
+    t.string "unit_sales_price_currency", comment: "販売単価通貨"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sales_modeling_color_id"], name: "index_sales_modeling_on_color_id"

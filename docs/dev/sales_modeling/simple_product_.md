@@ -7,15 +7,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb210.png?0.6829049201598165)  
+![](assets/29814634b37d876b69ac99006d75fb210.png?0.45270219836863634)  
 ## 設計モデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb211.png?0.13988046947345967)  
+![](assets/29814634b37d876b69ac99006d75fb211.png?0.9344557091625927)  
 ## ERモデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb212.png?0.15940943603052293)  
+![](assets/29814634b37d876b69ac99006d75fb212.png?0.3215964421335884)  
 `Product`
 ```rb
 # == Schema Information
@@ -28,8 +28,10 @@ SalesModeling
 #  sales_modeling_size_id             :integer
 #  sales_modeling_color_id            :integer
 #  sales_modeling_product_category_id :integer
-#  unit_purchase_price                :decimal(10, )                          # 仕入単価
-#  unit_sales_price                   :decimal(10, )                          # 販売単価
+#  unit_purchase_price_amount         :decimal(10, )                          # 仕入単価
+#  unit_purchase_price_currency       :string(255)                            # 仕入単価通貨
+#  unit_sales_price_amount            :decimal(10, )                          # 販売単価
+#  unit_sales_price_currency          :string(255)                            # 販売単価通貨
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 #
@@ -82,6 +84,10 @@ class SalesModeling::Product < ApplicationRecord
   
   def product_category
     self.sales_modeling_product_category
+  end
+  
+  def unit_purchase_price
+    @unit_purchase_price ||= SalesModeling::JANCode.new(self.code)
   end
 end
   
@@ -159,7 +165,35 @@ class SalesModeling::JANCode
   end
   
   def valid?
-    raise unless @code.length == 13
+    raise "Not JAN code format" unless @code.length == 13
+  end
+end
+```  
+`Money`
+```rb
+class SalesModeling::Money
+  attr_reader :amount, :currency
+  
+  def initialize(amount, currency = "JPY")
+    @amount = amount
+    @currency = currency
+  end
+  
+  def ==(other)
+    amount == other.amount && currency == other.currency
+  end
+  
+  def +(other)
+    raise "Currency is different" unless currency == other.currency
+  
+    SalesModeling::Money.new(amount + other.amount, currency)
+  end
+  
+  def -(other)
+    raise "Currency is different" unless currency == other.currency
+    raise "Other money is bigger than self" if amount < other.amount
+  
+    SalesModeling::Money.new(amount - other.amount, currency)
   end
 end
 ```  

@@ -31,14 +31,13 @@ class 商品区分 {
 ## 設計モデル
 ```puml
 class Product {
-  code
+  jan
   name
   size
   color
   product_category
   unit_purchase_price
   unit_sales_price
-  jan
 }
 class Size {
   code
@@ -59,11 +58,15 @@ class JANCode {
   check_digit
   valid?()
 }
-
+class Money {
+  amount
+  currency
+}
 Product --ro Size
 Product -o Color
 Product --o ProductCategory
 Product o-- JANCode
+Product o-- Money
 ```
 ## ERモデル
 ```puml
@@ -74,8 +77,10 @@ entity Product {
   # size_code [FK]
   # color_code [FK]
   # product_category_code [FK]
-  unit_purchase_price
-  unit_sales_price
+  unit_purchase_price_amount
+  unit_purchase_price_currency
+  unit_sales_price_amount
+  unit_sales_price_currency  
 }
 entity Size {
   + code [PK]
@@ -106,3 +111,5 @@ Product }-do-|| ProductCategory
 @import "../../../app/models/sales_modeling/product_category.rb"
 `JANCode`
 @import "../../../app/models/sales_modeling/jan_code.rb"
+`Money`
+@import "../../../app/models/sales_modeling/money.rb"
