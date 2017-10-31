@@ -7,9 +7,8 @@ markdown:
 
 SalesModeling
 ---
-## 商品モデルの設計
-### シンプルな商品モデル
-#### 分析モデル
+# シンプルな商品モデル
+## 分析モデル
 ```puml
 class 商品 {
   - 商品名
@@ -29,7 +28,7 @@ class 商品区分 {
 商品 -o カラー
 商品 --o 商品区分
 ```
-#### 設計モデル
+## 設計モデル
 ```puml
 class Product {
   code
@@ -66,7 +65,7 @@ Product -o Color
 Product --o ProductCategory
 Product o-- JANCode
 ```
-#### ERモデル
+## ERモデル
 ```puml
 entity Product {
   + code [PK]
