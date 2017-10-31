@@ -7,51 +7,51 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb210.png?0.45270219836863634)  
+![](../../../assets/29814634b37d876b69ac99006d75fb210.png?0.4904732783148207)  
 ## 設計モデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb211.png?0.9344557091625927)  
+![](../../../assets/29814634b37d876b69ac99006d75fb211.png?0.6791891320274084)  
 ## ERモデル
   
 
-![](assets/29814634b37d876b69ac99006d75fb212.png?0.3215964421335884)  
+![](../../../assets/29814634b37d876b69ac99006d75fb212.png?0.2391995963791127)  
 `Product`
 ```rb
 # == Schema Information
 #
-# Table name: sales_modeling_products # 商品
+# Table name: sales_modeling_type1_products # 商品
 #
-#  id                                 :integer          not null, primary key
-#  code                               :string(255)                            # 商品コード
-#  name                               :string(255)                            # 商品名
-#  sales_modeling_size_id             :integer
-#  sales_modeling_color_id            :integer
-#  sales_modeling_product_category_id :integer
-#  unit_purchase_price_amount         :decimal(10, )                          # 仕入単価
-#  unit_purchase_price_currency       :string(255)                            # 仕入単価通貨
-#  unit_sales_price_amount            :decimal(10, )                          # 販売単価
-#  unit_sales_price_currency          :string(255)                            # 販売単価通貨
-#  created_at                         :datetime         not null
-#  updated_at                         :datetime         not null
+#  id                                       :integer          not null, primary key
+#  code                                     :string(255)                            # 商品コード
+#  name                                     :string(255)                            # 商品名
+#  sales_modeling_type1_size_id             :integer
+#  sales_modeling_type1_color_id            :integer
+#  sales_modeling_type1_product_category_id :integer
+#  unit_purchase_price_amount               :decimal(10, )                          # 仕入単価
+#  unit_purchase_price_currency             :string(255)                            # 仕入単価通貨
+#  unit_sales_price_amount                  :decimal(10, )                          # 販売単価
+#  unit_sales_price_currency                :string(255)                            # 販売単価通貨
+#  created_at                               :datetime         not null
+#  updated_at                               :datetime         not null
 #
 # Indexes
 #
-#  index_sales_modeling_on_color_id             (sales_modeling_color_id)
-#  index_sales_modeling_on_product_category_id  (sales_modeling_product_category_id)
-#  index_sales_modeling_on_size_id              (sales_modeling_size_id)
+#  index_sales_modeling_type1_on_color_id             (sales_modeling_type1_color_id)
+#  index_sales_modeling_type1_on_product_category_id  (sales_modeling_type1_product_category_id)
+#  index_sales_modeling_type1_on_size_id              (sales_modeling_type1_size_id)
 #
 # Foreign Keys
 #
-#  fk_rails_3793dc5944  (sales_modeling_product_category_id => sales_modeling_product_categories.id)
-#  fk_rails_b57b123249  (sales_modeling_color_id => sales_modeling_colors.id)
-#  fk_rails_db80fcf3c4  (sales_modeling_size_id => sales_modeling_sizes.id)
+#  fk_rails_a430deaab8  (sales_modeling_type1_size_id => sales_modeling_type1_sizes.id)
+#  fk_rails_c635ddefc9  (sales_modeling_type1_color_id => sales_modeling_type1_colors.id)
+#  fk_rails_c9d507139e  (sales_modeling_type1_product_category_id => sales_modeling_type1_product_categories.id)
 #
   
-class SalesModeling::Product < ApplicationRecord
-  belongs_to :sales_modeling_color, :class_name => 'SalesModeling::Color'
-  belongs_to :sales_modeling_product_category, :class_name => 'SalesModeling::ProductCategory'
-  belongs_to :sales_modeling_size, :class_name => 'SalesModeling::Size'
+class SalesModeling::Type1::Product < ApplicationRecord
+  belongs_to :sales_modeling_type1_color, :class_name => 'SalesModeling::Type1::Color'
+  belongs_to :sales_modeling_type1_product_category, :class_name => 'SalesModeling::Type1::ProductCategory'
+  belongs_to :sales_modeling_type1_size, :class_name => 'SalesModeling::Type1::Size'
   
   def jan
     @jan ||= SalesModeling::JANCode.new(self.code)
@@ -63,31 +63,45 @@ class SalesModeling::Product < ApplicationRecord
   end
   
   def size=(size)
-    self.sales_modeling_size = size
+    self.sales_modeling_type1_size = size
   end
   
   def size
-    self.sales_modeling_size
+    self.sales_modeling_type1_size
   end
   
   def color=(color)
-    self.sales_modeling_color = color
+    self.sales_modeling_type1_color = color
   end
   
   def color
-    self.sales_modeling_color
+    self.sales_modeling_type1_color
   end
   
   def product_category=(product_category)
-    self.sales_modeling_product_category = product_category
+    self.sales_modeling_type1_product_category = product_category
   end
   
   def product_category
-    self.sales_modeling_product_category
+    self.sales_modeling_type1_product_category
   end
   
   def unit_purchase_price
-    @unit_purchase_price ||= SalesModeling::JANCode.new(self.code)
+    @unit_purchase_price ||= SalesModeling::Money.new(self.unit_purchase_price_amount)
+  end
+  
+  def unit_purchase_price=(money)
+    self.unit_purchase_price_amount = money.amount
+    self.unit_purchase_price_currency = money.currency
+  end
+  
+  def unit_sales_price
+    @unit_sales_price ||= SalesModeling::Money.new(self.unit_sales_price_amount)
+  end
+  
+  def unit_sales_price=(money)
+    self.unit_sales_price_amount = money.amount
+    self.unit_sales_price_currency = money.currency
   end
 end
   
@@ -96,7 +110,7 @@ end
 ```rb
 # == Schema Information
 #
-# Table name: sales_modeling_sizes # サイズ
+# Table name: sales_modeling_type1_sizes
 #
 #  id         :integer          not null, primary key
 #  code       :string(255)                            # コード
@@ -105,8 +119,8 @@ end
 #  updated_at :datetime         not null
 #
   
-class SalesModeling::Size < ApplicationRecord
-  has_many :sales_modeling_products, :class_name => 'SalesModeling::Product'
+class SalesModeling::Type1::Size < ApplicationRecord
+  has_many :sales_modeling_type1_products, :class_name => 'SalesModeling::Type1::Product'
 end
   
 ```  
@@ -114,7 +128,7 @@ end
 ```rb
 # == Schema Information
 #
-# Table name: sales_modeling_colors # カラー
+# Table name: sales_modeling_type1_colors # カラー
 #
 #  id         :integer          not null, primary key
 #  code       :string(255)                            # コード
@@ -123,8 +137,8 @@ end
 #  updated_at :datetime         not null
 #
   
-class SalesModeling::Color < ApplicationRecord
-  has_many :sales_modeling_products, :class_name => 'SalesModeling::Product'
+class SalesModeling::Type1::Color < ApplicationRecord
+  has_many :sales_modeling_type1_products, :class_name => 'SalesModeling::Type1::Product'
 end
   
 ```  
@@ -132,7 +146,7 @@ end
 ```rb
 # == Schema Information
 #
-# Table name: sales_modeling_product_categories # 商品区分
+# Table name: sales_modeling_type1_product_categories # 商品区分
 #
 #  id         :integer          not null, primary key
 #  code       :string(255)                            # コード
@@ -141,14 +155,14 @@ end
 #  updated_at :datetime         not null
 #
   
-class SalesModeling::ProductCategory < ApplicationRecord
-  has_many :sales_modeling_products, :class_name => 'SalesModeling::Product'
+class SalesModeling::Type1::ProductCategory < ApplicationRecord
+  has_many :sales_modeling_type1_products, :class_name => 'SalesModeling::Type1::Product'
 end
   
 ```  
 `JANCode`
 ```rb
-class SalesModeling::JANCode
+class SalesModeling::Type1::JANCode
   attr_reader :code,:country_code,:maker_code,:product_item_code,:check_digit
   
   def initialize(code)
@@ -171,7 +185,7 @@ end
 ```  
 `Money`
 ```rb
-class SalesModeling::Money
+class SalesModeling::Type1::Money
   attr_reader :amount, :currency
   
   def initialize(amount, currency = "JPY")
@@ -186,14 +200,14 @@ class SalesModeling::Money
   def +(other)
     raise "Currency is different" unless currency == other.currency
   
-    SalesModeling::Money.new(amount + other.amount, currency)
+    SalesModeling::Type1::Money.new(amount + other.amount, currency)
   end
   
   def -(other)
     raise "Currency is different" unless currency == other.currency
     raise "Other money is bigger than self" if amount < other.amount
   
-    SalesModeling::Money.new(amount - other.amount, currency)
+    SalesModeling::Type1::Money.new(amount - other.amount, currency)
   end
 end
 ```  

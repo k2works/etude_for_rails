@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030055452) do
+ActiveRecord::Schema.define(version: 20171031051452) do
 
   create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -353,38 +353,38 @@ ActiveRecord::Schema.define(version: 20171030055452) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales_modeling_colors", force: :cascade, comment: "カラー" do |t|
+  create_table "sales_modeling_type1_colors", force: :cascade, comment: "カラー" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名前"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales_modeling_product_categories", force: :cascade, comment: "商品区分" do |t|
+  create_table "sales_modeling_type1_product_categories", force: :cascade, comment: "商品区分" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名前"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales_modeling_products", force: :cascade, comment: "商品" do |t|
+  create_table "sales_modeling_type1_products", force: :cascade, comment: "商品" do |t|
     t.string "code", comment: "商品コード"
     t.string "name", comment: "商品名"
-    t.bigint "sales_modeling_size_id"
-    t.bigint "sales_modeling_color_id"
-    t.bigint "sales_modeling_product_category_id"
+    t.bigint "sales_modeling_type1_size_id"
+    t.bigint "sales_modeling_type1_color_id"
+    t.bigint "sales_modeling_type1_product_category_id"
     t.decimal "unit_purchase_price_amount", precision: 10, comment: "仕入単価"
     t.string "unit_purchase_price_currency", comment: "仕入単価通貨"
     t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
     t.string "unit_sales_price_currency", comment: "販売単価通貨"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sales_modeling_color_id"], name: "index_sales_modeling_on_color_id"
-    t.index ["sales_modeling_product_category_id"], name: "index_sales_modeling_on_product_category_id"
-    t.index ["sales_modeling_size_id"], name: "index_sales_modeling_on_size_id"
+    t.index ["sales_modeling_type1_color_id"], name: "index_sales_modeling_type1_on_color_id"
+    t.index ["sales_modeling_type1_product_category_id"], name: "index_sales_modeling_type1_on_product_category_id"
+    t.index ["sales_modeling_type1_size_id"], name: "index_sales_modeling_type1_on_size_id"
   end
 
-  create_table "sales_modeling_sizes", force: :cascade, comment: "サイズ" do |t|
+  create_table "sales_modeling_type1_sizes", force: :cascade do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名前"
     t.datetime "created_at", null: false
@@ -406,7 +406,7 @@ ActiveRecord::Schema.define(version: 20171030055452) do
   add_foreign_key "baukis_phones", "baukis_customers"
   add_foreign_key "baukis_staff_events", "baukis_staff_members"
   add_foreign_key "rails_tutorial_sample_microposts", "rails_tutorial_sample_users"
-  add_foreign_key "sales_modeling_products", "sales_modeling_colors"
-  add_foreign_key "sales_modeling_products", "sales_modeling_product_categories"
-  add_foreign_key "sales_modeling_products", "sales_modeling_sizes"
+  add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_colors"
+  add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_product_categories"
+  add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_sizes"
 end

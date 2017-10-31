@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: sales_modeling_colors # カラー
+# Table name: sales_modeling_type1_sizes
 #
 #  id         :integer          not null, primary key
 #  code       :string(255)                            # コード
@@ -9,6 +9,6 @@
 #  updated_at :datetime         not null
 #
 
-class SalesModeling::Color < ApplicationRecord
-  has_many :sales_modeling_products, :class_name => 'SalesModeling::Product'
+class SalesModeling::Type1::Size < ApplicationRecord
+  has_many :sales_modeling_type1_products, :class_name => 'SalesModeling::Type1::Product'
 end

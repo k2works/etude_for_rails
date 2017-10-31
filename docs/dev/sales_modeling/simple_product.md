@@ -102,14 +102,14 @@ Product }-do-|| Color
 Product }-do-|| ProductCategory
 ```
 `Product`
-@import "../../../app/models/sales_modeling/product.rb"
+@import "../../../app/models/sales_modeling/type1/product.rb"
 `Size`
-@import "../../../app/models/sales_modeling/size.rb"
+@import "../../../app/models/sales_modeling/type1/size.rb"
 `Color`
-@import "../../../app/models/sales_modeling/color.rb"
+@import "../../../app/models/sales_modeling/type1/color.rb"
 `ProductCategory`
-@import "../../../app/models/sales_modeling/product_category.rb"
+@import "../../../app/models/sales_modeling/type1/product_category.rb"
 `JANCode`
-@import "../../../app/models/sales_modeling/jan_code.rb"
+@import "../../../app/models/sales_modeling/type1/jan_code.rb"
 `Money`
-@import "../../../app/models/sales_modeling/money.rb"
+@import "../../../app/models/sales_modeling/type1/money.rb"
