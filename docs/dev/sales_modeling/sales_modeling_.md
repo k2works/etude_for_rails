@@ -4,4 +4,4 @@ SalesModeling
 ---
 ## 商品モデルの設計
   
-### [シンプルな商品モデル](./simple_product_.md)
+### [シンプルな商品モデル](./type1_product_.md)
