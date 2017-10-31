@@ -79,10 +79,10 @@ entity Product {
 }
 entity Category {
   + code [PK]  
-  + parent_code [PK]  
+  # category_class_code [FK]    
   --
   name
-  # category_class_code [FK]  
+  # parent_code [FK]    
 }
 entity CategoryClass {
   + code [PK]

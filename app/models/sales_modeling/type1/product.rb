@@ -34,7 +34,7 @@ class SalesModeling::Type1::Product < ApplicationRecord
   belongs_to :sales_modeling_type1_size, :class_name => 'SalesModeling::Type1::Size'
 
   def jan
-    @jan ||= SalesModeling::JANCode.new(self.code)
+    @jan ||= SalesModeling::Type1::JANCode.new(self.code)
   end
 
   def jan=(jan)
@@ -67,7 +67,7 @@ class SalesModeling::Type1::Product < ApplicationRecord
   end
 
   def unit_purchase_price
-    @unit_purchase_price ||= SalesModeling::Money.new(self.unit_purchase_price_amount)
+    @unit_purchase_price ||= SalesModeling::Type1::Money.new(self.unit_purchase_price_amount)
   end
 
   def unit_purchase_price=(money)
@@ -76,7 +76,7 @@ class SalesModeling::Type1::Product < ApplicationRecord
   end
 
   def unit_sales_price
-    @unit_sales_price ||= SalesModeling::Money.new(self.unit_sales_price_amount)
+    @unit_sales_price ||= SalesModeling::Type1::Money.new(self.unit_sales_price_amount)
   end
 
   def unit_sales_price=(money)
