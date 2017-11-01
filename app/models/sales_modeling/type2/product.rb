@@ -66,4 +66,18 @@ class SalesModeling::Type2::Product < ApplicationRecord
 
     self.size_category = size
   end
+
+  def color
+    @color ||= SalesModeling::Type2::Color.new(self.color_category.code, self.color_category.name)
+  end
+
+  def color=(color)
+    color = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.color_category.sales_modeling_type2_category_class.id,
+        code:color.code,
+        name:color.name
+    ).first_or_create
+
+    self.color_category = color
+  end
 end

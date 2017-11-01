@@ -116,18 +116,18 @@ RSpec.describe SalesModeling::Type1::Product, type: :model do
       expect(SalesModeling::Type1::Product.where(name:'商品C').count).to eq 3
     end
   end
-end
 
-private
+  private
 
-def check(new_product,check_product)
-  expect(new_product.code).to eq check_product[:code]
-  expect(new_product.name).to eq check_product[:name]
-  expect(new_product.size.name).to eq check_product[:size].name
-  expect(new_product.color.name).to eq check_product[:color].name
-  expect(new_product.product_category.name).to eq check_product[:product_category].name
-  expect(new_product.unit_purchase_price_amount).to eq check_product[:unit_purchase_price_amount]
-  expect(new_product.unit_purchase_price_currency).to eq check_product[:unit_purchase_price_currency]
-  expect(new_product.unit_sales_price_amount).to eq check_product[:unit_sales_price_amount]
-  expect(new_product.unit_sales_price_currency).to eq check_product[:unit_sales_price_currency]
+  def check(new_product,check_product)
+    expect(new_product.code).to eq check_product[:code]
+    expect(new_product.name).to eq check_product[:name]
+    expect(new_product.size.name).to eq check_product[:size].name
+    expect(new_product.color.name).to eq check_product[:color].name
+    expect(new_product.product_category.name).to eq check_product[:product_category].name
+    expect(new_product.unit_purchase_price_amount).to eq check_product[:unit_purchase_price_amount]
+    expect(new_product.unit_purchase_price_currency).to eq check_product[:unit_purchase_price_currency]
+    expect(new_product.unit_sales_price_amount).to eq check_product[:unit_sales_price_amount]
+    expect(new_product.unit_sales_price_currency).to eq check_product[:unit_sales_price_currency]
+  end
 end
