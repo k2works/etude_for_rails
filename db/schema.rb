@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031061935) do
+ActiveRecord::Schema.define(version: 20171101063744) do
 
   create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -426,6 +426,55 @@ ActiveRecord::Schema.define(version: 20171031061935) do
     t.index ["size_category_id"], name: "index_size_category_id"
   end
 
+  create_table "sales_modeling_type3_categories", force: :cascade, comment: "分類" do |t|
+    t.string "code", comment: "コード"
+    t.string "name", comment: "分類名"
+    t.bigint "sales_modeling_type3_category_class_id"
+    t.bigint "parent_category_id", comment: "親カテゴリ"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_category_id"], name: "index_sales_modeling_type3_categories_on_parent_category_id"
+    t.index ["sales_modeling_type3_category_class_id"], name: "index_sales_modeling_type3_on_category_class_id"
+  end
+
+  create_table "sales_modeling_type3_category_classes", force: :cascade, comment: "分類種別" do |t|
+    t.string "code", comment: "コード"
+    t.string "name", comment: "分類種別名"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_modeling_type3_products", force: :cascade, comment: "商品" do |t|
+    t.string "code", comment: "商品コード"
+    t.string "name", comment: "商品名"
+    t.bigint "product_type_category_id", comment: "製品区分"
+    t.bigint "brand_category_id", comment: "ブランド"
+    t.bigint "season_category_id", comment: "シーズン"
+    t.bigint "year_category_id", comment: "年度"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_category_id"], name: "index_type3_brand_category_id"
+    t.index ["product_type_category_id"], name: "index_type3_product_type_category_id"
+    t.index ["season_category_id"], name: "index_type3_season_category_id"
+    t.index ["year_category_id"], name: "index_type3_year_category_id"
+  end
+
+  create_table "sales_modeling_type3_skus", force: :cascade, comment: "ストックキーピングユニット" do |t|
+    t.string "code", comment: "SKUコード"
+    t.decimal "unit_purchase_price_amount", precision: 10, comment: "仕入単価"
+    t.string "unit_purchase_price_currency", comment: "仕入単価通貨"
+    t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
+    t.string "unit_sales_price_currency", comment: "販売単価通貨"
+    t.bigint "sales_modeling_type3_product_id", comment: "商品"
+    t.bigint "size_category_id", comment: "サイズ"
+    t.bigint "color_category_id", comment: "色"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["color_category_id"], name: "index_type3_color_category_id"
+    t.index ["sales_modeling_type3_product_id"], name: "index_sales_modeling_type3_on_product_id"
+    t.index ["size_category_id"], name: "index_type3_size_category_id"
+  end
+
   create_table "todo_tasks", force: :cascade, comment: "タスク" do |t|
     t.string "name", null: false, comment: "名前"
     t.text "content", null: false, comment: "内容"
@@ -445,4 +494,6 @@ ActiveRecord::Schema.define(version: 20171031061935) do
   add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_product_categories"
   add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_sizes"
   add_foreign_key "sales_modeling_type2_categories", "sales_modeling_type2_category_classes"
+  add_foreign_key "sales_modeling_type3_categories", "sales_modeling_type3_category_classes"
+  add_foreign_key "sales_modeling_type3_skus", "sales_modeling_type3_products"
 end

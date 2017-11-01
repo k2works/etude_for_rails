@@ -172,3 +172,11 @@ SKU }-do-|| Product
 Category }-do-|| Category
 Category }-do-|| CategoryClass
 ```
+`SKU`
+@import "../../../app/models/sales_modeling/type3/sku.rb"
+`Product`
+@import "../../../app/models/sales_modeling/type3/product.rb"
+`Category`
+@import "../../../app/models/sales_modeling/type3/category.rb"
+`CategoryClass`
+@import "../../../app/models/sales_modeling/type3/category_class.rb"
