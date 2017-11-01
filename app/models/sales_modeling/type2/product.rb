@@ -52,4 +52,18 @@ class SalesModeling::Type2::Product < ApplicationRecord
     self.unit_sales_price_amount = money.amount
     self.unit_sales_price_currency = money.currency
   end
+
+  def size
+    @size ||= SalesModeling::Type2::Size.new(self.size_category.code, self.size_category.name)
+  end
+
+  def size=(size)
+    size = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.size_category.sales_modeling_type2_category_class.id,
+        code:size.code,
+        name:size.name
+    ).first_or_create
+
+    self.size_category = size
+  end
 end

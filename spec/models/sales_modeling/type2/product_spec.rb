@@ -105,6 +105,19 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
     end
   end
 
+  describe '#update' do
+    example '商品A サイズ:S -> L' do
+      create(:sales_modeling_type2_product,product_a)
+      update_product = SalesModeling::Type2::Product.first
+      update_product.size = SalesModeling::Type2::Size.new('2','L')
+      update_product.save!
+
+      expect(SalesModeling::Type2::CategoryClass.where(name:'サイズ').first.sales_modeling_type2_categories.count).to eq 2
+      expect(update_product.size_category.code).to eq '00002'
+      expect(update_product.size_category.name).to eq 'L'
+    end
+  end
+
   describe '#count' do
     example '商品A x 1, 商品B x 2, 商品C x 3' do
       1.times do
