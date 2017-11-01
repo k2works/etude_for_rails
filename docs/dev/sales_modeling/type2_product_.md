@@ -7,15 +7,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/18ea6da402e4324333324e00d3b39f9d0.png?0.5839159950701984)  
+![](assets/18ea6da402e4324333324e00d3b39f9d0.png?0.7524143861890831)  
 ## 設計モデル
   
 
-![](assets/18ea6da402e4324333324e00d3b39f9d1.png?0.3822151868581143)  
+![](assets/18ea6da402e4324333324e00d3b39f9d1.png?0.7078175748980979)  
 ## ERモデル
   
 
-![](assets/18ea6da402e4324333324e00d3b39f9d2.png?0.5856196700603202)  
+![](assets/18ea6da402e4324333324e00d3b39f9d2.png?0.8658322270622811)  
 `Product`
 ```rb
 # == Schema Information
@@ -71,6 +71,48 @@ class SalesModeling::Type2::Product < ApplicationRecord
   def unit_sales_price=(money)
     self.unit_sales_price_amount = money.amount
     self.unit_sales_price_currency = money.currency
+  end
+  
+  def size
+    @size ||= SalesModeling::Type2::Size.new(self.size_category.code, self.size_category.name)
+  end
+  
+  def size=(size)
+    size = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.size_category.sales_modeling_type2_category_class.id,
+        code:size.code,
+        name:size.name
+    ).first_or_create
+  
+    self.size_category = size
+  end
+  
+  def color
+    @color ||= SalesModeling::Type2::Color.new(self.color_category.code, self.color_category.name)
+  end
+  
+  def color=(color)
+    color = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.color_category.sales_modeling_type2_category_class.id,
+        code:color.code,
+        name:color.name
+    ).first_or_create
+  
+    self.color_category = color
+  end
+  
+  def type
+    @type ||= SalesModeling::Type2::ProductType.new(self.product_type_category.code, self.product_type_category.name)
+  end
+  
+  def type=(type)
+    type = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.product_type_category.sales_modeling_type2_category_class.id,
+        code:type.code,
+        name:type.name
+    ).first_or_create
+  
+    self.product_type_category = type
   end
 end
   
