@@ -412,18 +412,18 @@ ActiveRecord::Schema.define(version: 20171031061935) do
   create_table "sales_modeling_type2_products", force: :cascade, comment: "商品" do |t|
     t.string "code", comment: "商品コード"
     t.string "name", comment: "商品名"
-    t.bigint "size_id", comment: "サイズ"
-    t.bigint "color_id", comment: "色"
-    t.bigint "product_category_id", comment: "製品区分"
+    t.bigint "size_category_id", comment: "サイズ"
+    t.bigint "color_category_id", comment: "色"
+    t.bigint "product_type_category_id", comment: "製品区分"
     t.decimal "unit_purchase_price_amount", precision: 10, comment: "仕入単価"
     t.string "unit_purchase_price_currency", comment: "仕入単価通貨"
     t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
     t.string "unit_sales_price_currency", comment: "販売単価通貨"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["color_id"], name: "index_sales_modeling_type2_products_on_color_id"
-    t.index ["product_category_id"], name: "index_sales_modeling_type2_products_on_product_category_id"
-    t.index ["size_id"], name: "index_sales_modeling_type2_products_on_size_id"
+    t.index ["color_category_id"], name: "index_color_category_id"
+    t.index ["product_type_category_id"], name: "index_product_type_category_id"
+    t.index ["size_category_id"], name: "index_size_category_id"
   end
 
   create_table "todo_tasks", force: :cascade, comment: "タスク" do |t|

@@ -28,9 +28,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
   let(:product_a) { {
       code:product_code.code,
       name:'商品A',
-      size:s,
-      color:blue,
-      product_category:special,
+      size_category:s,
+      color_category:blue,
+      product_type_category:special,
       unit_purchase_price_amount:hundredYen.amount,
       unit_purchase_price_currency:hundredYen.currency,
       unit_sales_price_amount:hundredYen.+(SalesModeling::Type2::Money.new(100)).amount,
@@ -39,9 +39,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
   let(:product_b) { {
       code:product_code.code,
       name:'商品B',
-      size:m,
-      color:black,
-      product_category:normal,
+      size_category:m,
+      color_category:black,
+      product_type_category:normal,
       unit_purchase_price_amount:tenDollar.amount,
       unit_purchase_price_currency:tenDollar.currency,
       unit_sales_price_amount:tenDollar.+(SalesModeling::Type2::Money.new(10,'$')).amount,
@@ -50,9 +50,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
   let(:product_c) { {
       code:product_code.code,
       name:'商品C',
-      size:l,
-      color:red,
-      product_category:null,
+      size_category:l,
+      color_category:red,
+      product_type_category:null,
   } }
 
   describe '#save!' do
@@ -60,9 +60,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
       product = SalesModeling::Type2::Product.new
       product.name = '商品A'
       product.product_code = product_code
-      product.size = s
-      product.color = blue
-      product.product_category = special
+      product.size_category = s
+      product.color_category = blue
+      product.product_type_category = special
       product.unit_purchase_price = hundredYen
       product.unit_sales_price = hundredYen.+(SalesModeling::Type2::Money.new(100))
       product.save!
@@ -75,9 +75,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
       product = SalesModeling::Type2::Product.new({
                                                       name: '商品B',
                                                       product_code: product_code,
-                                                      size: m,
-                                                      color: black,
-                                                      product_category: normal,
+                                                      size_category: m,
+                                                      color_category: black,
+                                                      product_type_category: normal,
                                                       unit_purchase_price: tenDollar,
                                                       unit_sales_price: tenDollar.+(SalesModeling::Type1::Money.new(10,'$'))
                                                   })
@@ -91,9 +91,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
       product = {
           product_code:product_code,
           name:'商品C',
-          size:l,
-          color:red,
-          product_category:null,
+          size_category:l,
+          color_category:red,
+          product_type_category:null,
           unit_purchase_price: notSet,
           unit_sales_price: notSet
       }
@@ -130,9 +130,9 @@ private
 def check(new_product,check_product)
   expect(new_product.code).to eq check_product[:code]
   expect(new_product.name).to eq check_product[:name]
-  expect(new_product.size.name).to eq check_product[:size].name
-  expect(new_product.color.name).to eq check_product[:color].name
-  expect(new_product.product_category.name).to eq check_product[:product_category].name
+  expect(new_product.size_category.name).to eq check_product[:size_category].name
+  expect(new_product.color_category.name).to eq check_product[:color_category].name
+  expect(new_product.product_type_category.name).to eq check_product[:product_type_category].name
   expect(new_product.unit_purchase_price_amount).to eq check_product[:unit_purchase_price_amount]
   expect(new_product.unit_purchase_price_currency).to eq check_product[:unit_purchase_price_currency]
   expect(new_product.unit_sales_price_amount).to eq check_product[:unit_sales_price_amount]

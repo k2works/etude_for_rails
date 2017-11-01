@@ -31,9 +31,9 @@ class 分類種別 {
 class Product {
   product_code
   name
-  size
-  color
-  product_category
+  size_category
+  color_category
+  product_type_category
   unit_purchase_price
   unit_sales_price
 }
@@ -45,7 +45,7 @@ class Color {
   code
   name
 }
-class ProductCategory {
+class ProductType {
   code
   name
 }
@@ -59,7 +59,7 @@ class Money {
 }
 Product --ro Size
 Product -o Color
-Product --o ProductCategory
+Product --o ProductType
 Product o-- ProductCode
 Product o-- Money
 ```
@@ -69,9 +69,9 @@ entity Product {
   + code [PK]
   --
   name
-  # size_code [FK]
-  # color_code [FK]
-  # product_category_code [FK]
+  # size_category_code [FK]
+  # color_category_code [FK]
+  # product_type_category_code [FK]
   unit_purchase_price_amount
   unit_purchase_price_currency
   unit_sales_price_amount
