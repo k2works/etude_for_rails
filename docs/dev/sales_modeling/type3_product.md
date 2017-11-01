@@ -14,14 +14,12 @@ SalesModeling
 + 商品は「品番」で管理
 + 同じ商品でも「サイズ」と「カラー」はSKU（ストックキーピングユニット）として管理することが多い
 ### 品番で管理
-
-|ブランド  |    |    |
-|:----:   |:----:|:----:|
-|         | X  |X1|
-|         |    |X2|
-|         |    |X3|
-|         | Y  |Y1|
-|         |    |Y2|
+|年度   |       | シーズン |    |
+|:----:|:----: |:----:   |:----:|
+|     | 2017 |         |春夏物||
+|     |      |         |秋冬物|
+|     | 2018 |         |春夏物||
+|     |      |         |秋冬物|
 
 |商品区分  |    |    |
 |:----:   |:----:|:----:|
@@ -30,13 +28,13 @@ SalesModeling
 |         |           |...|
 
 
-|年度   |       | シーズン |    |
-|:----:|:----: |:----:   |:----:|
-|     | 2017 |         |春夏物||
-|     |      |         |秋冬物|
-|     | 2018 |         |春夏物||
-|     |      |         |秋冬物|
-
+|ブランド  |    |    |
+|:----:   |:----:|:----:|
+|         | X  |X1|
+|         |    |X2|
+|         |    |X3|
+|         | Y  |Y1|
+|         |    |Y2|
 
 ### SKUで管理
 |       |L          |M            |S            |
@@ -180,3 +178,5 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/sales_modeling/type3/category.rb"
 `CategoryClass`
 @import "../../../app/models/sales_modeling/type3/category_class.rb"
+`ProductCode`
+@import "../../../app/models/sales_modeling/type3/value_object/product_code.rb"

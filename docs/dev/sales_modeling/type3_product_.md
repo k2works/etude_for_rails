@@ -13,14 +13,12 @@ SalesModeling
 + 同じ商品でも「サイズ」と「カラー」はSKU（ストックキーピングユニット）として管理することが多い
 ### 品番で管理
   
-  
-|ブランド  |    |    |
-|:----:   |:----:|:----:|
-|         | X  |X1|
-|         |    |X2|
-|         |    |X3|
-|         | Y  |Y1|
-|         |    |Y2|
+|年度   |       | シーズン |    |
+|:----:|:----: |:----:   |:----:|
+|     | 2017 |         |春夏物||
+|     |      |         |秋冬物|
+|     | 2018 |         |春夏物||
+|     |      |         |秋冬物|
   
 |商品区分  |    |    |
 |:----:   |:----:|:----:|
@@ -29,13 +27,13 @@ SalesModeling
 |         |           |...|
   
   
-|年度   |       | シーズン |    |
-|:----:|:----: |:----:   |:----:|
-|     | 2017 |         |春夏物||
-|     |      |         |秋冬物|
-|     | 2018 |         |春夏物||
-|     |      |         |秋冬物|
-  
+|ブランド  |    |    |
+|:----:   |:----:|:----:|
+|         | X  |X1|
+|         |    |X2|
+|         |    |X3|
+|         | Y  |Y1|
+|         |    |Y2|
   
 ### SKUで管理
   
@@ -48,15 +46,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](../../../assets/0f28a17f695955efdbee3d6cf0374be10.png?0.35287741957044827)  
+![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.7790196716641278)  
 ## 設計モデル
   
 
-![](../../../assets/0f28a17f695955efdbee3d6cf0374be11.png?0.4567702028861418)  
+![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.6995334612138278)  
 ## ERモデル
   
 
-![](../../../assets/0f28a17f695955efdbee3d6cf0374be12.png?0.6419745867001947)  
+![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.9990578153759719)  
 `SKU`
 ```rb
 # == Schema Information
@@ -180,5 +178,25 @@ class SalesModeling::Type3::CategoryClass < ApplicationRecord
   has_many :categories, :class_name => 'SalesModeling::Type3::Category', :foreign_key => 'sales_modeling_type3_category_class_id'
 end
   
+```  
+`ProductCode`
+```rb
+class SalesModeling::Type3::ValueObject::ProductCode
+  attr_reader :code
+  
+  def initialize(code)
+    @code = code
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Not prodcut code format" unless @code.length == 5
+    raise "Not prodcut code format" unless @code.slice(0) == 'p'
+  end
+end
 ```  
   
