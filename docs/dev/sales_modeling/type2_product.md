@@ -29,11 +29,8 @@ class 分類種別 {
 ## 設計モデル
 ```puml
 class Product {
-  product_code
+  code
   name
-  size_category
-  color_category
-  product_type_category
   unit_purchase_price
   unit_sales_price
 }

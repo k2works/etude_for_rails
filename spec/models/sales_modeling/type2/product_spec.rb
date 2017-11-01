@@ -15,9 +15,9 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
 
   let(:product_category) { create(:sales_modeling_type2_category_class,code:'3',name:'商品区分') }
   let(:product_category_parent) { create(:sales_modeling_type2_category) }
-  let(:normal) { create(:sales_modeling_type2_category,code:'1',name:'定価', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
-  let(:special) { create(:sales_modeling_type2_category,code:'2',name:'特価', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
-  let(:null) { create(:sales_modeling_type2_category,code:'3',name:'無し', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
+  let(:normal) { create(:sales_modeling_type2_category,code:'01',name:'定価', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
+  let(:special) { create(:sales_modeling_type2_category,code:'02',name:'特価', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
+  let(:null) { create(:sales_modeling_type2_category,code:'03',name:'無し', parent_category:product_category_parent, sales_modeling_type2_category_class:product_category) }
 
   let(:product_code) { SalesModeling::Type2::ProductCode.new('1234567890')}
 
@@ -126,6 +126,17 @@ RSpec.describe SalesModeling::Type2::Product, type: :model do
       expect(SalesModeling::Type2::CategoryClass.where(name:'色').first.sales_modeling_type2_categories.count).to eq 2
       expect(update_product.color_category.code).to eq '00002'
       expect(update_product.color_category.name).to eq '緑'
+    end
+
+    example '商品A 商品区分:終売' do
+      create(:sales_modeling_type2_product,product_a)
+      update_product = SalesModeling::Type2::Product.first
+      update_product.type = SalesModeling::Type2::ProductType.new('02','終売')
+      update_product.save!
+
+      expect(SalesModeling::Type2::CategoryClass.where(name:'商品区分').first.sales_modeling_type2_categories.count).to eq 2
+      expect(update_product.product_type_category.code).to eq '02'
+      expect(update_product.product_type_category.name).to eq '終売'
     end
   end
 

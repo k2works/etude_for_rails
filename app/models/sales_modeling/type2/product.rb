@@ -80,4 +80,18 @@ class SalesModeling::Type2::Product < ApplicationRecord
 
     self.color_category = color
   end
+
+  def type
+    @type ||= SalesModeling::Type2::ProductType.new(self.product_type_category.code, self.product_type_category.name)
+  end
+
+  def type=(type)
+    type = SalesModeling::Type2::Category.where(
+        sales_modeling_type2_category_class_id:self.product_type_category.sales_modeling_type2_category_class.id,
+        code:type.code,
+        name:type.name
+    ).first_or_create
+
+    self.product_type_category = type
+  end
 end
