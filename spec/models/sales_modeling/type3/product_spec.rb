@@ -6,7 +6,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   let(:y_2017) { create(:year_category,code:y_2017_value.code,name:y_2017_value.name) }
   let(:y_2018) { create(:year_category,code:y_2018_value.code,name:y_2018_value.name) }
   let(:y_2017_season_value) { SalesModeling::Type3::ValueObject::Season.new('1','春夏物')}
-  let(:y_2018_season_value) { SalesModeling::Type3::ValueObject::Season.new('2','春夏物')}
+  let(:y_2018_season_value) { SalesModeling::Type3::ValueObject::Season.new('2','秋冬物')}
   let(:season_2017) { create(:season_category,code:y_2017_season_value.code,name:y_2017_season_value.name,parent_category:y_2017) }
   let(:season_2018) { create(:season_category,code:y_2018_season_value.code,name:y_2018_season_value.name,parent_category:y_2018) }
 
@@ -29,6 +29,8 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   let(:p0001) { SalesModeling::Type3::ValueObject::ProductCode.new('1') }
   let(:p0002) { SalesModeling::Type3::ValueObject::ProductCode.new('2') }
   let(:p0003) { SalesModeling::Type3::ValueObject::ProductCode.new('3') }
+
+  let(:product) { create(:product_1)}
 
   let(:product_p0001) { {
       code:p0001.code,
@@ -84,6 +86,56 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
       expect(SalesModeling::Type3::Product.where(code:p0001.code).count).to eq 1
       expect(SalesModeling::Type3::Product.where(season_category_id: season_2018.id).first.season_category).to eq season_2018
       expect(SalesModeling::Type3::Product.where(brand_category_id: brand_x3.id).first.brand_category).to eq brand_x3
+    end
+  end
+
+  describe '#update' do
+    example '商品名変更' do
+      name = product.name
+      product.name = '商品Z'
+      product.save!
+      expect(SalesModeling::Type3::Product.first.name).not_to eq name
+    end
+
+    example '年度・シーズン変更' do
+      year = product.year
+      season = product.season
+      product.season = season_2018
+      product.save!
+      expect(SalesModeling::Type3::Product.first.year.name).not_to eq year.name
+      expect(SalesModeling::Type3::Product.first.season.name).not_to eq season.name
+    end
+
+    example 'ブランド変更' do
+      brand = product.brand
+      product.brand = brand_x2
+      product.save!
+      expect(SalesModeling::Type3::Product.first.brand.name).not_to eq brand.name
+    end
+
+    example '商品区分変更' do
+      type = product.type
+      product.type = jacket
+      product.save!
+      expect(SalesModeling::Type3::Product.first.type.name).not_to eq type.name
+    end
+  end
+
+  describe '#delete' do
+    example '全件削除' do
+      [p0001, p0002, p0003].each do |product_code|
+        create(:product_1, code:product_code.code)
+      end
+      SalesModeling::Type3::Product.delete_all
+      expect(SalesModeling::Type3::Product.count).not_to eq 3
+    end
+
+    example '１件削除' do
+      [p0001, p0002, p0003].each do |product_code|
+        create(:product_1, code:product_code.code)
+      end
+      SalesModeling::Type3::Product.where(code: p0001.code).delete_all
+      expect(SalesModeling::Type3::Product.count).to eq 2
     end
   end
 
