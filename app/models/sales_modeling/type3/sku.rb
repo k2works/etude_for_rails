@@ -26,7 +26,25 @@
 #
 
 class SalesModeling::Type3::Sku < ApplicationRecord
-  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product'
+  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product', dependent: :destroy
   belongs_to :size_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :color_category, :class_name => 'SalesModeling::Type3::Category'
+
+  def unit_purchase_price
+    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_purchase_price_amount)
+  end
+
+  def unit_purchase_price=(money)
+    self.unit_purchase_price_amount = money.amount
+    self.unit_purchase_price_currency = money.currency
+  end
+
+  def unit_sales_price
+    @unit_sales_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_sales_price_amount)
+  end
+
+  def unit_sales_price=(money)
+    self.unit_sales_price_amount = money.amount
+    self.unit_sales_price_currency = money.currency
+  end
 end
