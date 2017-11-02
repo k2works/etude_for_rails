@@ -180,3 +180,13 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/sales_modeling/type3/category_class.rb"
 `ProductCode`
 @import "../../../app/models/sales_modeling/type3/value_object/product_code.rb"
+`Money`
+@import "../../../app/models/sales_modeling/type3/value_object/money.rb"
+`Year`
+@import "../../../app/models/sales_modeling/type3/value_object/year.rb"
+`Season`
+@import "../../../app/models/sales_modeling/type3/value_object/season.rb"
+`ProductType`
+@import "../../../app/models/sales_modeling/type3/value_object/product_type.rb"
+`Brand`
+@import "../../../app/models/sales_modeling/type3/value_object/brand.rb"

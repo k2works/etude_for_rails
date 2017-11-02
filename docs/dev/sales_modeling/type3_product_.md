@@ -46,15 +46,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.7790196716641278)  
+![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.2235518344817249)  
 ## 設計モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.6995334612138278)  
+![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.4732475087990933)  
 ## ERモデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.9990578153759719)  
+![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.8456692005310134)  
 `SKU`
 ```rb
 # == Schema Information
@@ -85,9 +85,27 @@ SalesModeling
 #
   
 class SalesModeling::Type3::Sku < ApplicationRecord
-  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product'
+  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product', dependent: :destroy
   belongs_to :size_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :color_category, :class_name => 'SalesModeling::Type3::Category'
+  
+  def unit_purchase_price
+    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_purchase_price_amount)
+  end
+  
+  def unit_purchase_price=(money)
+    self.unit_purchase_price_amount = money.amount
+    self.unit_purchase_price_currency = money.currency
+  end
+  
+  def unit_sales_price
+    @unit_sales_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_sales_price_amount)
+  end
+  
+  def unit_sales_price=(money)
+    self.unit_sales_price_amount = money.amount
+    self.unit_sales_price_currency = money.currency
+  end
 end
   
 ```  
@@ -119,8 +137,76 @@ class SalesModeling::Type3::Product < ApplicationRecord
   belongs_to :product_type_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :brand_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :season_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category'
+  belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category', optional: true
   has_many :skus, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'sales_modeling_type3_product_id'
+  
+  def product_code
+    @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(self.code)
+  end
+  
+  def product_code=(product_code)
+    self.code = SalesModeling::Type3::ValueObject::ProductCode.new(product_code.code).code
+  end
+  
+  def year
+    @year ||= SalesModeling::Type3::ValueObject::Year.new(self.year_category.code, self.year_category.name) unless self.year_category.nil?
+  end
+  
+  def season
+    @season ||= SalesModeling::Type3::ValueObject::Season.new(self.season_category.code, self.season_category.name)
+  end
+  
+  def season=(season)
+    season = SalesModeling::Type3::ValueObject::Season.new(season.code, season.name)
+    season = SalesModeling::Type3::Category.where(
+        code:season.code,
+        name:season.name
+    ).first_or_create
+    season.save!
+  
+    self.season_category = season
+  
+    unless season.parent_category.nil?
+      year = season.parent_category
+      year = SalesModeling::Type3::ValueObject::Season.new(year.code, year.name)
+      year = SalesModeling::Type3::Category.where(
+          code:year.code,
+          name:year.name
+      ).first_or_create
+      year.save!
+  
+      self.year_category = year
+    end
+  end
+  
+  def type
+    @type ||= SalesModeling::Type3::ValueObject::ProductType.new(self.product_type_category.code, self.product_type_category.name)
+  end
+  
+  def type=(type)
+    type = SalesModeling::Type3::ValueObject::ProductType.new(type.code, type.name)
+    type = SalesModeling::Type3::Category.where(
+        code:type.code,
+        name:type.name
+    ).first_or_create
+    type.save!
+  
+    self.product_type_category = type
+  end
+  
+  def brand
+    @brand ||= SalesModeling::Type3::ValueObject::Brand.new(self.brand_category.code, self.brand_category.name)
+  end
+  
+  def brand=(brand)
+    brand = SalesModeling::Type3::Category.where(
+        code:brand.code,
+        name:brand.name
+    ).first_or_create
+    brand.save!
+  
+    self.brand_category = brand
+  end
 end
   
 ```  
@@ -149,7 +235,7 @@ end
 #
   
 class SalesModeling::Type3::Category < ApplicationRecord
-  belongs_to :sales_modeling_type3_category_class, :class_name => 'SalesModeling::Type3::CategoryClass'
+  belongs_to :sales_modeling_type3_category_class, :class_name => 'SalesModeling::Type3::CategoryClass', optional: true
   belongs_to :parent_category, :class_name => 'SalesModeling::Type3::Category', optional: true
   has_many :categories, :class_name => 'SalesModeling::Type3::Category', :foreign_key => 'parent_category_id'
   has_many :sku_sizes, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'size_category_id'
@@ -185,7 +271,11 @@ class SalesModeling::Type3::ValueObject::ProductCode
   attr_reader :code
   
   def initialize(code)
-    @code = code
+    if code.slice(0) == 'p'
+      @code = code.rjust(4,'0')
+    else
+      @code = "p#{code.rjust(4,'0')}"
+    end
     valid?
   end
   
@@ -196,6 +286,114 @@ class SalesModeling::Type3::ValueObject::ProductCode
   def valid?
     raise "Not prodcut code format" unless @code.length == 5
     raise "Not prodcut code format" unless @code.slice(0) == 'p'
+  end
+end
+```  
+`Money`
+```rb
+class SalesModeling::Type3::ValueObject::Money
+  attr_reader :amount, :currency
+  
+  def initialize(amount, currency = "JPY")
+    @amount = amount
+    @currency = currency
+  end
+  
+  def ==(other)
+    amount == other.amount && currency == other.currency
+  end
+  
+  def +(other)
+    raise "Currency is different" unless currency == other.currency
+  
+    SalesModeling::Type3::ValueObject::Money.new(amount + other.amount, currency)
+  end
+  
+  def -(other)
+    raise "Currency is different" unless currency == other.currency
+    raise "Other money is bigger than self" if amount < other.amount
+  
+    SalesModeling::Type3::ValueObject::Money.new(amount - other.amount, currency)
+  end
+end
+```  
+`Year`
+```rb
+class SalesModeling::Type3::ValueObject::Year
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(5,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Invalid code format" unless @code.length == 5
+  end
+end
+```  
+`Season`
+```rb
+class SalesModeling::Type3::ValueObject::Season
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(5,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Invarid code format" unless @code.length == 5
+  end
+end
+```  
+`ProductType`
+```rb
+class SalesModeling::Type3::ValueObject::ProductType
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(2,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Bad code format" unless code.length == 2
+  end
+end
+```  
+`Brand`
+```rb
+class SalesModeling::Type3::ValueObject::Brand
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(5,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Invalid code format" unless code.length == 5
   end
 end
 ```  

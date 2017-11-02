@@ -24,6 +24,74 @@ class SalesModeling::Type3::Product < ApplicationRecord
   belongs_to :product_type_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :brand_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :season_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category'
+  belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category', optional: true
   has_many :skus, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'sales_modeling_type3_product_id'
+
+  def product_code
+    @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(self.code)
+  end
+
+  def product_code=(product_code)
+    self.code = SalesModeling::Type3::ValueObject::ProductCode.new(product_code.code).code
+  end
+
+  def year
+    @year ||= SalesModeling::Type3::ValueObject::Year.new(self.year_category.code, self.year_category.name) unless self.year_category.nil?
+  end
+
+  def season
+    @season ||= SalesModeling::Type3::ValueObject::Season.new(self.season_category.code, self.season_category.name)
+  end
+
+  def season=(season)
+    season = SalesModeling::Type3::ValueObject::Season.new(season.code, season.name)
+    season = SalesModeling::Type3::Category.where(
+        code:season.code,
+        name:season.name
+    ).first_or_create
+    season.save!
+
+    self.season_category = season
+
+    unless season.parent_category.nil?
+      year = season.parent_category
+      year = SalesModeling::Type3::ValueObject::Season.new(year.code, year.name)
+      year = SalesModeling::Type3::Category.where(
+          code:year.code,
+          name:year.name
+      ).first_or_create
+      year.save!
+
+      self.year_category = year
+    end
+  end
+
+  def type
+    @type ||= SalesModeling::Type3::ValueObject::ProductType.new(self.product_type_category.code, self.product_type_category.name)
+  end
+
+  def type=(type)
+    type = SalesModeling::Type3::ValueObject::ProductType.new(type.code, type.name)
+    type = SalesModeling::Type3::Category.where(
+        code:type.code,
+        name:type.name
+    ).first_or_create
+    type.save!
+
+    self.product_type_category = type
+  end
+
+  def brand
+    @brand ||= SalesModeling::Type3::ValueObject::Brand.new(self.brand_category.code, self.brand_category.name)
+  end
+
+  def brand=(brand)
+    brand = SalesModeling::Type3::Category.where(
+        code:brand.code,
+        name:brand.name
+    ).first_or_create
+    brand.save!
+
+    self.brand_category = brand
+  end
 end

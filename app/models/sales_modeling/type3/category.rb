@@ -21,7 +21,7 @@
 #
 
 class SalesModeling::Type3::Category < ApplicationRecord
-  belongs_to :sales_modeling_type3_category_class, :class_name => 'SalesModeling::Type3::CategoryClass'
+  belongs_to :sales_modeling_type3_category_class, :class_name => 'SalesModeling::Type3::CategoryClass', optional: true
   belongs_to :parent_category, :class_name => 'SalesModeling::Type3::Category', optional: true
   has_many :categories, :class_name => 'SalesModeling::Type3::Category', :foreign_key => 'parent_category_id'
   has_many :sku_sizes, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'size_category_id'
