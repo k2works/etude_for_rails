@@ -6,9 +6,9 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   let(:y_2017) { create(:year_category,code:y_2017_value.code,name:y_2017_value.name) }
   let(:y_2018) { create(:year_category,code:y_2018_value.code,name:y_2018_value.name) }
   let(:y_2017_season_value) { SalesModeling::Type3::ValueObject::Season.new('1','春夏物')}
-  let(:y_2018_season_value) { SalesModeling::Type3::ValueObject::Season.new('1','春夏物')}
+  let(:y_2018_season_value) { SalesModeling::Type3::ValueObject::Season.new('2','春夏物')}
   let(:season_2017) { create(:season_category,code:y_2017_season_value.code,name:y_2017_season_value.name,parent_category:y_2017) }
-  let(:season_2018) { create(:season_category,code:y_2017_season_value.code,name:y_2017_season_value.name,parent_category:y_2018) }
+  let(:season_2018) { create(:season_category,code:y_2018_season_value.code,name:y_2018_season_value.name,parent_category:y_2018) }
 
   let(:casual_value) {SalesModeling::Type3::ValueObject::ProductType.new('1','カジュアル')}
   let(:t_shirt_value) {SalesModeling::Type3::ValueObject::ProductType.new('2','Tシャツ')}
@@ -27,6 +27,8 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   let(:brand_x3) { create(:brand_category_sub2,code:brand_x3_value.code,name:brand_x3_value.name) }
 
   let(:p0001) { SalesModeling::Type3::ValueObject::ProductCode.new('1') }
+  let(:p0002) { SalesModeling::Type3::ValueObject::ProductCode.new('2') }
+  let(:p0003) { SalesModeling::Type3::ValueObject::ProductCode.new('3') }
 
   let(:product_p0001) { {
       code:p0001.code,
@@ -38,7 +40,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   }}
 
   describe '#create' do
-    example '品番:P0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
+    example '品番:p0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
       product = SalesModeling::Type3::Product.new
       product.product_code = p0001
       product.name = '商品A'
@@ -49,6 +51,39 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
 
       new_product = SalesModeling::Type3::Product.first
       check(new_product,product_p0001)
+    end
+  end
+
+  describe '#select' do
+    example '品番:p0001 品番:p0002 品番:p0003' do
+      SalesModeling::Type3::Product.new({
+                                            product_code:p0001,
+                                            name:'商品A',
+                                            season:season_2017,
+                                            type:t_shirt,
+                                            brand:brand_x1
+                                        }).save!
+
+      SalesModeling::Type3::Product.new({
+                                            product_code:p0002,
+                                            name:'商品B',
+                                            season:season_2018,
+                                            type:jacket,
+                                            brand:brand_x2
+                                        }).save!
+
+      SalesModeling::Type3::Product.new({
+                                            product_code:p0003,
+                                            name:'商品C',
+                                            season:season_2018,
+                                            type:t_shirt,
+                                            brand:brand_x3
+                                        }).save!
+
+      expect(SalesModeling::Type3::Product.count).to eq 3
+      expect(SalesModeling::Type3::Product.where(code:p0001.code).count).to eq 1
+      expect(SalesModeling::Type3::Product.where(season_category_id: season_2018.id).first.season_category).to eq season_2018
+      expect(SalesModeling::Type3::Product.where(brand_category_id: brand_x3.id).first.brand_category).to eq brand_x3
     end
   end
 
