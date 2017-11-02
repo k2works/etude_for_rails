@@ -83,32 +83,39 @@ class Product {
   name
 }
 class SKU {
+  code
   unit_purchase_price
   unit_sales_price  
 }
 class Year {
   code
   name
+  valid?()  
 }
 class Season {
   code
   name
+  valid?()  
 }
 class Brand {
   code
   name
+  valid?()  
 }
 class ProductType {
   code
   name
+  valid?()  
 }
 class Size {
   code
   name
+  valid?()  
 }
 class Color {
   code
   name
+  valid?()  
 }
 class ProductCode {
   code
@@ -117,6 +124,10 @@ class ProductCode {
 class Money {
   amount
   currency
+}
+class SkuCode {
+  code
+  valid?()
 }
 Product *-- SKU
 Product -o Brand
@@ -129,6 +140,7 @@ SKU -o Size
 SKU -ro Color
 Product o-- ProductCode
 SKU o-- Money
+SKU o-- SkuCode
 ```
 ## ERモデル
 ```puml
@@ -190,3 +202,9 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/sales_modeling/type3/value_object/product_type.rb"
 `Brand`
 @import "../../../app/models/sales_modeling/type3/value_object/brand.rb"
+`SkuCode`
+@import "../../../app/models/sales_modeling/type3/value_object/sku_code.rb"
+`Color`
+@import "../../../app/models/sales_modeling/type3/value_object/color.rb"
+`Size`
+@import "../../../app/models/sales_modeling/type3/value_object/size.rb"

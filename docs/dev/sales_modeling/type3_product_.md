@@ -46,15 +46,22 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.2235518344817249)  
+![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.48589178160908575)  
 ## 設計モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.4732475087990933)  
+```
+ImageMagick is required to be installed to convert svg to png.
+Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg117102-5219-t5mqwa.22kpt4kj4i.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/0f28a17f695955efdbee3d6cf0374be11.png
+magick: attributes construct error
+ `No such file or directory` @ error/svg.c/SVGError/2680.
+
+```  
+
 ## ERモデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.8456692005310134)  
+![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.9144549569478948)  
 `SKU`
 ```rb
 # == Schema Information
@@ -380,6 +387,71 @@ end
 `Brand`
 ```rb
 class SalesModeling::Type3::ValueObject::Brand
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(5,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Invalid code format" unless code.length == 5
+  end
+end
+```  
+`SkuCode`
+```rb
+class SalesModeling::Type3::ValueObject::SkuCode
+  attr_reader :code
+  
+  def initialize(product_code,code)
+    if code.length <= 5
+      @code = "#{product_code}-#{code.rjust(5,'0')}"
+    else
+      @code = code
+    end
+  
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Not sku code format" unless @code.length == 11
+    raise "Not sku code format" unless @code.slice(0) == 'p'
+  end
+end
+```  
+`Color`
+```rb
+class SalesModeling::Type3::ValueObject::Color
+  attr_reader :code, :name
+  
+  def initialize(code, name)
+    @code = code.rjust(5,'0')
+    @name = name
+    valid?
+  end
+  
+  def hash
+    self.hash
+  end
+  
+  def valid?
+    raise "Invalid code format" unless code.length == 5
+  end
+end
+```  
+`Size`
+```rb
+class SalesModeling::Type3::ValueObject::Size
   attr_reader :code, :name
   
   def initialize(code, name)

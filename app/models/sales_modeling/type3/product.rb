@@ -86,6 +86,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   end
 
   def brand=(brand)
+    brand = SalesModeling::Type3::ValueObject::Brand.new(brand.code, brand.name)
     brand = SalesModeling::Type3::Category.where(
         code:brand.code,
         name:brand.name

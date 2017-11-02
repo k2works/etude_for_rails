@@ -33,12 +33,12 @@ FactoryGirl.define do
     association :parent_category, factory: :brand_category_sub1
   end
   factory :color_category, class: 'SalesModeling::Type3::Category' do
-    code '7'
+    code SalesModeling::Type3::ValueObject::Color.new('7','').code
     name 'ネイビー'
     association :sales_modeling_type3_category_class, factory: :color_category_class
   end
   factory :size_category, class: 'SalesModeling::Type3::Category' do
-    code '8'
+    code SalesModeling::Type3::ValueObject::Size.new('8','').code
     name 'L'
     association :sales_modeling_type3_category_class, factory: :size_category_class
   end
