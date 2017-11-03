@@ -14,6 +14,18 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:tenDollar) { SalesModeling::Type3::ValueObject::Money.new(10,'$')}
   let(:notSet) { SalesModeling::Type3::ValueObject::Money.new(nil,nil)}
 
+  let(:select_l_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id) }
+  let(:select_m_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",m_size.id) }
+  let(:select_navy_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",navy_color.id) }
+  let(:select_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",white_color.id) }
+  let(:select_l_size_and_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",l_size.id, white_color.id) }
+
+  let(:select_p0001) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: 'p0001') }
+  let(:select_products) { SalesModeling::Type3::Product }
+  let(:select_skus) { SalesModeling::Type3::Sku.all }
+  let(:select_l_size_skus) { SalesModeling::Type3::Sku.where(size_category_id: l_size.id) }
+  let(:select_white_color_skus) { SalesModeling::Type3::Sku.where(color_category_id: white_color.id) }
+  let(:select_l_size_and_white_color_skus) { SalesModeling::Type3::Sku.where(size_category_id: l_size.id, color_category_id: white_color.id) }
 
   describe '#create' do
     example '品番:p0001 サイズ；L・カラー；ネイビー 仕入単価:100円 販売単価:200円' do
@@ -129,11 +141,6 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   end
 
   describe '#update' do
-    let(:select_l_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id) }
-    let(:select_m_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",m_size.id) }
-    let(:select_navy_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",navy_color.id) }
-    let(:select_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",white_color.id) }
-
     context 'フルラインナップ' do
       example '品番:p0001 p0002 p0003 サイズ:L -> M' do
         create_full_lineup
@@ -171,6 +178,55 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
             expect(sku.color.name).to eq 'ホワイト'
           end
         end
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'フルラインナップ' do
+      before(:each) do
+        create_full_lineup
+      end
+
+      example '全件削除' do
+        select_products.destroy_all
+
+        expect(select_products.count).to eq 0
+        expect(select_skus.count).to eq 0
+      end
+
+      example '全件削除' do
+        select_products.delete_all
+
+        expect(select_products.count).to eq 0
+        expect(select_skus.count).not_to eq 0
+      end
+
+      example '品番:p0001' do
+        select_p0001.destroy_all
+        expect(select_p0001.count).to eq 0
+        expect(select_skus.count).to eq 6
+      end
+
+      example 'サイズ:L' do
+        select_l_size_products.destroy_all
+
+        expect(select_l_size_products.count).to eq 0
+        expect(select_l_size_skus.count).to eq 0
+      end
+
+      example 'カラー:ホワイト' do
+        select_white_color_products.destroy_all
+
+        expect(select_white_color_products.count).to eq 0
+        expect(select_white_color_skus.count).to eq 0
+      end
+
+      example 'サイズ:L カラー：ホワイト' do
+        select_l_size_and_white_color_products.destroy_all
+
+        expect(select_l_size_and_white_color_products.count).to eq 0
+        expect(select_l_size_and_white_color_skus.count).to eq 0
       end
     end
   end

@@ -26,7 +26,7 @@
 #
 
 class SalesModeling::Type3::Sku < ApplicationRecord
-  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product', dependent: :destroy
+  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product'
   belongs_to :size_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :color_category, :class_name => 'SalesModeling::Type3::Category'
 
