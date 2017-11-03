@@ -1,43 +1,44 @@
 require 'rails_helper'
+include SalesModeling::Type3
 
 RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:product_p0001) { create(:product_1) }
-  let(:product_p0002) { create(:product_1, code:SalesModeling::Type3::ValueObject::ProductCode.new('p0002').code) }
-  let(:product_p0003) { create(:product_1, code:SalesModeling::Type3::ValueObject::ProductCode.new('p0003').code) }
+  let(:product_p0002) { create(:product_1, code:ValueObject::ProductCode.new('p0002').code) }
+  let(:product_p0003) { create(:product_1, code:ValueObject::ProductCode.new('p0003').code) }
   let(:l_size) { create(:size_category,name:'L') }
   let(:m_size) { create(:size_category,name:'M') }
   let(:s_size) { create(:size_category,name:'S') }
   let(:navy_color) { create(:color_category,name:'ネイビー')}
   let(:pink_color) { create(:color_category,name:'ピンク')}
   let(:white_color) { create(:color_category,name:'ホワイト')}
-  let(:hundredYen) { SalesModeling::Type3::ValueObject::Money.new(100)}
-  let(:twohundredYen) { hundredYen.+(SalesModeling::Type3::ValueObject::Money.new(100)) }
-  let(:tenDollar) { SalesModeling::Type3::ValueObject::Money.new(10,'$')}
-  let(:notSet) { SalesModeling::Type3::ValueObject::Money.new(nil,nil)}
+  let(:hundredYen) { ValueObject::Money.new(100)}
+  let(:twohundredYen) { hundredYen.+(ValueObject::Money.new(100)) }
+  let(:tenDollar) { ValueObject::Money.new(10,'$')}
+  let(:notSet) { ValueObject::Money.new(nil,nil)}
 
-  let(:select_l_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id) }
-  let(:select_m_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",m_size.id) }
-  let(:select_navy_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",navy_color.id) }
-  let(:select_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",white_color.id) }
-  let(:select_pink_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",pink_color.id) }
-  let(:select_l_size_and_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",l_size.id, white_color.id) }
-  let(:select_s_size_and_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",s_size.id, white_color.id) }
+  let(:select_l_size_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id) }
+  let(:select_m_size_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",m_size.id) }
+  let(:select_navy_color_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",navy_color.id) }
+  let(:select_white_color_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",white_color.id) }
+  let(:select_pink_color_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",pink_color.id) }
+  let(:select_l_size_and_white_color_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",l_size.id, white_color.id) }
+  let(:select_s_size_and_white_color_products) { Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",s_size.id, white_color.id) }
 
-  let(:select_product_p0001) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: 'p0001') }
-  let(:select_products) { SalesModeling::Type3::Product }
-  let(:select_skus) { SalesModeling::Type3::Sku.all }
-  let(:select_l_size_skus) { SalesModeling::Type3::Sku.where(size_category_id: l_size.id) }
-  let(:select_white_color_skus) { SalesModeling::Type3::Sku.where(color_category_id: white_color.id) }
-  let(:select_l_size_and_white_color_skus) { SalesModeling::Type3::Sku.where(size_category_id: l_size.id, color_category_id: white_color.id) }
+  let(:select_product_p0001) { Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: 'p0001') }
+  let(:select_products) { Product.all }
+  let(:select_skus) { Sku.all }
+  let(:select_l_size_skus) { Sku.where(size_category_id: l_size.id) }
+  let(:select_white_color_skus) { Sku.where(color_category_id: white_color.id) }
+  let(:select_l_size_and_white_color_skus) { Sku.where(size_category_id: l_size.id, color_category_id: white_color.id) }
 
-  let(:find_first_product) { SalesModeling::Type3::Product.first }
-  let(:find_second_product) { SalesModeling::Type3::Product.second }
-  let(:find_third_product) { SalesModeling::Type3::Product.third }
-  let(:find_first_sku) { SalesModeling::Type3::Sku.first }
-  let(:find_second_sku) { SalesModeling::Type3::Sku.second }
-  let(:find_third_sku) { SalesModeling::Type3::Sku.third }
+  let(:find_first_product) { Product.first }
+  let(:find_second_product) { Product.second }
+  let(:find_third_product) { Product.third }
+  let(:find_first_sku) { Sku.first }
+  let(:find_second_sku) { Sku.second }
+  let(:find_third_sku) { Sku.third }
 
-  sku_code_value = ->(product_code,code) { SalesModeling::Type3::ValueObject::SkuCode.new(product_code,code) }
+  sku_code_value = ->(product_code,code) { ValueObject::SkuCode.new(product_code,code) }
 
   def create_p0001_sku(sku_code_value)
     product_p0001.skus.build
