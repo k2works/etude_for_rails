@@ -82,24 +82,70 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
     end
 
     example 'フルラインナップ' do
-      build_sku = lambda do |product,color|
-        {'0':l_size, '1':m_size, '2':s_size}.each do |n,size|
-          n = n.to_s.to_i
-          product.skus.build
-          product.skus[n].sku_code = SalesModeling::Type3::ValueObject::SkuCode.new(product.product_code.code,n.to_s)
-          product.skus[n].size = size
-          product.skus[n].color = navy_color
-          product.skus[n].unit_purchase_price = hundredYen
-          product.skus[n].unit_sales_price = hundredYen.+(SalesModeling::Type3::ValueObject::Money.new(100))
-        end
-        product.save!
-      end
-
-      build_sku.call(product_p0001, navy_color)
-      build_sku.call(product_p0002, pink_color)
-      build_sku.call(product_p0003, white_color)
-
+      create_full_lineup
       expect(SalesModeling::Type3::Sku.count).to eq(9)
     end
+  end
+
+  describe '#select' do
+    context 'フルラインナップ' do
+      example '品番:p0001 p0002 p0003 サイズ:L' do
+        create_full_lineup
+        products = SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id)
+        expect(products.count).to eq 3
+        products.each do |product|
+          product.skus.each do |sku|
+            expect(sku.size.name).to eq 'L'
+          end
+        end
+      end
+
+      example '品番:p0002 カラー:ピンク' do
+        create_full_lineup
+        products = SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",pink_color.id)
+        expect(products.count).to eq 1
+        products.each do |product|
+          expect(product.skus.count).to eq 3
+          expect(product.product_code.code).to eq 'p0002'
+          product.skus.each do |sku|
+            expect(sku.color.name).to eq 'ピンク'
+          end
+        end
+      end
+
+      example '品番p0003 サイズ:S カラー：ホワイト' do
+        create_full_lineup
+        products = SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?",s_size.id, white_color.id)
+        expect(products.count).to eq 1
+        products.each do |product|
+          expect(product.product_code.code).to eq 'p0003'
+          product.skus.each do |sku|
+            expect(sku.size.name).to eq 'S'
+            expect(sku.color.name).to eq 'ホワイト'
+          end
+        end
+      end
+    end
+  end
+
+  private
+
+  def create_full_lineup
+    build_sku = lambda do |product, color|
+      {'0': l_size, '1': m_size, '2': s_size}.each do |n, size|
+        n = n.to_s.to_i
+        product.skus.build
+        product.skus[n].sku_code = SalesModeling::Type3::ValueObject::SkuCode.new(product.product_code.code, n.to_s)
+        product.skus[n].size = size
+        product.skus[n].color = color
+        product.skus[n].unit_purchase_price = hundredYen
+        product.skus[n].unit_sales_price = hundredYen.+(SalesModeling::Type3::ValueObject::Money.new(100))
+      end
+      product.save!
+    end
+
+    build_sku.call(product_p0001, navy_color)
+    build_sku.call(product_p0002, pink_color)
+    build_sku.call(product_p0003, white_color)
   end
 end
