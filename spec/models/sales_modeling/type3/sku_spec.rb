@@ -128,6 +128,53 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
     end
   end
 
+  describe '#update' do
+    let(:select_l_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",l_size.id) }
+    let(:select_m_size_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.size_category_id = ?",m_size.id) }
+    let(:select_navy_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",navy_color.id) }
+    let(:select_white_color_products) { SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where("sales_modeling_type3_skus.color_category_id = ?",white_color.id) }
+
+    context 'フルラインナップ' do
+      example '品番:p0001 p0002 p0003 サイズ:L -> M' do
+        create_full_lineup
+
+        select_l_size_products.each do |product|
+          product.skus.each do |sku|
+            sku.size = m_size
+            sku.save!
+          end
+        end
+
+        expect(select_l_size_products.count).to eq 0
+
+        select_m_size_products.each do |product|
+          product.skus.each do |sku|
+            expect(sku.size.name).to eq 'M'
+          end
+        end
+      end
+
+      example '品番:p0001 カラー:ネイビー -> ホワイト' do
+        create_full_lineup
+
+        select_navy_color_products.each do |product|
+          product.skus.each do |sku|
+            sku.color = white_color
+            sku.save!
+          end
+        end
+
+        expect(select_navy_color_products.count).to eq 0
+
+        select_white_color_products.each do |product|
+          product.skus.each do |sku|
+            expect(sku.color.name).to eq 'ホワイト'
+          end
+        end
+      end
+    end
+  end
+
   private
 
   def create_full_lineup
