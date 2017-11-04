@@ -48,24 +48,11 @@ class SalesModeling::Type3::Product < ApplicationRecord
 
   def season=(season)
     season = SalesModeling::Type3::ValueObject::Season.new(season.code, season.name)
-    season = SalesModeling::Type3::Category.where(
-      code: season.code,
-      name: season.name
-    ).first_or_create
-    season.save!
+    self.season_category = SalesModeling::CategorysRepo.select_by_category(season)
 
-    self.season_category = season
-
-    unless season.parent_category.nil?
-      year = season.parent_category
-      year = SalesModeling::Type3::ValueObject::Season.new(year.code, year.name)
-      year = SalesModeling::Type3::Category.where(
-        code: year.code,
-        name: year.name
-      ).first_or_create
-      year.save!
-
-      self.year_category = year
+    unless season_category.parent_category.nil?
+      year = season_category.parent_category
+      self.year_category = SalesModeling::CategorysRepo.select_by_category(year)
     end
   end
 
@@ -75,13 +62,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
 
   def type=(type)
     type = SalesModeling::Type3::ValueObject::ProductType.new(type.code, type.name)
-    type = SalesModeling::Type3::Category.where(
-      code: type.code,
-      name: type.name
-    ).first_or_create
-    type.save!
-
-    self.product_type_category = type
+    self.product_type_category = SalesModeling::CategorysRepo.select_by_category(type)
   end
 
   def brand
@@ -90,12 +71,6 @@ class SalesModeling::Type3::Product < ApplicationRecord
 
   def brand=(brand)
     brand = SalesModeling::Type3::ValueObject::Brand.new(brand.code, brand.name)
-    brand = SalesModeling::Type3::Category.where(
-      code: brand.code,
-      name: brand.name
-    ).first_or_create
-    brand.save!
-
-    self.brand_category = brand
+    self.brand_category = SalesModeling::CategorysRepo.select_by_category(brand)
   end
 end
