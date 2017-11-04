@@ -46,22 +46,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.48589178160908575)  
+![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.8978985228654521)  
 ## 設計モデル
   
 
-```
-ImageMagick is required to be installed to convert svg to png.
-Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg117102-5219-t5mqwa.22kpt4kj4i.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/0f28a17f695955efdbee3d6cf0374be11.png
-magick: attributes construct error
- `No such file or directory` @ error/svg.c/SVGError/2680.
-
-```  
-
+![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.34315061239174516)  
 ## ERモデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.9144549569478948)  
+![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.31355819941218765)  
 `SKU`
 ```rb
 # == Schema Information
@@ -92,9 +85,17 @@ magick: attributes construct error
 #
   
 class SalesModeling::Type3::Sku < ApplicationRecord
-  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product', dependent: :destroy
+  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product'
   belongs_to :size_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :color_category, :class_name => 'SalesModeling::Type3::Category'
+  
+  def sku_code
+    @sku_code ||= SalesModeling::Type3::ValueObject::SkuCode.new(self.sales_modeling_type3_product.product_code.code,self.code)
+  end
+  
+  def sku_code=(sku_code)
+    self.code = sku_code.code
+  end
   
   def unit_purchase_price
     @unit_purchase_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_purchase_price_amount)
@@ -112,6 +113,36 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   def unit_sales_price=(money)
     self.unit_sales_price_amount = money.amount
     self.unit_sales_price_currency = money.currency
+  end
+  
+  def color
+    @color ||= SalesModeling::Type3::ValueObject::Color.new(self.color_category.code, self.color_category.name)
+  end
+  
+  def color=(color)
+    color = SalesModeling::Type3::ValueObject::Color.new(color.code, color.name)
+    color = SalesModeling::Type3::Category.where(
+        code:color.code,
+        name:color.name
+    ).first_or_create
+    color.save!
+  
+    self.color_category = color
+  end
+  
+  def size
+    @size ||= SalesModeling::Type3::ValueObject::Size.new(self.size_category.code, self.size_category.name)
+  end
+  
+  def size=(size)
+    size = SalesModeling::Type3::ValueObject::Size.new(size.code, size.name)
+    size = SalesModeling::Type3::Category.where(
+        code:size.code,
+        name:size.name
+    ).first_or_create
+    size.save!
+  
+    self.size_category = size
   end
 end
   
@@ -145,7 +176,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   belongs_to :brand_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :season_category, :class_name => 'SalesModeling::Type3::Category'
   belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category', optional: true
-  has_many :skus, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'sales_modeling_type3_product_id'
+  has_many :skus, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'sales_modeling_type3_product_id', dependent: :destroy
   
   def product_code
     @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(self.code)
@@ -206,6 +237,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   end
   
   def brand=(brand)
+    brand = SalesModeling::Type3::ValueObject::Brand.new(brand.code, brand.name)
     brand = SalesModeling::Type3::Category.where(
         code:brand.code,
         name:brand.name

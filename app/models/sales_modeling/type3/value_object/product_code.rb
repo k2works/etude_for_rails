@@ -1,11 +1,13 @@
 class SalesModeling::Type3::ValueObject::ProductCode
+  include SalesModeling::Code
   attr_reader :code
+  CODE_LENGTH = 4
 
   def initialize(code)
     if code.slice(0) == 'p'
-      @code = code.rjust(4,'0')
+      @code = code.rjust(CODE_LENGTH,'0')
     else
-      @code = "p#{code.rjust(4,'0')}"
+      @code = "p#{code.rjust(CODE_LENGTH,'0')}"
     end
     valid?
   end
@@ -15,7 +17,7 @@ class SalesModeling::Type3::ValueObject::ProductCode
   end
 
   def valid?
-    raise "Not prodcut code format" unless @code.length == 5
+    raise "Not prodcut code format" unless @code.length == CODE_LENGTH + 1
     raise "Not prodcut code format" unless @code.slice(0) == 'p'
   end
 end

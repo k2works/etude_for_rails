@@ -129,6 +129,11 @@ class SkuCode {
   code
   valid?()
 }
+abstract Code {  
+}
+abstract Type {  
+}
+
 Product *-- SKU
 Product -o Brand
 Brand -o Brand
@@ -141,6 +146,14 @@ SKU -ro Color
 Product o-- ProductCode
 SKU o-- Money
 SKU o-- SkuCode
+Code <|... Season
+Code <|... Year
+Type <|.... ProductType
+Code <|... Brand
+Code <|... ProductCode
+Code <|... Color
+Code <|... Size
+Code <|... SkuCode
 ```
 ## ERモデル
 ```puml
