@@ -1,46 +1,50 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include SalesModeling::Type3
 
 RSpec.describe SalesModeling::Type3::Product, type: :model do
-  let(:y_2017_value) { ValueObject::Year.new('1','2017')}
-  let(:y_2018_value) { ValueObject::Year.new('1','2018')}
-  let(:y_2017) { create(:year_category,code:y_2017_value.code,name:y_2017_value.name) }
-  let(:y_2018) { create(:year_category,code:y_2018_value.code,name:y_2018_value.name) }
-  let(:y_2017_season_value) { ValueObject::Season.new('1','春夏物')}
-  let(:y_2018_season_value) { ValueObject::Season.new('2','秋冬物')}
-  let(:season_2017) { create(:season_category,code:y_2017_season_value.code,name:y_2017_season_value.name,parent_category:y_2017) }
-  let(:season_2018) { create(:season_category,code:y_2018_season_value.code,name:y_2018_season_value.name,parent_category:y_2018) }
+  let(:y_2017_value) { ValueObject::Year.new('1', '2017') }
+  let(:y_2018_value) { ValueObject::Year.new('1', '2018') }
+  let(:y_2017) { create(:year_category, code: y_2017_value.code, name: y_2017_value.name) }
+  let(:y_2018) { create(:year_category, code: y_2018_value.code, name: y_2018_value.name) }
+  let(:y_2017_season_value) { ValueObject::Season.new('1', '春夏物') }
+  let(:y_2018_season_value) { ValueObject::Season.new('2', '秋冬物') }
+  let(:season_2017) { create(:season_category, code: y_2017_season_value.code, name: y_2017_season_value.name, parent_category: y_2017) }
+  let(:season_2018) { create(:season_category, code: y_2018_season_value.code, name: y_2018_season_value.name, parent_category: y_2018) }
 
-  let(:casual_value) {ValueObject::ProductType.new('1','カジュアル')}
-  let(:t_shirt_value) {ValueObject::ProductType.new('2','Tシャツ')}
-  let(:jacket_value) {ValueObject::ProductType.new('3','ジャケット')}
-  let(:casual) { create(:product_type_category_sub1,code:casual_value.code,name:casual_value.name) }
-  let(:t_shirt) { create(:product_type_category_sub1,code:t_shirt_value.code,name:t_shirt_value.name,parent_category:casual) }
-  let(:jacket) { create(:product_type_category_sub1,code:jacket_value.code,name:jacket_value.name,parent_category:casual) }
+  let(:casual_value) { ValueObject::ProductType.new('1', 'カジュアル') }
+  let(:t_shirt_value) { ValueObject::ProductType.new('2', 'Tシャツ') }
+  let(:jacket_value) { ValueObject::ProductType.new('3', 'ジャケット') }
+  let(:casual) { create(:product_type_category_sub1, code: casual_value.code, name: casual_value.name) }
+  let(:t_shirt) { create(:product_type_category_sub1, code: t_shirt_value.code, name: t_shirt_value.name, parent_category: casual) }
+  let(:jacket) { create(:product_type_category_sub1, code: jacket_value.code, name: jacket_value.name, parent_category: casual) }
 
-  let(:brand_x_value) {ValueObject::Brand.new('1','X')}
-  let(:brand_x1_value) {ValueObject::Brand.new('1','X1')}
-  let(:brand_x2_value) {ValueObject::Brand.new('2','X2')}
-  let(:brand_x3_value) {ValueObject::Brand.new('3','X3')}
-  let(:brand_x) { create(:brand_category_sub1,code:brand_x_value.code,name:brand_x_value.name) }
-  let(:brand_x1) { create(:brand_category_sub2,code:brand_x1_value.code,name:brand_x1_value.name) }
-  let(:brand_x2) { create(:brand_category_sub2,code:brand_x2_value.code,name:brand_x2_value.name) }
-  let(:brand_x3) { create(:brand_category_sub2,code:brand_x3_value.code,name:brand_x3_value.name) }
+  let(:brand_x_value) { ValueObject::Brand.new('1', 'X') }
+  let(:brand_x1_value) { ValueObject::Brand.new('1', 'X1') }
+  let(:brand_x2_value) { ValueObject::Brand.new('2', 'X2') }
+  let(:brand_x3_value) { ValueObject::Brand.new('3', 'X3') }
+  let(:brand_x) { create(:brand_category_sub1, code: brand_x_value.code, name: brand_x_value.name) }
+  let(:brand_x1) { create(:brand_category_sub2, code: brand_x1_value.code, name: brand_x1_value.name) }
+  let(:brand_x2) { create(:brand_category_sub2, code: brand_x2_value.code, name: brand_x2_value.name) }
+  let(:brand_x3) { create(:brand_category_sub2, code: brand_x3_value.code, name: brand_x3_value.name) }
 
   let(:p0001) { ValueObject::ProductCode.new('1') }
   let(:p0002) { ValueObject::ProductCode.new('2') }
   let(:p0003) { ValueObject::ProductCode.new('3') }
 
-  let(:product) { create(:product_1)}
+  let(:product) { create(:product_1) }
 
-  let(:product_p0001) { {
-      code:p0001.code,
-      name:'商品A',
-      year_category:y_2017,
-      season_category:season_2017,
-      product_type_category:t_shirt,
-      brand_category:brand_x1
-  }}
+  let(:product_p0001) do
+    {
+      code: p0001.code,
+      name: '商品A',
+      year_category: y_2017,
+      season_category: season_2017,
+      product_type_category: t_shirt,
+      brand_category: brand_x1
+    }
+  end
 
   describe '#create' do
     example '品番:p0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
@@ -53,38 +57,32 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
       product.save!
 
       new_product = Product.first
-      check(new_product,product_p0001)
+      check(new_product, product_p0001)
     end
   end
 
   describe '#select' do
     example '品番:p0001 品番:p0002 品番:p0003' do
-      Product.new({
-                      product_code:p0001,
-                      name:'商品A',
-                      season:season_2017,
-                      type:t_shirt,
-                      brand:brand_x1
-                  }).save!
+      Product.new(product_code: p0001,
+                  name: '商品A',
+                  season: season_2017,
+                  type: t_shirt,
+                  brand: brand_x1).save!
 
-      Product.new({
-                      product_code:p0002,
-                      name:'商品B',
-                      season:season_2018,
-                      type:jacket,
-                      brand:brand_x2
-                  }).save!
+      Product.new(product_code: p0002,
+                  name: '商品B',
+                  season: season_2018,
+                  type: jacket,
+                  brand: brand_x2).save!
 
-      Product.new({
-                      product_code:p0003,
-                      name:'商品C',
-                      season:season_2018,
-                      type:t_shirt,
-                      brand:brand_x3
-                  }).save!
+      Product.new(product_code: p0003,
+                  name: '商品C',
+                  season: season_2018,
+                  type: t_shirt,
+                  brand: brand_x3).save!
 
       expect(Product.count).to eq 3
-      expect(Product.where(code:p0001.code).count).to eq 1
+      expect(Product.where(code: p0001.code).count).to eq 1
       expect(Product.where(season_category_id: season_2018.id).first.season_category).to eq season_2018
       expect(Product.where(brand_category_id: brand_x3.id).first.brand_category).to eq brand_x3
     end
@@ -125,7 +123,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   describe '#delete' do
     example '全件削除' do
       [p0001, p0002, p0003].each do |product_code|
-        create(:product_1, code:product_code.code)
+        create(:product_1, code: product_code.code)
       end
       Product.delete_all
       expect(Product.count).not_to eq 3
@@ -133,7 +131,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
 
     example '１件削除' do
       [p0001, p0002, p0003].each do |product_code|
-        create(:product_1, code:product_code.code)
+        create(:product_1, code: product_code.code)
       end
       Product.where(code: p0001.code).delete_all
       expect(Product.count).to eq 2
@@ -142,7 +140,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
 
   private
 
-  def check(new_product,check_product)
+  def check(new_product, check_product)
     expect(new_product.code).to eq check_product[:code]
     expect(new_product.name).to eq check_product[:name]
     expect(new_product.year.name).to eq check_product[:year_category].name
