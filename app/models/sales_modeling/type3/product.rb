@@ -28,6 +28,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   belongs_to :season_category, class_name: 'SalesModeling::Type3::Category'
   belongs_to :year_category, class_name: 'SalesModeling::Type3::Category', optional: true
   has_many :skus, class_name: 'SalesModeling::Type3::Sku', foreign_key: 'sales_modeling_type3_product_id', dependent: :destroy
+  accepts_nested_attributes_for :skus, allow_destroy: true
 
   def product_code
     @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(code)

@@ -50,14 +50,11 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
 
   describe '#create' do
     example '品番:p0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
-      product = products_repo.new
-      product.product_code = p0001
-      product.name = '商品A'
-      product.season = season_2017
-      product.type = t_shirt
-      product.brand = brand_x1
-      product.save!
-
+      product = products_repo.new(name: '商品A',
+                                  season: season_2017,
+                                  type: t_shirt,
+                                  brand: brand_x1)
+      products_repo.save(product)
       new_product = products_repo.select_first
       check(new_product, product_p0001)
     end
@@ -66,21 +63,18 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
   describe '#select' do
     example '品番:p0001 品番:p0002 品番:p0003' do
       p0001_product = {
-        product_code: p0001,
         name: '商品A',
         season: season_2017,
         type: t_shirt,
         brand: brand_x1
       }
       p0002_product = {
-        product_code: p0002,
         name: '商品B',
         season: season_2018,
         type: jacket,
         brand: brand_x2
       }
       p0003_product = {
-        product_code: p0003,
         name: '商品C',
         season: season_2018,
         type: t_shirt,
