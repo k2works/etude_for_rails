@@ -46,7 +46,7 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
     }
   end
 
-  let(:products_repo) { ProductsRepo.new }
+  let(:products_repo) { ::SalesModeling::ProductsRepo.new }
 
   describe '#create' do
     example '品番:p0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
