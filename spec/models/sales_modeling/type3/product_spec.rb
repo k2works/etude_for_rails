@@ -46,9 +46,11 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
     }
   end
 
+  let(:products_repo) { ProductsRepo.new }
+
   describe '#create' do
     example '品番:p0001・品名:商品A・年度:2017・シーズン:春夏物・商品区分:カジュアル-Tシャツ' do
-      product = Product.new
+      product = products_repo.new
       product.product_code = p0001
       product.name = '商品A'
       product.season = season_2017
@@ -56,67 +58,70 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
       product.brand = brand_x1
       product.save!
 
-      new_product = Product.first
+      new_product = products_repo.select_first
       check(new_product, product_p0001)
     end
   end
 
   describe '#select' do
     example '品番:p0001 品番:p0002 品番:p0003' do
-      Product.new(product_code: p0001,
-                  name: '商品A',
-                  season: season_2017,
-                  type: t_shirt,
-                  brand: brand_x1).save!
+      p0001_product = {
+        product_code: p0001,
+        name: '商品A',
+        season: season_2017,
+        type: t_shirt,
+        brand: brand_x1
+      }
+      p0002_product = {
+        product_code: p0002,
+        name: '商品B',
+        season: season_2018,
+        type: jacket,
+        brand: brand_x2
+      }
+      p0003_product = {
+        product_code: p0003,
+        name: '商品C',
+        season: season_2018,
+        type: t_shirt,
+        brand: brand_x3
+      }
+      products_repo.save(products_repo.new(p0001_product))
+      products_repo.save(products_repo.new(p0002_product))
+      products_repo.save(products_repo.new(p0003_product))
 
-      Product.new(product_code: p0002,
-                  name: '商品B',
-                  season: season_2018,
-                  type: jacket,
-                  brand: brand_x2).save!
-
-      Product.new(product_code: p0003,
-                  name: '商品C',
-                  season: season_2018,
-                  type: t_shirt,
-                  brand: brand_x3).save!
-
-      expect(Product.count).to eq 3
-      expect(Product.where(code: p0001.code).count).to eq 1
-      expect(Product.where(season_category_id: season_2018.id).first.season_category).to eq season_2018
-      expect(Product.where(brand_category_id: brand_x3.id).first.brand_category).to eq brand_x3
+      expect(products_repo.select_count).to eq 3
+      expect(products_repo.select_by_code(p0001.code).count).to eq 1
+      expect(products_repo.select_by_season(season_2018).first.season_category).to eq season_2018
+      expect(products_repo.select_by_brand(brand_x3).first.brand_category).to eq brand_x3
     end
   end
 
   describe '#update' do
     example '商品名変更' do
       name = product.name
-      product.name = '商品Z'
-      product.save!
-      expect(Product.first.name).not_to eq name
+      products_repo.update(product, name: '商品Z')
+      expect(products_repo.select_first.name).not_to eq name
     end
 
     example '年度・シーズン変更' do
       year = product.year
       season = product.season
-      product.season = season_2018
-      product.save!
-      expect(Product.first.year.name).not_to eq year.name
-      expect(Product.first.season.name).not_to eq season.name
+      products_repo.update(product, season: season_2018)
+      expect(products_repo.select_first.year.name).not_to eq year.name
+      expect(products_repo.select_first.season.name).not_to eq season.name
     end
 
     example 'ブランド変更' do
       brand = product.brand
-      product.brand = brand_x2
-      product.save!
-      expect(Product.first.brand.name).not_to eq brand.name
+      products_repo.update(product, brand: brand_x2)
+      expect(products_repo.select_first.brand.name).not_to eq brand.name
     end
 
     example '商品区分変更' do
       type = product.type
-      product.type = jacket
-      product.save!
-      expect(Product.first.type.name).not_to eq type.name
+      products_repo.update(product, type: jacket)
+      expect(products_repo.select_first.type.name).not_to eq type.name
     end
   end
 
@@ -125,16 +130,16 @@ RSpec.describe SalesModeling::Type3::Product, type: :model do
       [p0001, p0002, p0003].each do |product_code|
         create(:product_1, code: product_code.code)
       end
-      Product.delete_all
-      expect(Product.count).not_to eq 3
+      products_repo.delete_all
+      expect(products_repo.select_count).not_to eq 3
     end
 
     example '１件削除' do
       [p0001, p0002, p0003].each do |product_code|
         create(:product_1, code: product_code.code)
       end
-      Product.where(code: p0001.code).delete_all
-      expect(Product.count).to eq 2
+      products_repo.delete_by_selected_code(p0001.code)
+      expect(products_repo.select_count).to eq 2
     end
   end
 
