@@ -1,25 +1,26 @@
 module SalesModeling
   class ProductsRepo
-    include ::SalesModeling::Type3
+    include ::SalesModeling::Product::ApparelProduct
+    include ::SalesModeling::Product::ApparelProductSku
 
     def find(product_id)
-      Product.find(product_id)
+      ::SalesModeling::Type3::Product.find(product_id)
     end
 
     def all
-      Product.includes(:skus).references(:sales_modeling_type3_skus)
+      ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus)
     end
 
     def all_sku
-      Sku.all
+      ::SalesModeling::Type3::Sku.all
     end
 
     def new(params = {})
-      Product.new(params)
+      ::SalesModeling::Type3::Product.new(params)
     end
 
     def new_sku(params = {})
-      Sku.new(params)
+      ::SalesModeling::Type3::Sku.new(params)
     end
 
     def update(product, params)
@@ -37,7 +38,7 @@ module SalesModeling
     end
 
     def destroy_all
-      Product.destroy_all
+      ::SalesModeling::Type3::Product.destroy_all
     end
 
     def destroy_by_size(size)
@@ -53,7 +54,7 @@ module SalesModeling
     end
 
     def delete_all
-      Product.delete_all
+      ::SalesModeling::Type3::Product.delete_all
     end
 
     def delete_by_selected_code(code)
@@ -61,10 +62,10 @@ module SalesModeling
     end
 
     def save(product, skus=[])
-      product.product_code = SalesModeling::Type3::ValueObject::ProductCode.new((select_count + 1).to_s) if product.code.nil?
+      product.product_code = SalesModeling::Code::ProductCode.new((select_count + 1).to_s) if product.code.nil?
 
       skus.each do |sku|
-        sku.sku_code = ValueObject::SkuCode.new(product.code, select_count.to_s)
+        sku.sku_code = SalesModeling::Code::SkuCode.new(product.code, select_count.to_s)
         product.skus << sku
       end
 
@@ -72,71 +73,71 @@ module SalesModeling
     end
 
     def select_count
-      Product.count
+      ::SalesModeling::Type3::Product.count
     end
 
     def select_all_sku_count
-      Sku.count
+      ::SalesModeling::Type3::Sku.count
     end
 
     def select_first
-      Product.first
+      ::SalesModeling::Type3::Product.first
     end
 
     def select_second
-      Product.second
+      ::SalesModeling::Type3::Product.second
     end
 
     def select_third
-      Product.third
+      ::SalesModeling::Type3::Product.third
     end
 
     def select_all_sku_first
-      Sku.first
+      ::SalesModeling::Type3::Sku.first
     end
 
     def select_all_sku_second
-      Sku.second
+      ::SalesModeling::Type3::Sku.second
     end
 
     def select_all_sku_third
-      Sku.third
+      ::SalesModeling::Type3::Sku.third
     end
 
     def select_by_code(code)
-      Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: code)
+      ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: code)
     end
 
     def select_by_season(season)
-      Product.where(season_category_id: season.id)
+      ::SalesModeling::Type3::Product.where(season_category_id: season.id)
     end
 
     def select_by_brand(brand)
-      Product.where(brand_category_id: brand.id)
+      ::SalesModeling::Type3::Product.where(brand_category_id: brand.id)
     end
 
     def select_by_size(size)
-      Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.size_category_id = ?', size.id)
+      ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.size_category_id = ?', size.id)
     end
 
     def select_by_color(color)
-      Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.color_category_id = ?', color.id)
+      ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.color_category_id = ?', color.id)
     end
 
     def select_by_size_and_color(size, color)
-      Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?', size.id, color.id)
+      ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?', size.id, color.id)
     end
 
     def select_all_sku_by_size(size)
-      Sku.where(size_category_id: size.id)
+      ::SalesModeling::Type3::Sku.where(size_category_id: size.id)
     end
 
     def select_all_sku_by_color(color)
-      Sku.where(color_category_id: color.id)
+      ::SalesModeling::Type3::Sku.where(color_category_id: color.id)
     end
 
     def select_all_sku_by_size_and_color(size, color)
-      Sku.where(size_category_id: size.id, color_category_id: color.id)
+      ::SalesModeling::Type3::Sku.where(size_category_id: size.id, color_category_id: color.id)
     end
   end
 end

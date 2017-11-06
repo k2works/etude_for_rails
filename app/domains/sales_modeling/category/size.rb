@@ -1,4 +1,4 @@
-class SalesModeling::Type3::ValueObject::Size
+class SalesModeling::Category::Size
   include SalesModeling::Category
   CATEGORY_CLASS_CODE = '6'
 

@@ -4,34 +4,34 @@ require 'rails_helper'
 include SalesModeling::Type3
 
 RSpec.describe SalesModeling::Type3::Product, type: :model do
-  let(:y_2017_value) { ValueObject::Year.new('1', '2017') }
-  let(:y_2018_value) { ValueObject::Year.new('1', '2018') }
+  let(:y_2017_value) { SalesModeling::Category::Year.new('1', '2017') }
+  let(:y_2018_value) { SalesModeling::Category::Year.new('1', '2018') }
   let(:y_2017) { create(:year_category, code: y_2017_value.code, name: y_2017_value.name) }
   let(:y_2018) { create(:year_category, code: y_2018_value.code, name: y_2018_value.name) }
-  let(:y_2017_season_value) { ValueObject::Season.new('1', '春夏物') }
-  let(:y_2018_season_value) { ValueObject::Season.new('2', '秋冬物') }
+  let(:y_2017_season_value) { SalesModeling::Category::Season.new('1', '春夏物') }
+  let(:y_2018_season_value) { SalesModeling::Category::Season.new('2', '秋冬物') }
   let(:season_2017) { create(:season_category, code: y_2017_season_value.code, name: y_2017_season_value.name, parent_category: y_2017) }
   let(:season_2018) { create(:season_category, code: y_2018_season_value.code, name: y_2018_season_value.name, parent_category: y_2018) }
 
-  let(:casual_value) { ValueObject::ProductType.new('1', 'カジュアル') }
-  let(:t_shirt_value) { ValueObject::ProductType.new('2', 'Tシャツ') }
-  let(:jacket_value) { ValueObject::ProductType.new('3', 'ジャケット') }
+  let(:casual_value) { SalesModeling::Type::ProductType.new('1', 'カジュアル') }
+  let(:t_shirt_value) { SalesModeling::Type::ProductType.new('2', 'Tシャツ') }
+  let(:jacket_value) { SalesModeling::Type::ProductType.new('3', 'ジャケット') }
   let(:casual) { create(:product_type_category_sub1, code: casual_value.code, name: casual_value.name) }
   let(:t_shirt) { create(:product_type_category_sub1, code: t_shirt_value.code, name: t_shirt_value.name, parent_category: casual) }
   let(:jacket) { create(:product_type_category_sub1, code: jacket_value.code, name: jacket_value.name, parent_category: casual) }
 
-  let(:brand_x_value) { ValueObject::Brand.new('1', 'X') }
-  let(:brand_x1_value) { ValueObject::Brand.new('1', 'X1') }
-  let(:brand_x2_value) { ValueObject::Brand.new('2', 'X2') }
-  let(:brand_x3_value) { ValueObject::Brand.new('3', 'X3') }
+  let(:brand_x_value) { SalesModeling::Category::Brand.new('1', 'X') }
+  let(:brand_x1_value) { SalesModeling::Category::Brand.new('1', 'X1') }
+  let(:brand_x2_value) { SalesModeling::Category::Brand.new('2', 'X2') }
+  let(:brand_x3_value) { SalesModeling::Category::Brand.new('3', 'X3') }
   let(:brand_x) { create(:brand_category_sub1, code: brand_x_value.code, name: brand_x_value.name) }
   let(:brand_x1) { create(:brand_category_sub2, code: brand_x1_value.code, name: brand_x1_value.name) }
   let(:brand_x2) { create(:brand_category_sub2, code: brand_x2_value.code, name: brand_x2_value.name) }
   let(:brand_x3) { create(:brand_category_sub2, code: brand_x3_value.code, name: brand_x3_value.name) }
 
-  let(:p0001) { ValueObject::ProductCode.new('1') }
-  let(:p0002) { ValueObject::ProductCode.new('2') }
-  let(:p0003) { ValueObject::ProductCode.new('3') }
+  let(:p0001) { SalesModeling::Code::ProductCode.new('1') }
+  let(:p0002) { SalesModeling::Code::ProductCode.new('2') }
+  let(:p0003) { SalesModeling::Code::ProductCode.new('3') }
 
   let(:product) { create(:product_1) }
 

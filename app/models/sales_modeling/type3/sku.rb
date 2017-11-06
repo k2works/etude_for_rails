@@ -33,7 +33,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   belongs_to :color_category, class_name: 'SalesModeling::Type3::Category'
 
   def sku_code
-    @sku_code ||= SalesModeling::Type3::ValueObject::SkuCode.new(sales_modeling_type3_product.product_code.code, code)
+    @sku_code ||= SalesModeling::Code::SkuCode.new(sales_modeling_type3_product.product_code.code, code)
   end
 
   def sku_code=(sku_code)
@@ -41,7 +41,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
 
   def unit_purchase_price
-    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::UnitPurchasePrice.new(unit_purchase_price_amount)
+    @unit_purchase_price ||= SalesModeling::Price::UnitPurchasePrice.new(unit_purchase_price_amount)
   end
 
   def unit_purchase_price=(money)
@@ -50,7 +50,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
 
   def unit_sales_price
-    @unit_sales_price ||= SalesModeling::Type3::ValueObject::UnitSalesPrice.new(unit_sales_price_amount)
+    @unit_sales_price ||= SalesModeling::Price::UnitSalesPrice.new(unit_sales_price_amount)
   end
 
   def unit_sales_price=(money)
@@ -59,20 +59,20 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
 
   def color
-    @color ||= SalesModeling::Type3::ValueObject::Color.new(color_category.code, color_category.name)
+    @color ||= SalesModeling::Category::Color.new(color_category.code, color_category.name)
   end
 
   def color=(color)
-    color = SalesModeling::Type3::ValueObject::Color.new(color.code, color.name)
+    color = SalesModeling::Category::Color.new(color.code, color.name)
     self.color_category = SalesModeling::CategoryClassesRepo.select_by_category(color)
   end
 
   def size
-    @size ||= SalesModeling::Type3::ValueObject::Size.new(size_category.code, size_category.name)
+    @size ||= SalesModeling::Category::Size.new(size_category.code, size_category.name)
   end
 
   def size=(size)
-    size = SalesModeling::Type3::ValueObject::Size.new(size.code, size.name)
+    size = SalesModeling::Category::Size.new(size.code, size.name)
     self.size_category = SalesModeling::CategoryClassesRepo.select_by_category(size)
   end
 end

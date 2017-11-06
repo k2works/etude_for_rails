@@ -1,6 +1,5 @@
 module SalesModeling
   module Code
-    extend ActiveSupport::Concern
     attr_reader :code, :name
     CODE_LENGTH = 5
 

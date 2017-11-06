@@ -1,4 +1,4 @@
-class SalesModeling::Type3::ValueObject::SkuCode
+class SalesModeling::Code::SkuCode
   include SalesModeling::Code
   attr_reader :code
   CODE_LENGTH = 5

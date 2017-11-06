@@ -1,4 +1,4 @@
-class SalesModeling::Type3::ValueObject::ProductCode
+class SalesModeling::Code::ProductCode
   include SalesModeling::Code
   attr_reader :code
   CODE_LENGTH = 4

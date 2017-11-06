@@ -1,4 +1,4 @@
-class SalesModeling::Type3::ValueObject::ProductType
+class SalesModeling::Type::ProductType
   include SalesModeling::Type
   CATEGORY_CLASS_CODE = '3'
 

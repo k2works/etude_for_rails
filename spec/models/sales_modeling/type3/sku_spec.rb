@@ -5,18 +5,18 @@ include SalesModeling::Type3
 
 RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:product_p0001) { create(:product_1) }
-  let(:product_p0002) { create(:product_1, code: ValueObject::ProductCode.new('p0002').code) }
-  let(:product_p0003) { create(:product_1, code: ValueObject::ProductCode.new('p0003').code) }
+  let(:product_p0002) { create(:product_1, code: SalesModeling::Code::ProductCode.new('p0002').code) }
+  let(:product_p0003) { create(:product_1, code: SalesModeling::Code::ProductCode.new('p0003').code) }
   let(:l_size) { create(:size_category, name: 'L') }
   let(:m_size) { create(:size_category, name: 'M') }
   let(:s_size) { create(:size_category, name: 'S') }
   let(:navy_color) { create(:color_category, name: 'ネイビー') }
   let(:pink_color) { create(:color_category, name: 'ピンク') }
   let(:white_color) { create(:color_category, name: 'ホワイト') }
-  let(:hundredYen) { ValueObject::UnitPurchasePrice.new(100) }
-  let(:twohundredYen) { hundredYen.+(ValueObject::UnitSalesPrice.new(100)) }
-  let(:tenDollar) { ValueObject::UnitPurchasePrice.new(10, '$') }
-  let(:notSet) { ValueObject::UnitPurchasePrice.new(nil, nil) }
+  let(:hundredYen) { SalesModeling::Price::UnitPurchasePrice.new(100) }
+  let(:twohundredYen) { hundredYen.+(SalesModeling::Price::UnitSalesPrice.new(100)) }
+  let(:tenDollar) { SalesModeling::Price::UnitPurchasePrice.new(10, '$') }
+  let(:notSet) { SalesModeling::Price::UnitPurchasePrice.new(nil, nil) }
 
   let(:products_repo) { ::SalesModeling::ProductsRepo.new }
   let(:l_size_products) { products_repo.select_by_size(l_size) }

@@ -1,4 +1,4 @@
-class SalesModeling::Type3::ValueObject::UnitSalesPrice
+class SalesModeling::Price::UnitSalesPrice
   include SalesModeling::Price
 
   def +(other)

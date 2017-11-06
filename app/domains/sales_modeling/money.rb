@@ -2,7 +2,6 @@
 
 module SalesModeling
   module Money
-    extend ActiveSupport::Concern
     attr_reader :amount, :currency
 
     def initialize(amount, currency = 'JPY')
