@@ -64,7 +64,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
 
   def color=(color)
     color = SalesModeling::Type3::ValueObject::Color.new(color.code, color.name)
-    self.color_category = SalesModeling::CategorysRepo.select_by_category(color)
+    self.color_category = SalesModeling::CategoryClassesRepo.select_by_category(color)
   end
 
   def size
@@ -73,6 +73,6 @@ class SalesModeling::Type3::Sku < ApplicationRecord
 
   def size=(size)
     size = SalesModeling::Type3::ValueObject::Size.new(size.code, size.name)
-    self.size_category = SalesModeling::CategorysRepo.select_by_category(size)
+    self.size_category = SalesModeling::CategoryClassesRepo.select_by_category(size)
   end
 end

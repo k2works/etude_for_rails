@@ -1,5 +1,5 @@
 module SalesModeling
-  class CategorysRepo
+  class CategoryClassesRepo
     include ::SalesModeling::Type3
 
     def self.select_by_category(category)
