@@ -51,7 +51,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
     self.season_category = SalesModeling::CategoryClassesRepo.select_by_category(season)
 
     unless season_category.parent_category.nil?
-      year = season_category.parent_category
+      year = SalesModeling::Type3::ValueObject::Season.new(season_category.parent_category.code, season_category.parent_category.name)
       self.year_category = SalesModeling::CategoryClassesRepo.select_by_category(year)
     end
   end

@@ -14,27 +14,27 @@ SalesModeling
 + 商品は「品番」で管理
 + 同じ商品でも「サイズ」と「カラー」はSKU（ストックキーピングユニット）として管理することが多い
 ### 品番で管理
-|年度   |       | シーズン |    |
-|:----:|:----: |:----:   |:----:|
-|     | 2017 |         |春夏物||
-|     |      |         |秋冬物|
-|     | 2018 |         |春夏物||
-|     |      |         |秋冬物|
+|年度   | シーズン |
+|:----:|:----: |
+| 2017 | 春夏物|
+|      | 秋冬物|
+| 2018 | 春夏物|
+|      | 秋冬物|
 
-|商品区分  |    |    |
+|商品区分     |    |
 |:----:   |:----:|:----:|
-|         | カジュアル  |Tシャツ|
-|         |           |ジャケット|
-|         |           |...|
+|カジュアル  |Tシャツ|
+|          |ジャケット|
+|          |...|
 
 
-|ブランド  |    |    |
-|:----:   |:----:|:----:|
-|         | X  |X1|
-|         |    |X2|
-|         |    |X3|
-|         | Y  |Y1|
-|         |    |Y2|
+|ブランド  |    |
+|:----:   |:----:|
+| X  |X1|
+|    |X2|
+|    |X3|
+| Y  |Y1|
+|    |Y2|
 
 ### SKUで管理
 |       |L          |M            |S            |
@@ -115,10 +115,6 @@ class Color {
   name
   valid?()  
 }
-class ProductCode {
-  code
-  valid?()
-}
 class SkuCode {
   code
   valid?()
@@ -137,7 +133,8 @@ abstract Type {
 }
 abstract Price {  
 }
-
+abstract Category {
+}
 Product *-- SKU
 Product -o Brand
 Brand -o Brand
@@ -151,13 +148,15 @@ Product o--l ProductCode
 SKU o-- UnitPurchasePrice
 SKU o-- UnitSalesPrice
 SKU o-- SkuCode
-Code <|... Season
-Code <|... Year
+Code <|.. Category
+Category <|.. Type
+Category <|.. Season
+Category <|.. Year
 Type <|.. ProductType
-Code <|... Brand
-Code <|... ProductCode
-Code <|.... Color
-Code <|... Size
+Category <|.. Brand
+Code <|.... ProductCode
+Category <|... Color
+Category <|... Size
 Code <|... SkuCode
 Money <|... Price
 Price <|.... UnitPurchasePrice
@@ -239,3 +238,5 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/concerns/sales_modeling/price.rb"
 `Money`
 @import "../../../app/models/concerns/sales_modeling/money.rb"
+`Category`
+@import "../../../app/models/concerns/sales_modeling/category.rb"

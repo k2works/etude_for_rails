@@ -13,27 +13,27 @@ SalesModeling
 + 同じ商品でも「サイズ」と「カラー」はSKU（ストックキーピングユニット）として管理することが多い
 ### 品番で管理
   
-|年度   |       | シーズン |    |
-|:----:|:----: |:----:   |:----:|
-|     | 2017 |         |春夏物||
-|     |      |         |秋冬物|
-|     | 2018 |         |春夏物||
-|     |      |         |秋冬物|
+|年度   | シーズン |
+|:----:|:----: |
+| 2017 | 春夏物|
+|      | 秋冬物|
+| 2018 | 春夏物|
+|      | 秋冬物|
   
-|商品区分  |    |    |
+|商品区分     |    |
 |:----:   |:----:|:----:|
-|         | カジュアル  |Tシャツ|
-|         |           |ジャケット|
-|         |           |...|
+|カジュアル  |Tシャツ|
+|          |ジャケット|
+|          |...|
   
   
-|ブランド  |    |    |
-|:----:   |:----:|:----:|
-|         | X  |X1|
-|         |    |X2|
-|         |    |X3|
-|         | Y  |Y1|
-|         |    |Y2|
+|ブランド  |    |
+|:----:   |:----:|
+| X  |X1|
+|    |X2|
+|    |X3|
+| Y  |Y1|
+|    |Y2|
   
 ### SKUで管理
   
@@ -46,15 +46,15 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.4970695549671291)  
+![](./assets/0f28a17f695955efdbee3d6cf0374be10.png?0.25874433291978494)  
 ## 設計モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.7919955678325385)  
+![](./assets/0f28a17f695955efdbee3d6cf0374be11.png?0.9651566997198098)  
 ## ERモデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.1209427775794274)  
+![](./assets/0f28a17f695955efdbee3d6cf0374be12.png?0.939262386945346)  
 `SKU`
 ```rb
 # frozen_string_literal: true
@@ -123,7 +123,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   
   def color=(color)
     color = SalesModeling::Type3::ValueObject::Color.new(color.code, color.name)
-    self.color_category = SalesModeling::CategorysRepo.select_by_category(color)
+    self.color_category = SalesModeling::CategoryClassesRepo.select_by_category(color)
   end
   
   def size
@@ -132,7 +132,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   
   def size=(size)
     size = SalesModeling::Type3::ValueObject::Size.new(size.code, size.name)
-    self.size_category = SalesModeling::CategorysRepo.select_by_category(size)
+    self.size_category = SalesModeling::CategoryClassesRepo.select_by_category(size)
   end
 end
   
@@ -189,11 +189,11 @@ class SalesModeling::Type3::Product < ApplicationRecord
   
   def season=(season)
     season = SalesModeling::Type3::ValueObject::Season.new(season.code, season.name)
-    self.season_category = SalesModeling::CategorysRepo.select_by_category(season)
+    self.season_category = SalesModeling::CategoryClassesRepo.select_by_category(season)
   
     unless season_category.parent_category.nil?
-      year = season_category.parent_category
-      self.year_category = SalesModeling::CategorysRepo.select_by_category(year)
+      year = SalesModeling::Type3::ValueObject::Season.new(season_category.parent_category.code, season_category.parent_category.name)
+      self.year_category = SalesModeling::CategoryClassesRepo.select_by_category(year)
     end
   end
   
@@ -203,7 +203,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   
   def type=(type)
     type = SalesModeling::Type3::ValueObject::ProductType.new(type.code, type.name)
-    self.product_type_category = SalesModeling::CategorysRepo.select_by_category(type)
+    self.product_type_category = SalesModeling::CategoryClassesRepo.select_by_category(type)
   end
   
   def brand
@@ -212,7 +212,7 @@ class SalesModeling::Type3::Product < ApplicationRecord
   
   def brand=(brand)
     brand = SalesModeling::Type3::ValueObject::Brand.new(brand.code, brand.name)
-    self.brand_category = SalesModeling::CategorysRepo.select_by_category(brand)
+    self.brand_category = SalesModeling::CategoryClassesRepo.select_by_category(brand)
   end
 end
   
@@ -301,25 +301,45 @@ end
 `Year`
 ```rb
 class SalesModeling::Type3::ValueObject::Year
-  include SalesModeling::Code
+  include SalesModeling::Category
+  CATEGORY_CLASS_CODE = '1'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `Season`
 ```rb
 class SalesModeling::Type3::ValueObject::Season
-  include SalesModeling::Code
+  include SalesModeling::Category
+  CATEGORY_CLASS_CODE = '2'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `ProductType`
 ```rb
 class SalesModeling::Type3::ValueObject::ProductType
   include SalesModeling::Type
+  CATEGORY_CLASS_CODE = '3'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `Brand`
 ```rb
 class SalesModeling::Type3::ValueObject::Brand
-  include SalesModeling::Code
+  include SalesModeling::Category
+  CATEGORY_CLASS_CODE = '4'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `SkuCode`
@@ -352,13 +372,23 @@ end
 `Color`
 ```rb
 class SalesModeling::Type3::ValueObject::Color
-  include SalesModeling::Code
+  include SalesModeling::Category
+  CATEGORY_CLASS_CODE = '5'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `Size`
 ```rb
 class SalesModeling::Type3::ValueObject::Size
-  include SalesModeling::Code
+  include SalesModeling::Category
+  CATEGORY_CLASS_CODE = '6'
+  
+  def category_class_code
+    CATEGORY_CLASS_CODE.rjust(CODE_LENGTH,'0')
+  end
 end
 ```  
 `UnitPurchasePrice`
@@ -403,6 +433,7 @@ end
 ```rb
 module SalesModeling
   module Type
+    include SalesModeling::Category
     extend ActiveSupport::Concern
     attr_reader :code, :name
     CODE_LENGTH = 2
@@ -482,6 +513,20 @@ module SalesModeling
     end
   
     def -(other)
+    end
+  end
+end
+  
+```  
+`Category`
+```rb
+module SalesModeling
+  module Category
+    include SalesModeling::Code
+    extend ActiveSupport::Concern
+    CATEGORY_CLASS_CODE = '0'
+  
+    def category_class_code
     end
   end
 end
