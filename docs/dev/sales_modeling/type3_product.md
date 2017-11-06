@@ -84,8 +84,6 @@ class Product {
 }
 class SKU {
   code
-  unit_purchase_price
-  unit_sales_price  
 }
 class Year {
   code
@@ -121,39 +119,49 @@ class ProductCode {
   code
   valid?()
 }
-class Money {
-  amount
-  currency
-}
 class SkuCode {
   code
   valid?()
+}
+class UnitPurchasePrice {
+}
+class UnitSalesPrice {
+}
+abstract Money {
+  amount
+  currency
 }
 abstract Code {  
 }
 abstract Type {  
 }
+abstract Price {  
+}
 
 Product *-- SKU
 Product -o Brand
 Brand -o Brand
-Product -ro ProductType
+Product -o ProductType
 ProductType -o ProductType
 Season o-- Product
 Season -o Year
 SKU -o Size
 SKU -ro Color
-Product o-- ProductCode
-SKU o-- Money
+Product o--l ProductCode
+SKU o-- UnitPurchasePrice
+SKU o-- UnitSalesPrice
 SKU o-- SkuCode
 Code <|... Season
 Code <|... Year
-Type <|.... ProductType
+Type <|.. ProductType
 Code <|... Brand
 Code <|... ProductCode
-Code <|... Color
+Code <|.... Color
 Code <|... Size
 Code <|... SkuCode
+Money <|... Price
+Price <|.... UnitPurchasePrice
+Price <|.... UnitSalesPrice
 ```
 ## ERモデル
 ```puml
@@ -205,8 +213,6 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/sales_modeling/type3/category_class.rb"
 `ProductCode`
 @import "../../../app/models/sales_modeling/type3/value_object/product_code.rb"
-`Money`
-@import "../../../app/models/sales_modeling/type3/value_object/money.rb"
 `Year`
 @import "../../../app/models/sales_modeling/type3/value_object/year.rb"
 `Season`
@@ -221,3 +227,15 @@ Category }-do-|| CategoryClass
 @import "../../../app/models/sales_modeling/type3/value_object/color.rb"
 `Size`
 @import "../../../app/models/sales_modeling/type3/value_object/size.rb"
+`UnitPurchasePrice`
+@import "../../../app/models/sales_modeling/type3/value_object/unit_purchase_price.rb"
+`UnitSalesPrice`
+@import "../../../app/models/sales_modeling/type3/value_object/unit_sales_price.rb"
+`Type`
+@import "../../../app/models/concerns/sales_modeling/type.rb"
+`Code`
+@import "../../../app/models/concerns/sales_modeling/code.rb"
+`Price`
+@import "../../../app/models/concerns/sales_modeling/price.rb"
+`Money`
+@import "../../../app/models/concerns/sales_modeling/money.rb"

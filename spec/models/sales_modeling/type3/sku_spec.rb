@@ -13,10 +13,10 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:navy_color) { create(:color_category, name: 'ネイビー') }
   let(:pink_color) { create(:color_category, name: 'ピンク') }
   let(:white_color) { create(:color_category, name: 'ホワイト') }
-  let(:hundredYen) { ValueObject::Money.new(100) }
-  let(:twohundredYen) { hundredYen.+(ValueObject::Money.new(100)) }
-  let(:tenDollar) { ValueObject::Money.new(10, '$') }
-  let(:notSet) { ValueObject::Money.new(nil, nil) }
+  let(:hundredYen) { ValueObject::UnitPurchasePrice.new(100) }
+  let(:twohundredYen) { hundredYen.+(ValueObject::UnitSalesPrice.new(100)) }
+  let(:tenDollar) { ValueObject::UnitPurchasePrice.new(10, '$') }
+  let(:notSet) { ValueObject::UnitPurchasePrice.new(nil, nil) }
 
   let(:products_repo) { ::SalesModeling::ProductsRepo.new }
   let(:skus_repo) { ::SalesModeling::SkusRepo.new }
@@ -108,7 +108,9 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
       expect(first_sku.sku_code.code).to eq 'p0001-00000'
       expect(first_sku.size.name).to eq 'L'
       expect(first_sku.color.name).to eq 'ネイビー'
+      expect(first_sku.unit_purchase_price).to eq hundredYen
       expect(first_sku.unit_purchase_price_amount).to eq 100
+      expect(first_sku.unit_sales_price).to eq twohundredYen
       expect(first_sku.unit_sales_price_amount).to eq 200
     end
 

@@ -46,17 +46,19 @@ SalesModeling
 ## 分析モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.8978985228654521)  
+![](assets/0f28a17f695955efdbee3d6cf0374be10.png?0.4970695549671291)  
 ## 設計モデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.34315061239174516)  
+![](assets/0f28a17f695955efdbee3d6cf0374be11.png?0.7919955678325385)  
 ## ERモデル
   
 
-![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.31355819941218765)  
+![](assets/0f28a17f695955efdbee3d6cf0374be12.png?0.1209427775794274)  
 `SKU`
 ```rb
+# frozen_string_literal: true
+  
 # == Schema Information
 #
 # Table name: sales_modeling_type3_skus # ストックキーピングユニット
@@ -85,12 +87,12 @@ SalesModeling
 #
   
 class SalesModeling::Type3::Sku < ApplicationRecord
-  belongs_to :sales_modeling_type3_product, :class_name => 'SalesModeling::Type3::Product'
-  belongs_to :size_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :color_category, :class_name => 'SalesModeling::Type3::Category'
+  belongs_to :sales_modeling_type3_product, class_name: 'SalesModeling::Type3::Product'
+  belongs_to :size_category, class_name: 'SalesModeling::Type3::Category'
+  belongs_to :color_category, class_name: 'SalesModeling::Type3::Category'
   
   def sku_code
-    @sku_code ||= SalesModeling::Type3::ValueObject::SkuCode.new(self.sales_modeling_type3_product.product_code.code,self.code)
+    @sku_code ||= SalesModeling::Type3::ValueObject::SkuCode.new(sales_modeling_type3_product.product_code.code, code)
   end
   
   def sku_code=(sku_code)
@@ -98,7 +100,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
   
   def unit_purchase_price
-    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_purchase_price_amount)
+    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::UnitPurchasePrice.new(unit_purchase_price_amount)
   end
   
   def unit_purchase_price=(money)
@@ -107,7 +109,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
   
   def unit_sales_price
-    @unit_sales_price ||= SalesModeling::Type3::ValueObject::Money.new(self.unit_sales_price_amount)
+    @unit_sales_price ||= SalesModeling::Type3::ValueObject::UnitSalesPrice.new(unit_sales_price_amount)
   end
   
   def unit_sales_price=(money)
@@ -116,39 +118,29 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
   
   def color
-    @color ||= SalesModeling::Type3::ValueObject::Color.new(self.color_category.code, self.color_category.name)
+    @color ||= SalesModeling::Type3::ValueObject::Color.new(color_category.code, color_category.name)
   end
   
   def color=(color)
     color = SalesModeling::Type3::ValueObject::Color.new(color.code, color.name)
-    color = SalesModeling::Type3::Category.where(
-        code:color.code,
-        name:color.name
-    ).first_or_create
-    color.save!
-  
-    self.color_category = color
+    self.color_category = SalesModeling::CategorysRepo.select_by_category(color)
   end
   
   def size
-    @size ||= SalesModeling::Type3::ValueObject::Size.new(self.size_category.code, self.size_category.name)
+    @size ||= SalesModeling::Type3::ValueObject::Size.new(size_category.code, size_category.name)
   end
   
   def size=(size)
     size = SalesModeling::Type3::ValueObject::Size.new(size.code, size.name)
-    size = SalesModeling::Type3::Category.where(
-        code:size.code,
-        name:size.name
-    ).first_or_create
-    size.save!
-  
-    self.size_category = size
+    self.size_category = SalesModeling::CategorysRepo.select_by_category(size)
   end
 end
   
 ```  
 `Product`
 ```rb
+# frozen_string_literal: true
+  
 # == Schema Information
 #
 # Table name: sales_modeling_type3_products # 商品
@@ -172,14 +164,15 @@ end
 #
   
 class SalesModeling::Type3::Product < ApplicationRecord
-  belongs_to :product_type_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :brand_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :season_category, :class_name => 'SalesModeling::Type3::Category'
-  belongs_to :year_category, :class_name => 'SalesModeling::Type3::Category', optional: true
-  has_many :skus, :class_name => 'SalesModeling::Type3::Sku', :foreign_key => 'sales_modeling_type3_product_id', dependent: :destroy
+  belongs_to :product_type_category, class_name: 'SalesModeling::Type3::Category'
+  belongs_to :brand_category, class_name: 'SalesModeling::Type3::Category'
+  belongs_to :season_category, class_name: 'SalesModeling::Type3::Category'
+  belongs_to :year_category, class_name: 'SalesModeling::Type3::Category', optional: true
+  has_many :skus, class_name: 'SalesModeling::Type3::Sku', foreign_key: 'sales_modeling_type3_product_id', dependent: :destroy
+  accepts_nested_attributes_for :skus, allow_destroy: true
   
   def product_code
-    @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(self.code)
+    @product_code ||= SalesModeling::Type3::ValueObject::ProductCode.new(code)
   end
   
   def product_code=(product_code)
@@ -187,64 +180,39 @@ class SalesModeling::Type3::Product < ApplicationRecord
   end
   
   def year
-    @year ||= SalesModeling::Type3::ValueObject::Year.new(self.year_category.code, self.year_category.name) unless self.year_category.nil?
+    @year ||= SalesModeling::Type3::ValueObject::Year.new(year_category.code, year_category.name) unless year_category.nil?
   end
   
   def season
-    @season ||= SalesModeling::Type3::ValueObject::Season.new(self.season_category.code, self.season_category.name)
+    @season ||= SalesModeling::Type3::ValueObject::Season.new(season_category.code, season_category.name)
   end
   
   def season=(season)
     season = SalesModeling::Type3::ValueObject::Season.new(season.code, season.name)
-    season = SalesModeling::Type3::Category.where(
-        code:season.code,
-        name:season.name
-    ).first_or_create
-    season.save!
+    self.season_category = SalesModeling::CategorysRepo.select_by_category(season)
   
-    self.season_category = season
-  
-    unless season.parent_category.nil?
-      year = season.parent_category
-      year = SalesModeling::Type3::ValueObject::Season.new(year.code, year.name)
-      year = SalesModeling::Type3::Category.where(
-          code:year.code,
-          name:year.name
-      ).first_or_create
-      year.save!
-  
-      self.year_category = year
+    unless season_category.parent_category.nil?
+      year = season_category.parent_category
+      self.year_category = SalesModeling::CategorysRepo.select_by_category(year)
     end
   end
   
   def type
-    @type ||= SalesModeling::Type3::ValueObject::ProductType.new(self.product_type_category.code, self.product_type_category.name)
+    @type ||= SalesModeling::Type3::ValueObject::ProductType.new(product_type_category.code, product_type_category.name)
   end
   
   def type=(type)
     type = SalesModeling::Type3::ValueObject::ProductType.new(type.code, type.name)
-    type = SalesModeling::Type3::Category.where(
-        code:type.code,
-        name:type.name
-    ).first_or_create
-    type.save!
-  
-    self.product_type_category = type
+    self.product_type_category = SalesModeling::CategorysRepo.select_by_category(type)
   end
   
   def brand
-    @brand ||= SalesModeling::Type3::ValueObject::Brand.new(self.brand_category.code, self.brand_category.name)
+    @brand ||= SalesModeling::Type3::ValueObject::Brand.new(brand_category.code, brand_category.name)
   end
   
   def brand=(brand)
     brand = SalesModeling::Type3::ValueObject::Brand.new(brand.code, brand.name)
-    brand = SalesModeling::Type3::Category.where(
-        code:brand.code,
-        name:brand.name
-    ).first_or_create
-    brand.save!
-  
-    self.brand_category = brand
+    self.brand_category = SalesModeling::CategorysRepo.select_by_category(brand)
   end
 end
   
@@ -307,13 +275,15 @@ end
 `ProductCode`
 ```rb
 class SalesModeling::Type3::ValueObject::ProductCode
+  include SalesModeling::Code
   attr_reader :code
+  CODE_LENGTH = 4
   
   def initialize(code)
     if code.slice(0) == 'p'
-      @code = code.rjust(4,'0')
+      @code = code.rjust(CODE_LENGTH,'0')
     else
-      @code = "p#{code.rjust(4,'0')}"
+      @code = "p#{code.rjust(CODE_LENGTH,'0')}"
     end
     valid?
   end
@@ -323,127 +293,45 @@ class SalesModeling::Type3::ValueObject::ProductCode
   end
   
   def valid?
-    raise "Not prodcut code format" unless @code.length == 5
+    raise "Not prodcut code format" unless @code.length == CODE_LENGTH + 1
     raise "Not prodcut code format" unless @code.slice(0) == 'p'
-  end
-end
-```  
-`Money`
-```rb
-class SalesModeling::Type3::ValueObject::Money
-  attr_reader :amount, :currency
-  
-  def initialize(amount, currency = "JPY")
-    @amount = amount
-    @currency = currency
-  end
-  
-  def ==(other)
-    amount == other.amount && currency == other.currency
-  end
-  
-  def +(other)
-    raise "Currency is different" unless currency == other.currency
-  
-    SalesModeling::Type3::ValueObject::Money.new(amount + other.amount, currency)
-  end
-  
-  def -(other)
-    raise "Currency is different" unless currency == other.currency
-    raise "Other money is bigger than self" if amount < other.amount
-  
-    SalesModeling::Type3::ValueObject::Money.new(amount - other.amount, currency)
   end
 end
 ```  
 `Year`
 ```rb
 class SalesModeling::Type3::ValueObject::Year
-  attr_reader :code, :name
-  
-  def initialize(code, name)
-    @code = code.rjust(5,'0')
-    @name = name
-    valid?
-  end
-  
-  def hash
-    self.hash
-  end
-  
-  def valid?
-    raise "Invalid code format" unless @code.length == 5
-  end
+  include SalesModeling::Code
 end
 ```  
 `Season`
 ```rb
 class SalesModeling::Type3::ValueObject::Season
-  attr_reader :code, :name
-  
-  def initialize(code, name)
-    @code = code.rjust(5,'0')
-    @name = name
-    valid?
-  end
-  
-  def hash
-    self.hash
-  end
-  
-  def valid?
-    raise "Invarid code format" unless @code.length == 5
-  end
+  include SalesModeling::Code
 end
 ```  
 `ProductType`
 ```rb
 class SalesModeling::Type3::ValueObject::ProductType
-  attr_reader :code, :name
-  
-  def initialize(code, name)
-    @code = code.rjust(2,'0')
-    @name = name
-    valid?
-  end
-  
-  def hash
-    self.hash
-  end
-  
-  def valid?
-    raise "Bad code format" unless code.length == 2
-  end
+  include SalesModeling::Type
 end
 ```  
 `Brand`
 ```rb
 class SalesModeling::Type3::ValueObject::Brand
-  attr_reader :code, :name
-  
-  def initialize(code, name)
-    @code = code.rjust(5,'0')
-    @name = name
-    valid?
-  end
-  
-  def hash
-    self.hash
-  end
-  
-  def valid?
-    raise "Invalid code format" unless code.length == 5
-  end
+  include SalesModeling::Code
 end
 ```  
 `SkuCode`
 ```rb
 class SalesModeling::Type3::ValueObject::SkuCode
+  include SalesModeling::Code
   attr_reader :code
+  CODE_LENGTH = 5
   
   def initialize(product_code,code)
-    if code.length <= 5
-      @code = "#{product_code}-#{code.rjust(5,'0')}"
+    if code.length <= CODE_LENGTH
+      @code = "#{product_code}-#{code.rjust(CODE_LENGTH,'0')}"
     else
       @code = code
     end
@@ -456,7 +344,7 @@ class SalesModeling::Type3::ValueObject::SkuCode
   end
   
   def valid?
-    raise "Not sku code format" unless @code.length == 11
+    raise "Not sku code format" unless @code.length == CODE_LENGTH + 6
     raise "Not sku code format" unless @code.slice(0) == 'p'
   end
 end
@@ -464,41 +352,139 @@ end
 `Color`
 ```rb
 class SalesModeling::Type3::ValueObject::Color
-  attr_reader :code, :name
-  
-  def initialize(code, name)
-    @code = code.rjust(5,'0')
-    @name = name
-    valid?
-  end
-  
-  def hash
-    self.hash
-  end
-  
-  def valid?
-    raise "Invalid code format" unless code.length == 5
-  end
+  include SalesModeling::Code
 end
 ```  
 `Size`
 ```rb
 class SalesModeling::Type3::ValueObject::Size
-  attr_reader :code, :name
+  include SalesModeling::Code
+end
+```  
+`UnitPurchasePrice`
+```rb
+class SalesModeling::Type3::ValueObject::UnitPurchasePrice
+  include SalesModeling::Price
   
-  def initialize(code, name)
-    @code = code.rjust(5,'0')
-    @name = name
-    valid?
+  def +(other)
+    raise "Currency is different" unless currency == other.currency
+  
+    SalesModeling::Type3::ValueObject::UnitPurchasePrice.new(amount + other.amount, currency)
   end
   
-  def hash
-    self.hash
-  end
+  def -(other)
+    raise "Currency is different" unless currency == other.currency
+    raise "Other money is bigger than self" if amount < other.amount
   
-  def valid?
-    raise "Invalid code format" unless code.length == 5
+    SalesModeling::Type3::ValueObject::UnitPurchasePrice.new(amount - other.amount, currency)
   end
 end
+```  
+`UnitSalesPrice`
+```rb
+class SalesModeling::Type3::ValueObject::UnitSalesPrice
+  include SalesModeling::Price
+  
+  def +(other)
+    raise "Currency is different" unless currency == other.currency
+  
+    SalesModeling::Type3::ValueObject::UnitSalesPrice.new(amount + other.amount, currency)
+  end
+  
+  def -(other)
+    raise "Currency is different" unless currency == other.currency
+    raise "Other money is bigger than self" if amount < other.amount
+  
+    SalesModeling::Type3::ValueObject::UnitSalesPrice.new(amount - other.amount, currency)
+  end
+end
+```  
+`Type`
+```rb
+module SalesModeling
+  module Type
+    extend ActiveSupport::Concern
+    attr_reader :code, :name
+    CODE_LENGTH = 2
+  
+    def initialize(code, name)
+      @code = code.rjust(CODE_LENGTH,'0')
+      @name = name
+      valid?
+    end
+  
+    def hash
+      self.hash
+    end
+  
+    def valid?
+      raise "Invalid code format" unless code.length == CODE_LENGTH
+    end
+  end
+end
+```  
+`Code`
+```rb
+module SalesModeling
+  module Code
+    extend ActiveSupport::Concern
+    attr_reader :code, :name
+    CODE_LENGTH = 5
+  
+    def initialize(code, name)
+      @code = code.rjust(CODE_LENGTH,'0')
+      @name = name
+      valid?
+    end
+  
+    def hash
+      self.hash
+    end
+  
+    def valid?
+      raise "Invalid code format" unless code.length == CODE_LENGTH
+    end
+  end
+end
+  
+```  
+`Price`
+```rb
+module SalesModeling
+  module Price
+    extend ActiveSupport::Concern
+  
+    included do
+      include Money
+    end
+  end
+end
+```  
+`Money`
+```rb
+# frozen_string_literal: true
+  
+module SalesModeling
+  module Money
+    extend ActiveSupport::Concern
+    attr_reader :amount, :currency
+  
+    def initialize(amount, currency = 'JPY')
+      @amount = amount
+      @currency = currency
+    end
+  
+    def ==(other)
+      amount == other.amount && currency == other.currency
+    end
+  
+    def +(other)
+    end
+  
+    def -(other)
+    end
+  end
+end
+  
 ```  
   

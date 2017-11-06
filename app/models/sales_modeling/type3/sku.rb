@@ -41,7 +41,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
 
   def unit_purchase_price
-    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::Money.new(unit_purchase_price_amount)
+    @unit_purchase_price ||= SalesModeling::Type3::ValueObject::UnitPurchasePrice.new(unit_purchase_price_amount)
   end
 
   def unit_purchase_price=(money)
@@ -50,7 +50,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   end
 
   def unit_sales_price
-    @unit_sales_price ||= SalesModeling::Type3::ValueObject::Money.new(unit_sales_price_amount)
+    @unit_sales_price ||= SalesModeling::Type3::ValueObject::UnitSalesPrice.new(unit_sales_price_amount)
   end
 
   def unit_sales_price=(money)
