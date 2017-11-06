@@ -19,7 +19,6 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:notSet) { ValueObject::UnitPurchasePrice.new(nil, nil) }
 
   let(:products_repo) { ::SalesModeling::ProductsRepo.new }
-  let(:skus_repo) { ::SalesModeling::SkusRepo.new }
   let(:l_size_products) { products_repo.select_by_size(l_size) }
   let(:m_size_products) { products_repo.select_by_size(m_size) }
   let(:navy_color_products) { products_repo.select_by_color(navy_color) }
@@ -29,32 +28,32 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:s_size_and_white_color_products) { products_repo.select_by_size_and_color(s_size, white_color) }
   let(:products_p0001) { products_repo.select_by_code('p0001') }
   let(:products) { products_repo.all }
-  let(:skus) { skus_repo.all }
-  let(:l_size_skus) { skus_repo.select_by_size(l_size) }
-  let(:m_size_skus) { skus_repo.select_by_size(m_size) }
-  let(:white_color_skus) { skus_repo.select_by_color(white_color) }
-  let(:l_size_and_white_color_skus) { skus_repo.select_by_size_and_color(l_size, white_color) }
+  let(:skus) { products_repo.all_sku }
+  let(:l_size_skus) { products_repo.select_all_sku_by_size(l_size) }
+  let(:m_size_skus) { products_repo.select_all_sku_by_size(m_size) }
+  let(:white_color_skus) { products_repo.select_all_sku_by_color(white_color) }
+  let(:l_size_and_white_color_skus) { products_repo.select_all_sku_by_size_and_color(l_size, white_color) }
   let(:first_product) { products_repo.select_first }
   let(:second_product) { products_repo.select_second }
   let(:third_product) { products_repo.select_third }
-  let(:first_sku) { skus_repo.select_first }
-  let(:second_sku) { skus_repo.select_second }
-  let(:third_sku) { skus_repo.select_third }
+  let(:first_sku) { products_repo.select_all_sku_first }
+  let(:second_sku) { products_repo.select_all_sku_second }
+  let(:third_sku) { products_repo.select_all_sku_third }
 
   def create_p0001_sku
-    sku = skus_repo.new(
+    sku = products_repo.new_sku(
       size: l_size,
       color: navy_color,
       unit_purchase_price: hundredYen,
       unit_sales_price: twohundredYen
     )
-    skus_repo.save(product_p0001, [sku])
+    products_repo.save(product_p0001, [sku])
   end
 
   def create_full_size_sku
     skus = []
     [l_size, m_size, s_size].each do |size|
-      sku = skus_repo.new(
+      sku = products_repo.new_sku(
         size: size,
         color: navy_color,
         unit_purchase_price: hundredYen,
@@ -62,18 +61,18 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
       )
       skus << sku
     end
-    skus_repo.save(product_p0001, skus)
+    products_repo.save(product_p0001, skus)
   end
 
   def create_3_pattern_sku
     build_sku = lambda do |product, size, color|
-      sku = skus_repo.new(
+      sku = products_repo.new_sku(
         size: size,
         color: color,
         unit_purchase_price: hundredYen,
         unit_sales_price: twohundredYen
       )
-      skus_repo.save(product, [sku])
+      products_repo.save(product, [sku])
     end
 
     build_sku.call(product_p0001, l_size, navy_color)
@@ -84,8 +83,8 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   def create_full_lineup
     build_sku = lambda do |product, color|
       skus = []
-      [l_size, m_size, s_size ].each do |size|
-        sku = skus_repo.new(
+      [l_size, m_size, s_size].each do |size|
+        sku = products_repo.new_sku(
           size: size,
           color: color,
           unit_purchase_price: hundredYen,
@@ -93,7 +92,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
         )
         skus << sku
       end
-      skus_repo.save(product, skus)
+      products_repo.save(product, skus)
     end
 
     build_sku.call(product_p0001, navy_color)
@@ -105,7 +104,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
     example '品番:p0001 サイズ；L・カラー；ネイビー 仕入単価:100円 販売単価:200円' do
       create_p0001_sku
 
-      expect(first_sku.sku_code.code).to eq 'p0001-00000'
+      expect(first_sku.sku_code.code).to eq 'p0001-00001'
       expect(first_sku.size.name).to eq 'L'
       expect(first_sku.color.name).to eq 'ネイビー'
       expect(first_sku.unit_purchase_price).to eq hundredYen
@@ -195,7 +194,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
 
       example '品番:p0001 p0002 p0003 サイズ:L -> M' do
         l_size_products.each do |product|
-          skus_repo.update(product, size: m_size)
+          products_repo.update_sku(product, size: m_size)
         end
 
         expect(m_size_skus.count).to eq 6
@@ -210,7 +209,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
 
       example '品番:p0001 カラー:ネイビー -> ホワイト' do
         navy_color_products.each do |product|
-          skus_repo.update(product, color: white_color)
+          products_repo.update_sku(product, color: white_color)
         end
 
         expect(white_color_skus.count).to eq 6

@@ -10,12 +10,26 @@ module SalesModeling
       Product.includes(:skus).references(:sales_modeling_type3_skus)
     end
 
+    def all_sku
+      Sku.all
+    end
+
     def new(params = {})
       Product.new(params)
     end
 
+    def new_sku(params = {})
+      Sku.new(params)
+    end
+
     def update(product, params)
       product.update(params)
+    end
+
+    def update_sku(product, params)
+      product.skus.each do |sku|
+        sku.update(params)
+      end
     end
 
     def destroy(product)
@@ -46,13 +60,23 @@ module SalesModeling
       select_by_code(code).delete_all
     end
 
-    def save(product)
+    def save(product, skus=[])
       product.product_code = SalesModeling::Type3::ValueObject::ProductCode.new((select_count + 1).to_s) if product.code.nil?
+
+      skus.each do |sku|
+        sku.sku_code = ValueObject::SkuCode.new(product.code, select_count.to_s)
+        product.skus << sku
+      end
+
       product.save!
     end
 
     def select_count
       Product.count
+    end
+
+    def select_all_sku_count
+      Sku.count
     end
 
     def select_first
@@ -65,6 +89,18 @@ module SalesModeling
 
     def select_third
       Product.third
+    end
+
+    def select_all_sku_first
+      Sku.first
+    end
+
+    def select_all_sku_second
+      Sku.second
+    end
+
+    def select_all_sku_third
+      Sku.third
     end
 
     def select_by_code(code)
@@ -89,6 +125,18 @@ module SalesModeling
 
     def select_by_size_and_color(size, color)
       Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.size_category_id = ? and sales_modeling_type3_skus.color_category_id = ?', size.id, color.id)
+    end
+
+    def select_all_sku_by_size(size)
+      Sku.where(size_category_id: size.id)
+    end
+
+    def select_all_sku_by_color(color)
+      Sku.where(color_category_id: color.id)
+    end
+
+    def select_all_sku_by_size_and_color(size, color)
+      Sku.where(size_category_id: size.id, color_category_id: color.id)
     end
   end
 end
