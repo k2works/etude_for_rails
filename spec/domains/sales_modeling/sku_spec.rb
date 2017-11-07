@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-include SalesModeling::Type3
 
-RSpec.describe SalesModeling::Type3::Sku, type: :model do
+RSpec.describe SalesModeling::Product::ApparelProductSku, type: :model do
   let(:product_p0001) { create(:product_1) }
   let(:product_p0002) { create(:product_1, code: SalesModeling::Code::ProductCode.new('p0002').code) }
   let(:product_p0003) { create(:product_1, code: SalesModeling::Code::ProductCode.new('p0003').code) }

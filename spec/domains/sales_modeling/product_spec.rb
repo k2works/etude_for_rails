@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-include SalesModeling::Type3
 
-RSpec.describe SalesModeling::Type3::Product, type: :model do
+RSpec.describe SalesModeling::Product::ApparelProduct, type: :model do
   let(:y_2017_value) { SalesModeling::Category::Year.new('1', '2017') }
   let(:y_2018_value) { SalesModeling::Category::Year.new('1', '2018') }
   let(:y_2017) { create(:year_category, code: y_2017_value.code, name: y_2017_value.name) }
