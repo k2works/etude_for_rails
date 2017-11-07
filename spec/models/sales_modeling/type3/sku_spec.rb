@@ -40,39 +40,40 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
   let(:second_sku) { products_repo.select_all_sku_second }
   let(:third_sku) { products_repo.select_all_sku_third }
 
-  def create_p0001_sku
-    sku = products_repo.new_sku(
+  def create_p0001_sku(product)
+    products_repo.new_sku(
+      product,
       size: l_size,
       color: navy_color,
       unit_purchase_price: hundredYen,
       unit_sales_price: twohundredYen
     )
-    products_repo.save(product_p0001, [sku])
+    products_repo.save(product)
   end
 
-  def create_full_size_sku
-    skus = []
+  def create_full_size_sku(product)
     [l_size, m_size, s_size].each do |size|
-      sku = products_repo.new_sku(
+      products_repo.new_sku(
+        product,
         size: size,
         color: navy_color,
         unit_purchase_price: hundredYen,
         unit_sales_price: twohundredYen
       )
-      skus << sku
+      products_repo.save(product_p0001)
     end
-    products_repo.save(product_p0001, skus)
   end
 
   def create_3_pattern_sku
     build_sku = lambda do |product, size, color|
-      sku = products_repo.new_sku(
+      products_repo.new_sku(
+        product,
         size: size,
         color: color,
         unit_purchase_price: hundredYen,
         unit_sales_price: twohundredYen
       )
-      products_repo.save(product, [sku])
+      products_repo.save(product)
     end
 
     build_sku.call(product_p0001, l_size, navy_color)
@@ -82,17 +83,16 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
 
   def create_full_lineup
     build_sku = lambda do |product, color|
-      skus = []
       [l_size, m_size, s_size].each do |size|
-        sku = products_repo.new_sku(
+        products_repo.new_sku(
+          product,
           size: size,
           color: color,
           unit_purchase_price: hundredYen,
           unit_sales_price: twohundredYen
         )
-        skus << sku
+        products_repo.save(product)
       end
-      products_repo.save(product, skus)
     end
 
     build_sku.call(product_p0001, navy_color)
@@ -102,7 +102,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
 
   describe '#create' do
     example '品番:p0001 サイズ；L・カラー；ネイビー 仕入単価:100円 販売単価:200円' do
-      create_p0001_sku
+      create_p0001_sku(product_p0001)
 
       expect(first_sku.sku_code.code).to eq 'p0001-00001'
       expect(first_sku.size.name).to eq 'L'
@@ -114,7 +114,7 @@ RSpec.describe SalesModeling::Type3::Sku, type: :model do
     end
 
     example '品番:p0001 サイズ；L,M,S' do
-      create_full_size_sku
+      create_full_size_sku(product_p0001)
 
       expect(first_sku.size.name).to eq 'L'
       expect(second_sku.size.name).to eq 'M'

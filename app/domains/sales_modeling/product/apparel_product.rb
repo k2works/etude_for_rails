@@ -20,19 +20,19 @@ module SalesModeling
       end
 
       def year=(params)
-        @year = SalesModeling::Category::Year.new(params[:code], params[:name])
+        @year = SalesModeling::Category::Year.new(params[:code], params[:name]) unless params.nil?
       end
 
       def season=(params)
-        @season = SalesModeling::Category::Season.new(params[:code], params[:name])
+        @season = SalesModeling::Category::Season.new(params[:code], params[:name]) unless params.nil?
       end
 
       def product_type=(params)
-        @season = SalesModeling::Type::ProductType.new(params[:code], params[:name])
+        @season = SalesModeling::Type::ProductType.new(params[:code], params[:name]) unless params.nil?
       end
 
       def brand=(params)
-        @brand = SalesModeling::Category::Brand.new(params[:code], params[:name])
+        @brand = SalesModeling::Category::Brand.new(params[:code], params[:name]) unless params.nil?
       end
 
       def skus=(sku)

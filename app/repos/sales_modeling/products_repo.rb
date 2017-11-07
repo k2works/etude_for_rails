@@ -16,11 +16,22 @@ module SalesModeling
     end
 
     def new(params = {})
+      self.product_code=((select_count + 1).to_s)
+      self.name = params[:name]
+      self.year = params[:season].parent_category
+      self.season = params[:season]
+      self.product_type = params[:type]
+      self.brand = params[:brand]
+      params[:product_code] = @product_code
       ::SalesModeling::Type3::Product.new(params)
     end
 
-    def new_sku(params = {})
-      ::SalesModeling::Type3::Sku.new(params)
+    def new_sku(product,params = {})
+      self.sku_code=({product_code: product.code, code: select_count.to_s})
+      self.unit_purchase_price = params[:unit_purchase_price]
+      self.unit_sales_price = params[:unit_sales_price]
+      params[:sku_code] = @sku_code
+      product.skus.build(params)
     end
 
     def update(product, params)
@@ -61,12 +72,17 @@ module SalesModeling
       select_by_code(code).delete_all
     end
 
-    def save(product, skus=[])
-      product.product_code = SalesModeling::Code::ProductCode.new((select_count + 1).to_s) if product.code.nil?
+    def save(product)
+      if product.code.nil?
+        self.product_code=((select_count + 1).to_s)
+        product.product_code = @product_code
+      end
 
-      skus.each do |sku|
-        sku.sku_code = SalesModeling::Code::SkuCode.new(product.code, select_count.to_s)
-        product.skus << sku
+      product.skus.each do |sku|
+        if sku.code.nil?
+          self.sku_code=({product_code: product.code, code: select_count.to_s})
+          sku.sku_code = @sku_code
+        end
       end
 
       product.save!
