@@ -7,7 +7,7 @@ def rental_movie(days_rented, price)
 end
 
 describe RentalVideo::Customer do
-  let(:customer) { Customer.new('Taro') }
+  let(:customer) { RentalVideo::Customer.new('Taro') }
   describe '#add_rental' do
     it 'should be rented' do
       customer.add_rental(rental_movie(7, RentalVideo::ChildrenPrice.new))

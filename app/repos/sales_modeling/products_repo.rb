@@ -80,7 +80,7 @@ module SalesModeling
 
       product.skus.each do |sku|
         if sku.code.nil?
-          self.sku_code=({product_code: product.code, code: select_count.to_s})
+               .sku_code=({product_code: product.code, code: select_count.to_s})
           sku.sku_code = @sku_code
         end
       end

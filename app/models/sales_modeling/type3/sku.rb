@@ -31,7 +31,7 @@ class SalesModeling::Type3::Sku < ApplicationRecord
   belongs_to :sales_modeling_type3_product, class_name: 'SalesModeling::Type3::Product'
   belongs_to :size_category, class_name: 'SalesModeling::Type3::Category'
   belongs_to :color_category, class_name: 'SalesModeling::Type3::Category'
-  belongs_to :sales_modeling_sales_sales_line, class_name: 'SalesModeling::Sales::SalesLine'
+  belongs_to :sales_modeling_sales_sales_line, class_name: 'SalesModeling::Sales::SalesLine', optional: true
 
   def sku_code
     @sku_code ||= SalesModeling::Code::SkuCode.new(sales_modeling_type3_product.product_code.code, code)
