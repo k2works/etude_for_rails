@@ -42,4 +42,9 @@ FactoryGirl.define do
     name 'L'
     association :sales_modeling_type3_category_class, factory: :size_category_class
   end
+  factory :customer_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::CustomerType.new('9','一般').code
+    name '一般'
+    association :sales_modeling_type3_category_class, factory: :product_type_category_class
+  end
 end

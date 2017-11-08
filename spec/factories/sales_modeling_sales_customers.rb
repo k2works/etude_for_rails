@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :sales_modeling_sales_customer, class: 'SalesModeling::Sales::Customer' do
-    code "MyString"
+    code "MyStr"
     name "MyString"
     prefecture "MyString"
     city "MyString"

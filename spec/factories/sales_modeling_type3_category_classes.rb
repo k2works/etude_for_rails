@@ -23,4 +23,8 @@ FactoryGirl.define do
     code SalesModeling::Category::Size.new('', '').category_class_code
     name 'サイズ'
   end
+  factory :customer_type_category_class, class: 'SalesModeling::Type3::CategoryClass' do
+    code SalesModeling::Type::CustomerType.new('', '').category_class_code
+    name '顧客区分'
+  end
 end
