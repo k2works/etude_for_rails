@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101063744) do
+ActiveRecord::Schema.define(version: 20171108054730) do
 
   create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -353,6 +353,57 @@ ActiveRecord::Schema.define(version: 20171101063744) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sales_modeling_sales_customers", force: :cascade, comment: "顧客" do |t|
+    t.string "code", comment: "コード"
+    t.string "name", comment: "名称"
+    t.string "prefecture", comment: "都道府県"
+    t.string "city", comment: "市町村"
+    t.string "house_number", comment: "番地"
+    t.string "telephone_number", comment: "電話番号"
+    t.bigint "customer_type_category_id", comment: "顧客区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_type_category_id"], name: "index_sales_modeling_salse_customer_category_id"
+  end
+
+  create_table "sales_modeling_sales_estimates", force: :cascade, comment: "見積" do |t|
+    t.bigint "sales_estimate_id", comment: "見積"
+    t.bigint "sales_order_id", comment: "注文"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_estimate_id"], name: "index_sales_modeling_sales_estimates_on_sales_estimate_id"
+    t.index ["sales_order_id"], name: "index_sales_modeling_sales_estimates_on_sales_order_id"
+  end
+
+  create_table "sales_modeling_sales_sales", force: :cascade, comment: "売上" do |t|
+    t.string "type", comment: "STIカラム"
+    t.datetime "date", comment: "売上日"
+    t.decimal "amount", precision: 10, comment: "金額"
+    t.string "amount_currency", comment: "通貨"
+    t.bigint "sales_modeling_sales_customer_id", comment: "顧客"
+    t.bigint "sales_type_category_id", comment: "売上区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_sales_customer_id"], name: "index_sales_modeling_sales_on_customer_id"
+    t.index ["sales_type_category_id"], name: "index_sales_modeling_sales_sales_category_id"
+  end
+
+  create_table "sales_modeling_sales_sales_lines", force: :cascade, comment: "売上明細" do |t|
+    t.integer "line_number", comment: "明細番号"
+    t.decimal "quantity_amount", precision: 10, comment: "数量"
+    t.string "quantity_unit", comment: "単位"
+    t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
+    t.string "unit_sales_price_currency", comment: "販売単価通貨"
+    t.decimal "sales_price_amount", precision: 10, comment: "金額"
+    t.string "sales_price_amount_currency", comment: "通貨"
+    t.bigint "sales_modeling_sales_sales_id", comment: "売上"
+    t.bigint "sales_modeling_type3_sku_id", comment: "ストックキーピングユニット"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_sales_sales_id"], name: "index_sales_modeling_sales_on_sales_id"
+    t.index ["sales_modeling_type3_sku_id"], name: "index_sales_modeling_type3_on_sku_id"
+  end
+
   create_table "sales_modeling_type1_colors", force: :cascade, comment: "カラー" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名前"
@@ -490,6 +541,9 @@ ActiveRecord::Schema.define(version: 20171101063744) do
   add_foreign_key "baukis_phones", "baukis_customers"
   add_foreign_key "baukis_staff_events", "baukis_staff_members"
   add_foreign_key "rails_tutorial_sample_microposts", "rails_tutorial_sample_users"
+  add_foreign_key "sales_modeling_sales_sales", "sales_modeling_sales_customers"
+  add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_sales_sales", column: "sales_modeling_sales_sales_id"
+  add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_type3_skus"
   add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_colors"
   add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_product_categories"
   add_foreign_key "sales_modeling_type1_products", "sales_modeling_type1_sizes"

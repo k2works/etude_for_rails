@@ -261,33 +261,37 @@ entity Customer {
   city
   house_number  
   telephone_number
-  customer_type_category_cod [FK]
+  # customer_type_category_cod [FK]
 }
 entity Sales {
-  + code [PK]
+  + id [PK]
   --
   type
-  sales_type_category_code [FK]
-  sales_date
-  sales_amount
-  sales_estimate_code [FK]
+  date
+  amount
+  amount_currency
+  # customer_code [FK]
+  # sales_type_category_code [FK]  
 }
 entity SalesLine {
-  + code [PK]
-  # sales_code [FK]
+  + id [PK]
   --
+  line_number
   quantity_amount
+  quantity_unit
   unit_sales_price_amount
   unit_sales_price_currency
-  sales_amount
-  sku_code [FK]
+  sales_price_amount
+  sales_price_amount_currency
+  # sales_id [FK]    
+  # sku_code [FK]
 }
 entity Estimate {
-  code
-  sales_code [FK]  
+  sales_estimate_id
+  sales_order_id
 }
 CategoryClass ||-do-{ Category
-Estimate ||-do-{ Sales  
+Estimate -do- Sales
 Product ||-do-{ Sku
 Category ||-do-{ Sku
 Category }-do-|| Category
@@ -295,7 +299,6 @@ Customer ||-do-{ Sales
 Sales ||-do-{ SalesLine
 SalesLine -do- Sku  
 Category ||-do-{ Sales
-Sales ||-do-{ Estimate
 Category||-do-{Product
 Category||-do-{Customer    
 ```
