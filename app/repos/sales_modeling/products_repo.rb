@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SalesModeling
   class ProductsRepo
     include ::SalesModeling::Product::ApparelProduct
@@ -16,7 +18,7 @@ module SalesModeling
     end
 
     def new(params = {})
-      self.product_code=((select_count + 1).to_s)
+      self.product_code = (select_count + 1).to_s
       self.name = params[:name]
       self.year = params[:season].parent_category
       self.season = params[:season]
@@ -26,8 +28,8 @@ module SalesModeling
       ::SalesModeling::Type3::Product.new(params)
     end
 
-    def new_sku(product,params = {})
-      self.sku_code=({product_code: product.code, code: select_count.to_s})
+    def new_sku(product, params = {})
+      self.sku_code = ({ product_code: product.code, code: select_count.to_s })
       self.unit_purchase_price = params[:unit_purchase_price]
       self.unit_sales_price = params[:unit_sales_price]
       params[:sku_code] = @sku_code
@@ -74,13 +76,13 @@ module SalesModeling
 
     def save(product)
       if product.code.nil?
-        self.product_code=((select_count + 1).to_s)
+        self.product_code = (select_count + 1).to_s
         product.product_code = @product_code
       end
 
       product.skus.each do |sku|
         if sku.code.nil?
-               .sku_code=({product_code: product.code, code: select_count.to_s})
+          self.sku_code = ({ product_code: product.code, code: select_count.to_s })
           sku.sku_code = @sku_code
         end
       end
