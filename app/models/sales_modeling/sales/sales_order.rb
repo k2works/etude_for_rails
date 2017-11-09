@@ -25,4 +25,13 @@
 class SalesModeling::Sales::SalesOrder < SalesModeling::Sales::Sale
   belongs_to :sales_type_category, class_name: 'SalesModeling::Type3::Category'
   has_many :sales_lines, :class_name => 'SalesModeling::Sales::SalesLine'
+
+  has_many :estimate_relationships, :class_name => 'SalesModeling::Sales::Estimate',
+           foreign_key: :sales_order_id,
+           dependent: :destroy
+  has_many :sales_estimates, through: :estimate_relationships, source: :sales_estimate
+
+  def set_sales_estimate(estimate)
+    estimate_relationships.create(sales_estimate_id: estimate.id)
+  end
 end

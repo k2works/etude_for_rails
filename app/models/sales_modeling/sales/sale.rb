@@ -25,15 +25,4 @@
 class SalesModeling::Sales::Sale < ApplicationRecord
   belongs_to :sales_modeling_sales_customer, class_name: 'SalesModeling::Sales::Customer'
   belongs_to :sales_type_category
-
-  has_many :estimate_relationships, :class_name => 'SalesModeling::Sales::Estimate',
-           foreign_key: :sales_estimate_id,
-           dependent: :destroy
-  has_many :order_relationships, :class_name => 'SalesModeling::Sales::Estimate',
-           foreign_key: :sales_order_id,
-           dependent: :destroy
-
-
-  has_many :estimates, through: :estimate_relationships, source: :sales_estimate
-  has_one :order, through: :order_relationships, source: :sales_order
 end

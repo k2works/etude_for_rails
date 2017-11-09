@@ -15,6 +15,6 @@
 #
 
 class SalesModeling::Sales::Estimate < ApplicationRecord
-  belongs_to :sales_estimate, class_name ;'SalesModeling::Sales::Sale'
-  belongs_to :sales_order, class_name ;'SalesModeling::Sales::Sale'
+  belongs_to :sales_estimate, class_name: 'SalesModeling::Sales::SalesEstimate', optional: true
+  belongs_to :sales_order, class_name: 'SalesModeling::Sales::SalesOrder', optional: true
 end

@@ -20,5 +20,6 @@
 
 class SalesModeling::Sales::Customer < ApplicationRecord
   belongs_to :customer_type_category, class_name: 'SalesModeling::Type3::Category'
-  has_many :sales_modeling_sales_sales, class_name: 'SalesModeling::Sales::Sale'
+  has_many :sales_estimates, class_name: 'SalesModeling::Sales::SalesEstimate',foreign_key: :sales_modeling_sales_customer_id
+  has_many :sales_sales_orders, class_name: 'SalesModeling::Sales::SalesOrder',foreign_key: :sales_modeling_sales_customer_id
 end
