@@ -47,4 +47,9 @@ FactoryGirl.define do
     name '一般'
     association :sales_modeling_type3_category_class, factory: :product_type_category_class
   end
+  factory :sales_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::CustomerType.new('10','見積').code
+    name '見積'
+    association :sales_modeling_type3_category_class, factory: :product_type_category_class
+  end
 end

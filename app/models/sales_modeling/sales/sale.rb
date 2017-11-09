@@ -6,7 +6,7 @@
 #  type                             :string(255)                            # STIカラム
 #  date                             :datetime                               # 売上日
 #  amount                           :decimal(10, )                          # 金額
-#  amount_currency                  :string(255)                            # 通貨
+#  currency                         :string(255)                            # 通貨
 #  sales_modeling_sales_customer_id :integer                                # 顧客
 #  sales_type_category_id           :integer                                # 売上区分
 #  created_at                       :datetime         not null

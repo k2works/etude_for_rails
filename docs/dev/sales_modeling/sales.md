@@ -269,7 +269,7 @@ entity Sales {
   type
   date
   amount
-  amount_currency
+  currency
   # customer_code [FK]
   # sales_type_category_code [FK]  
 }
@@ -282,7 +282,7 @@ entity SalesLine {
   unit_sales_price_amount
   unit_sales_price_currency
   sales_price_amount
-  sales_price_amount_currency
+  sales_price_currency
   # sales_id [FK]    
   # sku_code [FK]
 }

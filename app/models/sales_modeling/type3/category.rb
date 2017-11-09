@@ -30,4 +30,5 @@ class SalesModeling::Type3::Category < ApplicationRecord
   has_many :brand_categories, :class_name => 'SalesModeling::Type3::Product', :foreign_key => 'brand_category_id'
   has_many :season_categories, :class_name => 'SalesModeling::Type3::Product', :foreign_key => 'season_category_id'
   has_many :year_categories, :class_name => 'SalesModeling::Type3::Product', :foreign_key => 'year_category_id'
+  has_many :sales_type_categories, :class_name => 'SalesModeling::Sales::Sales', :foreign_key => 'sales_type_category_id'
 end

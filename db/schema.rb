@@ -379,7 +379,7 @@ ActiveRecord::Schema.define(version: 20171108054730) do
     t.string "type", comment: "STIカラム"
     t.datetime "date", comment: "売上日"
     t.decimal "amount", precision: 10, comment: "金額"
-    t.string "amount_currency", comment: "通貨"
+    t.string "currency", comment: "通貨"
     t.bigint "sales_modeling_sales_customer_id", comment: "顧客"
     t.bigint "sales_type_category_id", comment: "売上区分"
     t.datetime "created_at", null: false
@@ -395,13 +395,17 @@ ActiveRecord::Schema.define(version: 20171108054730) do
     t.decimal "unit_sales_price_amount", precision: 10, comment: "販売単価"
     t.string "unit_sales_price_currency", comment: "販売単価通貨"
     t.decimal "sales_price_amount", precision: 10, comment: "金額"
-    t.string "sales_price_amount_currency", comment: "通貨"
+    t.string "sales_price_currency", comment: "通貨"
     t.bigint "sales_modeling_sales_sales_id", comment: "売上"
+    t.bigint "sales_estimate_id", comment: "売上見積"
+    t.bigint "sales_order_id", comment: "売上注文"
     t.bigint "sales_modeling_type3_sku_id", comment: "ストックキーピングユニット"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["sales_estimate_id"], name: "index_sales_modeling_sales_on_sales_estimate_id"
     t.index ["sales_modeling_sales_sales_id"], name: "index_sales_modeling_sales_on_sales_id"
     t.index ["sales_modeling_type3_sku_id"], name: "index_sales_modeling_type3_on_sku_id"
+    t.index ["sales_order_id"], name: "index_sales_modeling_sales_on_sales_order_id"
   end
 
   create_table "sales_modeling_type1_colors", force: :cascade, comment: "カラー" do |t|
