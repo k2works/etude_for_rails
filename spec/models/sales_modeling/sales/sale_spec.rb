@@ -237,11 +237,26 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
       expect(select_all_sales_line.count).to eq 1
     end
 
+    example '見積もり1件削除' do
+      sales_repo.destroy(sales_estimate_a)
+      expect(select_all_estimate.count).to eq 2
+      expect(select_all.count).to eq 5
+      expect(select_all_sales_line.count).to eq 1
+    end
+
     example '売上全件削除' do
       destroy_all_order
       expect(select_all_order.count).to eq 0
       expect(select_all.count).to eq 3
       expect(select_all_sales_line.count).to eq 1
     end
+
+    example '売上1件削除' do
+      sales_repo.destroy(sales_order_a)
+      expect(select_all_order.count).to eq 2
+      expect(select_all.count).to eq 5
+      expect(select_all_sales_line.count).to eq 1
+    end
+
   end
 end
