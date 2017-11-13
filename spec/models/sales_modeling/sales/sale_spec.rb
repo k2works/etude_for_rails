@@ -17,8 +17,19 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
   let(:select_first_sales_order) { sales_repo.select_first_sales_order }
   let(:select_third_sales_estimate) { sales_repo.select_third_sales_estimate }
   let(:select_all) { sales_repo.select_all }
+  let(:select_all_sales_line) { sales_repo.select_all_sales_line }
   let(:select_all_estimate) { sales_repo.select_all_estimate }
   let(:select_all_order) { sales_repo.select_all_order }
+  let(:destroy_all) { sales_repo.destroy_all }
+  let(:destroy_all_estimate) { sales_repo.destroy_all_estimate }
+  let(:destroy_all_order) { sales_repo.destroy_all_order }
+  let(:sales_estimate_a) {create(:sales_estimate,sales_type_category: estimate_type) }
+  let(:sales_estimate_b) {create(:sales_estimate,sales_type_category: estimate_type) }
+  let(:sales_estimate_c) {create(:sales_estimate,sales_type_category: estimate_type) }
+  let(:sales_order_a) {create(:sales_order,sales_type_category: order_type) }
+  let(:sales_order_b) {create(:sales_order,sales_type_category: order_type) }
+  let(:sales_order_c) {create(:sales_order,sales_type_category: order_type) }
+
 
   describe '#create' do
     example '一般顧客A向け製品A　売価100円　１着の見積もり' do
@@ -149,13 +160,6 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
   end
 
   describe '#select' do
-    let(:sales_estimate_a) {create(:sales_estimate,sales_type_category: estimate_type) }
-    let(:sales_estimate_b) {create(:sales_estimate,sales_type_category: estimate_type) }
-    let(:sales_estimate_c) {create(:sales_estimate,sales_type_category: estimate_type) }
-    let(:sales_order_a) {create(:sales_order,sales_type_category: order_type) }
-    let(:sales_order_b) {create(:sales_order,sales_type_category: order_type) }
-    let(:sales_order_c) {create(:sales_order,sales_type_category: order_type) }
-
     before(:each) do
       sales_estimate_a
       sales_estimate_b
@@ -206,5 +210,38 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
   end
 
   describe '#delete' do
+    before(:each) do
+      sales_estimate_a
+      sales_estimate_b
+      sales_estimate_c
+      sales_order_a
+      sales_order_b
+      sales_order_c
+
+      sales_repo.new_sales_line(sales_estimate_a, product_a, 1)
+      sales_repo.save(sales_estimate_a)
+      sales_repo.new_sales_line(sales_order_a, product_a, 1)
+      sales_repo.save(sales_order_a)
+    end
+
+    example '全件削除' do
+      destroy_all
+      expect(select_all.count).to eq 0
+      expect(select_all_sales_line.count).to eq 0
+    end
+
+    example '見積もり全件削除' do
+      destroy_all_estimate
+      expect(select_all_estimate.count).to eq 0
+      expect(select_all.count).to eq 3
+      expect(select_all_sales_line.count).to eq 1
+    end
+
+    example '売上全件削除' do
+      destroy_all_order
+      expect(select_all_order.count).to eq 0
+      expect(select_all.count).to eq 3
+      expect(select_all_sales_line.count).to eq 1
+    end
   end
 end

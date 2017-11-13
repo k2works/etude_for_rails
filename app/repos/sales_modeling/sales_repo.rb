@@ -48,6 +48,10 @@ module SalesModeling
       SalesModeling::Sales::Sale.all
     end
 
+    def select_all_sales_line
+      SalesModeling::Sales::SalesLine.all
+    end
+
     def select_all_estimate
       SalesModeling::Sales::SalesEstimate.all
     end
@@ -66,6 +70,22 @@ module SalesModeling
 
     def select_first_sales_order
       SalesModeling::Sales::SalesOrder.first
+    end
+
+    def destroy(sale)
+      sale.destroy
+    end
+
+    def destroy_all
+      SalesModeling::Sales::Sale.destroy_all
+    end
+
+    def destroy_all_estimate
+      SalesModeling::Sales::SalesEstimate.destroy_all
+    end
+
+    def destroy_all_order
+      SalesModeling::Sales::SalesOrder.destroy_all
     end
   end
 end

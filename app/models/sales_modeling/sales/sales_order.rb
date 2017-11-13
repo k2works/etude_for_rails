@@ -24,7 +24,7 @@
 
 class SalesModeling::Sales::SalesOrder < SalesModeling::Sales::Sale
   belongs_to :sales_type_category, class_name: 'SalesModeling::Type3::Category'
-  has_many :sales_lines, :class_name => 'SalesModeling::Sales::SalesLine'
+  has_many :sales_lines, :class_name => 'SalesModeling::Sales::SalesLine', dependent: :destroy
 
   has_many :estimate_relationships, :class_name => 'SalesModeling::Sales::Estimate',
            foreign_key: :sales_order_id,
