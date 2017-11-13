@@ -8,4 +8,8 @@ FactoryGirl.define do
     telephone_number "MyString"
     customer_type_category nil
   end
+
+  factory :normal_customer, class: 'SalesModeling::Sales::Customer' do
+    customer_type_category
+  end
 end

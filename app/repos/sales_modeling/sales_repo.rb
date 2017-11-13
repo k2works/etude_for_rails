@@ -38,6 +38,18 @@ module SalesModeling
       sales.sales_lines = other.sales_lines.dup
     end
 
+    def select_all
+      SalesModeling::Sales::Sale.all
+    end
+
+    def select_all_estimate
+      SalesModeling::Sales::SalesEstimate.all
+    end
+
+    def select_all_order
+      SalesModeling::Sales::SalesOrder.all
+    end
+
     def select_first_sales_estimate
       SalesModeling::Sales::SalesEstimate.first
     end

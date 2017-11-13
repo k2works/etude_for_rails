@@ -6,8 +6,12 @@ FactoryGirl.define do
     unit_sales_price_amount "9.99"
     unit_sales_price_currency "MyString"
     sales_price_amount "9.99"
-    sales_price_amount_currency "MyString"
-    sales nil
-    sku nil
+    sales_price_currency "MyString"
+    association :sales_modeling_type3_sku, factory: :sku_1
+  end
+
+  factory :sales_estimate_line, class: 'SalesModeling::Sales::SalesLine' do
+    sequence(:line_number)
+    association :sales_modeling_type3_sku, factory: :sku_1
   end
 end

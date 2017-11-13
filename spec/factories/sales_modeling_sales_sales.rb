@@ -3,8 +3,18 @@ FactoryGirl.define do
     type ""
     date "2017-11-08 14:06:27"
     amount "9.99"
-    amount_currency "MyString"
-    estimate nil
-    sales_type_category nil
+    currency "MyString"
+    association :sales_type_category, factory: :sales_type_category
+    association :sales_modeling_sales_customer, factory: :normal_customer
+  end
+
+  factory :sales_estimate, class: 'SalesModeling::Sales::SalesEstimate' do
+    association :sales_type_category, factory: :sales_type_category
+    association :sales_modeling_sales_customer, factory: :normal_customer
+  end
+
+  factory :sales_order, class: 'SalesModeling::Sales::SalesOrder' do
+    association :sales_type_category, factory: :sales_type_category
+    association :sales_modeling_sales_customer, factory: :normal_customer
   end
 end
