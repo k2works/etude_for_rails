@@ -179,6 +179,30 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
   end
 
   describe '#update' do
+    before(:each) do
+      params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer_a }
+      sales_estimate = sales_repo.new_sales_estimate(params)
+      sales_repo.new_sales_line(sales_estimate, product_a, 1)
+      sales_repo.save(sales_estimate)
+    end
+
+    example '見積明細金額更新' do
+      sales_estimate = select_first_sales_estimate
+      sales_line = sales_estimate.sales_lines.first
+      sales_repo.save_sales_line(sales_estimate, sales_line,{unit_sales_price_amount: 1000 } )
+
+      sales_estimate = select_first_sales_estimate
+      expect(sales_estimate.amount).to eq 1000
+    end
+
+    example '見積明細数量更新' do
+      sales_estimate = select_first_sales_estimate
+      sales_line = sales_estimate.sales_lines.first
+      sales_repo.save_sales_line(sales_estimate, sales_line, {quantity_amount: 2 } )
+
+      sales_estimate = select_first_sales_estimate
+      expect(sales_estimate.amount).to eq 200
+    end
   end
 
   describe '#delete' do

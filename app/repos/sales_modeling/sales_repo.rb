@@ -26,12 +26,18 @@ module SalesModeling
       n = 1
       sales.sales_lines.each do |line|
         line.line_number = n
+        line.sales_price_amount = line.unit_sales_price_amount * line.quantity_amount
         sales.amount += line.sales_price_amount
         sales.currency = line.sales_price_currency
         n += 1
       end
       sales.save!
       sales.set_sales_estimate(sales_estimate) unless sales_estimate.nil?
+    end
+
+    def save_sales_line(sales, sales_line, params = {})
+      sales_line.update(params)
+      save(sales)
     end
 
     def copy_sales_line(sales, other)
