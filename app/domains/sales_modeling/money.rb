@@ -18,5 +18,8 @@ module SalesModeling
 
     def -(other)
     end
+
+    def reduce
+    end
   end
 end

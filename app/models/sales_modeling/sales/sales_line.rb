@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: sales_modeling_sales_sales_lines # 売上明細
@@ -32,7 +34,44 @@
 
 class SalesModeling::Sales::SalesLine < ApplicationRecord
   belongs_to :sales_modeling_sales, class_name: 'SalesModeling::Sales', optional: true
-  belongs_to :sales_estimate, :class_name => 'SalesModeling::Sales::Estimate', optional: true
-  belongs_to :sales_order, :class_name => 'SalesModeling::Sales::SalesOrder', optional: true
+  belongs_to :sales_estimate, class_name: 'SalesModeling::Sales::Estimate', optional: true
+  belongs_to :sales_order, class_name: 'SalesModeling::Sales::SalesOrder', optional: true
   belongs_to :sales_modeling_type3_sku, class_name: 'SalesModeling::Type3::Sku', optional: true
+
+  before_save do
+    self.sales_price = calculate_sales_price
+  end
+
+  def unit_sales_price
+    @unit_sales_price ||= SalesModeling::Price::UnitSalesPrice.new(unit_sales_price_amount)
+  end
+
+  def unit_sales_price=(price)
+    self.unit_sales_price_amount = price.amount
+    self.unit_sales_price_currency = price.currency
+  end
+
+  def sales_price
+    @sales_price ||= calculate_sales_price
+  end
+
+  def sales_price=(price)
+    self.sales_price_amount = price.amount
+    self.sales_price_currency = price.currency
+  end
+
+  def quantity
+    @quantity ||= SalesModeling::Quantity.new(quantity_amount, quantity_unit)
+  end
+
+  def quantity=(quantity)
+    self.quantity_amount = quantity.amount
+    self.quantity_unit = quantity.unit
+  end
+
+  private
+
+  def calculate_sales_price
+    unit_sales_price.*(quantity)
+  end
 end

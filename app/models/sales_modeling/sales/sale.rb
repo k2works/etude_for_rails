@@ -25,4 +25,21 @@
 class SalesModeling::Sales::Sale < ApplicationRecord
   belongs_to :sales_modeling_sales_customer, class_name: 'SalesModeling::Sales::Customer'
   belongs_to :sales_type_category
+
+  def date_of_occurrence
+    @date_of_occurrence ||= SalesModeling::Date::DateOfOccurrences(date)
+  end
+
+  def date_of_occurrence=(biz_date)
+    self.date = biz_date.date
+  end
+
+  def sales_price
+    @sales_price ||= SalesModeling::Price::SalesPrice.new(amount)
+  end
+
+  def sales_price=(price)
+    self.amount = price.amount
+    self.currency = price.currency
+  end
 end

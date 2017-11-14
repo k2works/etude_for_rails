@@ -29,13 +29,15 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
   let(:sales_order_a) {create(:sales_order,sales_type_category: order_type) }
   let(:sales_order_b) {create(:sales_order,sales_type_category: order_type) }
   let(:sales_order_c) {create(:sales_order,sales_type_category: order_type) }
+  let(:a_suit) { SalesModeling::Quantity.new(1,'SUIT')}
+  let(:two_suits) { SalesModeling::Quantity.new(2,'SUIT')}
 
 
   describe '#create' do
     example '一般顧客A向け製品A　売価100円　１着の見積もり' do
       params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer_a }
       sales_estimate = sales_repo.new_sales_estimate(params)
-      sales_repo.new_sales_line(sales_estimate, product_a, 1)
+      sales_repo.new_sales_line(sales_estimate, product_a, a_suit)
       sales_repo.save(sales_estimate)
 
       estimate = select_first_sales_estimate
@@ -57,8 +59,8 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '一般顧客A向け製品A　売価100円　2着 製品B 売価200円 2着の見積もり' do
       params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer_a }
       sales_estimate = sales_repo.new_sales_estimate(params)
-      sales_repo.new_sales_line(sales_estimate, product_a, 2)
-      sales_repo.new_sales_line(sales_estimate, product_b, 2)
+      sales_repo.new_sales_line(sales_estimate, product_a, two_suits)
+      sales_repo.new_sales_line(sales_estimate, product_b, two_suits)
       sales_repo.save(sales_estimate)
 
       estimate = select_first_sales_estimate
@@ -71,7 +73,7 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '一般顧客A向け製品A　売価100円　１着の売上' do
       params = { date: Date.today, sales_type_category: order_type, sales_modeling_sales_customer: customer_a }
       sales_order = sales_repo.new_sales_order(params)
-      sales_repo.new_sales_line(sales_order, product_a, 1)
+      sales_repo.new_sales_line(sales_order, product_a, a_suit)
       sales_repo.save(sales_order)
 
       estimate = select_first_sales_order
@@ -82,7 +84,7 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '一般顧客A向け製品A　売価100円　2着の売上' do
       params = { date: Date.today, sales_type_category: order_type, sales_modeling_sales_customer: customer_a }
       sales_order = sales_repo.new_sales_order(params)
-      sales_repo.new_sales_line(sales_order, product_a, 2)
+      sales_repo.new_sales_line(sales_order, product_a, two_suits)
       sales_repo.save(sales_order)
 
       estimate = select_first_sales_order
@@ -93,9 +95,9 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '一般顧客A向け製品A　売価100円　製品B　売価200円 製品C　売価300円 1着の売上' do
       params = { date: Date.today, sales_type_category: order_type, sales_modeling_sales_customer: customer_a }
       sales_order = sales_repo.new_sales_order(params)
-      sales_repo.new_sales_line(sales_order, product_a, 1)
-      sales_repo.new_sales_line(sales_order, product_b, 1)
-      sales_repo.new_sales_line(sales_order, product_c, 1)
+      sales_repo.new_sales_line(sales_order, product_a, a_suit)
+      sales_repo.new_sales_line(sales_order, product_b, a_suit)
+      sales_repo.new_sales_line(sales_order, product_c, a_suit)
       sales_repo.save(sales_order)
 
       estimate = select_first_sales_order
@@ -106,14 +108,15 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '特別顧客B向け製品A　売価100円　１着の見積もり 売価75円 ２着の売上' do
       params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer_b }
       sales_estimate = sales_repo.new_sales_estimate(params)
-      sales_repo.new_sales_line(sales_estimate, product_a, 1)
+
+      sales_repo.new_sales_line(sales_estimate, product_a, a_suit)
       sales_repo.save(sales_estimate)
 
       sales_estimate = select_first_sales_estimate
       params = { date: Date.today, sales_type_category: sales_estimate.sales_type_category, sales_modeling_sales_customer: sales_estimate.sales_modeling_sales_customer }
       sales_order = sales_repo.new_sales_order(params)
       product_a.unit_sales_price = SalesModeling::Price::UnitPurchasePrice.new(75)
-      sales_repo.new_sales_line(sales_order, product_a, 2)
+      sales_repo.new_sales_line(sales_order, product_a, two_suits)
       sales_repo.save(sales_order, sales_estimate)
 
       sales_estimate = select_first_sales_estimate
@@ -137,7 +140,7 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
       estimats.each do |estimate|
         params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer }
         sales_estimate = sales_repo.new_sales_estimate(params)
-        sales_repo.new_sales_line(sales_estimate, estimate, 1)
+        sales_repo.new_sales_line(sales_estimate, estimate, a_suit)
         sales_repo.save(sales_estimate)
       end
 
@@ -186,7 +189,7 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     before(:each) do
       params = { date: Date.today, sales_type_category: estimate_type, sales_modeling_sales_customer: customer_a }
       sales_estimate = sales_repo.new_sales_estimate(params)
-      sales_repo.new_sales_line(sales_estimate, product_a, 1)
+      sales_repo.new_sales_line(sales_estimate, product_a, a_suit)
       sales_repo.save(sales_estimate)
     end
 
@@ -202,7 +205,7 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
     example '見積明細数量更新' do
       sales_estimate = select_first_sales_estimate
       sales_line = sales_estimate.sales_lines.first
-      sales_repo.save_sales_line(sales_estimate, sales_line, {quantity_amount: 2 } )
+      sales_repo.save_sales_line(sales_estimate, sales_line, {quantity: two_suits } )
 
       sales_estimate = select_first_sales_estimate
       expect(sales_estimate.amount).to eq 200
@@ -218,9 +221,9 @@ RSpec.describe SalesModeling::Sales::Sale, type: :model do
       sales_order_b
       sales_order_c
 
-      sales_repo.new_sales_line(sales_estimate_a, product_a, 1)
+      sales_repo.new_sales_line(sales_estimate_a, product_a, a_suit)
       sales_repo.save(sales_estimate_a)
-      sales_repo.new_sales_line(sales_order_a, product_a, 1)
+      sales_repo.new_sales_line(sales_order_a, product_a, a_suit)
       sales_repo.save(sales_order_a)
     end
 

@@ -133,12 +133,6 @@ class ApparelSalesFactory {
 abstract SalesStrategy {
 
 }
-class OrderStrategy {
-
-}
-class EstimateStrategy {
-
-}
 class Address {
 
 }
@@ -171,21 +165,20 @@ ApparelSalesFactory ---> Sales
 ApparelSalesFactory ---> Product
 SalesService -> SalesStrategy
 SalesStrategy -> SalesFactory
-SalesStrategy <|.. OrderStrategy
-SalesStrategy <|.. EstimateStrategy
+SalesStrategy <|.. SalesOrderStrategy
+SalesStrategy <|.. SalesEstimateStrategy
 Customer o-l Address
 Customer o- Telephone
 Customer o- Type
-SalesOrderStrategy o-- Money
-SalesOrderStrategy o--- DateOfOccurrence
-SalesOrderStrategyLine o-- Money
-SalesOrderStrategyLine o--- Quantity
-SalesEstimateStrategy o-- Money
-SalesEstimateStrategy o--- DateOfOccurrence
-SalesEstimateStrategyLine o-- Money
-SalesEstimateStrategyLine o--- Quantity
+SalesOrder o-- Money
+SalesOrder o--- DateOfOccurrence
+SalesOrderLine o-- Money
+SalesOrderLine o--- Quantity
+SalesEstimate o-- Money
+SalesEstimate o--- DateOfOccurrence
+SalesEstimateLine o-- Money
+SalesEstimateLine o--- Quantity
 Sku o-- Money
-Sku o--- Quantity
 SalesOrder "0..*" - "1"SalesEstimate
 ```
 
