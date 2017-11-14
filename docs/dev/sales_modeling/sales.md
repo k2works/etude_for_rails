@@ -175,6 +175,7 @@ SalesStrategy <|.. OrderStrategy
 SalesStrategy <|.. EstimateStrategy
 Customer o-l Address
 Customer o- Telephone
+Customer o- Type
 SalesOrderStrategy o-- Money
 SalesOrderStrategy o--- DateOfOccurrence
 SalesOrderStrategyLine o-- Money

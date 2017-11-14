@@ -2683,6 +2683,18 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="tel_formatter (vbundled(0.0.4)) [path][gem]">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/tel_formatter-0.0.4/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/tel_formatter-0.0.4/data" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/tel_formatter-0.0.4/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/tel_formatter-0.0.4/data" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="thor (vbundled(0.19.4)) [path][gem]">
         <CLASSES>
           <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/thor-0.19.4/bin" />

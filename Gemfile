@@ -162,3 +162,5 @@ gem 'redis-namespace'
 gem 'fluent-logger'
 gem 'act-fluent-logger-rails'
 gem 'lograge'
+
+gem 'tel_formatter'
