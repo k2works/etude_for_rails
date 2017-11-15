@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-include SalesModeling::Sales
 
-RSpec.describe SalesModeling::Sales::Customer, type: :model do
+RSpec.describe SalesModeling::Customer, type: :model do
   let(:normal_type) { create(:customer_type_category, name: '一般') }
   let(:special_type) { create(:customer_type_category, name: '特別') }
   let(:params_a) {

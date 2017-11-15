@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SalesModeling::Sales::Sale, type: :model do
+RSpec.describe SalesModeling::Domain::Sales, type: :model do
   let(:normal_type) { create(:customer_type_category, name: '一般') }
   let(:special_type) { create(:customer_type_category, name: '特別') }
   let(:estimate_type) { create(:sales_type_category, name: '見積一般') }
