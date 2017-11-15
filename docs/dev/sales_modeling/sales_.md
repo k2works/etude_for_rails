@@ -38,7 +38,7 @@ SalesModeling
 ### 販売業務のユースケース
   
 
-![](./assets/c980ca72031f1db19fb67e62955324610.png?0.9310281136302951)  
+![](assets/c980ca72031f1db19fb67e62955324610.png?0.6475851463263935)  
   
 ## 分析
   
@@ -46,33 +46,40 @@ SalesModeling
   
   
 
-![](./assets/c980ca72031f1db19fb67e62955324611.png?0.6828295363628194)  
+![](assets/c980ca72031f1db19fb67e62955324611.png?0.39711352427253654)  
   
 ### シーケンス図
   
 
-![](./assets/c980ca72031f1db19fb67e62955324612.png?0.2354987747352688)  
+![](assets/c980ca72031f1db19fb67e62955324612.png?0.04241468305852125)  
   
 ## 設計
   
 ### クラス図
   
 
-![](./assets/c980ca72031f1db19fb67e62955324613.png?0.885257662014364)  
+```
+ImageMagick is required to be installed to convert svg to png.
+Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171015-84988-1gmu1p6.wm3zg.svg /Users/k2works/Projects/k2works/etude_for_rails/docs/dev/sales_modeling/assets/c980ca72031f1db19fb67e62955324613.png
+magick: attributes construct error
+ `No such file or directory` @ error/svg.c/SVGError/2680.
+
+```  
+
   
 ## シーケンス図
   
 ### 見積もり
   
 
-![](./assets/c980ca72031f1db19fb67e62955324614.png?0.1689371167730691)  
+![](assets/c980ca72031f1db19fb67e62955324613.png?0.5072816671318845)  
 ### 注文
   
 
-![](./assets/c980ca72031f1db19fb67e62955324615.png?0.4523181456822991)  
+![](assets/c980ca72031f1db19fb67e62955324614.png?0.9682041432454658)  
   
 ## ER図
   
 
-![](./assets/c980ca72031f1db19fb67e62955324616.png?0.021469965635816823)  
+![](assets/c980ca72031f1db19fb67e62955324615.png?0.5548408735111614)  
   

@@ -103,13 +103,7 @@ interface Product {
 }
 class SalesOrder {
 }
-class SalesOrderLine {
-
-}
 class SalesEstimateStrategy {
-
-}
-class SalesEstimateLine {
 
 }
 class ApparelProduct {
@@ -150,19 +144,18 @@ class Quantity {
 }
 
 Customer -- SalesStrategy
-Sales - Product
 ApparelProduct *-- Sku
-SalesOrder *-- SalesOrderLine
-SalesEstimate *-- SalesEstimateLine
-Sales <|... SalesOrder
-Sales <|... SalesEstimate
-Product <|... ApparelProduct
-SalesFactory <|.. ApparelSalesEstimateFactory
-SalesFactory <|.. ApparelSalesFactory
-ApparelSalesEstimateFactory ---> Sales
-ApparelSalesEstimateFactory ---> Product
-ApparelSalesFactory ---> Sales
-ApparelSalesFactory ---> Product
+SalesOrder *-- SalesLine
+SalesEstimate *-- SalesLine
+Sales <|.. SalesOrder
+Sales <|.. SalesEstimate
+Product <|.. ApparelProduct
+SalesFactory <|... ApparelSalesEstimateFactory
+SalesFactory <|... ApparelSalesFactory
+ApparelSalesEstimateFactory --> SalesEstimate
+ApparelSalesEstimateFactory --> ApparelProduct
+ApparelSalesFactory --> SalesOrder
+ApparelSalesFactory --> ApparelProduct
 SalesService -> SalesStrategy
 SalesStrategy -> SalesFactory
 SalesStrategy <|.. SalesOrderStrategy
@@ -172,12 +165,12 @@ Customer o- Telephone
 Customer o- Type
 SalesOrder o-- Money
 SalesOrder o--- DateOfOccurrence
-SalesOrderLine o-- Money
-SalesOrderLine o--- Quantity
+SalesLine o-- Money
+SalesLine o--- Quantity
 SalesEstimate o-- Money
 SalesEstimate o--- DateOfOccurrence
-SalesEstimateLine o-- Money
-SalesEstimateLine o--- Quantity
+SalesLine o-- Money
+SalesLine o--- Quantity
 Sku o-- Money
 SalesOrder "0..*" - "1"SalesEstimate
 ```
@@ -186,31 +179,31 @@ SalesOrder "0..*" - "1"SalesEstimate
 ### 見積もり
 ```puml
 SalesService -> Customer :find_by_code(code)
-SalesService -> EstimateStrategy :new(customer)
-SalesService -> EstimateStrategy :execute()
-EstimateStrategy -> ApparelSalesEstimateFactory :create_product()
+SalesService -> SalesEstimateStrategy :new(customer)
+SalesService -> SalesEstimateStrategy :execute()
+SalesEstimateStrategy -> ApparelSalesEstimateFactory :create_product()
 ApparelSalesEstimateFactory -> ApparelProduct :find()
-EstimateStrategy -> ApparelProduct
-EstimateStrategy -> ApparelSalesEstimateFactory :create_sales_estimate()
+SalesEstimateStrategy -> ApparelProduct
+SalesEstimateStrategy -> ApparelSalesEstimateFactory :create_sales_estimate()
 ApparelSalesEstimateFactory -> SalesEstimate :new()
-EstimateStrategy -> SalesEstimate :create()
-EstimateStrategy -> Customer :order_estimate(estimate)
+SalesEstimateStrategy -> SalesEstimate :create()
+SalesEstimateStrategy -> Customer :order_estimate(estimate)
 ```
 ### 注文
 ```puml
 SalesService -> Customer :find_by_code(code)
-SalesService -> OrderStrategy :new(customer)
-SalesService -> OrderStrategy :execute()
-OrderStrategy -> ApparelSalesEstimateFactory :create_estimate()
+SalesService -> SalesOrderStrategy :new(customer)
+SalesService -> SalesOrderStrategy :execute()
+SalesOrderStrategy -> ApparelSalesEstimateFactory :create_estimate()
 ApparelSalesEstimateFactory -> SalesEstimate :find()
-OrderStrategy -> OrderStrategy
-OrderStrategy -> ApparelSalesFactory :create_product()
+SalesOrderStrategy -> SalesOrderStrategy
+SalesOrderStrategy -> ApparelSalesFactory :create_product()
 ApparelSalesFactory -> ApparelProduct :find()
-OrderStrategy -> ApparelProduct :inventory_reserve()
-OrderStrategy -> ApparelSalesFactory :create_sales()
+SalesOrderStrategy -> ApparelProduct :inventory_reserve()
+SalesOrderStrategy -> ApparelSalesFactory :create_sales()
 ApparelSalesFactory -> Sales :new()
-OrderStrategy -> Sales :create()
-OrderStrategy -> Customer :order_accept(sale)
+SalesOrderStrategy -> Sales :create()
+SalesOrderStrategy -> Customer :order_accept(sale)
 ```
 
 ## ER図
