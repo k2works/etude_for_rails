@@ -5,6 +5,7 @@
 #  id                                     :integer          not null, primary key
 #  code                                   :string(255)                            # コード
 #  name                                   :string(255)                            # 分類名
+#  symbol                                 :string(255)                            # シンボル
 #  sales_modeling_type3_category_class_id :integer
 #  parent_category_id                     :integer                                # 親カテゴリ
 #  created_at                             :datetime         not null

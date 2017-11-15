@@ -126,6 +126,11 @@ module SalesModeling
       ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where(code: code)
     end
 
+    def select_by_sku_code(code)
+      product = ::SalesModeling::Type3::Product.includes(:skus).references(:sales_modeling_type3_skus).where('sales_modeling_type3_skus.code = ?', code)
+      product.first.skus.first
+    end
+
     def select_by_season(season)
       ::SalesModeling::Type3::Product.where(season_category_id: season.id)
     end

@@ -2,13 +2,13 @@ module SalesModeling
   module Domain
     module Sales
       class SalesService
-        def present_estimate(customer, product)
-          estimate = SalesEstimateStrategy.new(customer, product)
+        def present_estimate(customer, products)
+          estimate = SalesEstimateStrategy.new(customer, products)
           estimate.execute
         end
 
-        def accept_orders(customer, product)
-          order_sales = SalesOrderStrategy.new(customer, product)
+        def accept_orders(customer, products)
+          order_sales = SalesOrderStrategy.new(customer, products)
           order_sales.execute
         end
       end

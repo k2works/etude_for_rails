@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe SalesModeling::Domain::Sales, type: :model do
   let(:normal_type) { create(:customer_type_category, name: '一般') }
   let(:special_type) { create(:customer_type_category, name: '特別') }
-  let(:estimate_type) { create(:sales_type_category, name: '見積一般') }
-  let(:order_type) { create(:sales_type_category, name: '注文一般') }
+  let(:estimate_type) { create(:sales_estimate_type_category, name: '見積一般') }
+  let(:order_type) { create(:sales_order_type_category, name: '注文一般') }
   let(:customer_a) { create(:sales_modeling_sales_customer, name: 'A', customer_type_category: normal_type) }
   let(:customer_b) { create(:sales_modeling_sales_customer, name: 'B', customer_type_category: special_type) }
   let(:product_a) { create(:sku_1, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(100)) }

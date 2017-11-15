@@ -45,11 +45,18 @@ FactoryGirl.define do
   factory :customer_type_category, class: 'SalesModeling::Type3::Category' do
     code SalesModeling::Type::CustomerType.new('9','一般').code
     name '一般'
-    association :sales_modeling_type3_category_class, factory: :product_type_category_class
+    association :sales_modeling_type3_category_class, factory: :sales_type_category_class
   end
-  factory :sales_type_category, class: 'SalesModeling::Type3::Category' do
+  factory :sales_estimate_type_category, class: 'SalesModeling::Type3::Category' do
     code SalesModeling::Type::CustomerType.new('10','見積').code
     name '見積'
-    association :sales_modeling_type3_category_class, factory: :product_type_category_class
+    symbol SalesModeling::Type::SalesEstimateType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :sales_type_category_class
+  end
+  factory :sales_order_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::CustomerType.new('11','売上').code
+    name '見積'
+    symbol SalesModeling::Type::SalesOrderType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :sales_type_category_class
   end
 end

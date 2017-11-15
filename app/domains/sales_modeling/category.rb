@@ -6,5 +6,8 @@ module SalesModeling
 
     def category_class_code
     end
+
+    def category_symbol
+    end
   end
 end

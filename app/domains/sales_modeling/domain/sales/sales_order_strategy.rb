@@ -2,7 +2,7 @@ module SalesModeling
   module Domain
     module Sales
       class SalesOrderStrategy < SalesStrategy
-        def initialize(customer, product)
+        def initialize(customer, products)
           @customer = customer
           @product = product
           @factory = ApparelSalesOrderFactory.new

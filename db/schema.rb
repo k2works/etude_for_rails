@@ -484,6 +484,7 @@ ActiveRecord::Schema.define(version: 20171108054730) do
   create_table "sales_modeling_type3_categories", force: :cascade, comment: "分類" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "分類名"
+    t.string "symbol", comment: "シンボル"
     t.bigint "sales_modeling_type3_category_class_id"
     t.bigint "parent_category_id", comment: "親カテゴリ"
     t.datetime "created_at", null: false

@@ -6,10 +6,12 @@ module SalesModeling
 
     def self.select_by_category(category)
       category_class_code = category.category_class_code
+      category_symbol = category.category_symbol
 
       category = SalesModeling::Type3::Category.where(
         code: category.code,
-        name: category.name
+        name: category.name,
+        symbol: category_symbol
       ).first_or_create
       category.save!
 
@@ -21,6 +23,14 @@ module SalesModeling
       end
 
       category
+    end
+
+    def self.select_etimate_category
+      SalesModeling::Type3::Category.where(symbol: SalesModeling::Type::SalesEstimateType::SYMBOL).first
+    end
+
+    def self.select_order_category
+      SalesModeling::Type3::Category.where(symbol: SalesModeling::Type::SalesOrderType::SYMBOL).first
     end
   end
 end
