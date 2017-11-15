@@ -1,0 +1,77 @@
+  
+  
+* [仕入業務の設計](#仕入業務の設計 )
+	* [要求](#要求 )
+		* [仕入業務の概要](#仕入業務の概要 )
+		* [注文以前のプロセス](#注文以前のプロセス )
+		* [仕入業務のユースケース](#仕入業務のユースケース )
+	* [分析](#分析 )
+		* [クラス図](#クラス図 )
+		* [オブジェクト図](#オブジェクト図 )
+	* [設計](#設計 )
+		* [クラス図](#クラス図-1 )
+	* [ER図](#er図 )
+  
+SalesModeling
+---
+# 仕入業務の設計
+  
+## 要求
+  
+### 仕入業務の概要
+  
++ 商品仕入れとは
++ 業種別の特徴
+  
+### 注文以前のプロセス
+  
+1. 仕入先との契約
+1. 仕入計画
+   + 定期発注方式
+   + 定量発注方式
+   + 簡易発注方式
+  
+### 仕入業務のユースケース
+  
+
+![](./assets/31c3844cfc339f5747262bf1ef4300710.png?0.7508516536533152)  
+  
+## 分析
+  
+### クラス図
+  
+  
+
+```
+ImageMagick is required to be installed to convert svg to png.
+Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171015-84988-wcxren.8hvsq.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/31c3844cfc339f5747262bf1ef4300711.png
+magick: xmlParseComment: invalid xmlChar value 8
+ `No such file or directory` @ error/svg.c/SVGError/2680.
+
+```  
+
+  
+### オブジェクト図
+  
+
+![](./assets/31c3844cfc339f5747262bf1ef4300711.png?0.8247013057760286)  
+  
+## 設計
+  
+### クラス図
+  
+
+![](./assets/31c3844cfc339f5747262bf1ef4300712.png?0.20514823731980925)  
+  
+## ER図
+  
+
+```
+ImageMagick is required to be installed to convert svg to png.
+Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171015-84988-skb58k.cd02h.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/31c3844cfc339f5747262bf1ef4300713.png
+magick: attributes construct error
+ `No such file or directory` @ error/svg.c/SVGError/2680.
+
+```  
+
+  
