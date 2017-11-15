@@ -67,6 +67,24 @@ RSpec.describe SalesModeling::Domain::Sales::SalesService do
   end
 
   describe '#accept_order' do
-    example ''
+    example '一般顧客A向け製品Aの注文受諾' do
+      estimate_type
+      order_type
+      products = [{ sku_code: product_a.sku_code.code, amount: a_suit.amount, unit: a_suit.unit }]
+      service.present_estimate(customer_a, products)
+      order = service.accept_orders(customer_a)
+
+      expect(Date.today(order.date)).to eq Date.today
+      expect(order.amount).to eq 100
+      expect(order.currency).to eq 'JPY'
+      expect(order.sales_modeling_sales_customer.name).to eq 'A'
+      expect(order.sales_type_category.name).to eq '注文'
+      expect(order.sales_lines.first.line_number).to eq 1
+      expect(order.sales_lines.first.quantity_amount).to eq 1
+      expect(order.sales_lines.first.quantity_unit).to eq 'SUIT'
+      expect(order.sales_lines.first.sales_price_amount).to eq 100
+      expect(order.sales_lines.first.sales_price_currency).to eq 'JPY'
+      expect(order.sales_lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
+    end
   end
 end

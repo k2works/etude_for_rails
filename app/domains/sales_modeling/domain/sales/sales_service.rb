@@ -7,8 +7,8 @@ module SalesModeling
           estimate.execute
         end
 
-        def accept_orders(customer, products)
-          order_sales = SalesOrderStrategy.new(customer, products)
+        def accept_orders(customer)
+          order_sales = SalesOrderStrategy.new(customer)
           order_sales.execute
         end
       end
