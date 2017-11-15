@@ -22,7 +22,9 @@ module SalesModeling
         end
 
         def reserve_effective_stock
-
+          @sales_estimate.sales_lines.each do |sales_lines|
+            sku = sales_lines.sales_modeling_type3_sku
+          end
         end
 
         def register_sales
