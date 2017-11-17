@@ -148,7 +148,7 @@ class Order {
 class OrderLine {
   quantity:int
   unit_price:int
-  price_amount:int
+  price_amount:int  
 }
 class Stock {
   arrival_date:Date
@@ -213,6 +213,7 @@ entity Supplier {
   city
   house_number
   telephone_number
+  supplier_type_category_code [FK]
 }
 entity Order {
   + ID [PK]
@@ -221,6 +222,8 @@ entity Order {
   scheduled_arrival_date
   amount
   currency
+  supplier_code [FK]
+  order_type_category_code [FK]  
 }
 entity OrderLine {
   + line_number
@@ -232,12 +235,14 @@ entity OrderLine {
   unit_price_currency
   price_amount
   price_currenty
+  product_code [FK]
 }
 entity Stock {
-  + code [PK]
+  + ID [PK]
   --
   arrival_date
   acceptance_date
+  stock_type_category_code [FK]
 }
 entity StockLine {
   + line_number
@@ -249,11 +254,15 @@ entity StockLine {
   unit_price_currency
   price_amount
   price_currency
+  product_code [FK]  
 }
 entity Warehouse {
   + code [PK]
   --
   name
+  order_id [FK]
+  stock_id [FK]
+  warehouse_type_category_code [FK]  
 }
 entity Product {
   + code [PK]

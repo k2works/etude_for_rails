@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108054730) do
+ActiveRecord::Schema.define(version: 20171117061809) do
 
   create_table "awesome_events_events", force: :cascade, comment: "イベント" do |t|
     t.integer "owner_id", comment: "イベントを作成したユーザのID"
@@ -353,6 +353,88 @@ ActiveRecord::Schema.define(version: 20171108054730) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sales_modeling_purchase_order_lines", force: :cascade, comment: "発注明細" do |t|
+    t.integer "line_number", comment: "明細番号"
+    t.decimal "quantity_amount", precision: 10, comment: "数量"
+    t.string "quantity_unit", comment: "単位"
+    t.decimal "unit_price_amount", precision: 10, comment: "発注単価"
+    t.string "unit_price_currency", comment: "通貨"
+    t.decimal "price_amount", precision: 10, comment: "発注金額"
+    t.string "price_currency", comment: "通貨"
+    t.bigint "sales_modeling_purchase_orders_id", comment: "発注"
+    t.bigint "sales_modeling_type3_sku_id", comment: "ストックキーピングユニット"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_purchase_orders_id"], name: "index_sales_modeling_purchase_order_line_id"
+    t.index ["sales_modeling_type3_sku_id"], name: "index_sales_modeling_purchase_order_line_on_sku_id"
+  end
+
+  create_table "sales_modeling_purchase_orders", force: :cascade, comment: "発注" do |t|
+    t.datetime "order_date", comment: "発注日"
+    t.datetime "scheduled_arrival_date", comment: "入荷予定日"
+    t.decimal "amount", precision: 10, comment: "金額"
+    t.string "currency", comment: "通貨"
+    t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
+    t.bigint "order_type_category_code_id", comment: "発注区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_type_category_code_id"], name: "index_sales_modeling_purchase_order_category_id"
+    t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_order_supplier_id"
+  end
+
+  create_table "sales_modeling_purchase_stock_lines", force: :cascade, comment: "入庫明細" do |t|
+    t.integer "line_number", comment: "行番号"
+    t.decimal "quantity_amount", precision: 10, comment: "数量"
+    t.string "quantity_unit", comment: "単位"
+    t.decimal "unit_price_amount", precision: 10, comment: "発注単価"
+    t.string "unit_price_currency", comment: "通貨"
+    t.decimal "price_amount", precision: 10, comment: "発注金額"
+    t.string "price_currency", comment: "通貨"
+    t.bigint "sales_modeling_purchase_stocks_id", comment: "入庫"
+    t.bigint "sales_modeling_type3_sku_id", comment: "ストックキーピングユニット"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_purchase_stocks_id"], name: "index_sales_modeling_purchase_stock_line_id"
+    t.index ["sales_modeling_type3_sku_id"], name: "index_sales_modeling_purchase_stock_line_on_sku_id"
+  end
+
+  create_table "sales_modeling_purchase_stocks", force: :cascade, comment: "入庫" do |t|
+    t.datetime "arrival_date", comment: "入庫日付"
+    t.datetime "acceptance_date", comment: "検収日付"
+    t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
+    t.bigint "stock_type_category_code_id", comment: "入庫区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_stock_supplier_id"
+    t.index ["stock_type_category_code_id"], name: "index_sales_modeling_purchase_stock_category_id"
+  end
+
+  create_table "sales_modeling_purchase_suppliers", force: :cascade, comment: "仕入先" do |t|
+    t.string "code", comment: "コード"
+    t.string "name", comment: "名称"
+    t.string "prefecture", comment: "都道府県"
+    t.string "city", comment: "市町村"
+    t.string "house_number", comment: "番地"
+    t.string "telephone_number", comment: "電話番号"
+    t.bigint "supplier_type_category_code_id", comment: "仕入先区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supplier_type_category_code_id"], name: "index_sales_modeling_purchase_supplier_category_id"
+  end
+
+  create_table "sales_modeling_purchase_warehouses", force: :cascade, comment: "倉庫" do |t|
+    t.string "code", comment: "コード"
+    t.string "name", comment: "名前"
+    t.bigint "sales_modeling_purchase_orders_id", comment: "発注"
+    t.bigint "sales_modeling_purchase_stocks_id", comment: "入庫"
+    t.bigint "warehouse_type_category_code_id", comment: "倉庫区分"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sales_modeling_purchase_orders_id"], name: "index_sales_modeling_purchase_warehouses_order_id"
+    t.index ["sales_modeling_purchase_stocks_id"], name: "index_sales_modeling_purchase_warehouses_stock_id"
+    t.index ["warehouse_type_category_code_id"], name: "index_sales_modeling_purchase_warehouse_category_id"
+  end
+
   create_table "sales_modeling_sales_customers", force: :cascade, comment: "顧客" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名称"
@@ -546,6 +628,14 @@ ActiveRecord::Schema.define(version: 20171108054730) do
   add_foreign_key "baukis_phones", "baukis_customers"
   add_foreign_key "baukis_staff_events", "baukis_staff_members"
   add_foreign_key "rails_tutorial_sample_microposts", "rails_tutorial_sample_users"
+  add_foreign_key "sales_modeling_purchase_order_lines", "sales_modeling_purchase_orders", column: "sales_modeling_purchase_orders_id"
+  add_foreign_key "sales_modeling_purchase_order_lines", "sales_modeling_type3_skus"
+  add_foreign_key "sales_modeling_purchase_orders", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"
+  add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
+  add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_type3_skus"
+  add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"
+  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_orders", column: "sales_modeling_purchase_orders_id"
+  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
   add_foreign_key "sales_modeling_sales_sales", "sales_modeling_sales_customers"
   add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_sales_sales", column: "sales_modeling_sales_sales_id"
   add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_type3_skus"
