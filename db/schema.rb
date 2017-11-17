@@ -374,12 +374,12 @@ ActiveRecord::Schema.define(version: 20171117061809) do
     t.datetime "scheduled_arrival_date", comment: "入荷予定日"
     t.decimal "amount", precision: 10, comment: "金額"
     t.string "currency", comment: "通貨"
-    t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
+    t.bigint "sales_modeling_purchase_supplier_id", comment: "仕入先"
     t.bigint "order_type_category_id", comment: "発注区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_type_category_id"], name: "index_sales_modeling_purchase_order_category_id"
-    t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_order_supplier_id"
+    t.index ["sales_modeling_purchase_supplier_id"], name: "index_sales_modeling_purchase_order_supplier_id"
   end
 
   create_table "sales_modeling_purchase_stock_lines", force: :cascade, comment: "入庫明細" do |t|
@@ -630,7 +630,7 @@ ActiveRecord::Schema.define(version: 20171117061809) do
   add_foreign_key "rails_tutorial_sample_microposts", "rails_tutorial_sample_users"
   add_foreign_key "sales_modeling_purchase_order_lines", "sales_modeling_purchase_orders", column: "sales_modeling_purchase_orders_id"
   add_foreign_key "sales_modeling_purchase_order_lines", "sales_modeling_type3_skus"
-  add_foreign_key "sales_modeling_purchase_orders", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"
+  add_foreign_key "sales_modeling_purchase_orders", "sales_modeling_purchase_suppliers"
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_type3_skus"
   add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"

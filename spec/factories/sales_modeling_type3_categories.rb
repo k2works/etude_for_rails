@@ -65,4 +65,10 @@ FactoryGirl.define do
     symbol SalesModeling::Type::SupplierType::SYMBOL
     association :sales_modeling_type3_category_class, factory: :supplier_type_category_class
   end
+  factory :order_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::CustomerType.new('13','発注').code
+    name '発注'
+    symbol SalesModeling::Type::OrderType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :order_type_category_class
+  end
 end
