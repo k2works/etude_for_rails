@@ -375,10 +375,10 @@ ActiveRecord::Schema.define(version: 20171117061809) do
     t.decimal "amount", precision: 10, comment: "金額"
     t.string "currency", comment: "通貨"
     t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
-    t.bigint "order_type_category_code_id", comment: "発注区分"
+    t.bigint "order_type_category_id", comment: "発注区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_type_category_code_id"], name: "index_sales_modeling_purchase_order_category_id"
+    t.index ["order_type_category_id"], name: "index_sales_modeling_purchase_order_category_id"
     t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_order_supplier_id"
   end
 
@@ -402,11 +402,11 @@ ActiveRecord::Schema.define(version: 20171117061809) do
     t.datetime "arrival_date", comment: "入庫日付"
     t.datetime "acceptance_date", comment: "検収日付"
     t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
-    t.bigint "stock_type_category_code_id", comment: "入庫区分"
+    t.bigint "stock_type_category_id", comment: "入庫区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_stock_supplier_id"
-    t.index ["stock_type_category_code_id"], name: "index_sales_modeling_purchase_stock_category_id"
+    t.index ["stock_type_category_id"], name: "index_sales_modeling_purchase_stock_category_id"
   end
 
   create_table "sales_modeling_purchase_suppliers", force: :cascade, comment: "仕入先" do |t|
@@ -416,10 +416,10 @@ ActiveRecord::Schema.define(version: 20171117061809) do
     t.string "city", comment: "市町村"
     t.string "house_number", comment: "番地"
     t.string "telephone_number", comment: "電話番号"
-    t.bigint "supplier_type_category_code_id", comment: "仕入先区分"
+    t.bigint "supplier_type_category_id", comment: "仕入先区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["supplier_type_category_code_id"], name: "index_sales_modeling_purchase_supplier_category_id"
+    t.index ["supplier_type_category_id"], name: "index_sales_modeling_purchase_supplier_category_id"
   end
 
   create_table "sales_modeling_purchase_warehouses", force: :cascade, comment: "倉庫" do |t|
@@ -427,12 +427,12 @@ ActiveRecord::Schema.define(version: 20171117061809) do
     t.string "name", comment: "名前"
     t.bigint "sales_modeling_purchase_orders_id", comment: "発注"
     t.bigint "sales_modeling_purchase_stocks_id", comment: "入庫"
-    t.bigint "warehouse_type_category_code_id", comment: "倉庫区分"
+    t.bigint "warehouse_type_category_id", comment: "倉庫区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sales_modeling_purchase_orders_id"], name: "index_sales_modeling_purchase_warehouses_order_id"
     t.index ["sales_modeling_purchase_stocks_id"], name: "index_sales_modeling_purchase_warehouses_stock_id"
-    t.index ["warehouse_type_category_code_id"], name: "index_sales_modeling_purchase_warehouse_category_id"
+    t.index ["warehouse_type_category_id"], name: "index_sales_modeling_purchase_warehouse_category_id"
   end
 
   create_table "sales_modeling_sales_customers", force: :cascade, comment: "顧客" do |t|

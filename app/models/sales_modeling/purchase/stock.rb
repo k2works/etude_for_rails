@@ -6,13 +6,13 @@
 #  arrival_date                         :datetime                               # 入庫日付
 #  acceptance_date                      :datetime                               # 検収日付
 #  sales_modeling_purchase_suppliers_id :integer                                # 仕入先
-#  stock_type_category_code_id          :integer                                # 入庫区分
+#  stock_type_category_id               :integer                                # 入庫区分
 #  created_at                           :datetime         not null
 #  updated_at                           :datetime         not null
 #
 # Indexes
 #
-#  index_sales_modeling_purchase_stock_category_id  (stock_type_category_code_id)
+#  index_sales_modeling_purchase_stock_category_id  (stock_type_category_id)
 #  index_sales_modeling_purchase_stock_supplier_id  (sales_modeling_purchase_suppliers_id)
 #
 # Foreign Keys

@@ -31,4 +31,8 @@ FactoryGirl.define do
     code SalesModeling::Type::ProductType.new('', '').category_class_code
     name '販売区分'
   end
+  factory :supplier_type_category_class, class: 'SalesModeling::Type3::CategoryClass' do
+    code SalesModeling::Type::SupplierType.new('', '').category_class_code
+    name '仕入先区分'
+  end
 end

@@ -6,6 +6,6 @@ FactoryGirl.define do
     city "MyString"
     house_number "MyString"
     telephone_number "MyString"
-    supplier_type_category_code nil
+    supplier_type_category nil
   end
 end

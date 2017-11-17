@@ -7,7 +7,7 @@ class CreateSalesModelingPurchaseSuppliers < ActiveRecord::Migration[5.1]
       t.string :city, comment:'市町村'
       t.string :house_number, comment:'番地'
       t.string :telephone_number, comment:'電話番号'
-      t.references :supplier_type_category_code, comment:'仕入先区分' , index: {name:'index_sales_modeling_purchase_supplier_category_id'}
+      t.references :supplier_type_category, comment:'仕入先区分' , index: {name:'index_sales_modeling_purchase_supplier_category_id'}
       t.timestamps
     end
   end

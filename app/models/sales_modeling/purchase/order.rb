@@ -8,13 +8,13 @@
 #  amount                               :decimal(10, )                          # 金額
 #  currency                             :string(255)                            # 通貨
 #  sales_modeling_purchase_suppliers_id :integer                                # 仕入先
-#  order_type_category_code_id          :integer                                # 発注区分
+#  order_type_category_id               :integer                                # 発注区分
 #  created_at                           :datetime         not null
 #  updated_at                           :datetime         not null
 #
 # Indexes
 #
-#  index_sales_modeling_purchase_order_category_id  (order_type_category_code_id)
+#  index_sales_modeling_purchase_order_category_id  (order_type_category_id)
 #  index_sales_modeling_purchase_order_supplier_id  (sales_modeling_purchase_suppliers_id)
 #
 # Foreign Keys

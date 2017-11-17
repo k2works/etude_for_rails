@@ -7,13 +7,13 @@
 #  name                              :string(255)                            # 名前
 #  sales_modeling_purchase_orders_id :integer                                # 発注
 #  sales_modeling_purchase_stocks_id :integer                                # 入庫
-#  warehouse_type_category_code_id   :integer                                # 倉庫区分
+#  warehouse_type_category_id        :integer                                # 倉庫区分
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #
 # Indexes
 #
-#  index_sales_modeling_purchase_warehouse_category_id  (warehouse_type_category_code_id)
+#  index_sales_modeling_purchase_warehouse_category_id  (warehouse_type_category_id)
 #  index_sales_modeling_purchase_warehouses_order_id    (sales_modeling_purchase_orders_id)
 #  index_sales_modeling_purchase_warehouses_stock_id    (sales_modeling_purchase_stocks_id)
 #
