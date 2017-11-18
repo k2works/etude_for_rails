@@ -9,35 +9,51 @@ RSpec.describe SalesModeling::Purchase::Order, type: :model do
   let(:product_b) { create(:sku_2, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(200)) }
   let(:product_c) { create(:sku_3, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(300)) }
   let(:a_suit) { SalesModeling::Quantity.new(1, 'SUIT') }
-
-  describe '#create' do
-    example '仕入先Aから製品Aを１着定期発注' do
-      params = {
+  let(:orders_repo) { SalesModeling::OrderRepo.new }
+  let(:order_a_params) do
+    {
+      order_params: {
         order_date: Date.today,
         scheduled_arrival_date: Date.today.advance(weeks: 1),
         sales_modeling_purchase_supplier: supplier_a,
         order_type_category: regular_type
-      }
-      order = SalesModeling::Purchase::Order.new(params)
-
-      params = {
+      },
+      order_line_params: [{
         sales_modeling_type3_sku: product_a,
         quantity: a_suit
-      }
-      order_line = order.order_lines.build(params)
-      order_line.unit_order_price = SalesModeling::Price::UnitSalesPrice.new(order_line.sales_modeling_type3_sku.unit_sales_price_amount)
-      order.order_price = SalesModeling::Price::SalesPrice.new(0)
-      sum = SalesModeling::Price::SumPrice.new(order.order_price, order.order_price)
-      n = 1
-      order.order_lines.each do |line|
-        line.line_number = n
-        sum = sum.plus(line.order_price)
-        order.order_price = sum.reduce
-        n += 1
-      end
-      order.save!
+      }]
+    }
+  end
+  let(:order_abc_params) do
+    {
+      order_params: {
+        order_date: Date.today,
+        scheduled_arrival_date: Date.today.advance(weeks: 1),
+        sales_modeling_purchase_supplier: supplier_a,
+        order_type_category: regular_type
+      },
+      order_line_params: [
+        {
+          sales_modeling_type3_sku: product_a,
+          quantity: a_suit
+        },
+        {
+          sales_modeling_type3_sku: product_b,
+          quantity: a_suit
+        },
+        {
+          sales_modeling_type3_sku: product_c,
+          quantity: a_suit
+        }
+      ]
+    }
+  end
 
-      order = SalesModeling::Purchase::Order.first
+  describe '#create' do
+    example '仕入先Aから製品Aを１着定期発注' do
+      orders_repo.save(order_a_params)
+
+      order = orders_repo.select_first
       expect(Date.parse(order.order_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.to_s).strftime('%Y-%m-%d %H:%M')
       expect(Date.parse(order.scheduled_arrival_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
       expect(order.order_type_category.name).to eq '定期発注'
@@ -52,46 +68,9 @@ RSpec.describe SalesModeling::Purchase::Order, type: :model do
     end
 
     example '仕入先Aから製品A・B・Cを各１着定期発注' do
-      params = {
-          order_date: Date.today,
-          scheduled_arrival_date: Date.today.advance(weeks: 1),
-          sales_modeling_purchase_supplier: supplier_a,
-          order_type_category: regular_type
-      }
-      order = SalesModeling::Purchase::Order.new(params)
+      orders_repo.save(order_abc_params)
 
-      order_line_params = []
-      params = {
-          sales_modeling_type3_sku: product_a,
-          quantity: a_suit
-      }
-      order_line_params << params
-      params = {
-          sales_modeling_type3_sku: product_b,
-          quantity: a_suit
-      }
-      order_line_params << params
-      params = {
-          sales_modeling_type3_sku: product_c,
-          quantity: a_suit
-      }
-      order_line_params << params
-      order_line_params.each do |params|
-        order_line = order.order_lines.build(params)
-        order_line.unit_order_price = SalesModeling::Price::UnitSalesPrice.new(order_line.sales_modeling_type3_sku.unit_sales_price_amount)
-        order.order_price = SalesModeling::Price::SalesPrice.new(0)
-        sum = SalesModeling::Price::SumPrice.new(order.order_price, order.order_price)
-        n = 1
-        order.order_lines.each do |line|
-          line.line_number = n
-          sum = sum.plus(line.order_price)
-          order.order_price = sum.reduce
-          n += 1
-        end
-        order.save!
-      end
-
-      order = SalesModeling::Purchase::Order.first
+      order = orders_repo.select_first
       expect(Date.parse(order.order_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.to_s).strftime('%Y-%m-%d %H:%M')
       expect(Date.parse(order.scheduled_arrival_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
       expect(order.order_type_category.name).to eq '定期発注'
