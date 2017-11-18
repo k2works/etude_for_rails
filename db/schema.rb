@@ -425,13 +425,13 @@ ActiveRecord::Schema.define(version: 20171117061809) do
   create_table "sales_modeling_purchase_warehouses", force: :cascade, comment: "倉庫" do |t|
     t.string "code", comment: "コード"
     t.string "name", comment: "名前"
-    t.bigint "sales_modeling_purchase_orders_id", comment: "発注"
-    t.bigint "sales_modeling_purchase_stocks_id", comment: "入庫"
+    t.bigint "sales_modeling_purchase_order_id", comment: "発注"
+    t.bigint "sales_modeling_purchase_stock_id", comment: "入庫"
     t.bigint "warehouse_type_category_id", comment: "倉庫区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sales_modeling_purchase_orders_id"], name: "index_sales_modeling_purchase_warehouses_order_id"
-    t.index ["sales_modeling_purchase_stocks_id"], name: "index_sales_modeling_purchase_warehouses_stock_id"
+    t.index ["sales_modeling_purchase_order_id"], name: "index_sales_modeling_purchase_warehouses_order_id"
+    t.index ["sales_modeling_purchase_stock_id"], name: "index_sales_modeling_purchase_warehouses_stock_id"
     t.index ["warehouse_type_category_id"], name: "index_sales_modeling_purchase_warehouse_category_id"
   end
 
@@ -634,8 +634,8 @@ ActiveRecord::Schema.define(version: 20171117061809) do
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_type3_skus"
   add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"
-  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_orders", column: "sales_modeling_purchase_orders_id"
-  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
+  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_orders"
+  add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_stocks"
   add_foreign_key "sales_modeling_sales_sales", "sales_modeling_sales_customers"
   add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_sales_sales", column: "sales_modeling_sales_sales_id"
   add_foreign_key "sales_modeling_sales_sales_lines", "sales_modeling_type3_skus"

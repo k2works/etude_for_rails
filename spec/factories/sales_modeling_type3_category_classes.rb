@@ -39,4 +39,8 @@ FactoryGirl.define do
     code SalesModeling::Type::OrderType.new('', '').category_class_code
     name '発注区分'
   end
+  factory :warehouse_type_category_class, class: 'SalesModeling::Type3::CategoryClass' do
+    code SalesModeling::Type::WarehouseType.new('', '').category_class_code
+    name '倉庫区分'
+  end
 end

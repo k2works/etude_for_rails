@@ -71,4 +71,10 @@ FactoryGirl.define do
     symbol SalesModeling::Type::OrderType::SYMBOL
     association :sales_modeling_type3_category_class, factory: :order_type_category_class
   end
+  factory :warehouse_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::WarehouseType.new('13','倉庫').code
+    name '倉庫'
+    symbol SalesModeling::Type::WarehouseType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :warehouse_type_category_class
+  end
 end
