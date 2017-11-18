@@ -26,22 +26,23 @@ RSpec.describe SalesModeling::Purchase::Warehouse, type: :model do
   end
   let(:create_order_a) { orders_repo.save(order_a_params) }
   let(:select_order_a) { orders_repo.select_first }
-  let(:warehouse_type) { create(:warehouse_type_category, name:'社内')}
+  let(:warehouses_repo) { SalesModeling::WarehouseRepo.new }
+  let(:warehouse_type) { create(:warehouse_type_category, name: '社内') }
+  let(:warehouse) { warehouses_repo.select_first }
+  let(:order_a_in_warehouse_params) do
+    {
+      code: '1',
+      name: '倉庫A',
+      warehouse_type_category: warehouse_type,
+      sales_modeling_purchase_order: select_order_a
+    }
+  end
 
   describe '#create' do
     example '発注Aが倉庫Aに入庫' do
       create_order_a
-      orders_repo.select_first
-      params = {
-        code: '1',
-        name: '倉庫A',
-        warehouse_type_category: warehouse_type,
-        sales_modeling_purchase_order: select_order_a
-      }
-      warehouse = SalesModeling::Purchase::Warehouse.new(params)
-      warehouse.save!
+      warehouses_repo.save(order_a_in_warehouse_params)
 
-      warehouse = SalesModeling::Purchase::Warehouse.first
       expect(warehouse.code).to eq '1'
       expect(warehouse.name).to eq '倉庫A'
       expect(warehouse.warehouse_type_category.name).to eq '社内'
