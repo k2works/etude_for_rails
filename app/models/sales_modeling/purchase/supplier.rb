@@ -20,6 +20,7 @@
 
 class SalesModeling::Purchase::Supplier < ApplicationRecord
   include SalesModeling::PurchaseDomain
+  include ::SalesModeling::Domain::Purchase::Supplier
 
   belongs_to :supplier_type_category, class_name: 'SalesModeling::Type3::Category'
   has_many :sales_modeling_purchase_orders, :class_name => 'SalesModeling::Purchase::Order'

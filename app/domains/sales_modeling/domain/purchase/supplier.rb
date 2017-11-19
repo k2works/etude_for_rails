@@ -1,31 +1,33 @@
+# frozen_string_literal: true
+
 module SalesModeling
   module Domain
     module Purchase
       module Supplier
-        attr_reader :supplier_code,
-                    :name,
-                    :address,
-                    :telephone,
-                    :supplier_type
-
-        def supplier_code=(code)
-          @supplier_code = SalesModeling::Code::SupplierCode.new(code)
+        def supplier_code=(supplier_code)
+          self.code = supplier_code.code
         end
 
-        def name=(name)
-          @name = name
+        def supplier_code
+          @supplier_code ||= SalesModeling::Code::SupplierCode.new(code)
         end
 
-        def address=(params)
-          @address = SalesModeling::Address.new(params[:prefecture], params[:city], params[:house_number]) unless params.nil?
+        def address=(address)
+          self.prefecture = address.prefecture
+          self.city = address.city
+          self.house_number = address.house_number
         end
 
-        def telephone=(number)
-          @telephone = SalesModeling::Telephone.new(number)
+        def address
+          @address ||= SalesModeling::Address.new(prefecture, city, house_number)
         end
 
-        def supplier_type=(params)
-          @supplier_type = SalesModeling::Type::SupplierType.new(params[:code], params[:name]) unless params.nil?
+        def telephone=(telephone)
+          self.telephone_number = telephone.number
+        end
+
+        def telephone
+          @telephone ||= SalesModeling::Telephone.new(telephone_number)
         end
       end
     end
