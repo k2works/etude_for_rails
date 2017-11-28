@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SalesModeling::Purchase::Stock, type: :model do
+RSpec.describe SalesModeling::Domain::Purchase::Stock, type: :model do
   let(:regular_type) { create(:order_type_category, name: '定期発注') }
   let(:supplier_a) { create(:supplier_a, name: 'A') }
   let(:product_a) { create(:sku_1, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(100)) }

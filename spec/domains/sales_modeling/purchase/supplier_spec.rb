@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SalesModeling::Purchase::Supplier, type: :model do
+RSpec.describe SalesModeling::Domain::Purchase::Supplier, type: :model do
   let(:suppliers_repo) { SalesModeling::SuppliersRepo.new }
   let(:wholesales_supplier_type) { create(:supplier_type_category, name: '卸売') }
   let(:params_a) do
