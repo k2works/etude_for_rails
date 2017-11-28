@@ -8,15 +8,15 @@ module SalesModeling
 
       order = SalesModeling::Purchase::Order.new(order_params)
       order_line_params.each do |order_line_params|
-        order_line = order.order_lines.build(order_line_params)
-        order_line.unit_order_price = SalesModeling::Price::UnitSalesPrice.new(order_line.sales_modeling_type3_sku.unit_sales_price_amount)
-        order.order_price = SalesModeling::Price::SalesPrice.new(0)
-        sum = SalesModeling::Price::SumPrice.new(order.order_price, order.order_price)
+        order_line = order.lines.build(order_line_params)
+        order_line.unit_price = SalesModeling::Price::UnitSalesPrice.new(order_line.sales_modeling_type3_sku.unit_sales_price_amount)
+        order.price = SalesModeling::Price::SalesPrice.new(0)
+        sum = SalesModeling::Price::SumPrice.new(order.price, order.price)
         n = 1
-        order.order_lines.each do |line|
+        order.lines.each do |line|
           line.line_number = n
-          sum = sum.plus(line.order_price)
-          order.order_price = sum.reduce
+          sum = sum.plus(line.price)
+          order.price = sum.reduce
           n += 1
         end
       end

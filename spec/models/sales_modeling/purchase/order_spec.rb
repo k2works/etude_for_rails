@@ -60,11 +60,11 @@ RSpec.describe SalesModeling::Purchase::Order, type: :model do
       expect(order.sales_modeling_purchase_supplier.name).to eq 'A'
       expect(order.amount).to eq 100
       expect(order.currency).to eq 'JPY'
-      expect(order.order_lines.first.unit_price_amount).to eq 100
-      expect(order.order_lines.first.unit_price_currency).to eq 'JPY'
-      expect(order.order_lines.first.price_amount).to eq 100
-      expect(order.order_lines.first.price_currency).to eq 'JPY'
-      expect(order.order_lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
+      expect(order.lines.first.unit_price_amount).to eq 100
+      expect(order.lines.first.unit_price_currency).to eq 'JPY'
+      expect(order.lines.first.price_amount).to eq 100
+      expect(order.lines.first.price_currency).to eq 'JPY'
+      expect(order.lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
     end
 
     example '仕入先Aから製品A・B・Cを各１着定期発注' do
@@ -77,21 +77,21 @@ RSpec.describe SalesModeling::Purchase::Order, type: :model do
       expect(order.sales_modeling_purchase_supplier.name).to eq 'A'
       expect(order.amount).to eq 600
       expect(order.currency).to eq 'JPY'
-      expect(order.order_lines.first.unit_price_amount).to eq 100
-      expect(order.order_lines.first.unit_price_currency).to eq 'JPY'
-      expect(order.order_lines.first.price_amount).to eq 100
-      expect(order.order_lines.first.price_currency).to eq 'JPY'
-      expect(order.order_lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
-      expect(order.order_lines.second.unit_price_amount).to eq 200
-      expect(order.order_lines.second.unit_price_currency).to eq 'JPY'
-      expect(order.order_lines.second.price_amount).to eq 200
-      expect(order.order_lines.second.price_currency).to eq 'JPY'
-      expect(order.order_lines.second.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品B'
-      expect(order.order_lines.third.unit_price_amount).to eq 300
-      expect(order.order_lines.third.unit_price_currency).to eq 'JPY'
-      expect(order.order_lines.third.price_amount).to eq 300
-      expect(order.order_lines.third.price_currency).to eq 'JPY'
-      expect(order.order_lines.third.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品C'
+      expect(order.lines.first.unit_price_amount).to eq 100
+      expect(order.lines.first.unit_price_currency).to eq 'JPY'
+      expect(order.lines.first.price_amount).to eq 100
+      expect(order.lines.first.price_currency).to eq 'JPY'
+      expect(order.lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
+      expect(order.lines.second.unit_price_amount).to eq 200
+      expect(order.lines.second.unit_price_currency).to eq 'JPY'
+      expect(order.lines.second.price_amount).to eq 200
+      expect(order.lines.second.price_currency).to eq 'JPY'
+      expect(order.lines.second.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品B'
+      expect(order.lines.third.unit_price_amount).to eq 300
+      expect(order.lines.third.unit_price_currency).to eq 'JPY'
+      expect(order.lines.third.price_amount).to eq 300
+      expect(order.lines.third.price_currency).to eq 'JPY'
+      expect(order.lines.third.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品C'
     end
   end
   describe '#select' do

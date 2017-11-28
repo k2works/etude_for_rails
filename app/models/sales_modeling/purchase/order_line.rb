@@ -27,43 +27,13 @@
 #
 
 class SalesModeling::Purchase::OrderLine < ApplicationRecord
+  include SalesModeling::PurchaseDomain
+  include ::SalesModeling::Domain::Purchase::OrderLine
+
   belongs_to :sales_modeling_purchase_order, :class_name => 'SalesModeling::Purchase::Order', optional: true
   belongs_to :sales_modeling_type3_sku, class_name: 'SalesModeling::Type3::Sku', optional: true
 
   before_save do
-    self.order_price = calculate_order_price
-  end
-
-  def unit_order_price
-    @unit_order_price ||= SalesModeling::Price::UnitOrderPrice.new(unit_price_amount)
-  end
-
-  def unit_order_price=(price)
-    self.unit_price_amount = price.amount
-    self.unit_price_currency = price.currency
-  end
-
-  def order_price
-    @order_price ||= calculate_order_price
-  end
-
-  def order_price=(price)
-    self.price_amount = price.amount
-    self.price_currency = price.currency
-  end
-
-  def quantity
-    @quantity ||= SalesModeling::Quantity.new(quantity_amount, quantity_unit)
-  end
-
-  def quantity=(quantity)
-    self.quantity_amount = quantity.amount
-    self.quantity_unit = quantity.unit
-  end
-
-  private
-
-  def calculate_order_price
-    unit_order_price.*(quantity)
+    self.price = calculate_price
   end
 end

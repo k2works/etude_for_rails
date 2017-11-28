@@ -23,17 +23,11 @@
 #
 
 class SalesModeling::Purchase::Order < ApplicationRecord
+  include SalesModeling::PurchaseDomain
+  include ::SalesModeling::Domain::Purchase::Order
+
   belongs_to :order_type_category, class_name: 'SalesModeling::Type3::Category'
   belongs_to :sales_modeling_purchase_supplier, :class_name => 'SalesModeling::Purchase::Supplier'
-  has_many :order_lines, :class_name => 'SalesModeling::Purchase::OrderLine',  foreign_key: :sales_modeling_purchase_orders_id
+  has_many :lines, :class_name => 'SalesModeling::Purchase::OrderLine',  foreign_key: :sales_modeling_purchase_orders_id
   has_one :sales_modeling_purchase_warehouse, :class_name => 'SalesModeling::Purchase::Warehouse'
-
-  def order_price
-    @order_price ||= SalesModeling::Price::OrderPrice.new(amount)
-  end
-
-  def order_price=(price)
-    self.amount = price.amount
-    self.currency = price.currency
-  end
 end
