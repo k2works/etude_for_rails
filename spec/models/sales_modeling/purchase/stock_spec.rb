@@ -86,6 +86,58 @@ RSpec.describe SalesModeling::Purchase::Stock, type: :model do
       expect(stock.sales_modeling_purchase_order.currency).to eq 'JPY'
       expect(stock.lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
     end
+
+    example '仕入先Aから製品A・B・Cを各１着定期発注 A・B入庫' do
+      orders_repo.save(order_abc_params)
+
+      order = orders_repo.select_first
+
+      stock_order_abc_params = {
+        stock_params: {
+          arrival_date: Date.today.advance(weeks: 1),
+          acceptance_date: Date.today.advance(weeks: 1),
+          sales_modeling_purchase_order: order,
+          stock_type_category: regular_type
+        },
+        stock_line_params: [
+          {
+            sales_modeling_type3_sku: product_a,
+            quantity: a_suit
+          },
+          {
+            sales_modeling_type3_sku: product_b,
+            quantity: a_suit
+          }
+        ]
+      }
+
+      stocks_repo.save(stock_order_abc_params)
+      stock = stocks_repo.select_first
+
+      expect(stock.lines.count).to eq 2
+      expect(Date.parse(stock.arrival_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
+      expect(Date.parse(stock.acceptance_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
+      expect(stock.stock_type_category.name).to eq '定期発注'
+      expect(stock.sales_modeling_purchase_supplier.name).to eq 'A'
+      expect(stock.lines.first.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品A'
+      expect(stock.lines.first.unit_price_amount).to eq 100
+      expect(stock.lines.first.unit_price_currency).to eq 'JPY'
+      expect(stock.lines.first.quantity_amount).to eq 1
+      expect(stock.lines.first.quantity_unit).to eq 'SUIT'
+      expect(stock.lines.first.price_amount).to eq 100
+      expect(stock.lines.first.price_currency).to eq 'JPY'
+
+      expect(stock.lines.second.sales_modeling_type3_sku.sales_modeling_type3_product.name).to eq '製品B'
+      expect(stock.lines.second.unit_price_amount).to eq 200
+      expect(stock.lines.second.unit_price_currency).to eq 'JPY'
+      expect(stock.lines.second.quantity_amount).to eq 1
+      expect(stock.lines.second.quantity_unit).to eq 'SUIT'
+      expect(stock.lines.second.price_amount).to eq 200
+      expect(stock.lines.second.price_currency).to eq 'JPY'
+
+      expect(stock.sales_modeling_purchase_order.amount).to eq 600
+      expect(stock.sales_modeling_purchase_order.currency).to eq 'JPY'
+    end
   end
   describe '#select' do
   end
