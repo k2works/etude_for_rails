@@ -24,9 +24,12 @@
 #
 
 class SalesModeling::Purchase::Stock < ApplicationRecord
+  include SalesModeling::PurchaseDomain
+  include ::SalesModeling::Domain::Purchase::Stock
+
   belongs_to :stock_type_category, class_name: 'SalesModeling::Type3::Category'
   belongs_to :sales_modeling_purchase_supplier, :class_name => 'SalesModeling::Purchase::Supplier'
   belongs_to :sales_modeling_purchase_order, :class_name => 'SalesModeling::Purchase::Order'
-  has_many :stock_lines, :class_name => 'SalesModeling::Purchase::StockLine'
+  has_many :lines, :class_name => 'SalesModeling::Purchase::StockLine', foreign_key: :sales_modeling_purchase_stocks_id
   has_one :sales_modeling_purchase_warehouse, :class_name => 'SalesModeling::Purchase::Warehouse'
 end

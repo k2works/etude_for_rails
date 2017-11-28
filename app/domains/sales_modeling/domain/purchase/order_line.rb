@@ -31,6 +31,10 @@ module SalesModeling
           self.quantity_unit = quantity.unit
         end
 
+        def calculate
+          self.price = calculate_price
+        end
+
         private
 
         def calculate_price

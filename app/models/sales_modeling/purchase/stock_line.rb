@@ -27,6 +27,9 @@
 #
 
 class SalesModeling::Purchase::StockLine < ApplicationRecord
+  include SalesModeling::PurchaseDomain
+  include ::SalesModeling::Domain::Purchase::StockLine
+
   belongs_to :sales_modeling_purchase_stock, :class_name => 'SalesModeling::Purchase::Stock', optional: true
   belongs_to :sales_modeling_type3_sku, class_name: 'SalesModeling::Type3::Sku', optional: true
 end
