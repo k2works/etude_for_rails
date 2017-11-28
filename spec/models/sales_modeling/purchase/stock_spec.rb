@@ -51,26 +51,47 @@ RSpec.describe SalesModeling::Purchase::Stock, type: :model do
   end
   let(:stocks_repo) { SalesModeling::StocksRepo.new }
 
+  let(:order) { orders_repo.select_first }
+  let(:stock_order_a_params) do
+    {
+      stock_params: {
+        arrival_date: Date.today.advance(weeks: 1),
+        acceptance_date: Date.today.advance(weeks: 1),
+        sales_modeling_purchase_order: order,
+        stock_type_category: regular_type
+      },
+      stock_line_params: [{
+        sales_modeling_type3_sku: product_a,
+        quantity: a_suit
+      }]
+    }
+  end
+  let(:stock_order_abc_params) do
+    {
+      stock_params: {
+        arrival_date: Date.today.advance(weeks: 1),
+        acceptance_date: Date.today.advance(weeks: 1),
+        sales_modeling_purchase_order: order,
+        stock_type_category: regular_type
+      },
+      stock_line_params: [
+        {
+          sales_modeling_type3_sku: product_a,
+          quantity: a_suit
+        },
+        {
+          sales_modeling_type3_sku: product_b,
+          quantity: a_suit
+        }
+      ]
+    }
+  end
+  let(:stock) { stocks_repo.select_first }
+
   describe '#create' do
     example '仕入先Aから製品Aを１０着定期発注１着入庫' do
       orders_repo.save(order_a_params)
-      order = orders_repo.select_first
-
-      stock_order_a_params = {
-        stock_params: {
-          arrival_date: Date.today.advance(weeks: 1),
-          acceptance_date: Date.today.advance(weeks: 1),
-          sales_modeling_purchase_order: order,
-          stock_type_category: regular_type
-        },
-        stock_line_params: [{
-          sales_modeling_type3_sku: product_a,
-          quantity: a_suit
-        }]
-      }
-
       stocks_repo.save(stock_order_a_params)
-      stock = stocks_repo.select_first
 
       expect(Date.parse(stock.arrival_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
       expect(Date.parse(stock.acceptance_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')
@@ -89,30 +110,7 @@ RSpec.describe SalesModeling::Purchase::Stock, type: :model do
 
     example '仕入先Aから製品A・B・Cを各１着定期発注 A・B入庫' do
       orders_repo.save(order_abc_params)
-
-      order = orders_repo.select_first
-
-      stock_order_abc_params = {
-        stock_params: {
-          arrival_date: Date.today.advance(weeks: 1),
-          acceptance_date: Date.today.advance(weeks: 1),
-          sales_modeling_purchase_order: order,
-          stock_type_category: regular_type
-        },
-        stock_line_params: [
-          {
-            sales_modeling_type3_sku: product_a,
-            quantity: a_suit
-          },
-          {
-            sales_modeling_type3_sku: product_b,
-            quantity: a_suit
-          }
-        ]
-      }
-
       stocks_repo.save(stock_order_abc_params)
-      stock = stocks_repo.select_first
 
       expect(stock.lines.count).to eq 2
       expect(Date.parse(stock.arrival_date.to_s).strftime('%Y-%m-%d %H:%M')).to eq Date.parse(Date.today.advance(weeks: 1).to_s).strftime('%Y-%m-%d %H:%M')

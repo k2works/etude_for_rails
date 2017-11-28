@@ -29,5 +29,5 @@ class SalesModeling::Purchase::Order < ApplicationRecord
   belongs_to :order_type_category, class_name: 'SalesModeling::Type3::Category'
   belongs_to :sales_modeling_purchase_supplier, :class_name => 'SalesModeling::Purchase::Supplier'
   has_many :lines, :class_name => 'SalesModeling::Purchase::OrderLine', foreign_key: :sales_modeling_purchase_orders_id
-  has_one :sales_modeling_purchase_warehouse, :class_name => 'SalesModeling::Purchase::Warehouse'
+  has_many :warehouses, :class_name => 'SalesModeling::Purchase::Warehouse', foreign_key: :sales_modeling_purchase_order_id
 end

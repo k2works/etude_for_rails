@@ -22,8 +22,20 @@ module SalesModeling
       stock.save!
     end
 
+    def select_all
+      SalesModeling::Purchase::Stock.all
+    end
+
     def select_first
       SalesModeling::Purchase::Stock.first
+    end
+
+    def select_second
+      SalesModeling::Purchase::Stock.second
+    end
+
+    def select_third
+      SalesModeling::Purchase::Stock.third
     end
   end
 end

@@ -31,5 +31,5 @@ class SalesModeling::Purchase::Stock < ApplicationRecord
   belongs_to :sales_modeling_purchase_supplier, :class_name => 'SalesModeling::Purchase::Supplier'
   belongs_to :sales_modeling_purchase_order, :class_name => 'SalesModeling::Purchase::Order'
   has_many :lines, :class_name => 'SalesModeling::Purchase::StockLine', foreign_key: :sales_modeling_purchase_stocks_id
-  has_one :sales_modeling_purchase_warehouse, :class_name => 'SalesModeling::Purchase::Warehouse'
+  has_one :warehouse, :class_name => 'SalesModeling::Purchase::Warehouse', foreign_key: :sales_modeling_purchase_stock_id
 end
