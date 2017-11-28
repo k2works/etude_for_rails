@@ -28,6 +28,14 @@ module SalesModeling
       order.save!
     end
 
+    def save_order(order)
+      order.save!
+    end
+
+    def select_all
+      SalesModeling::Purchase::Order.all
+    end
+
     def select_first
       SalesModeling::Purchase::Order.first
     end
