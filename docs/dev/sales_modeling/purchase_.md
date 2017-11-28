@@ -34,7 +34,7 @@ SalesModeling
 ### 仕入業務のユースケース
   
 
-![](./assets/31c3844cfc339f5747262bf1ef4300710.png?0.7508516536533152)  
+![](./assets/31c3844cfc339f5747262bf1ef4300710.png?0.4483219056318599)  
   
 ## 分析
   
@@ -42,36 +42,22 @@ SalesModeling
   
   
 
-```
-ImageMagick is required to be installed to convert svg to png.
-Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171015-84988-wcxren.8hvsq.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/31c3844cfc339f5747262bf1ef4300711.png
-magick: xmlParseComment: invalid xmlChar value 8
- `No such file or directory` @ error/svg.c/SVGError/2680.
-
-```  
-
+![](./assets/31c3844cfc339f5747262bf1ef4300711.png?0.8787467318933699)  
   
 ### オブジェクト図
   
 
-![](./assets/31c3844cfc339f5747262bf1ef4300711.png?0.8247013057760286)  
+![](./assets/31c3844cfc339f5747262bf1ef4300712.png?0.6766936767338472)  
   
 ## 設計
   
 ### クラス図
   
 
-![](./assets/31c3844cfc339f5747262bf1ef4300712.png?0.20514823731980925)  
+![](./assets/31c3844cfc339f5747262bf1ef4300713.png?0.12718681872419846)  
   
 ## ER図
   
 
-```
-ImageMagick is required to be installed to convert svg to png.
-Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171015-84988-skb58k.cd02h.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/31c3844cfc339f5747262bf1ef4300713.png
-magick: attributes construct error
- `No such file or directory` @ error/svg.c/SVGError/2680.
-
-```  
-
+![](./assets/31c3844cfc339f5747262bf1ef4300714.png?0.27159840962068715)  
   

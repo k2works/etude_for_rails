@@ -66,7 +66,7 @@ class 入庫 {
 }
 class 入庫明細 {
   数量:int
-  単価:int
+  単価:int
   金額:int
 }
 class 倉庫 {
@@ -223,7 +223,7 @@ entity Order {
   amount
   currency
   supplier_code [FK]
-  order_type_category_code [FK]  
+  order_type_category_code [FK]  
 }
 entity OrderLine {
   + line_number
@@ -297,7 +297,7 @@ entity CategoryClass {
   name
 }
 Order ||-do-{ Stock
-Order -do- Warehouse
+Order  ||-do-{ Warehouse
 Stock -do- Warehouse
 Supplier ||-do-{ Order
 Supplier ||-do-{ Stock
