@@ -401,11 +401,13 @@ ActiveRecord::Schema.define(version: 20171117061809) do
   create_table "sales_modeling_purchase_stocks", force: :cascade, comment: "入庫" do |t|
     t.datetime "arrival_date", comment: "入庫日付"
     t.datetime "acceptance_date", comment: "検収日付"
-    t.bigint "sales_modeling_purchase_suppliers_id", comment: "仕入先"
+    t.bigint "sales_modeling_purchase_order_id", comment: "発注"
+    t.bigint "sales_modeling_purchase_supplier_id", comment: "仕入先"
     t.bigint "stock_type_category_id", comment: "入庫区分"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["sales_modeling_purchase_suppliers_id"], name: "index_sales_modeling_purchase_stock_supplier_id"
+    t.index ["sales_modeling_purchase_order_id"], name: "index_sales_modeling_purchase_stock_order_id"
+    t.index ["sales_modeling_purchase_supplier_id"], name: "index_sales_modeling_purchase_stock_supplier_id"
     t.index ["stock_type_category_id"], name: "index_sales_modeling_purchase_stock_category_id"
   end
 
@@ -633,7 +635,8 @@ ActiveRecord::Schema.define(version: 20171117061809) do
   add_foreign_key "sales_modeling_purchase_orders", "sales_modeling_purchase_suppliers"
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_purchase_stocks", column: "sales_modeling_purchase_stocks_id"
   add_foreign_key "sales_modeling_purchase_stock_lines", "sales_modeling_type3_skus"
-  add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_suppliers", column: "sales_modeling_purchase_suppliers_id"
+  add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_orders"
+  add_foreign_key "sales_modeling_purchase_stocks", "sales_modeling_purchase_suppliers"
   add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_orders"
   add_foreign_key "sales_modeling_purchase_warehouses", "sales_modeling_purchase_stocks"
   add_foreign_key "sales_modeling_sales_sales", "sales_modeling_sales_customers"
