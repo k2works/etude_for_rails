@@ -12,6 +12,10 @@ module SalesModeling
       warehouse
     end
 
+    def save_warehouse(warehouse)
+      warehouse.save! unless warehouse.nil?
+    end
+
     def save(params = {})
       warehouse = new_warehouse(params)
       warehouse.save!

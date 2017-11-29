@@ -17,6 +17,10 @@ module SalesModeling
       stock
     end
 
+    def save_stock(stock)
+      stock.save! unless stock.nil?
+    end
+
     def save(params = {})
       stock = new_stock(params)
       stock.save!
