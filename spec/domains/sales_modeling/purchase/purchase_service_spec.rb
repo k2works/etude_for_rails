@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe SalesModeling::Domain::Purchase::OrderService do
-  let(:service) { SalesModeling::Domain::Purchase::OrderService.new }
+RSpec.describe SalesModeling::Domain::Purchase::PurchaseService do
+  let(:service) { SalesModeling::Domain::Purchase::PurchaseService.new }
 
   describe '注文する' do
     let(:simple_type) { create(:simple_order_type_category, name: '簡易') }

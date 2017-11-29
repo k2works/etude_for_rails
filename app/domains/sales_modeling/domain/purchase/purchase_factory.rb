@@ -3,7 +3,7 @@
 module SalesModeling
   module Domain
     module Purchase
-      class OrderFactory
+      class PurchaseFactory
         def initialize
           @orders_repo = SalesModeling::OrderRepo.new
           @stocks_repo = SalesModeling::StocksRepo.new

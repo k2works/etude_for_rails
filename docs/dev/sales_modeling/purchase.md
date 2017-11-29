@@ -167,7 +167,7 @@ class Product {
   unit_purchase_price:int
   unit_sales_price:int
 }
-class OrderService << DomainService >>{
+class PurchaseService << DomainService >>{
 }
 abstract class OrderStrategy {
 }
@@ -177,15 +177,17 @@ class FixSizeOrderStrategy {
 }
 class SimpleOrderStrategy {
 }
-class OrderFactory {
+class PurchaseFactory {
 }
 
-OrderService --> OrderFactory
-OrderFactory --> OrderStrategy
-OrderFactory --> Order
+PurchaseService -> PurchaseFactory
+PurchaseFactory --> OrderStrategy
+PurchaseFactory --> Order
+PurchaseFactory --> Stock
 OrderStrategy <|.. RegularOrderStrategy
 OrderStrategy <|.. FixSizeOrderStrategy
 OrderStrategy <|.. SimpleOrderStrategy
+OrderStrategy <-- Order
 Supplier -- Order
 Order *-- OrderLine
 OrderLine -- Product
