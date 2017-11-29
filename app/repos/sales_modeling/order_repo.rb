@@ -29,7 +29,7 @@ module SalesModeling
     end
 
     def save_order(order)
-      order.save!
+      order.save! unless order.nil?
     end
 
     def select_all

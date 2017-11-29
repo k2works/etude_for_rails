@@ -4,22 +4,13 @@ module SalesModeling
   module Domain
     module Purchase
       class OrderService
-        def simple_order(params)
-          repos = SalesModeling::OrderRepo.new
-          order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::SimpleOrderType::SYMBOL
-        end
-
-        def regular_order(params)
-          repos = SalesModeling::OrderRepo.new
-          order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::RegularOrderType::SYMBOL
-        end
-
-        def fix_size_order(params)
-          repos = SalesModeling::OrderRepo.new
-          order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::FixSizeOrderType::SYMBOL
+        def order_to_supplier(params)
+          factory = OrderFactory.new
+          order = factory.new_order(params)
+          strategy = factory.new_order_strategy(order)
+          order = strategy.execute
+          repos = factory.new_repos
+          repos.save_order(order)
         end
       end
     end

@@ -177,16 +177,12 @@ class FixSizeOrderStrategy {
 }
 class SimpleOrderStrategy {
 }
-abstract class OrderFactory {
-}
-class ApparelOrderFactory {  
+class OrderFactory {
 }
 
-OrderService -> OrderStrategy
-OrderStrategy -> OrderFactory
-OrderFactory <|.. ApparelOrderFactory
-ApparelOrderFactory -> Order
-ApparelOrderFactory -> Supplier
+OrderService --> OrderFactory
+OrderFactory --> OrderStrategy
+OrderFactory --> Order
 OrderStrategy <|.. RegularOrderStrategy
 OrderStrategy <|.. FixSizeOrderStrategy
 OrderStrategy <|.. SimpleOrderStrategy
