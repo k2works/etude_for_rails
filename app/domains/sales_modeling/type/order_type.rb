@@ -10,4 +10,16 @@ class SalesModeling::Type::OrderType
   def category_symbol
     SYMBOL
   end
+
+  def simple_order?
+    false
+  end
+
+  def fix_size_order?
+    false
+  end
+
+  def regular_order?
+    false
+  end
 end

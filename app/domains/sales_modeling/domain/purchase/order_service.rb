@@ -7,19 +7,19 @@ module SalesModeling
         def simple_order(params)
           repos = SalesModeling::OrderRepo.new
           order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.name == '簡易'
+          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::SimpleOrderType::SYMBOL
         end
 
         def regular_order(params)
           repos = SalesModeling::OrderRepo.new
           order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.name == '定期'
+          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::RegularOrderType::SYMBOL
         end
 
         def fix_size_order(params)
           repos = SalesModeling::OrderRepo.new
           order = repos.new_order(params)
-          repos.save_order(order) if order.order_type_category.name == '定量'
+          repos.save_order(order) if order.order_type_category.symbol == SalesModeling::Type::FixSizeOrderType::SYMBOL
         end
       end
     end

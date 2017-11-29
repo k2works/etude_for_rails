@@ -66,13 +66,31 @@ FactoryGirl.define do
     association :sales_modeling_type3_category_class, factory: :supplier_type_category_class
   end
   factory :order_type_category, class: 'SalesModeling::Type3::Category' do
-    code SalesModeling::Type::CustomerType.new('13','発注').code
+    code SalesModeling::Type::OrderType.new('13','発注').code
     name '発注'
     symbol SalesModeling::Type::OrderType::SYMBOL
     association :sales_modeling_type3_category_class, factory: :order_type_category_class
   end
+  factory :simple_order_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::SimpleOrderType.new('14','簡易').code
+    name '簡易'
+    symbol SalesModeling::Type::SimpleOrderType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :order_type_category_class
+  end
+  factory :fix_size_order_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::FixSizeOrderType.new('15','定量').code
+    name '簡易'
+    symbol SalesModeling::Type::FixSizeOrderType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :order_type_category_class
+  end
+  factory :regular_order_type_category, class: 'SalesModeling::Type3::Category' do
+    code SalesModeling::Type::RegularOrderType.new('16','定期').code
+    name '定期'
+    symbol SalesModeling::Type::RegularOrderType::SYMBOL
+    association :sales_modeling_type3_category_class, factory: :order_type_category_class
+  end
   factory :warehouse_type_category, class: 'SalesModeling::Type3::Category' do
-    code SalesModeling::Type::WarehouseType.new('13','倉庫').code
+    code SalesModeling::Type::WarehouseType.new('17','倉庫').code
     name '倉庫'
     symbol SalesModeling::Type::WarehouseType::SYMBOL
     association :sales_modeling_type3_category_class, factory: :warehouse_type_category_class

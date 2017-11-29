@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe SalesModeling::Domain::Purchase::OrderService do
-  let(:simple_type) { create(:order_type_category, name: '簡易') }
-  let(:regular_type) { create(:order_type_category, name: '定期') }
-  let(:fix_size_type) { create(:order_type_category, name: '定量') }
+  let(:simple_type) { create(:simple_order_type_category, name: '簡易') }
+  let(:fix_size_type) { create(:fix_size_order_type_category, name: '定量') }
+  let(:regular_type) { create(:regular_order_type_category, name: '定期') }
   let(:supplier_a) { create(:supplier_a, name: 'A') }
   let(:product_a) { create(:sku_1, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(100)) }
   let(:product_b) { create(:sku_2, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(200)) }
