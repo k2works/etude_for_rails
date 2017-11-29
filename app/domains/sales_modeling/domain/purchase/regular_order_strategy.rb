@@ -4,8 +4,7 @@ module SalesModeling
   module Domain
     module Purchase
       class RegularOrderStrategy < SalesModeling::Domain::Purchase::OrderStrategy
-        def execute
-          @order
+        def execute(order)
         end
       end
     end

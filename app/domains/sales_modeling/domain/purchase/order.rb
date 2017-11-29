@@ -12,6 +12,14 @@ module SalesModeling
           self.amount = price.amount
           self.currency = price.currency
         end
+
+        def strategy=(order_strategy)
+          @strategy = order_strategy
+        end
+
+        def execute
+          @strategy.execute(self)
+        end
       end
     end
   end

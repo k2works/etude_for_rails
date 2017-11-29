@@ -4,7 +4,8 @@ module SalesModeling
   module Domain
     module Purchase
       class NullOrderStrategy < SalesModeling::Domain::Purchase::OrderStrategy
-        def execute
+        def execute(order)
+          raise 'Unexpected order type_category'
         end
       end
     end

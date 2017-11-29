@@ -90,8 +90,9 @@ RSpec.describe SalesModeling::Domain::Purchase::OrderService do
       end
 
       example '該当する発注方式が無い' do
-        service.order_to_supplier(null_order_params)
-        expect(orders_repo.select_all.count).to eq 0
+        expect {
+          service.order_to_supplier(null_order_params)
+        }.to raise_error(RuntimeError, "Unexpected order type_category")
       end
     end
   end

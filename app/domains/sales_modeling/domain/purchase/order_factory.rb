@@ -5,13 +5,13 @@ module SalesModeling
     module Purchase
       class OrderFactory
         def initialize
-          @repos = SalesModeling::OrderRepo.new
+          @orders_repo = SalesModeling::OrderRepo.new
           @stocks_repo = SalesModeling::StocksRepo.new
           @warehoses_repo = SalesModeling::WarehouseRepo.new
         end
 
-        def new_repos
-          @repos
+        def new_orders_repo
+          @orders_repo
         end
 
         def new_stocks_repo
@@ -23,7 +23,7 @@ module SalesModeling
         end
 
         def new_order(params)
-          @repos.new_order(params)
+          @orders_repo.new_order(params)
         end
 
         def new_stock(params)

@@ -7,9 +7,9 @@ module SalesModeling
         def order_to_supplier(params)
           factory = OrderFactory.new
           order = factory.new_order(params)
-          strategy = factory.new_order_strategy(order)
-          order = strategy.execute
-          repos = factory.new_repos
+          order.strategy = factory.new_order_strategy(order)
+          order.execute
+          repos = factory.new_orders_repo
           repos.save_order(order)
         end
 
