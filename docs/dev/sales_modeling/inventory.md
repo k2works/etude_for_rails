@@ -221,8 +221,8 @@ class 受払明細 {
 受払日 | 受払種別 | 商品 | 受払数量 | 払出金額 | 受払金額 
 平成１７年１２月１日 | 仕入入荷 | オプティカルマウス | 5 | . | 3,000  
 平成１７年１２月１日 | . | マウスパッド | 10 | . | 1,000  
-平成１７年１２月２日 | 販売出荷 | カラープリンタ | . | 5 | 23,000 
-平成１７年１２月２日 | . | 補充インク | . | 10 | 500
+平成１７年１２月２日 | 販売出荷 | カラープリンタ | . | 5 | 23,000
+
 平成１７年１２月５日 | 移送出荷 | オプティカルマウス | 2 | . | 3,000  
 平成１７年１２月５日 | . | ワイヤレスキーボード | 2 | . | 5,000
 | .| . |**合計** | 19 | 15 | 35,500
@@ -296,7 +296,6 @@ Inventory -- Warehouse
 
 ### ER図
 ```puml
-
 entity Supplier {
   + code [PK]
   --
@@ -336,11 +335,10 @@ entity Sku {
   # color_category_code [FK]  
 }
 entity Category {
-  + code [PK]  
-  # category_class_code [FK]    
+  + code [PK]
   --
   name
-  # parent_code [FK]    
+  # parent_code [FK]
 }
 entity CategoryClass {
   + code [PK]
@@ -369,7 +367,6 @@ entity Inventory {
   # warehouse_id [FK]
   # product_id [FK]
 }
-
 CategoryClass ||-do-{ Category
 Product ||-do-{ Sku
 Category ||-do-{ Sku

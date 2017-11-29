@@ -28,11 +28,11 @@ SalesModeling
   
 1 仕入れ入庫
 
-![](../../../assets/1ecefa04d5a289212a005a40b5c01db60.png?0.9197727110677476)  
+![](../../../assets/1ecefa04d5a289212a005a40b5c01db60.png?0.26865897738295663)  
   
 2 販売出荷
 
-![](../../../assets/1ecefa04d5a289212a005a40b5c01db61.png?0.7375446335226821)  
+![](../../../assets/1ecefa04d5a289212a005a40b5c01db61.png?0.09969237675950371)  
   
 3 移送入庫／出庫
   
@@ -45,7 +45,7 @@ SalesModeling
 ### 在庫管理業務のユースケース
   
 
-![](../../../assets/1ecefa04d5a289212a005a40b5c01db62.png?0.5755546016757767)  
+![](../../../assets/1ecefa04d5a289212a005a40b5c01db62.png?0.5399502172343191)  
   
 |No|ユースケース|概要|
 |:---|:---|:---|
@@ -74,37 +74,30 @@ SalesModeling
 #### タイプ１：数量管理型
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db63.png?0.502066639410826)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db63.png?0.7629098196465842)  
 #### タイプ２：ロット管理型
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db64.png?0.1550817335452943)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db64.png?0.8692758478430622)  
 #### タイプ３：単品管理型
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db65.png?0.7144396663110557)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db65.png?0.03619384618300159)  
   
 #### 受払（タイプ１）
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db66.png?0.04536012783279664)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db66.png?0.5342704496244384)  
   
 #### 受払一覧表の例
   
 
-```
-ImageMagick is required to be installed to convert svg to png.
-Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171029-44549-13fropo.ly3a.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/1ecefa04d5a289212a005a40b5c01db67.png
-magick: attributes construct error
- `No such file or directory` @ error/svg.c/SVGError/2680.
-
-```  
-
+![](./assets/1ecefa04d5a289212a005a40b5c01db67.png?0.8992496450044143)  
   
 #### 棚卸
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db67.png?0.028618117074001415)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db68.png?0.15175295715187231)  
   
   
 ## 設計
@@ -112,17 +105,10 @@ magick: attributes construct error
 ### クラス図
   
 
-![](./assets/1ecefa04d5a289212a005a40b5c01db68.png?0.5242898229755628)  
+![](./assets/1ecefa04d5a289212a005a40b5c01db69.png?0.02803976259627472)  
   
 ### ER図
   
 
-```
-ImageMagick is required to be installed to convert svg to png.
-Error: Command failed: magick /var/folders/r9/tltm498s7g516t2prbpxr3pw0000gn/T/mume-svg1171029-44549-yotn6f.77mi.svg /Users/k2works/Projects/k2works/etude_for_rails/assets/1ecefa04d5a289212a005a40b5c01db69.png
-magick: attributes construct error
- `No such file or directory` @ error/svg.c/SVGError/2680.
-
-```  
-
+![](./assets/1ecefa04d5a289212a005a40b5c01db610.png?0.17169965812892962)  
   
