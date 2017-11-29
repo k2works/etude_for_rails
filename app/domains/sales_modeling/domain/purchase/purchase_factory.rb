@@ -5,7 +5,7 @@ module SalesModeling
     module Purchase
       class PurchaseFactory
         def initialize
-          @orders_repo = SalesModeling::OrderRepo.new
+          @orders_repo = SalesModeling::OrdersRepo.new
           @stocks_repo = SalesModeling::StocksRepo.new
           @warehoses_repo = SalesModeling::WarehouseRepo.new
         end

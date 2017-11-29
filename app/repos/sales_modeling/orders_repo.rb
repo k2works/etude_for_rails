@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SalesModeling
-  class OrderRepo
+  class OrdersRepo
     def new_order(params = {})
       order_params = params[:order_params]
       order_line_params = params[:order_line_params]

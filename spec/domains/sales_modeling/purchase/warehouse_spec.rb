@@ -9,7 +9,7 @@ RSpec.describe SalesModeling::Domain::Purchase::Warehouse, type: :model do
   let(:product_b) { create(:sku_2, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(200)) }
   let(:product_c) { create(:sku_3, unit_sales_price: SalesModeling::Price::UnitPurchasePrice.new(300)) }
   let(:a_suit) { SalesModeling::Quantity.new(1, 'SUIT') }
-  let(:orders_repo) { SalesModeling::OrderRepo.new }
+  let(:orders_repo) { SalesModeling::OrdersRepo.new }
   let(:order_a_params) do
     {
       order_params: {
