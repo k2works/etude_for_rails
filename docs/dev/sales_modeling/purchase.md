@@ -144,6 +144,7 @@ class Order {
   order_date:Date
   scheduled_arrival_date:Date
   amount:int
+  execute()
 }
 class OrderLine {
   quantity:int
@@ -170,6 +171,7 @@ class Product {
 class PurchaseService << DomainService >>{
 }
 abstract class OrderStrategy {
+  execute()  
 }
 class RegularOrderStrategy {
 }
@@ -184,10 +186,11 @@ PurchaseService -> PurchaseFactory
 PurchaseFactory --> OrderStrategy
 PurchaseFactory --> Order
 PurchaseFactory --> Stock
+PurchaseFactory --> Warehouse
 OrderStrategy <|.. RegularOrderStrategy
 OrderStrategy <|.. FixSizeOrderStrategy
 OrderStrategy <|.. SimpleOrderStrategy
-OrderStrategy <-- Order
+OrderStrategy -o Order
 Supplier -- Order
 Order *-- OrderLine
 OrderLine -- Product
