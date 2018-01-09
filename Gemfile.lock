@@ -348,7 +348,7 @@ GEM
       yard (>= 0.7.0)
     hashie (3.5.5)
     http_parser.rb (0.6.0)
-    i18n (0.9.0)
+    i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     i18n_generators (2.1.1)
       rails (>= 3.0.0)
@@ -534,7 +534,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    ruby-debug-ide (0.6.1.beta9)
+    ruby-debug-ide (0.6.1.beta4)
       rake (>= 0.8.1)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
@@ -697,7 +697,7 @@ DEPENDENCIES
   redis-namespace
   rspec-json_matcher
   rspec-rails (~> 3.5)
-  ruby-debug-ide (= 0.6.1.beta9)
+  ruby-debug-ide (~> 0.6.1.beta4)
   sass-rails (~> 5.0)
   scss_lint
   selenium-webdriver
@@ -720,7 +720,7 @@ DEPENDENCIES
   yard (~> 0.9.8)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.2p198
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
