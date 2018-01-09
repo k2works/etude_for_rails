@@ -617,24 +617,24 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="debase (vbundled(0.2.2.beta10)) [path][gem]">
+      <library name="debase (vbundled(0.2.2.beta14)) [path][gem]">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta10/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta10/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta14/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta14/ext" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta10/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta10/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta14/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-0.2.2.beta14/ext" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="debase-ruby_core_source (vbundled(0.9.9)) [path][gem]">
+      <library name="debase-ruby_core_source (vbundled(0.10.2)) [path][gem]">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-ruby_core_source-0.9.9/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-ruby_core_source-0.10.2/lib" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-ruby_core_source-0.9.9/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/debase-ruby_core_source-0.10.2/lib" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -2871,18 +2871,18 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="yard (vbundled(0.9.9)) [path][gem]">
+      <library name="yard (vbundled(0.9.12)) [path][gem]">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/templates" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/benchmarks" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/benchmarks" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/templates" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/templates" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.9/benchmarks" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/benchmarks" />
+          <root url="file://$MODULE_DIR$/vendor/bundler/ruby/2.4.0/gems/yard-0.9.12/templates" />
         </SOURCES>
       </library>
     </orderEntry>
