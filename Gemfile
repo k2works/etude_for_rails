@@ -77,7 +77,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'yard', '~> 0.9.8', group: :doc
+  gem 'yard', '~> 0.9.11', group: :doc
   gem 'guard-yard'
   gem 'redcarpet', '~> 3.3', '>= 3.3.4'
   gem 'migration_comments'
