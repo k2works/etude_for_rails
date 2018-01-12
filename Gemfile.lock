@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/k2works/etude_for_ops.git
-  revision: 8daa1cf2f17f1deaf34a9aeeb9ea0ebfda80da2e
-  branch: feature/onpremis
+  revision: 750279a88257ae65296f674c1f11394514c32731
+  branch: feature/aws_ruby_staging
   specs:
-    etude_for_ops (0.1.0)
+    etude_for_ops (0.2.0)
 
 GEM
   remote: https://rubygems.org/

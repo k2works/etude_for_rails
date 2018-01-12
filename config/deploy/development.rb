@@ -4,9 +4,9 @@ role :web, %w(127.0.0.1)
 
 set(
     :ssh_options,
-    port: 2222,
+    port: 2201,
     auth_methods: %w(publickey),
-    keys: [File.expand_path("../../../ops/01_development/.vagrant/machines/default/virtualbox/private_key", __FILE__)],
+    keys: [File.expand_path("~/.vagrant.d/insecure_private_key", __FILE__)],
     user: "vagrant"
 )
 set :rails_env, :development
@@ -16,4 +16,11 @@ set :bundle_without, []
 set :scm, :copy
 set :include_dir, ["*", '.ruby-version', '.postcssrc.yml', '.env.development']
 set :exclude_dir, ['vendor/bundler', 'log\/*', 'tmp\/*', 'mydb\/*', 'public\/*', 'node_modules\/*', 'ops\/*']
+set :linked_dirs, %w(node_modules public/packs)
 set :db_name, 'etude_for_rails_development'
+
+#Whenever
+set :whenever_environment, "#{fetch(:stage)}"
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
+SSHKit.config.command_map[:whenever] = "bundle exec whenever"
