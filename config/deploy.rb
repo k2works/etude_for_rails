@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock '3.9.1'
 
-set :application, "app"
+set :application, "etudeforrails"
 set :deploy_to, "/srv/#{fetch(:application)}"
 set :repo_url, 'https://github.com/k2works/etude_for_rails.git'
 set :deploy_via, :remote_cache
