@@ -19,6 +19,35 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/mingw" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/chef-sugar" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/ohai" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/seven_zip" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/homebrew" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/windows" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/ruby_platform" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/aws" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/dmg" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/git" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/build-essential" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/elasticsearch" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/vagrant" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/runit" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/yum" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/htpasswd" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/java" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/poise-python" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/python" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/systemd" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/apt" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/jenkins" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/ark" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/kibana5" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/yum-epel" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/awscli" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/cookbooks/ruby_platform/.delivery/build_cookbook" type="cookbooks-root" />
+      <sourceFolder url="file://$MODULE_DIR$/ops/01_development/build/.delivery/build_cookbook" type="cookbooks-root" />
       <excludeFolder url="file://$MODULE_DIR$/.bundle" />
       <excludeFolder url="file://$MODULE_DIR$/components" />
       <excludeFolder url="file://$MODULE_DIR$/public/system" />
