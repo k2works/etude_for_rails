@@ -32,7 +32,7 @@ staging: &staging
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
+  username: app
   password: password
   host: 127.0.0.1
   database: etude_for_rails_staging

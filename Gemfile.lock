@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/k2works/etude_for_ops.git
-  revision: 750279a88257ae65296f674c1f11394514c32731
+  revision: a3939788fead599f18b2be0116064a6bbde044e8
   branch: feature/aws_ruby_staging
   specs:
     etude_for_ops (0.2.0)
