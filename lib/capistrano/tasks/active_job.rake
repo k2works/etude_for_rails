@@ -27,14 +27,18 @@ namespace :active_job do
   desc 'Stop ActiveJob Service'
   task :stop do
     on roles(:app) do
-      execute :sudo, :service, :active_job, :stop
+      if test "[ -f #{shared_path.join('pids', 'sidekiq.pid')} ]"
+        execute :sudo, :service, :active_job, :stop
+      end
     end
   end
 
   desc 'Restart ActiveJob Service'
   task :restart do
     on roles(:app) do
-      execute :sudo, :service, :active_job, :restart
+      if test "[ -f #{shared_path.join('pids', 'sidekiq.pid')} ]"
+        execute :sudo, :service, :active_job, :restart
+      end
     end
   end
 
