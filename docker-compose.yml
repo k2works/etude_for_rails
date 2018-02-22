@@ -10,13 +10,24 @@ services:
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:pass@mysql:3306
+    command: bundle exec rails s -b 0.0.0.0
     ports:
-     - "5000:5000"
-     - "9292:9292"
+     - 3000:3000
     volumes:
      - .:/usr/src/app
     links:
       - mysql
+      - web-dev
+      - livereload
+  web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: ./bin/webpack-dev-server
+    ports:
+     - 9292:9292
+    volumes:
+     - .:/usr/src/app
   livereload:
     build:
       # same build settings as your Rails app

@@ -17,9 +17,7 @@ RUN \
   yarn install && \
   rm -rf ~/.gem
 
-RUN apt-get update && apt-get install -y  \
-    vim
 
 EXPOSE  5000
 EXPOSE  9292
-CMD ["bin/server"]
+CMD ["bash"]

@@ -75,3 +75,7 @@ RUN wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz
     && mkdir -p /usr/local/lib \
     && tar -xvzf heroku.tar.gz -C /usr/local/lib \
     && /usr/local/lib/heroku/install
+
+# Other Tools
+RUN apt-get update && apt-get install -y  \
+    vim
