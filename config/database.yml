@@ -11,7 +11,7 @@ default: &default
   pool: 5
   username: root
   password: password
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 development:
   <<: *default
