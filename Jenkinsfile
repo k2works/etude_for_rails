@@ -25,7 +25,6 @@ node {
                     sh '$APP_ROOT/bin/rake db:test:prepare'
                     sh '$APP_ROOT/bin/rake spec'
                     sh '$APP_ROOT/bin/rails test'
-                    sh '$APP_ROOT & npm test'
                 }
             }
         }
