@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.4.4
 
 # Node & Yarn Install
 RUN groupadd --gid 1000 node \
@@ -75,3 +75,7 @@ RUN wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz
     && mkdir -p /usr/local/lib \
     && tar -xvzf heroku.tar.gz -C /usr/local/lib \
     && /usr/local/lib/heroku/install
+
+# Other Tools
+RUN apt-get update && apt-get install -y  \
+    vim

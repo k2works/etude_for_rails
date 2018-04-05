@@ -7,8 +7,46 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dev
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: mysql2://root:password@mysql:3306
+    command: bundle exec rails s -b 0.0.0.0
     ports:
-     - "5000:5000"
-     - "9292:9292"
+     - 3000:3000
     volumes:
      - .:/usr/src/app
+    links:
+      - mysql
+      - web-dev
+      - livereload
+  mysql:
+    image: mysql:5.7.10
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+  web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: ./bin/webpack-dev-server
+    ports:
+     - 9292:9292
+    volumes:
+     - .:/usr/src/app
+  livereload:
+    build:
+      # same build settings as your Rails app
+      context: .
+      dockerfile: Dockerfile-dev
+    command: bundle exec guard -P livereload
+    # [...] whatever else you need
+    ports:
+      - 35729:35729
+    volumes:
+      - .:/usr/src/app  # or however you configured your Rails root volume
+volumes:
+  mysql-data:
+    driver: local

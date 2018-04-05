@@ -61,7 +61,7 @@ guard 'livereload' do
   watch(%r{config/locales/.+\.yml})
 end
 
-# Guardのマッチング規則を定義
+# Define Guard matching rules
 guard :minitest, spring: "bin/rails test", all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
   watch('test/test_helper.rb') { 'test' }
@@ -98,7 +98,6 @@ guard :minitest, spring: "bin/rails test", all_on_start: false do
   end
 end
 
-# 与えられたリソースに対応する統合テストを返す
 def integration_tests(resource = :all)
   if resource == :all
     Dir["test/integration/*"]  else
@@ -106,12 +105,10 @@ def integration_tests(resource = :all)
   end
 end
 
-# 与えられたリソースに対応するコントローラのテストを返す
 def controller_test(resource)
   "test/controllers/#{resource}_controller_test.rb"
 end
 
-# 与えられたリソースに対応するすべてのテストを返す
 def resource_tests(resource)
   integration_tests(resource) << controller_test(resource)
 end

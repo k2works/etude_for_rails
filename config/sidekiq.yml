@@ -1,11 +1,11 @@
 concurrency: 5
 development:
-  :pidfile: /var/app/shared/tmp/pids/sidekiq.pid
-  :logfile: /var/app/shared/log/sidekiq_development.log
+  :pidfile: /srv/etudeforrails/shared/pids/sidekiq.pid
+  :logfile: /srv/etudeforrails/shared/log/sidekiq_development.log
 staging:
-  :pidfile: /var/app/shared/tmp/pids/sidekiq.pid
-  :logfile: /var/app/shared/log/sidekiq_staging.log
+  :pidfile: /srv/etudeforrails/shared/pids/sidekiq.pid
+  :logfile: /srv/etudeforrails/shared/log/sidekiq_staging.log
 production:
-  :concurrency: 10
-  :queues:
-    - default
+  :pidfile: /srv/etudeforrails/shared/pids/sidekiq.pid
+  :logfile: /srv/etudeforrails/shared/log/sidekiq_production.log
+  :concurrency: 50

@@ -1,15 +1,15 @@
 # config valid only for current version of Capistrano
 lock '3.9.1'
 
-set :application, "app"
-set :deploy_to, "/var/#{fetch(:application)}"
+set :application, "etudeforrails"
+set :deploy_to, "/srv/#{fetch(:application)}"
 set :repo_url, 'https://github.com/k2works/etude_for_rails.git'
 set :deploy_via, :remote_cache
 set :keep_releases, 5
 set :log_level, :debug
 set :use_sudo, false
 set :pty, true
-set :rbenv_ruby, '2.4.1'
+set :rbenv_ruby, '2.4.2'
 set :db_root_pass, 'password'
 set :db_host_ip, '127.0.0.1'
 
@@ -29,10 +29,11 @@ set :default_env, {
 # shared/puma.rb
 set :puma_threds,  [4, 16]
 set :puma_workers, 0
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_error_log, "#{release_path}/log/puma.error.log"
+set :puma_bind,       "unix://#{shared_path}/sockets/puma.sock"
+set :puma_state,      "#{shared_path}/pids/puma.state"
+set :puma_pid,        "#{shared_path}/pids/puma.pid"
+set :puma_conf,       "#{shared_path}/config/puma.rb"
+set :puma_error_log,  "#{release_path}/log/puma.error.log"
 set :puma_access_log,  "#{release_path}/log/puma.access.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub), port: 22 }
 set :puma_preload_app, true
@@ -82,13 +83,13 @@ namespace :deploy do
       invoke 'db:mysql_db_create'
       invoke 'db:pg_db_create'
       invoke 'deploy'
+      invoke 'active_job:start'
     end
   end
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
       invoke 'active_job:restart'
     end
   end

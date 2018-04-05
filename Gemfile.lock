@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/k2works/etude_for_ops.git
-  revision: 8daa1cf2f17f1deaf34a9aeeb9ea0ebfda80da2e
-  branch: feature/onpremis
+  revision: b29150696f729a83f62246fee7da8f458933179a
+  branch: feature/aws_ruby_staging
   specs:
-    etude_for_ops (0.1.0)
+    etude_for_ops (0.2.0)
+      dotenv
 
 GEM
   remote: https://rubygems.org/
@@ -718,7 +719,7 @@ DEPENDENCIES
   yard (~> 0.9.11)
 
 RUBY VERSION
-   ruby 2.4.2p198
+   ruby 2.4.4p296
 
 BUNDLED WITH
    1.16.1
