@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.4.4
 
 # Node & Yarn Install
 RUN groupadd --gid 1000 node \
