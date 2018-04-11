@@ -114,7 +114,7 @@ gem 'js_cookie_rails'
 # For Ops
 gem 'etude_for_aws', '~> 0.7.10'
 group :development do
-  gem 'etude_for_ops', git: 'https://github.com/k2works/etude_for_ops.git', branch: 'feature/aws_ruby_staging'
+  gem 'etude_for_ops', git: 'https://github.com/k2works/etude_for_ops.git', branch: 'develop'
 end
 
 # For CodeStar
