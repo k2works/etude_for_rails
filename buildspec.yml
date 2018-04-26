@@ -16,6 +16,8 @@ phases:
     commands:
       - echo Start build...
       - docker run --link db:mysql app:test ./bin/rspec
+      - docker run --link db:mysql app:test ./bin/rails test
+      - docker run --link db:mysql app:test npm test
   post_build:
     commands:
       - echo Start post_build...
