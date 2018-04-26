@@ -10,10 +10,10 @@ phases:
       - docker build -t app:base .
       - docker build -t app:dev . -f Dockerfile-dev
       - docker build -t app:test . -f Dockerfile-test
-      - docker run --detach --name=db --env="MYSQL_ROOT_PASSWORD=password" mysql:5.7
   build:
     commands:
       - echo Start build...
+      - docker run --name=db --env="MYSQL_ROOT_PASSWORD=password" mysql:5.7
       - docker run --link db:mysql app:test ./bin/rake db:create
       - docker run --link db:mysql app:test ./bin/rake db:test:prepare
       - docker run --link db:mysql app:test ./bin/rspec
