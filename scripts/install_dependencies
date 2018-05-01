@@ -1,24 +1,28 @@
 #!/bin/bash
-cd /home/ec2-user/ruby-on-rails
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-source ~/.nvm/nvm.sh
-nvm install 8.0.0
-yum install postgresql-devel mysql-devel git -y
-wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
-curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
-yum install yarn -y
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -L get.rvm.io | bash -s stable
-source /etc/profile.d/rvm.sh
-rvm requirements
-rvm install 2.4.1
-gem install rails
-bundle install
-chmod 755 bin/webpack
-bin/yarn
-bin/webpack
-bundle install
-bin/rails db:create
-bin/rails db:migrate
-bin/rails assets:precompile
-bundle exec passenger start -p 80 -a 0.0.0.0 -d
+sudo chown -R ec2-user:ec2-user /srv/yourapplication/releases/code_deploy
+
+mkdir -p /srv/yourapplication/shared/log
+mkdir -p /srv/yourapplication/shared/node_module
+mkdir -p /srv/yourapplication/shared/public/system
+mkdir -p /srv/yourapplication/shared/public/assets
+mkdir -p /srv/yourapplication/shared/pids
+
+cd /srv/yourapplication/releases/code_deploy
+ln -s /srv/yourapplication/shared/log log
+ln -s /srv/yourapplication/shared/node_modules node_modules
+ln -s /srv/yourapplication/shared/public/system public/system
+ln -s /srv/yourapplication/shared/public/assets public/assets
+ln -s /srv/yourapplication/shared/pids public/tmp/pids
+rm config/database.yml
+ln -s /srv/yourapplication/shared/config/database.yml config/database.yml
+
+/home/ec2-user/.rbenv/shims/bundle install --path vendor
+./bin/rake db:migrate
+./bin/yarn
+./bin/rake assets:precompile
+
+unlink /srv/yourapplication/current
+ln -s /srv/yourapplication/releases/code_deploy /srv/yourapplication/current
+
+# https://qiita.com/yn-misaki/items/c850a07f7858437e4d26
+#echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

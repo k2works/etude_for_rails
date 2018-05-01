@@ -1,5 +1,8 @@
 #!/bin/bash
-file=/home/ec2-user/ruby-on-rails/passenger.80.pid
-if [ -e $file ]; then
-  kill $(lsof -t -i:80)
+service puma_yourapplication stop
+service active_job_yourapplication stop
+
+dir=/srv/yourapplication/releases/code_deploy
+if [ -d $dir ]; then
+  unlink $dir/config/database.yml
 fi
