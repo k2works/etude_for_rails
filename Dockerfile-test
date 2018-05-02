@@ -6,6 +6,7 @@ COPY . $APP_ROOT
 RUN chmod +x $APP_ROOT/bin/yarn
 RUN chmod +x $APP_ROOT/bin/webpack
 RUN chmod +x $APP_ROOT/bin/rails
+RUN chmod +x $APP_ROOT/bin/rspec
 RUN $APP_ROOT/bin/yarn
 RUN $APP_ROOT/bin/webpack
 RUN $APP_ROOT/bin/rails assets:precompile
